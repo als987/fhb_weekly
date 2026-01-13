@@ -1,0 +1,643 @@
+relationship d60d71e5-6b9f-40f5-bcc9-96f917901292
+	fromColumn: factSalesOrders.fiscalWeek
+	toColumn: Calendar.fiscalWeek
+
+relationship 64a838e0-93d8-48fb-9d4a-f16f4262ec6b
+	isActive: false
+	fromColumn: factSalesOrders.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastYear
+
+relationship a92b77b1-3117-4024-b556-0a0c39e6f3fb
+	fromColumn: factSalesOrders.siteID
+	toColumn: Stores.siteID
+
+relationship b2b53845-391d-4797-9739-abb1d8603a21
+	fromColumn: factSalesOrders.channel
+	toColumn: Channels.dist_chnl_cde
+
+relationship e3f056dc-7052-4f3a-b1d7-5bb3c71fd185
+	isActive: false
+	fromColumn: factSalesOrders.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastWeek
+
+relationship ab292517-8b2f-4cc2-9b0d-8bd3249786bc
+	fromColumn: factSalesDispatch.'Fiscal Week'
+	toColumn: Calendar.fiscalWeek
+
+relationship d179fc2a-5d11-4b46-ae36-98fdda682dba
+	isActive: false
+	fromColumn: factSalesDispatch.'Fiscal Week'
+	toColumn: Calendar.fiscalWeekLastYear
+
+relationship d3acc805-1bfb-496b-9e8f-f72d7ae86cca
+	isActive: false
+	fromColumn: factSalesDispatch.'Fiscal Week'
+	toColumn: Calendar.fiscalWeekLastWeek
+
+relationship 33cdc716-be70-4e1a-872c-e5d3944b61b2
+	fromColumn: factSalesDispatch.'Distribution Channel Code'
+	toColumn: Channels.dist_chnl_cde
+
+relationship 95131403-848f-4389-9fd2-f4b38fd9da83
+	fromColumn: factSalesDispatch.'Site No'
+	toColumn: Stores.siteNumber
+
+relationship 482689e1-3fdc-4bcb-b727-9cdbf5d8501d
+	fromColumn: factSRIVOrdersChannelForecast.channel
+	toColumn: Channels.dist_chnl_cde
+
+relationship 5ae92560-c30e-4541-a7ac-694b2487ba25
+	crossFilteringBehavior: bothDirections
+	fromColumn: SalesType.fp_rp_ind
+	toColumn: BridgeSalesType.fp_rp_ind
+
+relationship 76aeb2d1-d2ed-4664-a631-9118e717fdf2
+	fromColumn: factSalesOrders.fp_rp_ind
+	toColumn: BridgeSalesType.fp_rp_ind
+
+relationship a6af351b-1e55-40ad-8da2-218ecf6e9b1c
+	fromColumn: factSRIVOrdersChannelForecast.fp_rp_ind
+	toColumn: BridgeSalesType.fp_rp_ind
+
+relationship 93242421-db16-45a5-8d95-4df141b080df
+	fromColumn: factSRIVOrdersChannelForecast.product
+	toColumn: Products.'Dept Code'
+
+relationship 1ce43dfb-cf94-4781-a7e9-217210a0af8f
+	fromColumn: factSalesOrders.dept
+	toColumn: Products.'Dept Code'
+
+relationship 0c2d9cce-af8c-4b88-aef1-dee5858487d4
+	fromColumn: factSalesDispatch.'Department / Category Code'
+	toColumn: Products.'Dept Code'
+
+relationship dd4e6828-5a58-4d3f-b3bc-e1c5e42e1597
+	fromColumn: factMarginOrders.channel
+	toColumn: Channels.dist_chnl_cde
+
+relationship d07d3591-5ff5-45a9-9319-71ec730fd2a3
+	fromColumn: factMarginOrders.product
+	toColumn: Products.'Dept Code'
+
+relationship 1cbc29f3-73d8-4d63-9334-5aa76690548d
+	fromColumn: factMarginOrders.fiscalWeek
+	toColumn: Calendar.fiscalWeek
+
+relationship b47b9486-e18a-4515-8ff8-c832bb2afb33
+	isActive: false
+	fromColumn: factMarginOrders.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastWeek
+
+relationship 063864f8-4c81-449d-87e4-b7109079d6d2
+	isActive: false
+	fromColumn: factMarginOrders.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastYear
+
+relationship b137bf45-f3ff-4703-9470-e17491ed60cb
+	fromColumn: factPromoSalesDispatch.ART_HIER_LEV5_CODE
+	toColumn: Products.'Dept Code'
+
+relationship 05e10499-19c2-4b1f-a382-a6a4a4e66182
+	fromColumn: factPromoSalesDispatch.DIST_CHNL_CDE
+	toColumn: Channels.dist_chnl_cde
+
+relationship 34d74519-fc77-4c23-b83a-fac5cdd27b8e
+	fromColumn: factPromoSalesDispatch.STORE_CODE
+	toColumn: Stores.siteNumber
+
+relationship 3421e368-42b3-43e8-9600-ca8eb567c2f4
+	fromColumn: factDispatchForecast.FISCAL_WEEK
+	toColumn: Calendar.fiscalWeek
+
+relationship 77fa0ca5-dd87-405a-b198-4ef4ccb36f64
+	isActive: false
+	fromColumn: factDispatchForecast.FISCAL_WEEK
+	toColumn: Calendar.fiscalWeekLastWeek
+
+relationship e0a9cf49-f7ad-4e8d-b799-32c4b076a509
+	isActive: false
+	fromColumn: factDispatchForecast.FISCAL_WEEK
+	toColumn: Calendar.fiscalWeekLastYear
+
+relationship 996a0f33-371d-4efd-ba6c-1d92f0ac210d
+	fromColumn: factDispatchForecast.DIST_CHNL_CDE
+	toColumn: Channels.dist_chnl_cde
+
+relationship 83e3be5c-7f5b-4f32-9c71-4b6f27fc6852
+	fromColumn: factDispatchForecast.DEPT_CODE
+	toColumn: Products.'Dept Code'
+
+relationship 0e1a8647-48ed-4ff3-8768-95f3906243b6
+	fromColumn: factDeriskForecast.sales_type
+	toColumn: BridgeSalesType.fp_rp_ind
+
+relationship 55bd220e-5236-436b-9dca-de60941fd24e
+	fromColumn: factDeriskForecast.fiscalWeek
+	toColumn: Calendar.fiscalWeek
+
+relationship 30448f9a-1224-4f48-bb7d-3590769f32c2
+	isActive: false
+	fromColumn: factDeriskForecast.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastWeek
+
+relationship 8ee3c1b5-7852-4902-bbcb-a2cb910fa489
+	isActive: false
+	fromColumn: factDeriskForecast.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastYear
+
+relationship 613b83c1-dfbd-4144-bc8a-aa28c4403f78
+	fromColumn: factDeriskForecast.channel
+	toColumn: Channels.dist_chnl_cde
+
+relationship f773ac83-c344-4acf-a035-013fceac83ff
+	fromColumn: factDeriskForecast.dept
+	toColumn: Products.'Dept Code'
+
+relationship a09843e7-1219-4402-9db1-bad6191f3a81
+	fromColumn: factDeriskForecast.siteID
+	toColumn: Stores.siteID
+
+relationship 2d0ff832-c0e7-4bc7-8db7-5ded6f6dbcf4
+	fromColumn: factMarginOrders.siteID
+	toColumn: Stores.siteID
+
+relationship 2b3dbc63-c874-4ce6-a086-6634ed708c5a
+	fromColumn: factSRIVOrdersChannelForecast.siteID
+	toColumn: Stores.siteID
+
+relationship c7c1c6fc-b2db-4b61-92cd-3490441a0376
+	fromColumn: factDispatchForecast.siteNumber
+	toColumn: Stores.siteNumber
+
+relationship 9a733a01-0845-4f99-b5c3-485e6f555d48
+	fromColumn: factStock.fiscalWeek
+	toColumn: Calendar.fiscalWeek
+
+relationship 92a38b66-a0f3-4b8d-8f25-ff2d87b4eb65
+	isActive: false
+	fromColumn: factStock.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastWeek
+
+relationship 7b37c82d-545d-4cec-9b17-57c789a81ee6
+	isActive: false
+	fromColumn: factStock.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastYear
+
+relationship a039a8a1-5e6d-4eac-af92-d153fbbd9981
+	crossFilteringBehavior: bothDirections
+	fromColumn: ChannelControl.dist_chnl_cde
+	toColumn: Channels.dist_chnl_cde
+
+relationship 3192542c-9b09-459a-b71f-e86661b6c94a
+	fromColumn: factStock.fp_rp_ind
+	toColumn: BridgeSalesType.fp_rp_ind
+
+relationship 1705f88b-fd39-4c97-83de-283f65254b69
+	fromColumn: factPromoSalesDispatch.FISCAL_WEEK
+	toColumn: Calendar.fiscalWeek
+
+relationship 83ab001c-049d-4929-bb49-79be2bc2bfab
+	isActive: false
+	fromColumn: factPromoSalesDispatch.FISCAL_WEEK
+	toColumn: Calendar.fiscalWeekLastWeek
+
+relationship d06749cd-c701-44ad-9d50-31025d18379b
+	isActive: false
+	fromColumn: factPromoSalesDispatch.FISCAL_WEEK
+	toColumn: Calendar.fiscalWeekLastYear
+
+relationship 2e7eabab-1345-49d5-a518-0761b6534f2f
+	fromColumn: factTransactions.fiscalWeek
+	toColumn: Calendar.fiscalWeek
+
+relationship 6b07439e-e91e-4f9d-b0fc-9cbc25916bcb
+	isActive: false
+	fromColumn: factTransactions.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastWeek
+
+relationship fa581dbb-12d7-46d3-b92c-9bbd268e822f
+	isActive: false
+	fromColumn: factTransactions.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastYear
+
+relationship fa94c6dd-f467-44f9-8488-f876770a93ee
+	fromColumn: factTransactions.channel
+	toColumn: Channels.dist_chnl_cde
+
+relationship d765a4f8-ab91-4a09-ab97-ab3253c36ba2
+	fromColumn: factFootfall.fiscalWeek
+	toColumn: Calendar.fiscalWeek
+
+relationship 55b426a3-f45c-4a8b-bf49-80c637c1ed5a
+	isActive: false
+	fromColumn: factFootfall.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastWeek
+
+relationship dcdcf0fc-ef84-4f3a-b7b1-a0a5d5dca3e2
+	isActive: false
+	fromColumn: factFootfall.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastYear
+
+relationship 16a5abe2-9954-4d6d-b213-e7d01c082f28
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: OutletsControl.dist_chnl_cde
+	toColumn: Channels.dist_chnl_cde
+
+relationship 7148b749-f5c5-4f5a-8e89-acc2d0d95769
+	fromColumn: factSRIVOrdersChannelForecast.fiscalWeek
+	toColumn: Calendar.fiscalWeek
+
+relationship 89579592-92f2-4e2a-8661-b3f4ed3c5915
+	isActive: false
+	fromColumn: factSRIVOrdersChannelForecast.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastWeek
+
+relationship 1e56950e-c4bd-4bb2-b96d-4784fd796b38
+	isActive: false
+	fromColumn: factSRIVOrdersChannelForecast.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastYear
+
+relationship 81aef62c-3f3e-4208-849d-80a6bf7da44b
+	fromColumn: factFootfall.dist_chnl_cde
+	toColumn: Channels.dist_chnl_cde
+
+relationship e9cc24e8-b307-46b8-96ef-3d615d8cb568
+	fromColumn: factFootfall.store_code
+	toColumn: Stores.siteNumber
+
+relationship 93548849-67e7-49f3-8fe0-a3b2bbf75cfe
+	fromColumn: factSRIVDispatchChannelForecast.fiscalWeek
+	toColumn: Calendar.fiscalWeek
+
+relationship bd2ea2a8-b5e6-430b-a4fa-c9a30c7ec176
+	isActive: false
+	fromColumn: factSRIVDispatchChannelForecast.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastWeek
+
+relationship d942861c-d4ea-4db5-b9c2-b3e30ad8c54d
+	isActive: false
+	fromColumn: factSRIVDispatchChannelForecast.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastYear
+
+relationship 758d1b5c-1e02-4ac9-8769-50e460858ae9
+	fromColumn: factSRIVDispatchChannelForecast.product
+	toColumn: Products.'Dept Code'
+
+relationship 60b6fc24-cbcb-4980-822a-73c195ff7e9f
+	fromColumn: factSRIVDispatchChannelForecast.siteID
+	toColumn: Stores.siteID
+
+relationship da389d3a-77ee-49d2-b5ec-4c477e7bd264
+	fromColumn: factSRIVDispatchChannelForecast.fp_rp_ind
+	toColumn: BridgeSalesType.fp_rp_ind
+
+relationship 765d02d9-4861-491b-9c56-373834e8514f
+	fromColumn: factSRIVDispatchChannelForecast.channel
+	toColumn: Channels.dist_chnl_cde
+
+relationship 1bb3dba4-8bdb-43cc-a45e-c9399c6d2313
+	fromColumn: factPromoSalesDispatch.COMP_CODE
+	toColumn: 'Company Code'.'Company Code'
+
+relationship 3e4bb5a0-7a80-4ab2-b6dc-5f815c3bef71
+	fromColumn: factSalesDispatch.'Company Code'
+	toColumn: 'Company Code'.'Company Code'
+
+relationship c018ec24-51b9-4922-ba05-54a209bb39e2
+	fromColumn: factSalesOrders.comp_code
+	toColumn: 'Company Code'.'Company Code'
+
+relationship de2fb333-7d66-4e60-ad64-43d26e88b501
+	fromColumn: SalesMeasureSelection.Comparator
+	toColumn: ComparatorMaster.Comparator
+
+relationship 85400559-556f-498e-a648-4b4406f9c262
+	fromColumn: SalesTypeRecMeasureSelection.Comparator
+	toColumn: ComparatorMaster.Comparator
+
+relationship 1d56c198-0aef-4911-9746-cf7b1c7f566c
+	fromColumn: GSMTypeRecMeasureSelection.Comparator
+	toColumn: ComparatorMaster.Comparator
+
+relationship 883e7d59-08fa-47a8-a95d-f7767e344334
+	fromColumn: GSMMeasureSelection.Comparator
+	toColumn: ComparatorMaster.Comparator
+
+relationship 6c8566f3-69b8-4598-8db4-6b86b271a4b2
+	fromColumn: P&LMeasureSelection.Comparator
+	toColumn: ComparatorMaster.Comparator
+
+relationship b1d9091b-969c-44a4-82a6-8312368c7bd5
+	fromColumn: StockMeasureSelection.Comparator
+	toColumn: ComparatorMaster.Comparator
+
+relationship 5d8bb489-fbe1-4b3b-a0f5-88cbb0ee1b8e
+	fromColumn: factTradingCalendar.EventFiscalWeekNo
+	toColumn: Calendar.fiscalWeek
+
+relationship 83edbb1b-4ba0-4327-989a-b8e8a711de61
+	fromColumn: factOnlineCustomerMetrics.fiscalWeek
+	toColumn: Calendar.fiscalWeek
+
+relationship d74ec0f5-c9d9-4e5c-954c-673cb1afe0f7
+	isActive: false
+	fromColumn: factOnlineCustomerMetrics.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastWeek
+
+relationship af2829e5-8af1-4f01-afe4-ec504d1305a8
+	isActive: false
+	fromColumn: factOnlineCustomerMetrics.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastYear
+
+relationship 21aad5c9-2cb0-48ba-8ff1-c0d9b0cf868c
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: factAvailability.DWABU
+	toColumn: Products.BU
+
+relationship 89065569-9776-43d6-84b9-d8b294128957
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: Channels.Channel
+	toColumn: factAvailability.DWAChannel
+
+relationship f7960924-51e0-4823-89db-cad8e5dbc249
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Restore Weeks Calendar'.'Week No'
+	toColumn: Calendar.fiscalWeek
+
+relationship 939a4e40-ccf5-4a60-8a5a-9ac983fd6263
+	fromColumn: factTradingCommentary.CommentaryWeekNo
+	toColumn: Calendar.fiscalWeek
+
+relationship bd544295-2652-4f71-86af-1a9ebb4661d9
+	fromColumn: factDeriskBudget.channel
+	toColumn: Channels.dist_chnl_cde
+
+relationship 7ae93c56-597c-41f2-8eea-e5af6b4c986d
+	fromColumn: factDeriskBudget.dept
+	toColumn: Products.'Dept Code'
+
+relationship f64223b0-1d65-44d9-9fe9-6a34a5a0d3d7
+	fromColumn: factDeriskBudget.fiscalWeek
+	toColumn: Calendar.fiscalWeek
+
+relationship 7902f6dd-d45d-4a7c-8b54-981a14979e69
+	isActive: false
+	fromColumn: factDeriskBudget.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastWeek
+
+relationship 880b07d1-5712-475c-894c-3186f2869084
+	isActive: false
+	fromColumn: factDeriskBudget.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastYear
+
+relationship 6006e14a-a4f5-4ef5-a3e2-2e7fedd9c78b
+	fromColumn: factDeriskBudget.sales_type
+	toColumn: BridgeSalesType.fp_rp_ind
+
+relationship 999e0d0d-de90-4848-b605-062ca63ade56
+	fromColumn: factDeriskBudget.siteID
+	toColumn: Stores.siteID
+
+relationship 45fc428d-5891-4189-a51f-02f8e450a8d4
+	fromColumn: factForecast.channel
+	toColumn: Channels.dist_chnl_cde
+
+relationship ed6556b1-51f1-4133-b74e-ef905a3659bc
+	fromColumn: factForecast.product
+	toColumn: Products.'Dept Code'
+
+relationship bea51ebd-ae7d-4bc5-a489-156ca6c56717
+	fromColumn: factForecast.'Dispatch or Orders'
+	toColumn: SalesRecognitionType.SRType
+
+relationship 6b478113-9666-4181-9923-1e6f27bd0ddb
+	fromColumn: factForecast.siteID
+	toColumn: Stores.siteID
+
+relationship 66064cbb-266b-43b4-b69b-292a75caac81
+	fromColumn: factForecast.fiscalWeek
+	toColumn: Calendar.fiscalWeek
+
+relationship 16f7f2d7-0fdb-48d7-8e9b-43cd7a8f152e
+	isActive: false
+	fromColumn: factForecast.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastWeek
+
+relationship e6dd73f7-1095-4d16-9ebe-1171d1ff9fe5
+	isActive: false
+	fromColumn: factForecast.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastYear
+
+relationship 17f4b4f6-dc51-47f8-945f-84a843e15a2b
+	fromColumn: factForecast.plan
+	toColumn: ForecastScenarios.'Finance Plan'
+
+relationship 6f394edc-f62b-4160-bd62-1371975c6424
+	crossFilteringBehavior: bothDirections
+	fromColumn: ForecastScenarios.'MP Plan'
+	toColumn: BridgeMPPlan.'MP Plan'
+
+relationship 451f7bf5-9980-4d62-9e78-deeeb162d588
+	fromColumn: factSRIVOrdersChannelForecast.plan
+	toColumn: BridgeMPPlan.'MP Plan'
+
+relationship 04fb8c94-cfff-42de-8bfc-5d728c89d9d6
+	fromColumn: factMarginOrders.plan
+	toColumn: BridgeMPPlan.'MP Plan'
+
+relationship 27a19459-400e-47e9-883e-34dbe9ae2acd
+	fromColumn: factDispatchForecast.PLAN
+	toColumn: BridgeMPPlan.'MP Plan'
+
+relationship 43cb37ed-c01d-42d1-8403-6d82da41f6b4
+	fromColumn: factSRIVDispatchChannelForecast.plan
+	toColumn: BridgeMPPlan.'MP Plan'
+
+relationship ecfa866d-d0db-44e1-ba76-5f91da4e5f8b
+	fromColumn: FwdViewMeasureSelection.Comparator
+	toColumn: ComparatorMaster.Comparator
+
+relationship efb5e8a1-0420-9dfe-ef3e-23b19a1126e9
+	fromColumn: MarginBridgeVariable.Variable
+	toColumn: MarginBridgeWalk.Step
+
+relationship 6bfb7d56-3c2f-4a0d-994f-1f84a22252e5
+	fromColumn: MarginMeasureSelection.Comparator
+	toColumn: ComparatorMaster.Comparator
+
+relationship 007f700c-a0b2-4e19-964c-b3d44105d157
+	fromColumn: MarginMeasureSelection.MeasureType
+	toColumn: MeasureTypeMaster.MeasureType
+
+relationship e730fa99-732a-4b60-85ec-a5a8a84d0fc7
+	fromColumn: SalesTypeRecMeasureSelection.MeasureType
+	toColumn: MeasureTypeMaster.MeasureType
+
+relationship 2e4752ba-a17d-4a1a-8a77-dbc9a52f521e
+	fromColumn: GSMTypeRecMeasureSelection.MeasureType
+	toColumn: MeasureTypeMaster.MeasureType
+
+relationship a1d5ab6e-a660-4a54-8eb0-b3fb6ce5fe5e
+	fromColumn: GSMMeasureSelection.MeasureType
+	toColumn: MeasureTypeMaster.MeasureType
+
+relationship b9d5ddbf-148f-46ea-be4e-08131f734d6c
+	fromColumn: P&LMeasureSelection.MeasureType
+	toColumn: MeasureTypeMaster.MeasureType
+
+relationship cb9d0038-0dbf-44e1-b5e3-cc89961694aa
+	fromColumn: SalesMeasureSelection.MeasureType
+	toColumn: MeasureTypeMaster.MeasureType
+
+relationship 8ea6fffe-8914-4cec-87e1-9582d199f7d0
+	fromColumn: StockMeasureSelection.MeasureType
+	toColumn: MeasureTypeMaster.MeasureType
+
+relationship 750daffb-d480-4270-ad86-a1532d91d887
+	fromColumn: FwdViewMeasureSelection.MeasureType
+	toColumn: MeasureTypeMaster.MeasureType
+
+relationship 33a92ef4-b2b2-4549-bb84-b2e5439dbe7e
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: ComparatorMaster.Comparator
+	toColumn: MarginBridgeComparator.Comparator
+
+relationship 5fd94d02-2c36-42c8-96f3-3b7d4d27edb8
+	toCardinality: many
+	fromColumn: SalesType.SubSalesType
+	toColumn: SalesTypeGroup.SubSalesType
+
+relationship edd0a10e-72a7-7cc7-5197-2d8720b62c9a
+	toCardinality: many
+	fromColumn: Products.'In/Ex Furniture'
+	toColumn: 'Total Furniture'.'In/Ex Furniture'
+
+relationship 332c4c82-229b-4e26-5baa-9f1c5129b332
+	fromColumn: factOrderVol.channel
+	toColumn: Channels.dist_chnl_cde
+
+relationship e59ea6d3-a2bd-e383-5673-30e90ead3422
+	fromColumn: factOrderVol.comp_code
+	toColumn: 'Company Code'.'Company Code'
+
+relationship b6cbccd4-ae48-d3a6-6002-78bdb0b40ca9
+	fromColumn: factOrderVol.fp_rp_ind
+	toColumn: BridgeSalesType.fp_rp_ind
+
+relationship c5557e58-79f1-189a-4d28-fc07d3ffec1a
+	fromColumn: factOrderVol.dept
+	toColumn: Products.'Dept Code'
+
+relationship 3690be1f-b627-79f8-af20-e4f5c515368c
+	fromColumn: factOrderVol.siteID
+	toColumn: Stores.siteID
+
+relationship ae504608-c32c-a348-2f13-6205857306c5
+	fromColumn: factStock.dept
+	toColumn: Products.'Dept Code'
+
+relationship 9a435b69-4918-be16-c76d-f121bd7aa61a
+	fromColumn: factStock.comp_code
+	toColumn: 'Company Code'.'Company Code'
+
+relationship 01b56c26-6806-a40a-c2fe-1d39b094bfad
+	fromColumn: factStock.channel
+	toColumn: Channels.dist_chnl_cde
+
+relationship ecffd543-db64-0e62-b9d3-3e9c88d60dd1
+	fromColumn: factStock.siteID
+	toColumn: Stores.siteID
+
+relationship d3253237-bbb1-9250-1376-6e67111371e1
+	fromColumn: factMPStock.product
+	toColumn: Products.'Dept Code'
+
+relationship bdf93b76-7fb8-dd94-c83e-246bbac0577c
+	fromColumn: factMPStock.plan
+	toColumn: BridgeMPPlan.'MP Plan'
+
+relationship 22fd29cd-d95e-bb61-61c5-c115a5ac9c1f
+	fromColumn: factMPStock.fp_rp_ind
+	toColumn: BridgeSalesType.fp_rp_ind
+
+relationship 666e8c58-6adc-4c2f-d1b7-1beeb776959c
+	fromColumn: factMPStock.channel
+	toColumn: Channels.dist_chnl_cde
+
+relationship 5f3c5d13-696f-6e5a-e1bf-8b98641204d0
+	fromColumn: factMPStock.fiscalWeek
+	toColumn: Calendar.fiscalWeek
+
+relationship 6f860525-a32f-53d5-0823-8bd866ccd809
+	isActive: false
+	fromColumn: factMPStock.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastWeek
+
+relationship e533a860-761c-27dd-4e42-89b755d202c9
+	isActive: false
+	fromColumn: factMPStock.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastYear
+
+relationship f0bf63e2-5217-3a26-f8b7-75984fc1b7e1
+	fromColumn: factOrderVol.fiscalWeek
+	toColumn: Calendar.fiscalWeek
+
+relationship 976f7069-ef0c-0afd-97d1-dc3d2fb4349c
+	isActive: false
+	fromColumn: factOrderVol.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastYear
+
+relationship 46628bb8-9d40-8814-49a8-a2ff4fd7edde
+	isActive: false
+	fromColumn: factOrderVol.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastWeek
+
+relationship 367e5f56-9e98-4e6d-bc03-a24cb8c1c651
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Time Period'.'Axis Date'
+	toColumn: Calendar.fiscalWeekEndingDate
+
+relationship 3cbb6bb1-41b3-d27a-8c5e-ccce0e62c216
+	fromColumn: factAdobe.fiscalWeek
+	toColumn: Calendar.fiscalWeek
+
+relationship 1dab1e0f-8cd5-ac7e-35fb-d44873577f0e
+	isActive: false
+	fromColumn: factAdobe.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastWeek
+
+relationship 35ab0c37-af39-b631-e01e-96b06633b2d1
+	isActive: false
+	fromColumn: factAdobe.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastYear
+
+relationship bd124a72-6ba4-5ace-e004-ef65ce281777
+	fromColumn: factAOV.fiscalWeek
+	toColumn: Calendar.fiscalWeek
+
+relationship 2ee91d2f-2b6b-c772-34b4-74ed53519841
+	isActive: false
+	fromColumn: factAOV.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastWeek
+
+relationship 10d6dc20-e7d3-e467-e260-a706b1df3a4e
+	isActive: false
+	fromColumn: factAOV.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastYear
+
+relationship 364a1dc4-ddc3-afb5-79da-3313581ee5cd
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: factAdobe.countryName
+	toColumn: 'Company Code'.Country
+
+relationship 066aaed5-eccc-2d40-ebc8-b3aea45834b5
+	toCardinality: many
+	fromColumn: factAOV.dimOrderCountryCode
+	toColumn: 'Company Code'.Country
+

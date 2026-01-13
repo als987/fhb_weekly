@@ -1,0 +1,52 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "1612d075d2ec9523ab0d",
+  "position": {
+    "x": 481.11111111111109,
+    "y": 570,
+    "z": 5000,
+    "height": 106.66666666666666,
+    "width": 208.88888888888889,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "factAdobe"
+                    }
+                  },
+                  "Property": "sum_visitsL2_factAdobe"
+                }
+              },
+              "queryRef": "factAdobe.sum_visitsL2_factAdobe",
+              "nativeQueryRef": "sum_visitsL2_factAdobe"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "factAdobe"
+                    }
+                  },
+                  "Property": "visitType"
+                }
+              },
+              "queryRef": "factAdobe.visitType",
+              "nativeQueryRef": "visitType"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

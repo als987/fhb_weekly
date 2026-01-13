@@ -1,0 +1,64 @@
+table MetricMasterPnLNumFormat
+	lineageTag: da13e5ba-9b41-4ab0-8cd1-fc3b897b4eaa
+
+	calculationGroup
+		precedence: 1
+
+		calculationItem Unformatted = SELECTEDMEASURE ()
+
+		calculationItem Formatted = SELECTEDMEASURE ()
+
+			formatStringDefinition =
+					VAR ValFormatString =
+					    SELECTEDVALUE ( MetricMasterPnL[ValFormatString] )
+					VAR VarFormatString =
+					    SELECTEDVALUE ( MetricMasterPnL[VarFormatString] )
+					VAR PctVarFormatString =
+					    SELECTEDVALUE ( MetricMasterPnL[PctVarFormatString] )
+					VAR FormatToApply =
+					    SWITCH (
+					        TRUE (),
+					        ISSELECTEDMEASURE ( [P&L], [P&L LW], [P&L QRF], [P&L FC], [P&L BUD], [P&L LY] ), ValFormatString,
+					        ISSELECTEDMEASURE ( [P&L vs LW], [P&L vs QRF], [P&L vs FC], [P&L vs BUD], [P&L vs LY]), VarFormatString,
+					        ISSELECTEDMEASURE ( [P&L vs LW %], [P&L vs QRF %], [P&L vs FC %], [P&L vs BUD %], [P&L vs LY %]), PctVarFormatString,
+					        SELECTEDMEASUREFORMATSTRING ()
+					    )
+					RETURN
+					    FormatToApply
+
+		calculationItem ReturnFormat =
+				VAR ValFormatString =
+				    SELECTEDVALUE ( MetricMasterPnL[ValFormatString] )
+				VAR VarFormatString =
+				    SELECTEDVALUE ( MetricMasterPnL[VarFormatString] )
+				VAR PctVarFormatString =
+				    SELECTEDVALUE ( MetricMasterPnL[PctVarFormatString] )
+				VAR FormatToApply =
+				    SWITCH (
+				        TRUE (),
+				        ISSELECTEDMEASURE ( [P&L], [P&L LW], [P&L QRF], [P&L FC], [P&L BUD], [P&L LY] ), ValFormatString,
+				        ISSELECTEDMEASURE ( [P&L vs LW], [P&L vs QRF], [P&L vs FC], [P&L vs BUD], [P&L vs LY]), VarFormatString,
+				        ISSELECTEDMEASURE ( [P&L vs LW %], [P&L vs QRF %], [P&L vs FC %], [P&L vs BUD %], [P&L vs LY %]), PctVarFormatString,
+				        SELECTEDMEASUREFORMATSTRING ()
+				    )
+				RETURN
+				    FormatToApply
+
+	column Format
+		dataType: string
+		lineageTag: dcb66d4a-d26b-4341-8d2a-83c2d96adc99
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: 89a6a624-7ba8-42d7-a5a0-5c0045dc9449
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+

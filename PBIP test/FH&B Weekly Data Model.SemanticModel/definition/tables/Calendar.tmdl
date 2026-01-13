@@ -1,0 +1,185 @@
+table Calendar
+	lineageTag: 569f3826-4209-4cdc-a161-e795f3f79118
+
+	/// This measure is the SELECTEDVALUE of column 'Calendar'[fiscalWeekNumber]
+	measure slctd_Week = SELECTEDVALUE ( 'Calendar'[Week] )
+		lineageTag: 8027138f-3ca8-49d0-a700-91c3ebf7cfeb
+
+	measure slctd_FiscalWeek = SELECTEDVALUE('Calendar'[fiscalWeek])
+		lineageTag: b9b7537b-71ba-40cc-bf25-b362c8a8cf5c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fiscalWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: f2e7124d-4a8b-4c61-9be3-654dea5874aa
+		summarizeBy: none
+		sourceColumn: fiscalWeek
+		sortByColumn: fiscalWeekEndingDate
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week
+		dataType: int64
+		formatString: 0
+		lineageTag: 800bd1bc-40c6-47c7-9994-ac33a43118fc
+		summarizeBy: sum
+		sourceColumn: Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscalWeekEndingDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 550cb421-27ba-4e38-a915-0f05b7d15e2c
+		summarizeBy: none
+		sourceColumn: fiscalWeekEndingDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column fiscalWeekLastWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: fdf20abf-700e-4414-8b3c-13512590812e
+		summarizeBy: sum
+		sourceColumn: fiscalWeekLastWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscalWeekLastYear
+		dataType: int64
+		formatString: 0
+		lineageTag: bb1946a3-2b9d-44b7-8483-6fe26f5edced
+		summarizeBy: sum
+		sourceColumn: fiscalWeekLastYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscalWeekLastToLastyear
+		dataType: int64
+		formatString: 0
+		lineageTag: 7f82de10-1cf9-4621-826d-27ec02d5fec5
+		summarizeBy: sum
+		sourceColumn: fiscalWeekLastToLastyear
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscalMonth
+		dataType: int64
+		formatString: 0
+		lineageTag: bd22b353-658d-462e-8496-05149030c2eb
+		summarizeBy: sum
+		sourceColumn: fiscalMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscalMonthName
+		dataType: string
+		lineageTag: ebb689a5-5de1-4bb5-9029-ca5c0a0cd08c
+		summarizeBy: none
+		sourceColumn: fiscalMonthName
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscalMonthNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 6adf3123-7ed2-494c-b9a7-8a62142e608a
+		summarizeBy: sum
+		sourceColumn: fiscalMonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscalQuarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 52bb3e31-c4cb-497e-a349-30f4d2942943
+		summarizeBy: sum
+		sourceColumn: fiscalQuarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscalQuarterNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 89270be3-7cd4-4551-bfa7-2c4620e55074
+		summarizeBy: sum
+		sourceColumn: fiscalQuarterNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscalHalfYear
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d04416e-63f8-4dfe-9f60-5dda2c1b6806
+		summarizeBy: sum
+		sourceColumn: fiscalHalfYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscalYear
+		dataType: int64
+		formatString: 0
+		lineageTag: c55b4c51-77a5-43a9-8928-1b71b4733e15
+		summarizeBy: sum
+		sourceColumn: fiscalYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column season
+		dataType: string
+		lineageTag: a9331cb6-3a78-43b5-908b-b051023ddaea
+		summarizeBy: none
+		sourceColumn: season
+
+		annotation SummarizationSetBy = Automatic
+
+	column calendarID
+		dataType: int64
+		formatString: 0
+		lineageTag: c84da9ce-8b3b-419e-a2a7-fb16863ce9d6
+		summarizeBy: count
+		sourceColumn: calendarID
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscalWeekXXXX
+		dataType: string
+		lineageTag: 58e3030c-4531-4298-bfe4-0f73095508e3
+		summarizeBy: none
+		sourceColumn: fiscalWeekXXXX
+		sortByColumn: fiscalWeekEndingDate
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week & fiscalWeekEndingDate' = [Week] & " - " & FORMAT(('Calendar'[fiscalWeekEndingDate]), "dd mmmm yyyy")
+		lineageTag: 9a18408c-099c-49cc-a311-1c3968fed732
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendar-0409b7e8-ad37-4c94-a3d4-7214aa755ac9 = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+				    #"132e6a64-03a6-44df-9ddf-05f716b36d98" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="132e6a64-03a6-44df-9ddf-05f716b36d98"]}[Data],
+				    #"Weekly Calendar" = #"132e6a64-03a6-44df-9ddf-05f716b36d98"{[entity="Weekly Calendar"]}[Data],
+				    #"Added Custom" = Table.AddColumn(#"Weekly Calendar", "fiscalWeekXXXX", each Text.From([fiscalWeek]) & "XXXX", type text),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Custom",{{"fiscalWeekNumber", "Week"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

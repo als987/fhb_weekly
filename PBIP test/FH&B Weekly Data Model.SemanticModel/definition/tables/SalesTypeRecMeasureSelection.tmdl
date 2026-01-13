@@ -1,0 +1,138 @@
+table SalesTypeRecMeasureSelection
+	lineageTag: c8f83984-cb0f-479e-ab52-9b2bdc16eee9
+
+	column SalesTypeRecMeasureSelection
+		lineageTag: b1394fe8-48bc-4b17-9eeb-b4d5f55ec1d0
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'SalesTypeRecMeasureSelection Order'
+
+		relatedColumnDetails
+			groupByColumn: 'SalesTypeRecMeasureSelection Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SalesTypeRecMeasureSelection Fields'
+		isHidden
+		lineageTag: 5af3731f-fd5d-4587-a8a8-724927bc39b6
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'SalesTypeRecMeasureSelection Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SalesTypeRecMeasureSelection Order'
+		isHidden
+		formatString: 0
+		lineageTag: 9e25399e-05b1-4991-a241-d44d6a0094bb
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comparator
+		lineageTag: fdab0c2c-6e44-48e8-ae23-6a0e6a509376
+		summarizeBy: none
+		sourceColumn: [Value4]
+		sortByColumn: ComparatorOrder
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column ComparatorOrder
+		isHidden
+		formatString: 0
+		lineageTag: df869faa-0ac2-46f4-8429-1a9f87aaff78
+		summarizeBy: sum
+		sourceColumn: [Value5]
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MeasureType
+		lineageTag: 8ab35f24-21ad-426f-84fa-deff36f1e971
+		summarizeBy: none
+		sourceColumn: [Value6]
+		sortByColumn: MeasureTypeOrder
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column MeasureTypeOrder
+		isHidden
+		formatString: 0
+		lineageTag: 544cc2fa-43a3-4c27-a544-2ce3f517d0f9
+		summarizeBy: sum
+		sourceColumn: [Value7]
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Metric
+		lineageTag: 9bf56acf-a6ef-466b-a30c-428cc8b451b6
+		summarizeBy: none
+		sourceColumn: [Value8]
+		sortByColumn: MetricOrder
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column MetricOrder
+		isHidden
+		formatString: 0
+		lineageTag: 95e5bf4c-1d2e-4738-b853-7f3132261538
+		summarizeBy: sum
+		sourceColumn: [Value9]
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SalesTypeRecMeasureSelection-17300322-dde7-443f-9e2f-0f32a3497c03 = calculated
+		mode: import
+		source =
+				
+				{
+				    ( "Orders", NAMEOF ( '1_Measures'[SRIV Orders] ), 0, "ACT", 1, "Value", 1, "Orders", 0 ),
+				    ( "Orders LW", NAMEOF ( '1_Measures'[SRIV Orders LW] ), 1, "LW", 2, "Value", 1, "Orders", 0 ),
+				    ( "Orders vs LW", NAMEOF ( '1_Measures'[SRIV Orders vs LW] ), 2, "LW", 2, "Var", 2, "Orders", 0 ),
+				    ( "Orders vs LW %", NAMEOF ( '1_Measures'[SRIV Orders vs LW %] ), 3, "LW", 2, "% Var", 3, "Orders", 0 ),
+				    ( "Orders LY", NAMEOF ( '1_Measures'[SRIV Orders LY] ), 4, "LY", 3, "Value", 1, "Orders", 0 ),
+				    ( "Orders vs LY", NAMEOF ( '1_Measures'[SRIV Orders vs LY] ), 5, "LY", 3, "Var", 2, "Orders", 0 ),
+				    ( "Orders vs LY %", NAMEOF ( '1_Measures'[SRIV Orders vs LY %] ), 6, "LY", 3, "% Var", 3, "Orders", 0 ),
+				    ( "Postings", NAMEOF ( '1_Measures'[SRIV Postings Dispatch] ), 7, "ACT", 1, "Value", 1, "Postings", 1 ),
+				    ( "Postings LW", NAMEOF ( '1_Measures'[SRIV Postings Dispatch LW] ), 8, "LW", 2, "Value", 1, "Postings", 1 ),
+				    ( "Postings vs LW", NAMEOF ( '1_Measures'[SRIV Postings Dispatch vs LW] ), 9, "LW", 2, "Var", 2, "Postings", 1 ),
+				    ( "Postings vs LW %", NAMEOF ( '1_Measures'[SRIV Postings Dispatch vs LW %] ), 10, "LW", 2, "% Var", 3, "Postings", 1 ),
+				    ( "Postings LY", NAMEOF ( '1_Measures'[SRIV Postings Dispatch LY] ), 11, "LY", 3, "Value", 1, "Postings", 1 ),
+				    ( "Postings vs LY", NAMEOF ( '1_Measures'[SRIV Postings Dispatch vs LY] ), 12, "LY", 3, "Var", 2, "Postings", 1 ),
+				    ( "Postings vs LY %", NAMEOF ( '1_Measures'[SRIV Postings Dispatch vs LY %] ), 13, "LY", 3, "% Var", 3, "Postings", 1 ),
+				    ( "Postings vs Orders", NAMEOF ( '1_Measures'[SRIV Dispatch vs Orders] ), 14, "ACT", 1, "Value", 1, "Postings", 1 ),
+				    ( "Dispatch vs Orders LW", NAMEOF ( '1_Measures'[SRIV Dispatch vs Orders LW] ), 15, "LW", 2, "Value", 1, "Dispatch vs Orders", 2 ),
+				    ( "Dispatch vs Orders vs LW", NAMEOF ( '1_Measures'[SRIV Dispatch vs Orders vs LW] ), 16, "LW", 2, "Var", 2, "Dispatch vs Orders", 2 ),
+				    ( "Dispatch vs Orders vs LW %", NAMEOF ( '1_Measures'[SRIV Dispatch vs Orders vs LW %] ), 17, "LW", 2, "% Var", 3, "Dispatch vs Orders", 2 ),
+				    ( "Dispatch vs Orders LY", NAMEOF ( '1_Measures'[SRIV Dispatch vs Orders LY] ), 18, "LY", 3, "Value", 1, "Dispatch vs Orders", 2 ),
+				    ( "Dispatch vs Orders vs LY", NAMEOF ( '1_Measures'[SRIV Dispatch vs Orders vs LY] ), 19, "LY", 3, "Var", 2, "Dispatch vs Orders", 2 ),
+				    ( "Dispatch vs Orders vs LY %", NAMEOF ( '1_Measures'[SRIV Dispatch vs Orders vs LY %] ), 20, "LY", 3, "% Var", 3, "Dispatch vs Orders", 2 ),
+				    ( "Dispatch", NAMEOF ( '1_Measures'[SRIV Dispatch] ), 21, "ACT", 1, "Value", 1, "Dispatch", 3 ),
+				    ( "Dispatch LW", NAMEOF ( '1_Measures'[SRIV Dispatch LW] ), 22, "LW", 2, "Value", 1, "Dispatch", 3 ),
+				    ( "Dispatch vs LW", NAMEOF ( '1_Measures'[SRIV Dispatch vs LW] ), 23, "LW", 2, "Var", 2, "Dispatch", 3 ),
+				    ( "Dispatch vs LW %", NAMEOF ( '1_Measures'[SRIV Dispatch vs LW %] ), 24, "LW", 2, "% Var", 3, "Dispatch", 3 ),
+				    ( "Dispatch LY", NAMEOF ( '1_Measures'[SRIV Dispatch LY] ), 25, "LY", 3, "Value", 1, "Dispatch", 3 ),
+				    ( "Dispatch vs LY", NAMEOF ( '1_Measures'[SRIV Dispatch vs LY] ), 26, "LY", 3, "Var", 2, "Dispatch", 3 ),
+				    ( "Dispatch vs LY %", NAMEOF ( '1_Measures'[SRIV Dispatch vs LY %] ), 27, "LY", 3, "% Var", 3, "Dispatch", 3 )
+				}
+
+	annotation PBI_Id = cb37b7450bc244679d4a68f5002ee5c2
+

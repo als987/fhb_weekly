@@ -1,0 +1,5 @@
+role C&H_Weekly_BUAccess
+	modelPermission: read
+
+	annotation PBI_Id = e4efe64f29164c3ab42753bc047fe3f7
+

@@ -1,0 +1,73 @@
+table ChannelControl
+	lineageTag: 1640d17d-b689-4486-a90d-0c7ab1037733
+
+	measure Slctd_Channel = SELECTEDVALUE(ChannelControl[Channel],"Total")
+		lineageTag: 4049ab8c-159b-47bb-9c4b-2f6929ca8dc4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dist_chnl_cde
+		dataType: string
+		lineageTag: 45f0f206-f98c-46cc-8a19-8ae277e6135e
+		summarizeBy: none
+		sourceColumn: dist_chnl_cde
+
+		annotation SummarizationSetBy = Automatic
+
+	column Channel
+		dataType: string
+		lineageTag: 115d7c4d-9193-4dac-9d3d-0bbb4e6c71e9
+		summarizeBy: none
+		sourceColumn: Channel
+		sortByColumn: ChannelSelectionOrder
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChannelSelectionOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: f601eb10-ba1c-4bd4-955d-91a62b917b6c
+		summarizeBy: sum
+		sourceColumn: ChannelSelectionOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ChannelControl-22f08f16-6283-4bd4-b91e-4cd97cd68d07 = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = Channels,
+				    removeColumns = Table.SelectColumns(Source,{"dist_chnl_cde"}),
+				    addTotalLabel = Table.AddColumn(removeColumns, "ChannelSelection", each "Total"),
+				    addTotalOrder = Table.AddColumn(addTotalLabel, "ChannelSelectionOrder", each 5),
+				    storesCopy = removeColumns,
+				    storesFiltered = Table.SelectRows(storesCopy, each ([dist_chnl_cde] <> "03" and [dist_chnl_cde] <> "11")),
+				    addStoresLabel = Table.AddColumn(storesFiltered, "ChannelSelection", each "Stores"),
+				    addStoresOrder = Table.AddColumn(addStoresLabel, "ChannelSelectionOrder", each 0),
+				    onlineCopy = removeColumns,
+				    onlineFiltered = Table.SelectRows(onlineCopy, each ([dist_chnl_cde] = "03" or [dist_chnl_cde] = "11")),
+				    addOnlineLabel = Table.AddColumn(onlineFiltered, "ChannelSelection", each "Online"),
+				    addOnlineOrder = Table.AddColumn(addOnlineLabel, "ChannelSelectionOrder", each 1),
+				    outletsCopy = removeColumns,
+				    outletsFiltered = Table.SelectRows(outletsCopy, each ([dist_chnl_cde] = "05")),
+				    addOutletsLabel = Table.AddColumn(outletsFiltered, "ChannelSelection", each "Outlets"),
+				    addOutletsOrder = Table.AddColumn(addOutletsLabel, "ChannelSelectionOrder", each 3),
+				    mainchainCopy = removeColumns,
+				    mainchainFiltered = Table.SelectRows(mainchainCopy, each ([dist_chnl_cde] = "01" or [dist_chnl_cde] = "02" or [dist_chnl_cde] = "04")),
+				    addMainchainLabel = Table.AddColumn(mainchainFiltered, "ChannelSelection", each "Mainchain"),
+				    addMainchainOrder = Table.AddColumn(addMainchainLabel, "ChannelSelectionOrder", each 2),
+				    totalExCopy = removeColumns,
+				    totalExFiltered = Table.SelectRows(totalExCopy, each ([dist_chnl_cde] <> "05")),
+				    addTotalExLabel = Table.AddColumn(totalExFiltered, "ChannelSelection", each "Total ex. Outlets"),
+				    addTotalExOrder = Table.AddColumn(addTotalExLabel, "ChannelSelectionOrder", each 4),
+				    appendedQuery = Table.Combine({addTotalOrder, addStoresOrder, addOnlineOrder, addOutletsOrder, addMainchainOrder, addTotalExOrder}),
+				    #"Renamed Columns" = Table.RenameColumns(appendedQuery,{{"ChannelSelection", "Channel"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Channel", type text}, {"ChannelSelectionOrder", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

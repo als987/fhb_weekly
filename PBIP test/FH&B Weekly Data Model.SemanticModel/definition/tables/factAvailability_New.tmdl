@@ -1,0 +1,114 @@
+table factAvailability_New
+	lineageTag: 3e2038f2-510e-4494-8005-564d41266a53
+
+	measure DWAValueNew = CALCULATE(Min(factAvailability_New[DWAValue]), factAvailability_New[DWAComparative] = "ACT")
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 0a3cfd67-4ec3-474a-b9c9-7813fdfba6da
+
+	measure DWAValueNewACT = CALCULATE(Min(factAvailability_New[DWAValue]), factAvailability_New[DWAComparative] = "ACT")
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 14046d9c-60ec-4d71-aac6-481b2b9d4ba1
+
+	measure DWAValueNewvsLW = CALCULATE(Min(factAvailability_New[DWAValue]), factAvailability_New[DWAComparative] = "vs LW")
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 20fa4595-7f95-46a5-933a-cca36c64e113
+
+	measure DWAValueNewvsLY = CALCULATE(Min(factAvailability_New[DWAValue]), factAvailability_New[DWAComparative] = "vs LY")
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 321dde64-bcd5-426a-8ac3-85a7620e068a
+
+	column DWABU
+		dataType: string
+		lineageTag: c04a06f8-cb2f-4d74-96e3-5358959924a0
+		summarizeBy: none
+		sourceColumn: DWABU
+		sortByColumn: Index
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column DWAComparative
+		dataType: string
+		lineageTag: fa0e2378-ecb5-4ebf-93ca-6a982bac04e5
+		summarizeBy: none
+		sourceColumn: DWAComparative
+
+		annotation SummarizationSetBy = Automatic
+
+	column DWAValue
+		dataType: double
+		lineageTag: bc2fed92-bb3f-44c0-9348-695b6561b8ca
+		summarizeBy: sum
+		sourceColumn: DWAValue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DWAChannel
+		dataType: string
+		lineageTag: bc5e485d-8f04-4af5-a34b-540f4ff25f15
+		summarizeBy: none
+		sourceColumn: DWAChannel
+		sortByColumn: ChannelIndex
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column DWAMetric
+		dataType: string
+		lineageTag: 1d4ae4b5-0135-4a22-8d2d-7dcf9173a79a
+		summarizeBy: none
+		sourceColumn: DWAMetric
+
+		annotation SummarizationSetBy = Automatic
+
+	column DWAStoreGrade
+		dataType: string
+		lineageTag: 934a1c5a-4bc8-4d55-ad1b-8e6863976ead
+		summarizeBy: none
+		sourceColumn: DWAStoreGrade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: int64
+		lineageTag: e304149a-2d52-4f02-93e9-eda2726d57d6
+		summarizeBy: sum
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ChannelIndex
+		dataType: int64
+		formatString: 0
+		lineageTag: 614659c6-7bd7-49ef-b896-9be9c13a509a
+		summarizeBy: sum
+		sourceColumn: ChannelIndex
+
+		annotation SummarizationSetBy = Automatic
+
+	partition factAvailability_New = m
+		mode: import
+		queryGroup: 'Other fact tables'
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Workspaces{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+				    #"62686f61-4374-4da5-841d-2c7fe43e8138" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="62686f61-4374-4da5-841d-2c7fe43e8138"]}[Data],
+				    #"Fact_Availability_C&HTotal_" = #"62686f61-4374-4da5-841d-2c7fe43e8138"{[entity="Fact_Availability_C&HTotal",version=""]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(#"Fact_Availability_C&HTotal_",{{"DWAValue", Percentage.Type}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type","Grand Total","C&H Total",Replacer.ReplaceText,{"DWABU"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value",null,100,Replacer.ReplaceValue,{"Index"}),
+				    #"Added Custom" = Table.AddColumn(#"Replaced Value1", "ChannelIndex", each if [DWAChannel] = "Online" then 2 else if [DWAChannel] = "Stores" then 1 else 3),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"ChannelIndex", Int64.Type}, {"Index", Int64.Type}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+

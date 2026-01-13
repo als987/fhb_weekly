@@ -1,0 +1,485 @@
+table factMarginOrders
+	lineageTag: ec0d43c0-1e1e-462e-b49d-ac39651b2c22
+
+	measure sum_TotSlsV_FMO = SUM(factMarginOrders[TotSlsV])
+		lineageTag: c36572d9-0696-4922-8421-3995692d1c21
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column plan
+		dataType: string
+		lineageTag: f6a0b799-64e5-455c-b71d-965e77dbe707
+		summarizeBy: none
+		sourceColumn: plan
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel
+		dataType: string
+		lineageTag: 51675cea-eace-48ee-b6fb-7bbc9b476115
+		summarizeBy: none
+		sourceColumn: channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column product
+		dataType: string
+		lineageTag: ffba2c00-0c83-40e8-b0f6-adab1f16cf7c
+		summarizeBy: none
+		sourceColumn: product
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiscMDV
+		dataType: double
+		lineageTag: 5bcc2cab-e7d8-458d-81d9-d9799699779d
+		summarizeBy: sum
+		sourceColumn: DiscMDV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FPGSlsxV
+		dataType: double
+		lineageTag: 19446df3-141e-42fb-a390-c156b7ac943c
+		summarizeBy: sum
+		sourceColumn: FPGSlsxV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FPPGSlsxV
+		dataType: double
+		lineageTag: 5980425b-0b56-4314-b37c-b7f72ff4f452
+		summarizeBy: sum
+		sourceColumn: FPPGSlsxV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FPPSlsV
+		dataType: double
+		lineageTag: 56f73bba-f6cc-458e-b305-8aeb6cc786d3
+		summarizeBy: sum
+		sourceColumn: FPPSlsV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FPPSlsxV
+		dataType: double
+		lineageTag: d3bace80-d0ed-4edf-bb9c-9f75c69cdb68
+		summarizeBy: sum
+		sourceColumn: FPPSlsxV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FPSlsV
+		dataType: double
+		lineageTag: 56b49bfb-6ab2-4277-965e-bc2a898ef6a0
+		summarizeBy: sum
+		sourceColumn: FPSlsV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PrGSlsxV
+		dataType: double
+		lineageTag: 85c3717d-6918-447e-a108-6f539a24a767
+		summarizeBy: sum
+		sourceColumn: PrGSlsxV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PrRedSlsV
+		dataType: double
+		lineageTag: 2ca37645-cef9-4e32-926b-409dbc79a781
+		summarizeBy: sum
+		sourceColumn: PrRedSlsV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PrSlsV
+		dataType: double
+		lineageTag: 8c565a2b-5102-4378-83ed-32faa7e3598d
+		summarizeBy: sum
+		sourceColumn: PrSlsV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RealMDV
+		dataType: double
+		lineageTag: 6c7b5c43-6e2d-4deb-a3b0-a80207b3ec19
+		summarizeBy: sum
+		sourceColumn: RealMDV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RealMDxV
+		dataType: double
+		lineageTag: 471a96f0-ded8-46dd-a613-baa3c567e5d0
+		summarizeBy: sum
+		sourceColumn: RealMDxV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RedGSlsxV
+		dataType: double
+		lineageTag: 73c576ec-8f40-4d4c-be9e-e86b01811760
+		summarizeBy: sum
+		sourceColumn: RedGSlsxV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RedSlsV
+		dataType: double
+		lineageTag: d0b08164-0c4f-4b55-b18b-33e7711a6a33
+		summarizeBy: sum
+		sourceColumn: RedSlsV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotBIMAV
+		dataType: double
+		lineageTag: 0383f64f-1739-494d-b941-c511506bf231
+		summarizeBy: sum
+		sourceColumn: TotBIMAV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotBIMBV
+		dataType: double
+		lineageTag: 91de701c-000e-4d38-895d-087641b8acbc
+		summarizeBy: sum
+		sourceColumn: TotBIMBV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotBIMP
+		dataType: double
+		lineageTag: 0d2e3feb-f1b8-492b-a972-635c36fd103e
+		summarizeBy: sum
+		sourceColumn: TotBIMP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotGSMV
+		dataType: double
+		lineageTag: c7881050-2138-48c5-b8aa-fab0c06a3588
+		summarizeBy: sum
+		sourceColumn: TotGSMV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotPoSV
+		dataType: double
+		lineageTag: 0b3c5394-f9a1-4750-b655-720d63f9d805
+		summarizeBy: sum
+		sourceColumn: TotPoSV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotSlsC
+		dataType: double
+		lineageTag: a4cd4495-0aa6-4548-ac14-571ff13e35b9
+		summarizeBy: sum
+		sourceColumn: TotSlsC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotSlsV
+		dataType: double
+		lineageTag: 5de05bd6-b93a-4dc7-a8e2-bcdde5a59975
+		summarizeBy: sum
+		sourceColumn: TotSlsV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotSlsxV
+		dataType: double
+		lineageTag: dd3b48c2-f910-4a54-86ec-a59af86c3fae
+		summarizeBy: sum
+		sourceColumn: TotSlsxV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotStDV
+		dataType: double
+		lineageTag: 8b99cfa3-c1a3-44c2-8ebd-b95f4ca22f8f
+		summarizeBy: sum
+		sourceColumn: TotStDV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotPromoActV
+		dataType: double
+		lineageTag: b2e5f9f8-062f-4de9-9905-b9a34f668436
+		summarizeBy: sum
+		sourceColumn: TotPromoActV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fiscalWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: 2742fd63-ca0a-48fd-978f-5891fbbd9b68
+		summarizeBy: none
+		sourceColumn: fiscalWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column siteID
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ac421cf-449f-4bad-829a-89f8fc24b601
+		summarizeBy: none
+		sourceColumn: siteID
+
+		annotation SummarizationSetBy = Automatic
+
+	column fpp_rev_intake_units
+		dataType: double
+		lineageTag: 63bf5135-eaa0-489f-bc2c-b1fccb509e8e
+		summarizeBy: sum
+		sourceColumn: fpp_rev_intake_units
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fpp_rev_intake_val
+		dataType: double
+		lineageTag: df8e9386-c212-430b-a766-27877cfd8f0c
+		summarizeBy: sum
+		sourceColumn: fpp_rev_intake_val
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SST
+		dataType: double
+		lineageTag: c5fbaebe-e823-4d80-9b11-a9e78e4e5156
+		summarizeBy: sum
+		sourceColumn: SST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DoC
+		dataType: double
+		lineageTag: b53436c6-f79e-4519-afa0-a889a3afdd9d
+		summarizeBy: sum
+		sourceColumn: DoC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FPPGSMV
+		dataType: double
+		lineageTag: 0e5e2a48-0580-4cbe-acd7-ad42cabdb8df
+		summarizeBy: sum
+		sourceColumn: FPPGSMV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RedGSMV
+		dataType: double
+		lineageTag: 9a704648-ff15-4146-9f54-a2ba07be477f
+		summarizeBy: sum
+		sourceColumn: RedGSMV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FPPBIMAV
+		dataType: double
+		lineageTag: 40cffa6b-6b55-4954-bd79-0b214716c7c5
+		summarizeBy: sum
+		sourceColumn: FPPBIMAV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RedBIMAV
+		dataType: double
+		lineageTag: f10ae1d4-48de-4f6c-b43d-3492f7ff7f63
+		summarizeBy: sum
+		sourceColumn: RedBIMAV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FPPBIMBV
+		dataType: double
+		lineageTag: 9e27832c-420b-4880-b12a-877ad56ef9cf
+		summarizeBy: sum
+		sourceColumn: FPPBIMBV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RedBIMBV
+		dataType: double
+		lineageTag: b3048750-8309-4278-9584-748fa6803acd
+		summarizeBy: sum
+		sourceColumn: RedBIMBV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FPPBIMP
+		dataType: double
+		lineageTag: 444e31ca-cea3-4c9a-b0ee-c7537aa60888
+		summarizeBy: sum
+		sourceColumn: FPPBIMP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RedBIMP
+		dataType: double
+		lineageTag: d3aec2b6-2793-4cdf-b46e-df5c93030c9c
+		summarizeBy: sum
+		sourceColumn: RedBIMP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FPPPoSV
+		dataType: double
+		lineageTag: 9c20f24d-7d01-435c-878f-f86dc0f89a0a
+		summarizeBy: sum
+		sourceColumn: FPPPoSV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RedPoSV
+		dataType: double
+		lineageTag: 7dc1c4fb-e2cd-4b24-bd20-83740138363b
+		summarizeBy: sum
+		sourceColumn: RedPoSV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FPPSlsC
+		dataType: double
+		lineageTag: 106883c5-2fd1-4a37-9a04-d2b7eff468ca
+		summarizeBy: sum
+		sourceColumn: FPPSlsC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RedSlsC
+		dataType: double
+		lineageTag: bb2d8b1d-9b50-4163-8f95-7f146c161526
+		summarizeBy: sum
+		sourceColumn: RedSlsC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RedSlsxV
+		dataType: double
+		lineageTag: f577a568-d4f7-45ee-a384-8a5bb68d2d92
+		summarizeBy: sum
+		sourceColumn: RedSlsxV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FPPPromoActV
+		dataType: double
+		lineageTag: 7f5b9d67-f753-4fe2-bb05-38c69b8c3b2d
+		summarizeBy: sum
+		sourceColumn: FPPPromoActV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RedPromoActV
+		dataType: double
+		lineageTag: 6fcf826b-f42a-4ae3-8475-89240e8b25cd
+		summarizeBy: sum
+		sourceColumn: RedPromoActV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition factMarginOrders-12ecd6b6-d9f9-41b4-94c0-d4c3011aa4c1 = m
+		mode: import
+		queryGroup: 'Orders fact tables'
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Workspaces{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+				    #"befd4cdc-e23e-4f5e-97e9-b9c56cc99655" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="befd4cdc-e23e-4f5e-97e9-b9c56cc99655"]}[Data],
+				    #"MP Plans Margin_" = #"befd4cdc-e23e-4f5e-97e9-b9c56cc99655"{[entity="MP Plans Margin",version=""]}[Data]
+				in
+				    #"MP Plans Margin_"
+
+	annotation PBI_ResultType = Table
+

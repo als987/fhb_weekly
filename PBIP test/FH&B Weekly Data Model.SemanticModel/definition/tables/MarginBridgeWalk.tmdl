@@ -1,0 +1,58 @@
+table MarginBridgeWalk
+	lineageTag: ba6ab89c-5897-4ddf-bc68-f74398a7d121
+
+	/// This measure is the SELECTEDVALUE of column 'MarginBridgeWalk'[Formatting]
+	measure slctd_MarginBridgeWalk_Formatting = SELECTEDVALUE('MarginBridgeWalk'[Formatting])
+		lineageTag: 3dc31677-f60a-4a7b-a7bd-b7d6febe5b43
+
+	/// This measure is the SELECTEDVALUE of column 'MarginBridgeWalk'[Step]
+	measure slctd_MarginBridgeWalk_Step = SELECTEDVALUE('MarginBridgeWalk'[Step])
+		lineageTag: f27e11d0-7298-4b19-9126-996c4ba19bcf
+
+	measure slctd_MarginBridgeColour = SWITCH([slctd_MarginBridgeWalk_Step], "Comp",1,"Actual",1,0)
+		lineageTag: 549a5124-a0c7-433d-a260-e2727cddf96d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Step
+		dataType: string
+		lineageTag: 65619122-4526-4abc-a5ae-6b0e8d596000
+		summarizeBy: none
+		sourceColumn: Step
+		sortByColumn: Index
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: 7908daba-596c-420e-a80c-27da53a575c2
+		summarizeBy: none
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column Formatting
+		dataType: int64
+		formatString: 0
+		lineageTag: 385f3e08-95ee-4367-acbf-563014c45ee2
+		summarizeBy: none
+		sourceColumn: Formatting
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MarginBridgeWalk = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45Wcs7PLVCK1YlWCsvPAdNuATGlBgZGZgEKvpkVYBEnT18wHeAfDKZd8p0hOhxDwLR/SUZqEYRVWpKTWlIMZjsml5QmAo2MBQA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Step = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Step", type text}}),
+				    #"Added Index" = Table.AddIndexColumn(#"Changed Type", "Index", 0, 1, Int64.Type),
+				    #"Added Custom" = Table.AddColumn(#"Added Index", "Formatting", each if [Step] = "Comp" or [Step] = "Actual" then 1 else 0, Int64.Type)
+				in
+				    #"Added Custom"
+
+	annotation PBI_ResultType = Table
+

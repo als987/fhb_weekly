@@ -1,0 +1,283 @@
+table Stores
+	lineageTag: 6a1f52c1-2086-4dd7-b5ca-a46b58eb7638
+
+	column siteID
+		dataType: int64
+		formatString: 0
+		lineageTag: 3cd4aef8-2441-49bd-98aa-03b99c4e6174
+		summarizeBy: none
+		sourceColumn: siteID
+
+		annotation SummarizationSetBy = Automatic
+
+	column siteNumber
+		dataType: string
+		lineageTag: 49c31278-aa80-413e-97b6-c7dd5a17dbd1
+		summarizeBy: none
+		sourceColumn: siteNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column siteName
+		dataType: string
+		lineageTag: 51cc9616-f903-4e22-ab6a-614e93b80d4b
+		summarizeBy: none
+		sourceColumn: siteName
+
+		annotation SummarizationSetBy = Automatic
+
+	column siteOpenDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 105e669c-1b4a-4f83-9c39-6106765df6ed
+		summarizeBy: none
+		sourceColumn: siteOpenDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column siteCloseDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4c71462a-bf2d-48c4-87c1-b37c96b36525
+		summarizeBy: none
+		sourceColumn: siteCloseDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column locationPostalCode
+		dataType: string
+		lineageTag: 37dcd406-a85e-41b0-bc74-c8cd699bf96a
+		summarizeBy: none
+		sourceColumn: locationPostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column isoCountryCode
+		dataType: string
+		lineageTag: 041dcf8b-db7c-40b6-92fe-7037cdea945f
+		summarizeBy: none
+		sourceColumn: isoCountryCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column isoCountryName
+		dataType: string
+		lineageTag: d3aebbff-3a80-4007-bcc2-fff8b1d65859
+		summarizeBy: none
+		sourceColumn: isoCountryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column partyCode
+		dataType: string
+		lineageTag: cde302fb-e902-4ca5-9e40-29f99a1d1871
+		summarizeBy: none
+		sourceColumn: partyCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column priceListCode
+		dataType: string
+		lineageTag: b1e8a27a-093b-4fe1-84d5-74be90c042ab
+		summarizeBy: none
+		sourceColumn: priceListCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column siteType
+		dataType: string
+		lineageTag: 71e5fba7-88e7-478d-baf8-cda3c12a58b6
+		summarizeBy: none
+		sourceColumn: siteType
+
+		annotation SummarizationSetBy = Automatic
+
+	column areaCode
+		dataType: string
+		lineageTag: 40335678-b6ba-4cfe-88c0-e0016f84a31d
+		summarizeBy: none
+		sourceColumn: areaCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column areaName
+		dataType: string
+		lineageTag: ea6e7016-4640-416e-b21b-c9c7a5cc26f3
+		summarizeBy: none
+		sourceColumn: areaName
+
+		annotation SummarizationSetBy = Automatic
+
+	column shapeOfChainCode
+		dataType: string
+		lineageTag: aa5116e1-02f1-413b-941e-e3cc11f09dbc
+		summarizeBy: none
+		sourceColumn: shapeOfChainCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column shapeOfChainName
+		dataType: string
+		lineageTag: 626205d8-d1d1-452b-96f4-cb915c70912e
+		summarizeBy: none
+		sourceColumn: shapeOfChainName
+
+		annotation SummarizationSetBy = Automatic
+
+	column storeTradingGroupCode
+		dataType: string
+		lineageTag: 599f19a5-51db-48d9-8944-a906c8bb94b5
+		summarizeBy: none
+		sourceColumn: storeTradingGroupCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column storeTradingGroupName
+		dataType: string
+		lineageTag: 2b81c87a-407a-4972-b516-251c4dbc66c2
+		summarizeBy: none
+		sourceColumn: storeTradingGroupName
+
+		annotation SummarizationSetBy = Automatic
+
+	column financeDivisionCode
+		dataType: string
+		lineageTag: c80db732-58cb-4d3e-be29-aa9f2eef7a18
+		summarizeBy: none
+		sourceColumn: financeDivisionCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column financeDivisionName
+		dataType: string
+		lineageTag: dddf2995-256a-4053-96c6-7355a379f79b
+		summarizeBy: none
+		sourceColumn: financeDivisionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column depotSiteNumber
+		dataType: string
+		lineageTag: 1beef988-de09-4a3a-bc91-cd78e4c7eaba
+		summarizeBy: none
+		sourceColumn: depotSiteNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column depotSiteName
+		dataType: string
+		lineageTag: 013c0982-ec9c-4c18-9823-91106f583fc8
+		summarizeBy: none
+		sourceColumn: depotSiteName
+
+		annotation SummarizationSetBy = Automatic
+
+	column worldwideHierCode
+		dataType: string
+		lineageTag: 0d226591-f54e-4c0e-aa07-efed65c12d4b
+		summarizeBy: none
+		sourceColumn: worldwideHierCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column worldwideHierName
+		dataType: string
+		lineageTag: 72255cde-3cf4-42c4-840e-7aaf56c6c6ec
+		summarizeBy: none
+		sourceColumn: worldwideHierName
+
+		annotation SummarizationSetBy = Automatic
+
+	column internationalHierCode
+		dataType: string
+		lineageTag: 2061681c-a5dd-437f-b54c-cc79f4f01671
+		summarizeBy: none
+		sourceColumn: internationalHierCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column internationalHierName
+		dataType: string
+		lineageTag: fe524102-7c9b-4a1f-94a5-d9d4417fb5b7
+		summarizeBy: none
+		sourceColumn: internationalHierName
+
+		annotation SummarizationSetBy = Automatic
+
+	column partyName
+		dataType: string
+		lineageTag: e4af12e9-cf01-4215-83e5-c4d699f9a3c6
+		summarizeBy: none
+		sourceColumn: partyName
+
+		annotation SummarizationSetBy = Automatic
+
+	column M&S/Other
+		dataType: string
+		lineageTag: 53adcac7-86b6-4998-9305-0c1dcc37c525
+		summarizeBy: none
+		sourceColumn: M&S/Other
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LY Store Sales' = ```
+			
+			VAR _LatestActuals =
+			    CALCULATE (
+			        MAX ( statsLatestData[latestFiscalWeekEndingDate] ),
+			        statsLatestData[dataSource] = "Sales Orders"
+			    )
+			VAR _LastYear =
+			    CALCULATE (
+			        MAX ( RefCalendar[fiscalYear] ),
+			        RefCalendar[fiscalWeekEndingDate] = _LatestActuals
+			    ) - 1 
+			VAR result = CALCULATE([SRIV Dispatch], 'Calendar'[fiscalYear] = _LastYear )
+			RETURN IF(Stores[financeDivisionName] IN {"North", "South", "Central"}, result, BLANK())
+			```
+		lineageTag: 46cf6c8f-2c44-4b31-9057-e174ad63359a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Store Sales Rank' = RANKX(Stores, Stores[LY Store Sales])
+		formatString: 0
+		lineageTag: 01697d2d-b4c1-40be-8eda-95cbb51dbec0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Top 70 Stores' = IF(Stores[Store Sales Rank] <= 70, "Y", "N")
+		lineageTag: 7e8dc672-32d1-47f0-bfbb-4e1946edeeb7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column financeDivisionDesc
+		dataType: string
+		lineageTag: c9191a28-a2ba-4c16-b24d-47021024c623
+		summarizeBy: none
+		sourceColumn: financeDivisionDesc
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Stores-b4f4b00a-36ed-4eb2-8007-ceae6e5c7824 = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+				    #"132e6a64-03a6-44df-9ddf-05f716b36d98" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="132e6a64-03a6-44df-9ddf-05f716b36d98"]}[Data],
+				    Stores1 = #"132e6a64-03a6-44df-9ddf-05f716b36d98"{[entity="Stores"]}[Data],
+				    #"Appended Query" = Table.Combine({Stores1, edwSiteLetterCodes}),
+				    #"Removed Duplicates" = Table.Distinct(#"Appended Query", {"siteNumber"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

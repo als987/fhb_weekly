@@ -1,0 +1,33 @@
+table 'Company Code'
+	lineageTag: 2488b30d-45bc-447e-aab4-0363e7ee9484
+
+	column 'Company Code'
+		dataType: string
+		lineageTag: e83e4da6-47be-497e-9599-000f8060e340
+		summarizeBy: none
+		sourceColumn: Company Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: a0cb620e-9598-41dd-aefb-b450454d15dd
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Company Code-975c70f5-d681-4e02-8042-d0825b48569e' = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+				    #"8cf76022-2d13-44d3-a768-095420b6e3e2" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="8cf76022-2d13-44d3-a768-095420b6e3e2"]}[Data],
+				    #"Company Code1" = #"8cf76022-2d13-44d3-a768-095420b6e3e2"{[entity="Company Code"]}[Data]
+				in
+				    #"Company Code1"
+
+	annotation PBI_ResultType = Table
+

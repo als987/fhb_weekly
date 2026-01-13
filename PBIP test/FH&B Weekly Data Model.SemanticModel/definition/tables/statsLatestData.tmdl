@@ -1,0 +1,44 @@
+table statsLatestData
+	lineageTag: 1d18a4bc-b374-4017-97e7-1e931ae5eab0
+
+	column dataSource
+		lineageTag: 14c94e42-94ea-4953-9072-c6cbe5e534f0
+		summarizeBy: none
+		sourceColumn: [Value1]
+
+		annotation SummarizationSetBy = Automatic
+
+	column latestFiscalWeek
+		lineageTag: 0987b318-b2cc-49c2-b76b-45ab545ec516
+		summarizeBy: sum
+		sourceColumn: [Value2]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column latestFiscalWeekEndingDate
+		formatString: General Date
+		lineageTag: 4e192d9d-ba27-4b27-92d0-a213046f33a1
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition statsLatestData-db6ec7f2-81e4-4fcb-93d5-2c62d19534b0 = calculated
+		mode: import
+		source =
+				
+				{
+				    ( "Sales Orders", MAX ( factSalesOrders[fiscalWeek] ), CALCULATE (
+				        MAX ( RefCalendar[fiscalWeekEndingDate] ),
+				        RefCalendar[fiscalWeek] = MAX ( factSalesOrders[fiscalWeek] )
+				    ) ),
+				    ( "Sales Dispatch", MAX ( factSalesDispatch[Fiscal Week] ), CALCULATE (
+				        MAX ( RefCalendar[fiscalWeekEndingDate] ),
+				        RefCalendar[fiscalWeek] = MAX ( factSalesDispatch[Fiscal Week] )
+				    ) )
+				}
+
+	annotation PBI_Id = 84e0404cbfd44677859fd9e8cacb3ccf
+

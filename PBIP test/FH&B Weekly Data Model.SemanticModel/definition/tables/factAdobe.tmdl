@@ -1,0 +1,105 @@
+table factAdobe
+	lineageTag: 5e0cda28-da5b-4b13-87d3-84c9b0c285b7
+
+	measure sum_ordersL2_factAdobe = SUM(factAdobe[ordersL2])
+		lineageTag: 904c2d24-9c8b-46ad-a47f-9fb674f580de
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure sum_visitsL2_factAdobe = SUM(factAdobe[visitsL2])
+		lineageTag: fb836a8c-9880-4768-936e-718c758df29e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure shopping_conversion_factAdobe = CALCULATE(SUM(factAdobe[visitsUnadjusted]),factAdobe[visitType] = 2)
+		lineageTag: 9717dfb4-9b81-48c8-88a9-3eaf5e62830d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dayID
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 24ef010d-6bc0-4c76-b085-4d6ea92459d6
+		summarizeBy: none
+		sourceColumn: dayID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column fiscalWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: 00923a23-f868-4f03-91aa-6743634d70d8
+		summarizeBy: none
+		sourceColumn: fiscalWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column visitsL2
+		dataType: double
+		lineageTag: cc7d9bbb-9043-4206-99dd-e37c28d2618b
+		summarizeBy: sum
+		sourceColumn: visitsL2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ordersL2
+		dataType: int64
+		formatString: 0
+		lineageTag: 10fa9bdc-f10a-4161-9d07-f1bc72378c97
+		summarizeBy: sum
+		sourceColumn: ordersL2
+
+		annotation SummarizationSetBy = Automatic
+
+	column visitType
+		dataType: int64
+		formatString: 0
+		lineageTag: 626cea61-0ad5-492f-911f-543cd82a23c5
+		summarizeBy: sum
+		sourceColumn: visitType
+
+		annotation SummarizationSetBy = Automatic
+
+	column visitsUnadjusted
+		dataType: int64
+		formatString: 0
+		lineageTag: d7d93193-8aa7-4b14-836b-6d733dde4b2c
+		summarizeBy: sum
+		sourceColumn: visitsUnadjusted
+
+		annotation SummarizationSetBy = Automatic
+
+	column countryName
+		dataType: string
+		lineageTag: 41cb1e24-abb6-4106-97ed-7532ffd8e2c6
+		summarizeBy: none
+		sourceColumn: countryName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition factAdobe = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"dbdde023-0de1-4da5-bc99-1bda1526f5b1" = Workspaces{[workspaceId="dbdde023-0de1-4da5-bc99-1bda1526f5b1"]}[Data],
+				    #"a93471ed-bc76-4ee3-b2f0-0c2ff664c1e0" = #"dbdde023-0de1-4da5-bc99-1bda1526f5b1"{[dataflowId="a93471ed-bc76-4ee3-b2f0-0c2ff664c1e0"]}[Data],
+				    FactSite_ = #"a93471ed-bc76-4ee3-b2f0-0c2ff664c1e0"{[entity="FactSite",version=""]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(FactSite_,{{"dayID", type date}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Changed Type", {"dayID"}, DailyCalendar, {"naturalDate"}, "DailyCalendar", JoinKind.LeftOuter),
+				    #"Expanded DailyCalendar" = Table.ExpandTableColumn(#"Merged Queries", "DailyCalendar", {"fiscalWeek"}, {"fiscalWeek"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded DailyCalendar",{{"ordersUnadjusted", "ordersL2"}, {"visits", "visitsL2"}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"dayID", "countryName", "visitType", "visitsUnadjusted", "ordersL2", "visitsL2", "fiscalWeek"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Removed Other Columns","IE","ROI",Replacer.ReplaceText,{"countryName"})
+				in
+				    #"Replaced Value"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

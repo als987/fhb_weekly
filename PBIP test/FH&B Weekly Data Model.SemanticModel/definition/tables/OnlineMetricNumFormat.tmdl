@@ -1,0 +1,52 @@
+table OnlineMetricNumFormat
+	lineageTag: 1f4419ba-f041-4675-a51b-a0a5180e0b75
+
+	calculationGroup
+		precedence: 5
+
+		calculationItem Unformatted = SELECTEDMEASURE ()
+
+		calculationItem Formatted = SELECTEDMEASURE ()
+
+			formatStringDefinition =
+					VAR FormatString =
+					    SELECTEDVALUE ( OnlineMetrics[NumFormatString] )
+					VAR FormatToApply =
+					    SWITCH (
+					        TRUE (),
+					        ISSELECTEDMEASURE ( [SwitchOnlineMetric],  [SwitchOnlineMetric LW], [SwitchOnlineMetric vs LW] ), FormatString,
+					        SELECTEDMEASUREFORMATSTRING ()
+					    )
+					RETURN
+					    FormatToApply
+
+		calculationItem ReturnFormat =
+				VAR FormatString =
+				    SELECTEDVALUE ( OnlineMetrics[NumFormatString] )
+				VAR FormatToApply =
+				    SWITCH (
+				        TRUE (),
+				        ISSELECTEDMEASURE ( [SwitchOnlineMetric],  [SwitchOnlineMetric LW], [SwitchOnlineMetric vs LW] ), FormatString,
+				        SELECTEDMEASUREFORMATSTRING ()
+				    )
+				RETURN
+				    FormatToApply
+
+	column Format
+		dataType: string
+		lineageTag: 3c7dea4e-fddd-4f65-bfa5-07c24b7e3b61
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: 95e88ace-f286-473f-b9e2-5b3c3dca4e87
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+

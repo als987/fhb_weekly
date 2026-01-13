@@ -1,0 +1,52 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "723184ce880b6767c755",
+  "position": {
+    "x": 0,
+    "y": 12.307692307692307,
+    "z": 1000,
+    "height": 664.61538461538453,
+    "width": 440.8391608391608,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "factForecast"
+                    }
+                  },
+                  "Property": "sum_TotGSMV"
+                }
+              },
+              "queryRef": "factForecast.sum_TotGSMV",
+              "nativeQueryRef": "sum_TotGSMV"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "factForecast"
+                    }
+                  },
+                  "Property": "fiscalWeek"
+                }
+              },
+              "queryRef": "factForecast.fiscalWeek",
+              "nativeQueryRef": "fiscalWeek"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
