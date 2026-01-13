@@ -1,0 +1,57 @@
+table SalesType
+	lineageTag: 03a66b2a-0e8a-4b65-953f-178b0f183c6d
+
+	/// This measure is the SELECTEDVALUE of column 'SalesType'[SalesType]
+	measure slctd_SalesType = SELECTEDVALUE ( 'SalesType'[SalesType], "Total" )
+		lineageTag: 287ab1d2-8f3d-4a3d-8e12-eb3e3fae8b3e
+
+	/// This measure is the SELECTEDVALUE of column 'SalesType'[SubSalesType]
+	measure slctd_SubSalesType = SELECTEDVALUE ( 'SalesType'[SubSalesType], "Total" )
+		lineageTag: b2c3c2ab-784b-41cc-9fef-4ca3a629b450
+
+	/// This measure is the SELECTEDVALUE of column 'SalesType'[SalesType]
+	measure slctd_SalesTypeLevelAware =
+			SWITCH (
+			    TRUE (),
+			    ISFILTERED ( SalesType[SubSalesType] ), [slctd_SubSalesType],
+			    ISFILTERED ( SalesType[SalesType] ), [slctd_SalesType],
+			    "Total"
+			)
+		lineageTag: 2f90a3e3-b28c-4ecb-a28e-4abf8cd103de
+
+	column fp_rp_ind
+		dataType: string
+		lineageTag: 15b9029c-02fd-4325-b7a4-d4383f586afc
+		summarizeBy: none
+		sourceColumn: fp_rp_ind
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesType
+		dataType: string
+		lineageTag: 0d0884a3-ab84-494e-9dac-3e985edf6cca
+		summarizeBy: none
+		sourceColumn: SalesType
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubSalesType
+		dataType: string
+		lineageTag: b42de95d-58d0-480d-bb92-8eadd9483c90
+		summarizeBy: none
+		sourceColumn: SubSalesType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SalesType-24e3587d-f767-40f6-81b6-9e33036eb618 = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WcguIKTUwMDILUNJRcivNyVEIKMpMTgVxlGJ1UKUDivJz80E0WCYoNaU0OTUFyEdigWVC8ksSc4A8GO2GVRS72gCsoiFKsbEA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [SalesType = _t, SubSalesType = _t, fp_rp_ind = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"SalesType", type text}, {"fp_rp_ind", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Exception
+

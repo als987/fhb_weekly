@@ -1,0 +1,71 @@
+table factAdobe
+	lineageTag: d50282aa-5d6e-4df6-9d8a-ba6829439491
+
+	/// This measure is the sum of column 'factAdobe'[visitsL2]
+	measure sum_visitsL2_factAdobe = SUM('factAdobe'[visitsL2])
+		formatString: #,##0;(#,##0)
+		lineageTag: f85c96cd-455a-45a9-97ea-50c81971c40e
+
+	/// This measure is the sum of column 'factAdobe'[ordersL2]
+	measure sum_ordersL2_factAdobe = SUM('factAdobe'[ordersL2])
+		formatString: #,##0;(#,##0)
+		lineageTag: 1217aa1b-36e6-4ac0-8294-b7d284973d7c
+
+	column dayID
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4095d43c-ace2-4b0b-88ee-d392d2f61845
+		summarizeBy: none
+		sourceColumn: dayID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column visitsL2
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 392dffa5-4416-4379-ba23-7ccf5eaffdba
+		summarizeBy: sum
+		sourceColumn: visitsL2
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordersL2
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 889ae3b3-3db8-4941-994e-7cbeefe7de14
+		summarizeBy: sum
+		sourceColumn: ordersL2
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscalWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: 4e3a85ba-2ea1-4a42-9f63-6bc0f2b6fcef
+		summarizeBy: none
+		sourceColumn: fiscalWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	partition factAdobe = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"dbdde023-0de1-4da5-bc99-1bda1526f5b1" = Workspaces{[workspaceId="dbdde023-0de1-4da5-bc99-1bda1526f5b1"]}[Data],
+				    #"88bcfd5e-7bca-4400-95ed-ec6f11a763d1" = #"dbdde023-0de1-4da5-bc99-1bda1526f5b1"{[dataflowId="88bcfd5e-7bca-4400-95ed-ec6f11a763d1"]}[Data],
+				    Query_ = #"88bcfd5e-7bca-4400-95ed-ec6f11a763d1"{[entity="Query",version=""]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(Query_, each ([ProductName] = "Clothing & Home") and ([TimeDimension] = 2) and ([CountryL2ID] = 1000)),
+				    #"Merged Queries" = Table.NestedJoin(#"Filtered Rows", {"dayID"}, DailyCalendar, {"naturalDate"}, "DailyCalendar", JoinKind.LeftOuter),
+				    #"Expanded DailyCalendar" = Table.ExpandTableColumn(#"Merged Queries", "DailyCalendar", {"fiscalWeek"}, {"fiscalWeek"}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Expanded DailyCalendar",{"dayID", "visitsL2", "ordersL2", "fiscalWeek"})
+				in
+				    #"Removed Other Columns"
+
+	annotation PBI_ResultType = Table
+

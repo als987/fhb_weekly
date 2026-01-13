@@ -1,0 +1,232 @@
+table factMPStock
+	lineageTag: 338bf576-880d-4183-858f-da5eaa4517ba
+
+	/// This measure is the sum of column 'factStock'[amt]
+	measure sum_amt_mp_stock =
+			VAR max_selected_we_date =
+			    MAX ( 'Time Period'[Date] )
+			VAR max_selected_fiscal_week =
+			    CALCULATE (
+			        MAX ( RefCalendar[fiscalWeek] ),
+			        RefCalendar[fiscalWeekEndingDate] = max_selected_we_date
+			    )
+			VAR result =
+			    CALCULATE (
+			        SUM ( 'factMPStock'[amt] ),
+			        'Calendar'[fiscalWeek] = max_selected_fiscal_week
+			    )
+			RETURN
+			    result
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: 70911f5c-4443-4df9-bd9e-2abd46ff804b
+
+	measure stock_fwd_cover_base = ```
+			VAR currentWeek = [LatestSalesOrdersFiscalWeek]
+			VAR currentStock =
+			    CALCULATE ( [sum_amt_mp_stock], 'Calendar'[fiscalWeek] = currentWeek ) // Create a table with rows starting at next week and going into the future
+			// (as long as the MP plan extends for)
+			VAR stockFutureWeeks =
+			    ADDCOLUMNS (
+			        FILTER (
+			            ALL ( 'Calendar'[fiscalWeek] ),
+			            'Calendar'[fiscalWeek] > currentWeek
+			                && 'Calendar'[fiscalWeek] <= MAX ( factForecast[fiscalWeek] )
+			        ),
+			        "cumulativeStock",
+			            // Store the week of the current row as a variable
+			            VAR tableWeek =
+			                CALCULATE ( SELECTEDVALUE ( 'Calendar'[fiscalWeek] ) ) // Calculate cumulative sales up to the current row week
+			            VAR cumulativeSales =
+			                CALCULATE (
+			                    [sum_TotSlsV] - [sum_TotPoSV] - [sum_TotStDV],
+			                    'Calendar'[fiscalWeek] <= tableWeek
+			                        && 'Calendar'[fiscalWeek] > currentWeek
+			                ) // Subtract cumulative sales from stock position now
+			            // (At some future week cumulative sales will exceed stock and the result
+			            // will begin to be negative from then onwards)
+			            VAR stockPosition = currentStock - cumulativeSales
+			            RETURN
+			                stockPosition,
+			        "cumulativeSales",
+			            VAR tableWeek =
+			                CALCULATE ( SELECTEDVALUE ( 'Calendar'[fiscalWeek] ) )
+			            VAR cumulativeSales =
+			                CALCULATE (
+			                    [sum_TotSlsV] - [sum_TotPoSV] - [sum_TotStDV],
+			                    'Calendar'[fiscalWeek] <= tableWeek
+			                        && 'Calendar'[fiscalWeek] > currentWeek
+			                )
+			            RETURN
+			                cumulativeSales,
+			        // Calculate sales (non-cumulative for the row week)
+			        "salesAmt",
+			            [sum_TotSlsV] - [sum_TotPoSV] - [sum_TotStDV]
+			    )
+			VAR posRows =
+			    FILTER ( stockFutureWeeks, [cumulativeStock] > 0 )
+			VAR negRows =
+			    FILTER ( stockFutureWeeks, [cumulativeStock] < 0 ) // Filter table to only negative rows (after stock runs out)
+			VAR fullWeeksStock =
+			    COUNTROWS ( posRows ) // Count rows to get total number of WHOLE weeks of future sales the current stock can cover
+			VAR lastFullWeek =
+			    TOPN ( 1, SUMMARIZE ( posRows, [cumulativeStock] ), [cumulativeStock], ASC ) // Store the smallest value of cumulative stock (which will be the week just before stock runs out) 
+			// Two step process to get sales value for the week just after stock runs out 
+			VAR firstNegWeek =
+			    TOPN ( 1, SUMMARIZE ( negRows, [fiscalWeek], [salesAmt] ), [fiscalWeek], ASC ) // Need to order by calendar date so first get the value of the calendar date for the row
+			VAR firstNegWeekSales =
+			    TOPN ( 1, SUMMARIZE ( firstNegWeek, [salesAmt] ), [salesAmt], ASC ) // Return the actual sales value of the week
+			// Number of weeks of stock cover is a partial week consisting of number of WHOLE weeks + fraction of the next week of sales the remaining stock can cover
+			VAR result = fullWeeksStock + DIVIDE ( lastFullWeek, firstNegWeekSales )
+			RETURN
+			    IF ( currentStock > 0, result, BLANK() )
+			```
+		formatString: #,##0.0;(#,##0.0)
+		lineageTag: 03c8cf4e-a6fb-4259-871a-b3c1f0f78472
+
+	measure stock_fwd_cover_base2 = ```
+			VAR currentWeek = [LatestSalesOrdersFiscalWeek]
+			VAR currentStock =
+			    CALCULATE ( [sum_amt_mp_stock], 'Calendar'[fiscalWeek] = currentWeek ) // Create a table with rows starting at next week and going into the future
+			// (as long as the MP plan extends for)
+			VAR stockFutureWeeks =
+			    ADDCOLUMNS (
+			        FILTER (
+			            ALL ( 'Calendar'[fiscalWeek] ),
+			            'Calendar'[fiscalWeek] > currentWeek
+			                && 'Calendar'[fiscalWeek] <= MAX ( factForecast[fiscalWeek] )
+			        ),
+			        "cumulativeStock",
+			            // Store the week of the current row as a variable
+			            VAR tableWeek =
+			                CALCULATE ( SELECTEDVALUE ( 'Calendar'[fiscalWeek] ) ) // Calculate cumulative sales up to the current row week
+			            VAR cumulativeSales =
+			                CALCULATE (
+			                    [sum_TotSlsV] - [sum_TotPoSV] - [sum_TotStDV],
+			                    'Calendar'[fiscalWeek] <= tableWeek
+			                        && 'Calendar'[fiscalWeek] > currentWeek
+			                ) // Subtract cumulative sales from stock position now
+			            // (At some future week cumulative sales will exceed stock and the result
+			            // will begin to be negative from then onwards)
+			            VAR stockPosition = currentStock - cumulativeSales
+			            RETURN
+			                stockPosition,
+			        "cumulativeSales",
+			            VAR tableWeek =
+			                CALCULATE ( SELECTEDVALUE ( 'Calendar'[fiscalWeek] ) )
+			            VAR cumulativeSales =
+			                CALCULATE (
+			                    [sum_TotSlsV] - [sum_TotPoSV] - [sum_TotStDV],
+			                    'Calendar'[fiscalWeek] <= tableWeek
+			                        && 'Calendar'[fiscalWeek] > currentWeek
+			                )
+			            RETURN
+			                cumulativeSales,
+			        // Calculate sales (non-cumulative for the row week)
+			        "salesAmt",
+			            [sum_TotSlsV] - [sum_TotPoSV] - [sum_TotStDV]
+			    )
+			VAR posRows = 
+			    FILTER ( stockFutureWeeks, [cumulativeStock] > 0 )
+			VAR negRows =
+			    FILTER ( stockFutureWeeks, [cumulativeStock] < 0 ) // Filter table to only negative rows (after stock runs out)
+			VAR fullWeeksStock =
+			    COUNTROWS ( posRows ) // Count rows to get total number of WHOLE weeks of future sales the current stock can cover
+			VAR lastFullWeek =
+			    TOPN ( 1, SUMMARIZE ( posRows, [cumulativeStock] ), [cumulativeStock], ASC ) // Store the smallest value of cumulative stock (which will be the week just before stock runs out) 
+			// Two step process to get sales value for the week just after stock runs out 
+			VAR firstNegWeek =
+			    TOPN ( 1, SUMMARIZE ( negRows, [fiscalWeek], [salesAmt] ), [fiscalWeek], ASC ) // Need to order by calendar date so first get the value of the calendar date for the row
+			VAR firstNegWeekSales =
+			    TOPN ( 1, SUMMARIZE ( firstNegWeek, [salesAmt] ), [salesAmt], ASC ) // Return the actual sales value of the week
+			// Number of weeks of stock cover is a partial week consisting of number of WHOLE weeks + fraction of the next week of sales the remaining stock can cover
+			VAR result = fullWeeksStock + DIVIDE ( lastFullWeek, firstNegWeekSales )
+			RETURN
+			    //IF ( currentStock > 0, result, BLANK() )
+			    firstNegWeekSales
+			```
+		lineageTag: d5429b67-5498-40a9-bbc9-49c494b43e05
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column plan
+		dataType: string
+		lineageTag: 32b84372-2b94-4198-ad2a-20e0b4789f7e
+		summarizeBy: none
+		sourceColumn: plan
+
+		annotation SummarizationSetBy = Automatic
+
+	column product
+		dataType: string
+		lineageTag: 16a7b19c-5391-40ca-bba9-53d20ec5de7e
+		summarizeBy: none
+		sourceColumn: product
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscalWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: e3683211-fcd4-4413-ba8a-529973cf433e
+		summarizeBy: none
+		sourceColumn: fiscalWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		dataType: string
+		lineageTag: 8cc22db8-a1dc-46f9-83a5-6f0c9586dd34
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column stock_metric
+		dataType: string
+		lineageTag: 5dda0a9e-20fa-49bf-affc-a84d0d653905
+		summarizeBy: none
+		sourceColumn: stock_metric
+
+		annotation SummarizationSetBy = Automatic
+
+	column fp_rp_ind
+		dataType: string
+		lineageTag: 9609c3e9-b052-4d55-badd-e8ad37bcf3da
+		summarizeBy: none
+		sourceColumn: fp_rp_ind
+
+		annotation SummarizationSetBy = Automatic
+
+	column amt
+		dataType: double
+		lineageTag: 101e8a4e-8347-4998-a92f-f030e9f1183e
+		summarizeBy: sum
+		sourceColumn: amt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column channel
+		dataType: string
+		lineageTag: c20aaac1-0544-4c07-8bf0-6e9312fd4fe8
+		summarizeBy: none
+		sourceColumn: channel
+
+		annotation SummarizationSetBy = Automatic
+
+	partition factMPStock-08af6c80-c846-47e1-a976-1288dd4fa90e = m
+		mode: import
+		queryGroup: 'Orders fact tables'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+				    #"6bca23bd-f7e7-4615-91a2-82a7b8552177" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="6bca23bd-f7e7-4615-91a2-82a7b8552177"]}[Data],
+				    #"MP Plans Stock" = #"6bca23bd-f7e7-4615-91a2-82a7b8552177"{[entity="MP Plans Stock"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(#"MP Plans Stock",{{"location", "Location"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,40 @@
+table OutletsControl
+	lineageTag: 01abd26e-e41b-44f9-a0d9-fe7687a7d572
+
+	column dist_chnl_cde
+		dataType: string
+		lineageTag: c44e0180-3da7-4a9b-bdc2-6ff973aacce9
+		summarizeBy: none
+		sourceColumn: dist_chnl_cde
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ex Outlets/Outlets'
+		dataType: string
+		lineageTag: b6efd5c5-f995-4e23-9aa4-19ea14d9c485
+		summarizeBy: none
+		sourceColumn: Ex Outlets/Outlets
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		dataType: int64
+		formatString: 0
+		lineageTag: 0476a3c7-5913-4ec7-8cbb-744bcda0e9bb
+		summarizeBy: sum
+		sourceColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition OutletsControl-14506a10-28b0-4c41-810f-4128e206e5d4 = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45W8o0pNTAwMgtWcK1Q8C8tyUktKVbSUTIwBBKGSrE6OBUYEVJgTEiBCQEFhgg3IOkyBRJGSrGxAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Ex Outlets/Outlets" = _t, dist_chnl_cde = _t, Order = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Ex Outlets/Outlets", type text}, {"dist_chnl_cde", type text}, {"Order", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,106 @@
+table factDeriskForecast
+	lineageTag: 3fd485ce-046f-454e-804f-e8464282d8df
+
+	/// This measure is the sum of column 'factDeriskForecast'[GSM]
+	measure sum_GSM_derisk_FC = SUM ( 'factDeriskForecast'[GSM] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: 2cf2257f-0b89-4c03-b197-2b5d54b7c30b
+
+	/// This measure is the sum of column 'factDeriskForecast'[SREV]
+	measure sum_SREV_derisk_FC = SUM ( 'factDeriskForecast'[SREV] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: f75e7d6b-82ee-464e-b470-dd9799b099a2
+
+	/// This measure is the sum of column 'factDeriskForecast'[SRIV]
+	measure sum_SRIV_derisk_FC = SUM ( 'factDeriskForecast'[SRIV] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: 6771d57d-063b-4591-adc7-e3ab58d9fb05
+
+	column sales_type
+		dataType: string
+		lineageTag: e9915f2d-a05b-4748-b11f-29574216e129
+		summarizeBy: none
+		sourceColumn: sales_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscalWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: 053c3422-2e73-4ece-93d5-559656cec73f
+		summarizeBy: none
+		sourceColumn: fiscalWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel
+		dataType: string
+		lineageTag: 5216d158-fca1-4b7e-b9cc-d87b35cc76cb
+		summarizeBy: none
+		sourceColumn: channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column SREV
+		dataType: double
+		isHidden
+		lineageTag: 5ee1a631-686a-4a3b-af08-56c3e657d241
+		summarizeBy: sum
+		sourceColumn: SREV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SRIV
+		dataType: double
+		isHidden
+		lineageTag: 76a1ed0a-feb3-40bc-a660-f16e7aee1ce3
+		summarizeBy: sum
+		sourceColumn: SRIV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dept
+		dataType: string
+		lineageTag: 0675d4db-4847-474c-9abb-85d4e4e0fefc
+		summarizeBy: none
+		sourceColumn: dept
+
+		annotation SummarizationSetBy = Automatic
+
+	column siteID
+		dataType: int64
+		formatString: 0
+		lineageTag: 7b68c313-5714-4e1b-a317-c658bcec1d2d
+		summarizeBy: none
+		sourceColumn: siteID
+
+		annotation SummarizationSetBy = Automatic
+
+	column GSM
+		dataType: double
+		lineageTag: 599d26f5-9b7a-4e42-b2a0-7b41f0594d8c
+		summarizeBy: sum
+		sourceColumn: GSM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition factDeriskForecast-efc2d77e-566d-4824-aee4-f50d55eb3113 = m
+		mode: import
+		queryGroup: 'Other fact tables'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+				    #"bf447173-6542-484b-a2ea-78c25d75e485" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="bf447173-6542-484b-a2ea-78c25d75e485"]}[Data],
+				    #"Derisk Forecast" = #"bf447173-6542-484b-a2ea-78c25d75e485"{[entity="Derisk Forecast"]}[Data]
+				in
+				    #"Derisk Forecast"
+
+	annotation PBI_ResultType = Table
+

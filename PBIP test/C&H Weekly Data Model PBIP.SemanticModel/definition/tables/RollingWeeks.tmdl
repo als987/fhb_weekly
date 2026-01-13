@@ -1,0 +1,28 @@
+table RollingWeeks
+	lineageTag: 3d0145cf-e3a6-4d98-aa7a-a68a27dd665f
+
+	measure Slctd_WeeksRolling = SELECTEDVALUE(RollingWeeks[WeeksRolling],4)
+		lineageTag: b65c75c0-983c-4692-89a6-1696dc3241c8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WeeksRolling
+		dataType: int64
+		formatString: 0
+		lineageTag: b7a7023a-7e17-409f-9f10-67553a7d8012
+		summarizeBy: sum
+		sourceColumn: WeeksRolling
+
+		annotation SummarizationSetBy = Automatic
+
+	partition RollingWeeks = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlGK1YlWMgOTFmDS0FgpNhYA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [WeeksRolling = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"WeeksRolling", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,72 @@
+table factFootfall
+	lineageTag: ee4b5782-7978-4acd-8082-25f61f1f5f99
+
+	/// This measure is the sum of column 'factFootfall'[footfall]
+	measure sum_footfall = SUM ( 'factFootfall'[footfall] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: 84735f9e-433e-45b7-8f8f-aa01ebf7a01a
+
+	/// This measure is the sum of column 'factFootfall'[transactions]
+	measure sum_transactions = SUM ( 'factFootfall'[transactions] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: 7b57d576-83da-47ad-83f7-44ad66a16378
+
+	column fiscalWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: 927751c9-66fa-4db4-99ea-3f598625369d
+		summarizeBy: none
+		sourceColumn: fiscalWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column footfall
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 656c1ca5-c6dd-4dc2-ac1b-3f2d2699c9b3
+		summarizeBy: sum
+		sourceColumn: footfall
+
+		annotation SummarizationSetBy = Automatic
+
+	column transactions
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1d7f34e9-0be3-4875-b561-ed5ffc44f2a5
+		summarizeBy: sum
+		sourceColumn: transactions
+
+		annotation SummarizationSetBy = Automatic
+
+	column dist_chnl_cde
+		dataType: string
+		lineageTag: f8c4f6fd-049b-406f-ac68-7a9e03558446
+		summarizeBy: none
+		sourceColumn: dist_chnl_cde
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_code
+		dataType: string
+		lineageTag: 4a446cae-ed1a-4114-888f-66323764e5d3
+		summarizeBy: none
+		sourceColumn: store_code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition factFootfall-c5d851a7-25f4-47fd-9d02-45abf3e1e6da = m
+		mode: import
+		queryGroup: 'Other fact tables'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+				    #"6aaee58a-737b-477f-9e0b-6b4a95309533" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="6aaee58a-737b-477f-9e0b-6b4a95309533"]}[Data],
+				    Transactions = #"6aaee58a-737b-477f-9e0b-6b4a95309533"{[entity="Footfall"]}[Data]
+				in
+				    Transactions
+
+	annotation PBI_ResultType = Table
+

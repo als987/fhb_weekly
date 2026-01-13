@@ -1,0 +1,49 @@
+table RollingAct
+	lineageTag: c51ed469-8bfe-43e5-ac61-1286b0c00fe8
+
+	column RollingAct
+		lineageTag: 4a809a4b-f5f8-424d-9d0d-4e935c1959bc
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'RollingAct Order'
+
+		relatedColumnDetails
+			groupByColumn: 'RollingAct Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RollingAct Fields'
+		isHidden
+		lineageTag: 7862df2b-d6a9-43e8-ae99-44e9a4e03b87
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'RollingAct Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RollingAct Order'
+		isHidden
+		formatString: 0
+		lineageTag: d642f66c-65b1-4e76-ad5e-108ae95246af
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition RollingAct = calculated
+		mode: import
+		source =
+				{
+				    ("Rolling_FPPSRIV", NAMEOF('1_Measures'[Rolling_FPPSRIV]), 0),
+				    ("Rolling_FPPIntakeValue", NAMEOF('1_Measures'[Rolling_FPPIntakeValue]), 1),
+				    ("Rolling_FPPIntakeVolume", NAMEOF('1_Measures'[Rolling_FPPIntakeVolume]), 2)
+				}
+
+	annotation PBI_Id = 17f156c7c3574abeb1b894c91c85f11e
+

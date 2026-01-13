@@ -1,0 +1,7 @@
+role No_Access
+	modelPermission: read
+
+	tablePermission 'Access Area' = [Access Area] = "C&H Trading"
+
+	annotation PBI_Id = 5b2159c4db3241fb9feb4dc1c9cee9f3
+

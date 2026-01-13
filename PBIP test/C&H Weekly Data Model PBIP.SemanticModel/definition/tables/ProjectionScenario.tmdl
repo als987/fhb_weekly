@@ -1,0 +1,31 @@
+table ProjectionScenario
+	lineageTag: 305c0c0a-ff73-422b-9715-52e58642c700
+
+	/// This measure is the SELECTEDVALUE of column 'ProjectionScenario'[Projection Scenario]
+	measure 'slctd_Projection Scenario' = SELECTEDVALUE ( 'ProjectionScenario'[Projection Scenario] )
+		lineageTag: 4148c783-3f9d-49cb-b494-500feb9f8b26
+
+	/// This measure is the SELECTEDVALUE of column 'ProjectionScenario'[Projection MP Plan]
+	measure 'slctd_Projection MP Plan' = SELECTEDVALUE ( 'ProjectionScenario'[Projection MP Plan] )
+		lineageTag: 31c42452-c566-4928-954f-8058191660fa
+
+	column 'Projection Scenario'
+		lineageTag: a7cb1f70-76e3-438f-9e27-2465969c73cf
+		summarizeBy: none
+		sourceColumn: ForecastScenarios[Forecast Scenario]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Projection MP Plan'
+		lineageTag: 8b2b41df-c59b-423c-b499-016e1fa9f238
+		summarizeBy: none
+		sourceColumn: ForecastScenarios[MP Plan]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ProjectionScenario-02abc934-6ce9-47e9-8b84-37d1fb0ab810 = calculated
+		mode: import
+		source = SUMMARIZECOLUMNS(ForecastScenarios[Forecast Scenario], ForecastScenarios[MP Plan])
+
+	annotation PBI_Id = 4a490f661d31483b8b3d75ab5227de37
+

@@ -1,0 +1,157 @@
+table FwdViewMeasureSelection
+	lineageTag: 058ccec0-8b4c-4305-9276-94d7e7912dbf
+
+	column FwdViewMeasureSelection
+		lineageTag: 38b312f3-7020-4e7b-bba8-0b8390c888b6
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'FwdViewMeasureSelection Order'
+
+		relatedColumnDetails
+			groupByColumn: 'FwdViewMeasureSelection Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FwdViewMeasureSelection Fields'
+		isHidden
+		lineageTag: 2b2d7c23-27ac-402f-a154-700c91f38e83
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'FwdViewMeasureSelection Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FwdViewMeasureSelection Order'
+		isHidden
+		formatString: 0
+		lineageTag: de822f18-fbbc-4901-bde5-cab901b65d95
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MeasureType
+		lineageTag: f72536df-c124-43cd-8a16-84b3ab1c4e44
+		summarizeBy: none
+		sourceColumn: [Value4]
+		sortByColumn: MeasureTypeOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column MeasureTypeOrder
+		formatString: 0
+		lineageTag: 95182627-0ac9-462e-b2cd-0f1c46f8a0e3
+		summarizeBy: sum
+		sourceColumn: [Value5]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comparator
+		lineageTag: 27bb3e18-465c-426e-9e9a-fb27a8fd7ac1
+		summarizeBy: none
+		sourceColumn: [Value6]
+		sortByColumn: ComparatorOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column ComparatorOrder
+		formatString: 0
+		lineageTag: 7570421c-c466-42e7-aa05-1c9fe0f897c7
+		summarizeBy: sum
+		sourceColumn: [Value7]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Metric
+		lineageTag: f3c4ad5e-8745-4e82-a33a-574fc6a19409
+		summarizeBy: none
+		sourceColumn: [Value8]
+		sortByColumn: MetricOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column MetricOrder
+		formatString: 0
+		lineageTag: 0af55753-32b8-4233-b881-8eeca3d80a85
+		summarizeBy: sum
+		sourceColumn: [Value9]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FwdViewMeasureSelection-01131d72-8b1f-41d2-8b15-8c3e22f532ff = calculated
+		mode: import
+		source =
+				
+				{
+				    ( "Sls Act", NAMEOF ( '1_Measures'[SRIV] ), 0, "Value", 0, "ACT", 0, "Sls", 0 ),
+				    ( "Sls Fwd View", NAMEOF ( '1_Measures'[SRIV Fwd View] ), 0, "Value", 0, "ACT", 0, "Sls", 0 ),
+				    ( "Sls LW", NAMEOF ( '1_Measures'[SRIV Fwd View LW] ), 1, "Value", 0, "LW", 1, "Sls", 0 ),
+				    ( "Sls vs LW", NAMEOF ( '1_Measures'[SRIV Fwd View vs LW] ), 2, "Var", 1, "LW", 1, "Sls", 0 ),
+				    ( "Sls vs LW %", NAMEOF ( '1_Measures'[SRIV Fwd View vs LW %] ), 3, "% Var", 2, "LW", 1, "Sls", 0 ),
+				    ( "Sls QRF", NAMEOF ( '1_Measures'[SRIV Channel QRF] ), 4, "Value", 0, "QRF", 2, "Sls", 0 ),
+				    ( "Sls vs QRF", NAMEOF ( '1_Measures'[SRIV Fwd View vs QRF] ), 5, "Var", 1, "QRF", 2, "Sls", 0 ),
+				    ( "Sls vs QRF %", NAMEOF ( '1_Measures'[SRIV Fwd View vs QRF %] ), 6, "% Var", 2, "QRF", 2, "Sls", 0 ),
+				    ( "Sls FC", NAMEOF ( '1_Measures'[SRIV Channel FC] ), 7, "Value", 0, "FC", 3, "Sls", 0 ),
+				    ( "Sls vs FC", NAMEOF ( '1_Measures'[SRIV Fwd View vs FC] ), 8, "Var", 1, "FC", 3, "Sls", 0 ),
+				    ( "Sls vs FC %", NAMEOF ( '1_Measures'[SRIV Fwd View vs FC %] ), 9, "% Var", 2, "FC", 3, "Sls", 0 ),
+				    ( "Sls BUD", NAMEOF ( '1_Measures'[SRIV Channel BUD] ), 10, "Value", 0, "BUD", 4, "Sls", 0 ),
+				    ( "Sls vs BUD", NAMEOF ( '1_Measures'[SRIV Fwd View vs BUD] ), 11, "Var", 1, "BUD", 4, "Sls", 0 ),
+				    ( "Sls vs BUD %", NAMEOF ( '1_Measures'[SRIV Fwd View vs BUD %] ), 12, "% Var", 2, "BUD", 4, "Sls", 0 ),
+				    ( "Sls LY", NAMEOF ( '1_Measures'[SRIV LY] ), 13, "Value", 0, "LY", 5, "Sls", 0 ),
+				    ( "Sls vs LY", NAMEOF ( '1_Measures'[SRIV Fwd View vs LY] ), 14, "Var", 1, "LY", 5, "Sls", 0 ),
+				    ( "Sls vs LY %", NAMEOF ( '1_Measures'[SRIV Fwd View vs LY %] ), 15, "% Var", 2, "LY", 5, "Sls", 0 ),
+				    ( "Sls Ex Act", NAMEOF ( '1_Measures'[SREV] ), 16, "Value", 0, "ACT", 0, "Sls Ex", 1 ),
+				    ( "Sls Ex Fwd View", NAMEOF ( '1_Measures'[SREV Fwd View] ), 16, "Value", 0, "ACT", 0, "Sls Ex", 1 ),
+				    ( "Sls Ex LW", NAMEOF ( '1_Measures'[SREV Fwd View LW] ), 17, "Value", 0, "LW", 1, "Sls Ex", 1 ),
+				    ( "Sls Ex vs LW", NAMEOF ( '1_Measures'[SREV Fwd View vs LW] ), 18, "Var", 1, "LW", 1, "Sls Ex", 1 ),
+				    ( "Sls Ex vs LW %", NAMEOF ( '1_Measures'[SREV Fwd View vs LW %] ), 19, "% Var", 2, "LW", 1, "Sls Ex", 1 ),
+				    ( "Sls Ex QRF", NAMEOF ( '1_Measures'[SREV QRF] ), 20, "Value", 0, "QRF", 2, "Sls Ex", 1 ),
+				    ( "Sls Ex vs QRF", NAMEOF ( '1_Measures'[SREV Fwd View vs QRF] ), 21, "Var", 1, "QRF", 2, "Sls Ex", 1 ),
+				    ( "Sls Ex vs QRF %", NAMEOF ( '1_Measures'[SREV Fwd View vs QRF %] ), 22, "% Var", 2, "QRF", 2, "Sls Ex", 1 ),
+				    ( "Sls Ex FC", NAMEOF ( '1_Measures'[SREV FC] ), 23, "Value", 0, "FC", 3, "Sls Ex", 1 ),
+				    ( "Sls Ex vs FC", NAMEOF ( '1_Measures'[SREV Fwd View vs FC] ), 24, "Var", 1, "FC", 3, "Sls Ex", 1 ),
+				    ( "Sls Ex vs FC %", NAMEOF ( '1_Measures'[SREV Fwd View vs FC %] ), 25, "% Var", 2, "FC", 3, "Sls Ex", 1 ),
+				    ( "Sls Ex BUD", NAMEOF ( '1_Measures'[SREV BUD] ), 26, "Value", 0, "BUD", 4, "Sls Ex", 1 ),
+				    ( "Sls Ex vs BUD", NAMEOF ( '1_Measures'[SREV Fwd View vs BUD] ), 27, "Var", 1, "BUD", 4, "Sls Ex", 1 ),
+				    ( "Sls Ex vs BUD %", NAMEOF ( '1_Measures'[SREV Fwd View vs BUD %] ), 28, "% Var", 2, "BUD", 4, "Sls Ex", 1 ),
+				    ( "Sls Ex LY", NAMEOF ( '1_Measures'[SREV LY] ), 29, "Value", 0, "LY", 5, "Sls Ex", 1 ),
+				    ( "Sls Ex vs LY", NAMEOF ( '1_Measures'[SREV Fwd View vs LY] ), 30, "Var", 1, "LY", 5, "Sls Ex", 1 ),
+				    ( "Sls Ex vs LY %", NAMEOF ( '1_Measures'[SREV Fwd View vs LY %] ), 31, "% Var", 2, "LY", 5, "Sls Ex", 1 ),
+				    ( "GSM Act", NAMEOF ( '1_Measures'[GSM] ), 0, "Value", 32, "ACT", 0, "GSM", 2 ),
+				    ( "GSM Fwd View", NAMEOF ( '1_Measures'[GSM Fwd View] ), 0, "Value", 32, "ACT", 0, "GSM", 2 ),
+				    ( "GSM LW", NAMEOF ( '1_Measures'[GSM Fwd View LW] ), 33, "Value", 0, "LW", 1, "GSM", 2 ),
+				    ( "GSM vs LW", NAMEOF ( '1_Measures'[GSM Fwd View vs LW] ), 34, "Var", 1, "LW", 1, "GSM", 2 ),
+				    ( "GSM vs LW %", NAMEOF ( '1_Measures'[GSM Fwd View vs LW %] ), 35, "% Var", 2, "LW", 1, "GSM", 2 ),
+				    ( "GSM QRF", NAMEOF ( '1_Measures'[GSM QRF] ), 36, "Value", 0, "QRF", 2, "GSM", 2 ),
+				    ( "GSM vs QRF", NAMEOF ( '1_Measures'[GSM Fwd View vs QRF] ), 37, "Var", 1, "QRF", 2, "GSM", 2 ),
+				    ( "GSM vs QRF %", NAMEOF ( '1_Measures'[GSM Fwd View vs QRF %] ), 38, "% Var", 2, "QRF", 2, "GSM", 2 ),
+				    ( "GSM FC", NAMEOF ( '1_Measures'[GSM FC] ), 39, "Value", 0, "FC", 3, "GSM", 2 ),
+				    ( "GSM vs FC", NAMEOF ( '1_Measures'[GSM Fwd View vs FC] ), 40, "Var", 1, "FC", 3, "GSM", 2 ),
+				    ( "GSM vs FC %", NAMEOF ( '1_Measures'[GSM Fwd View vs FC %] ), 41, "% Var", 2, "FC", 3, "GSM", 2 ),
+				    ( "GSM BUD", NAMEOF ( '1_Measures'[GSM BUD] ), 42, "Value", 0, "BUD", 4, "GSM", 2 ),
+				    ( "GSM vs BUD", NAMEOF ( '1_Measures'[GSM Fwd View vs BUD] ), 43, "Var", 1, "BUD", 4, "GSM", 2 ),
+				    ( "GSM vs BUD %", NAMEOF ( '1_Measures'[GSM Fwd View vs BUD %] ), 44, "% Var", 2, "BUD", 4, "GSM", 2 ),
+				    ( "GSM LY", NAMEOF ( '1_Measures'[GSM LY] ), 45, "Value", 0, "LY", 5, "GSM", 2 ),
+				    ( "GSM vs LY", NAMEOF ( '1_Measures'[GSM Fwd View vs LY] ), 46, "Var", 1, "LY", 5, "GSM", 2 ),
+				    ( "GSM vs LY %", NAMEOF ( '1_Measures'[GSM Fwd View vs LY %] ), 47, "% Var", 2, "LY", 5, "GSM", 2 ),
+				    ( "GSM % Fwd View", NAMEOF ( '1_Measures'[GSM % SREV Fwd View] ), 48, "% Sales", 3, "ACT", 0, "GSM %", 3 ),
+				    ( "GSM % LW", NAMEOF ( '1_Measures'[GSM % SREV Fwd View LW] ), 49, "% Sales", 3, "LW", 1, "GSM %", 3 ),
+				    ( "GSM % vs LW", NAMEOF ( '1_Measures'[GSM % SREV Fwd View vs LW] ), 50, "% Sales Var", 4, "LW", 1, "GSM %", 3 ),
+				    ( "GSM % QRF", NAMEOF ( '1_Measures'[GSM % SREV QRF] ), 51, "% Sales", 3, "QRF", 2, "GSM %", 3 ),
+				    ( "GSM % vs QRF", NAMEOF ( '1_Measures'[GSM % SREV Fwd View vs QRF] ), 52, "% Sales Var", 4, "QRF", 2, "GSM %", 3 ),
+				    ( "GSM % FC", NAMEOF ( '1_Measures'[GSM % SREV FC] ), 53, "% Sales", 3, "FC", 3, "GSM %", 3 ),
+				    ( "GSM % vs FC", NAMEOF ( '1_Measures'[GSM % SREV Fwd View vs FC] ), 54, "% Sales Var", 4, "FC", 3, "GSM %", 3 ),
+				    ( "GSM % BUD", NAMEOF ( '1_Measures'[GSM % SREV BUD] ), 55, "% Sales", 3, "BUD", 4, "GSM %", 3 ),
+				    ( "GSM % vs BUD", NAMEOF ( '1_Measures'[GSM % SREV Fwd View vs BUD] ), 56, "% Sales Var", 4, "BUD", 4, "GSM %", 3 ),
+				    ( "GSM % LY", NAMEOF ( '1_Measures'[GSM % SREV LY] ), 57, "% Sales", 3, "LY", 5, "GSM %", 3 ),
+				    ( "GSM % vs LY", NAMEOF ( '1_Measures'[GSM % SREV Fwd View vs LY] ), 58, "% Sales Var", 4, "LY", 5, "GSM %", 3 )
+				}
+
+	annotation PBI_Id = e1378f07785a4f1f8e137cdb9e20a647
+

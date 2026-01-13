@@ -1,0 +1,212 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "31b79b304081417dd59e",
+  "position": {
+    "x": 763.52583586626145,
+    "y": 341.39817629179333,
+    "z": 8000,
+    "height": 362.79635258358667,
+    "width": 505.77507598784194,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MarginBridgeVariable"
+                    }
+                  },
+                  "Property": "Variable"
+                }
+              },
+              "queryRef": "MarginBridgeVariable.Variable",
+              "nativeQueryRef": "Variable",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "MbrMixTotal01_SRIVMainchain"
+                }
+              },
+              "queryRef": "1_Measures.MbrMixTotal01_SRIVMainchain",
+              "nativeQueryRef": "MbrMixTotal01_SRIVMainchain"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "MbrMixTotal02_SRIVFPP"
+                }
+              },
+              "queryRef": "1_Measures.MbrMixTotal02_SRIVFPP",
+              "nativeQueryRef": "MbrMixTotal02_SRIVFPP"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "MbrMixTotal03_SRIVRP"
+                }
+              },
+              "queryRef": "1_Measures.MbrMixTotal03_SRIVRP",
+              "nativeQueryRef": "MbrMixTotal03_SRIVRP"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "MbrMixTotal04_SRIV"
+                }
+              },
+              "queryRef": "1_Measures.MbrMixTotal04_SRIV",
+              "nativeQueryRef": "MbrMixTotal04_SRIV"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "MbrMixTotal05_SREVMainchain"
+                }
+              },
+              "queryRef": "1_Measures.MbrMixTotal05_SREVMainchain",
+              "nativeQueryRef": "MbrMixTotal05_SREVMainchain"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "MbrMixTotal06_VAT"
+                }
+              },
+              "queryRef": "1_Measures.MbrMixTotal06_VAT",
+              "nativeQueryRef": "MbrMixTotal06_VAT"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "MbrMixTotal07_POS"
+                }
+              },
+              "queryRef": "1_Measures.MbrMixTotal07_POS",
+              "nativeQueryRef": "MbrMixTotal07_POS"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "MbrMixTotal09_SaleMD"
+                }
+              },
+              "queryRef": "1_Measures.MbrMixTotal09_SaleMD",
+              "nativeQueryRef": "MbrMixTotal09_SaleMD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "MbrMixTotal10_SaleMDExVAT"
+                }
+              },
+              "queryRef": "1_Measures.MbrMixTotal10_SaleMDExVAT",
+              "nativeQueryRef": "MbrMixTotal10_SaleMDExVAT"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "MbrMixTotal12_TotalMD"
+                }
+              },
+              "queryRef": "1_Measures.MbrMixTotal12_TotalMD",
+              "nativeQueryRef": "MbrMixTotal12_TotalMD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "MbrMixTotal15_GrossSRIV"
+                }
+              },
+              "queryRef": "1_Measures.MbrMixTotal15_GrossSRIV",
+              "nativeQueryRef": "MbrMixTotal15_GrossSRIV"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "valuesOnRow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

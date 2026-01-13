@@ -1,0 +1,68 @@
+table Channels
+	lineageTag: fa717484-531a-4d04-b749-abb1eec57c4b
+
+	column dist_chnl_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 72826a6c-da7a-4db5-89c5-24aa897d16f3
+		summarizeBy: sum
+		sourceColumn: dist_chnl_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column dist_chnl_cde
+		dataType: string
+		lineageTag: 6c61c045-59b9-4b55-9cf2-3688f9b340de
+		summarizeBy: none
+		sourceColumn: dist_chnl_cde
+
+		annotation SummarizationSetBy = Automatic
+
+	column dist_chnl_name
+		dataType: string
+		lineageTag: 033b7d54-95ec-4f56-9e6b-9b33892f5152
+		summarizeBy: none
+		sourceColumn: dist_chnl_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column dist_chnl_cde_concat
+		dataType: string
+		lineageTag: e9ec7851-978e-453a-92e7-41cf2c5ad80f
+		summarizeBy: none
+		sourceColumn: dist_chnl_cde_concat
+
+		annotation SummarizationSetBy = Automatic
+
+	column Channel
+		dataType: string
+		lineageTag: dee234f5-36bf-4b88-916d-a5d8ab235cc3
+		summarizeBy: none
+		sourceColumn: Channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Channel Detail'
+		dataType: string
+		lineageTag: 44bdebb4-318e-4183-aefc-7c287810ca4a
+		summarizeBy: none
+		sourceColumn: Channel Detail
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Channels-813e681e-22e6-4c1e-b83b-73d8cc6ffdab = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+				    #"9d00c5c6-989f-4813-bae4-dc9f6262029c" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="9d00c5c6-989f-4813-bae4-dc9f6262029c"]}[Data],
+				    Channel = #"9d00c5c6-989f-4813-bae4-dc9f6262029c"{[entity="Channel"]}[Data],
+				    #"Added Custom" = Table.AddColumn(Channel, "Channel Detail", each if [dist_chnl_cde] = "05" then "Outlets" else if [Channel] = "Stores" then "Mainchain" else [Channel]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"Channel Detail", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Exception
+

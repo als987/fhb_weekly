@@ -1,0 +1,117 @@
+table factSalesOrders
+	lineageTag: 2580ff22-711e-4c07-8ceb-a087ab60b76f
+
+	column fiscalWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: 8576ba5d-9cb8-424e-b64d-d6ebd560bbca
+		summarizeBy: none
+		sourceColumn: fiscalWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column comp_code
+		dataType: string
+		lineageTag: 940d9c10-8339-442c-b945-e22de625877d
+		summarizeBy: none
+		sourceColumn: comp_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column siteID
+		dataType: int64
+		formatString: 0
+		lineageTag: e3c8d655-7d4e-4da9-9fe5-ebb6f576adea
+		summarizeBy: none
+		sourceColumn: siteID
+
+		annotation SummarizationSetBy = Automatic
+
+	column dept
+		dataType: string
+		lineageTag: 87495d10-1e4b-4c74-b169-77352f1be5b5
+		summarizeBy: none
+		sourceColumn: dept
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel
+		dataType: string
+		lineageTag: a78a4a5c-ae87-462a-b0f5-a7b41a2e2c5e
+		summarizeBy: none
+		sourceColumn: channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column fp_rp_ind
+		dataType: string
+		lineageTag: 76d3523a-1f26-4ed2-afa9-c750038f926b
+		summarizeBy: none
+		sourceColumn: fp_rp_ind
+
+		annotation SummarizationSetBy = Automatic
+
+	column gsm
+		dataType: double
+		lineageTag: 59d584f1-4cd7-49ed-9a1a-b1588e21986f
+		summarizeBy: sum
+		sourceColumn: gsm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column sriv
+		dataType: double
+		lineageTag: 004feb65-9ac7-4ccb-942a-275bbdfc2c18
+		summarizeBy: sum
+		sourceColumn: sriv
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column srev
+		dataType: double
+		lineageTag: f6f392a4-f072-4a0e-ad3e-803d619cc71c
+		summarizeBy: sum
+		sourceColumn: srev
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qty
+		dataType: double
+		lineageTag: 57e7079a-c369-4a0f-b8a3-86fdf8bb9b15
+		summarizeBy: sum
+		sourceColumn: qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gsriv
+		dataType: double
+		lineageTag: 94b73dec-2642-425d-ab1b-666cb505ba70
+		summarizeBy: sum
+		sourceColumn: gsriv
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition factSalesOrders-13f01fdf-b43b-4bae-bc87-d09cf35d8d99 = m
+		mode: import
+		queryGroup: 'Orders fact tables'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+				    #"d1e16506-ff02-4c58-8626-0abb00a759ef" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="d1e16506-ff02-4c58-8626-0abb00a759ef"]}[Data],
+				    #"Orders Weekly Newschema" = #"d1e16506-ff02-4c58-8626-0abb00a759ef"{[entity="Orders Weekly Newschema"]}[Data]
+				in
+				    #"Orders Weekly Newschema"
+
+	annotation PBI_ResultType = Table
+

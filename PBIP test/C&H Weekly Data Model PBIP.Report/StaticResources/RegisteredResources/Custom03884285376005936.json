@@ -1,0 +1,11 @@
+{
+  "name": "Custom",
+  "textClasses": {
+    "label": {
+      "fontSize": 8
+    }
+  },
+  "minimum": "#FD625E",
+  "center": "#FFFFFF",
+  "maximum": "#01B8AA"
+}

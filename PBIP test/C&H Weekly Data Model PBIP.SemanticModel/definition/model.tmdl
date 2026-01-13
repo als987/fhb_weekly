@@ -1,0 +1,121 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		fastCombine
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup 'Intermediate tables'
+
+	annotation PBI_QueryGroupOrder = 4
+
+queryGroup 'Dimension tables'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Dispatch fact tables'
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup 'Orders fact tables'
+
+	annotation PBI_QueryGroupOrder = 3
+
+queryGroup 'Other fact tables'
+
+	annotation PBI_QueryGroupOrder = 4
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["1_Measures","Calendar","Stores","Channels","Products","Total Furniture","HomeSub_BU","ChannelControl","OutletsControl","SalesType","SalesRecognitionType","ForecastScenarios","MetricMasterPnL","TransMetrics","factSalesDispatch","factPromoSalesDispatch","factDispatchForecast","factSRIVDispatchChannelForecast","RefCalendar","factSalesOrders","factSRIVOrdersChannelForecast","factMarginOrders","factMPStock","BridgeSalesType","unitType","factTransactions","factFootfall","factDeriskForecast","factDeriskBudget","factTradingCalendar","firstWeekCurrentQuarter","factSRIVDispatchOnlineActualsPreForecast","factSRIVDispatchOnlineOtherForecast","SRIVcompositeOnlineForecastDispatchActualised","Company Code","edwSiteLetterCodes","factDispatchActualsPreForecast","factSRIVDispatchForecastActualisation","factSRIVDispatchChannelActualsPreForecast","MarginBridgeVariable","factAvailability","factAvailability_New","factOnlineCustomerMetrics","Access Area","Restore Weeks Calendar","factTradingCommentary","factForecast","ReturnsBridge","ReturnsBridgeWalk","MarginBridgeWalk","ForecastVersion","QRFVersion","ActualisationWeek","ForecastActualisationWeek","FiscalYear","SalesTypeGroup","RollingWeeks","IntakeMeasureSelection","factAOV","factAdobe","DailyCalendar","OnlineMetrics"]
+
+annotation __TEdtr = 1
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","WebModelingEdit","DevMode"]
+
+ref table Calendar
+ref table factSalesOrders
+ref table Stores
+ref table Channels
+ref table Products
+ref table factSalesDispatch
+ref table statsLatestData
+ref table 'Time Period'
+ref table RefCalendar
+ref table 1_Measures
+ref table factSRIVOrdersChannelForecast
+ref table ForecastScenarios
+ref table SalesType
+ref table BridgeSalesType
+ref table SalesRecognitionType
+ref table SalesMeasureSelection
+ref table DimensionSelection
+ref table SalesTypeRecMeasureSelection
+ref table BridgeMPPlan
+ref table factMPStock
+ref table factPromoSalesDispatch
+ref table factMarginOrders
+ref table factDispatchForecast
+ref table GSMTypeRecMeasureSelection
+ref table MarginMeasureSelection
+ref table factDeriskForecast
+ref table ProjectionScenario
+ref table ComparatorMaster
+ref table MeasureTypeMaster
+ref table unitType
+ref table GSMMeasureSelection
+ref table ChannelControl
+ref table StockMeasureSelection
+ref table factTransactions
+ref table factFootfall
+ref table TransMetrics
+ref table TransMetricNumFormat
+ref table MetricMasterPnL
+ref table MetricMasterPnLNumFormat
+ref table P&LMeasureSelection
+ref table OutletsControl
+ref table FwdViewMeasureSelection
+ref table MarginBridgeComparator
+ref table factSRIVDispatchChannelForecast
+ref table 'Company Code'
+ref table MarginBridgeVariable
+ref table factTradingCalendar
+ref table EventParameter
+ref table factAvailability
+ref table factOnlineCustomerMetrics
+ref table 'Access Area'
+ref table 'Restore Weeks Calendar'
+ref table factTradingCommentary
+ref table factDeriskBudget
+ref table firstWeekCurrentQuarter
+ref table factForecast
+ref table ReturnsBridge
+ref table ReturnsBridgeWalk
+ref table MarginBridgeWalk
+ref table ForecastVersion
+ref table QRFVersion
+ref table factAvailability_New
+ref table ActualisationWeek
+ref table ForecastActualisationWeek
+ref table FiscalYear
+ref table 'Intake Comparator'
+ref table 'Date Parameter'
+ref table SalesTypeGroup
+ref table RollingWeeks
+ref table RollingAct
+ref table IntakeMeasureSelection
+ref table factAOV
+ref table factAdobe
+ref table OnlineMetrics
+ref table OnlineMetricNumFormat
+ref table 'Total Furniture'
+
+ref role C&H_Weekly_BUAccess
+ref role C&H_Weekly_AllAccess
+ref role No_Access
+
+ref cultureInfo en-US
+

@@ -1,0 +1,468 @@
+table MarginMeasureSelection
+	lineageTag: 1a1fa74d-b65f-438c-bbc9-efc5a3bedb7b
+
+	/// This measure is the SELECTEDVALUE of column 'MarginMeasureSelection'[Comparator]
+	measure MMS_slctd_Comparator = SELECTEDVALUE ( 'MarginMeasureSelection'[Comparator] )
+		lineageTag: 6e2f739c-1b47-405c-8e68-358975b4fbfa
+
+	/// This measure is the SELECTEDVALUE of column 'MarginMeasureSelection'[MeasureType]
+	measure MMS_slctd_MeasureType = SELECTEDVALUE ( 'MarginMeasureSelection'[MeasureType] )
+		lineageTag: 51bdd759-ced3-4428-aed8-2d44337df801
+
+	/// This measure is the SELECTEDVALUE of column 'MarginMeasureSelection'[Metric]
+	measure MMS_slctd_Metric = SELECTEDVALUE ( 'MarginMeasureSelection'[Metric] )
+		lineageTag: b9a38e60-f5db-410d-a469-b7fcfc9ddad0
+
+	/// This measure is the SELECTEDVALUE of column 'MarginMeasureSelection'[MarginMeasureSelection]
+	measure MMS_slctd_MarginMeasureSelection = SELECTEDVALUE ( 'MarginMeasureSelection'[MarginMeasureSelection] )
+		lineageTag: 6bde34a9-d2e5-42f1-a045-ef02ef1b202d
+
+	measure MMS_SelectedMeasureResult =
+			VAR slctd_measure =
+			    SELECTEDVALUE ( SalesMeasureSelection[MeasureSelection Fields] )
+			VAR result =
+			    SWITCH (
+			        slctd_measure,
+			        NAMEOF ( '1_Measures'[SRIV] ), [SRIV],
+			        NAMEOF ( '1_Measures'[SRIV LW] ), [SRIV LW],
+			        NAMEOF ( '1_Measures'[SRIV vs LW] ), [SRIV vs LW],
+			        NAMEOF ( '1_Measures'[SRIV vs LW %] ), [SRIV vs LW %],
+			        NAMEOF ( [SRIV QRF] ), [SRIV QRF],
+			        NAMEOF ( [SRIV vs QRF] ), [SRIV vs QRF],
+			        NAMEOF ( [SRIV vs QRF %] ), [SRIV vs QRF %],
+			        NAMEOF ( '1_Measures'[SRIV FC] ), [SRIV FC],
+			        NAMEOF ( '1_Measures'[SRIV vs FC] ), [SRIV vs FC],
+			        NAMEOF ( '1_Measures'[SRIV vs FC %] ), [SRIV vs FC %],
+			        NAMEOF ( '1_Measures'[SRIV BUD] ), [SRIV BUD],
+			        NAMEOF ( '1_Measures'[SRIV vs BUD] ), [SRIV vs BUD],
+			        NAMEOF ( '1_Measures'[SRIV vs BUD %] ), [SRIV vs BUD %],
+			        NAMEOF ( '1_Measures'[SRIV LY] ), [SRIV LY],
+			        NAMEOF ( '1_Measures'[SRIV vs LY] ), [SRIV vs LY],
+			        NAMEOF ( '1_Measures'[SRIV vs LY %] ), [SRIV vs LY %],
+			        NAMEOF ( '1_Measures'[Buying Margin] ), [Buying Margin],
+			        NAMEOF ( '1_Measures'[Buying Margin %] ), [Buying Margin %],
+			        NAMEOF ( '1_Measures'[Buying Margin LW] ), [Buying Margin LW],
+			        NAMEOF ( '1_Measures'[Buying Margin vs LW] ), [Buying Margin vs LW],
+			        NAMEOF ( '1_Measures'[Buying Margin vs LW %] ), [Buying Margin vs LW %],
+			        NAMEOF ( '1_Measures'[Buying Margin % LW] ), [Buying Margin % LW],
+			        NAMEOF ( '1_Measures'[Buying Margin % vs LW] ), [Buying Margin % vs LW],
+			        NAMEOF ( [Buying Margin QRF] ), [Buying Margin QRF],
+			        NAMEOF ( [Buying Margin vs QRF] ), [Buying Margin vs QRF],
+			        NAMEOF ( [Buying Margin vs QRF %] ), [Buying Margin vs QRF %],
+			        NAMEOF ( [Buying Margin % QRF] ), [Buying Margin % QRF],
+			        NAMEOF ( [Buying Margin % vs QRF] ), [Buying Margin % vs QRF],
+			        NAMEOF ( '1_Measures'[Buying Margin FC] ), [Buying Margin FC],
+			        NAMEOF ( '1_Measures'[Buying Margin vs FC] ), [Buying Margin vs FC],
+			        NAMEOF ( '1_Measures'[Buying Margin vs FC %] ), [Buying Margin vs FC %],
+			        NAMEOF ( '1_Measures'[Buying Margin % FC] ), [Buying Margin % FC],
+			        NAMEOF ( '1_Measures'[Buying Margin % vs FC] ), [Buying Margin % vs FC],
+			        NAMEOF ( '1_Measures'[Buying Margin BUD] ), [Buying Margin BUD],
+			        NAMEOF ( '1_Measures'[Buying Margin vs BUD] ), [Buying Margin vs BUD],
+			        NAMEOF ( '1_Measures'[Buying Margin vs BUD %] ), [Buying Margin vs BUD %],
+			        NAMEOF ( '1_Measures'[Buying Margin % BUD] ), [Buying Margin % BUD],
+			        NAMEOF ( '1_Measures'[Buying Margin % vs BUD] ), [Buying Margin % vs BUD],
+			        NAMEOF ( '1_Measures'[Buying Margin LY] ), [Buying Margin LY],
+			        NAMEOF ( '1_Measures'[Buying Margin vs LY] ), [Buying Margin vs LY],
+			        NAMEOF ( '1_Measures'[Buying Margin vs LY %] ), [Buying Margin vs LY %],
+			        NAMEOF ( '1_Measures'[Buying Margin % LY] ), [Buying Margin % LY],
+			        NAMEOF ( '1_Measures'[Buying Margin % vs LY] ), [Buying Margin % vs LY],
+			        NAMEOF ( [Markdown] ), [Markdown],
+			        NAMEOF ( [Markdown % SRIV] ), [Markdown % SRIV],
+			        NAMEOF ( [Markdown LW] ), [Markdown LW],
+			        NAMEOF ( [Markdown vs LW] ), [Markdown vs LW],
+			        NAMEOF ( [Markdown vs LW %] ), [Markdown vs LW %],
+			        NAMEOF ( [Markdown % SRIV LW] ), [Markdown % SRIV LW],
+			        NAMEOF ( [Markdown % SRIV vs LW] ), [Markdown % SRIV vs LW],
+			        NAMEOF ( [Markdown QRF] ), [Markdown QRF],
+			        NAMEOF ( [Markdown vs QRF] ), [Markdown vs QRF],
+			        NAMEOF ( [Markdown vs QRF %] ), [Markdown vs QRF %],
+			        NAMEOF ( [Markdown % SRIV QRF] ), [Markdown % SRIV QRF],
+			        NAMEOF ( [Markdown % SRIV vs QRF] ), [Markdown % SRIV vs QRF],
+			        NAMEOF ( [Markdown FC] ), [Markdown FC],
+			        NAMEOF ( [Markdown vs FC] ), [Markdown vs FC],
+			        NAMEOF ( [Markdown vs FC %] ), [Markdown vs FC %],
+			        NAMEOF ( [Markdown % SRIV FC] ), [Markdown % SRIV FC],
+			        NAMEOF ( [Markdown % SRIV vs FC] ), [Markdown % SRIV vs FC],
+			        NAMEOF ( [Markdown BUD] ), [Markdown BUD],
+			        NAMEOF ( [Markdown vs BUD] ), [Markdown vs BUD],
+			        NAMEOF ( [Markdown vs BUD %] ), [Markdown vs BUD %],
+			        NAMEOF ( [Markdown % SRIV BUD] ), [Markdown % SRIV BUD],
+			        NAMEOF ( [Markdown % SRIV vs BUD] ), [Markdown % SRIV vs BUD],
+			        NAMEOF ( [Markdown LY] ), [Markdown LY],
+			        NAMEOF ( [Markdown vs LY] ), [Markdown vs LY],
+			        NAMEOF ( [Markdown vs LY %] ), [Markdown vs LY %],
+			        NAMEOF ( [Markdown % SRIV LY] ), [Markdown % SRIV LY],
+			        NAMEOF ( [Markdown % SRIV vs LY] ), [Markdown % SRIV vs LY],
+			        NAMEOF ( '1_Measures'[GSM] ), [GSM],
+			        NAMEOF ( '1_Measures'[GSM % SREV] ), [GSM % SREV],
+			        NAMEOF ( '1_Measures'[GSM LW] ), [GSM LW],
+			        NAMEOF ( '1_Measures'[GSM vs LW] ), [GSM vs LW],
+			        NAMEOF ( '1_Measures'[GSM vs LW %] ), [GSM vs LW %],
+			        NAMEOF ( '1_Measures'[GSM % SREV LW] ), [GSM % SREV LW],
+			        NAMEOF ( '1_Measures'[GSM % SREV vs LW] ), [GSM % SREV vs LW],
+			        NAMEOF ( [GSM QRF] ), [GSM QRF],
+			        NAMEOF ( [GSM vs QRF] ), [GSM vs QRF],
+			        NAMEOF ( [GSM vs QRF %] ), [GSM vs QRF %],
+			        NAMEOF ( [GSM % SREV QRF] ), [GSM % SREV QRF],
+			        NAMEOF ( [GSM % SREV vs QRF] ), [GSM % SREV vs QRF],
+			        NAMEOF ( '1_Measures'[GSM FC] ), [GSM FC],
+			        NAMEOF ( '1_Measures'[GSM vs FC] ), [GSM vs FC],
+			        NAMEOF ( '1_Measures'[GSM vs FC %] ), [GSM vs FC %],
+			        NAMEOF ( '1_Measures'[GSM % SREV FC] ), [GSM % SREV FC],
+			        NAMEOF ( '1_Measures'[GSM % SREV vs FC] ), [GSM % SREV vs FC],
+			        NAMEOF ( '1_Measures'[GSM BUD] ), [GSM BUD],
+			        NAMEOF ( '1_Measures'[GSM vs BUD] ), [GSM vs BUD],
+			        NAMEOF ( '1_Measures'[GSM vs BUD %] ), [GSM vs BUD %],
+			        NAMEOF ( '1_Measures'[GSM % SREV BUD] ), [GSM % SREV BUD],
+			        NAMEOF ( '1_Measures'[GSM % SREV vs BUD] ), [GSM % SREV vs BUD],
+			        NAMEOF ( '1_Measures'[GSM LY] ), [GSM LY],
+			        NAMEOF ( '1_Measures'[GSM vs LY] ), [GSM vs LY],
+			        NAMEOF ( '1_Measures'[GSM vs LY %] ), [GSM vs LY %],
+			        NAMEOF ( '1_Measures'[GSM % SREV LY] ), [GSM % SREV LY],
+			        NAMEOF ( '1_Measures'[GSM % SREV vs LY] ), [GSM % SREV vs LY],
+			        BLANK ()
+			    )
+			RETURN
+			    result
+		lineageTag: ee07c42f-e9d0-4285-8ab4-cdadb4bbfe57
+
+	column MarginMeasureSelection
+		lineageTag: 049947d3-6178-40f8-9200-66a6f0744bcb
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'MarginMeasureSelection Order'
+
+		relatedColumnDetails
+			groupByColumn: 'MarginMeasureSelection Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MarginMeasureSelection Fields'
+		isHidden
+		lineageTag: 7c964b97-8684-4cd5-997e-8508242e2b6e
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'MarginMeasureSelection Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MarginMeasureSelection Order'
+		isHidden
+		formatString: 0
+		lineageTag: 2a19ed27-3a3e-4be7-90ed-16bc4589b35c
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comparator
+		lineageTag: 9692a95a-a46a-4e87-a3bd-ad52c5c38cbf
+		summarizeBy: none
+		sourceColumn: [Value4]
+		sortByColumn: ComparatorOrder
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column ComparatorOrder
+		isHidden
+		formatString: 0
+		lineageTag: b4ca0e43-025b-40c8-bb7f-0d21c861662f
+		summarizeBy: sum
+		sourceColumn: [Value5]
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MeasureType
+		lineageTag: 87659620-eb85-45bb-830e-74e56af8c844
+		summarizeBy: none
+		sourceColumn: [Value6]
+		sortByColumn: MeasureTypeOrder
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column MeasureTypeOrder
+		isHidden
+		formatString: 0
+		lineageTag: e5dc91a1-733d-485d-b31d-95babb239ed5
+		summarizeBy: sum
+		sourceColumn: [Value7]
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Metric
+		lineageTag: d1cb9f95-a476-478b-a8fa-e360913f3a8b
+		summarizeBy: none
+		sourceColumn: [Value8]
+		sortByColumn: MetricOrder
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column MetricOrder
+		isHidden
+		formatString: 0
+		lineageTag: c6c4a0f0-6275-4950-8d13-2a833d417e3a
+		summarizeBy: sum
+		sourceColumn: [Value9]
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MeasureTypeGroup
+		lineageTag: 7fca2f22-53dd-4b33-8423-5c8fe1c622d3
+		summarizeBy: none
+		sourceColumn: [Value10]
+		sortByColumn: MeasureTypeGroupOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column MeasureTypeGroupOrder
+		formatString: 0
+		lineageTag: 669b5d0d-6005-4b81-975d-4df01cef63e1
+		summarizeBy: sum
+		sourceColumn: [Value11]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MarginMeasureSelection-5540f6ca-6e1a-4f83-8a11-00d128b6ee7a = calculated
+		mode: import
+		source =
+				
+				{
+				    ( "Sls Inc LW", NAMEOF ( '1_Measures'[SRIV LW] ), 0, "LW", 1, "Value", 0, "Sls Inc", 0 , "Value", 0 ),
+				    ( "Sls Inc vs LW", NAMEOF ( '1_Measures'[SRIV vs LW] ), 1, "LW", 1, "Var", 2, "Sls Inc", 0 , "Value", 0 ),
+				    ( "Sls Inc vs LW %", NAMEOF ( '1_Measures'[SRIV vs LW %] ), 2, "LW", 1, "% Var", 3, "Sls Inc", 0 , "Value", 0 ),
+				    ( "Sls Inc QRF", NAMEOF ( '1_Measures'[SRIV QRF] ), 3, "QRF", 2, "Value", 0, "Sls Inc", 0 , "Value", 0 ),
+				    ( "Sls Inc vs QRF", NAMEOF ( '1_Measures'[SRIV vs QRF] ), 4, "QRF", 2, "Var", 2, "Sls Inc", 0 , "Value", 0 ),
+				    ( "Sls Inc vs QRF %", NAMEOF ( '1_Measures'[SRIV vs QRF %] ), 5, "QRF", 2, "% Var", 3, "Sls Inc", 0 , "Value", 0 ),
+				    ( "Sls Inc FC", NAMEOF ( '1_Measures'[SRIV FC] ), 6, "FC", 3, "Value", 0, "Sls Inc", 0 , "Value", 0 ),
+				    ( "Sls Inc vs FC", NAMEOF ( '1_Measures'[SRIV vs FC] ), 7, "FC", 3, "Var", 2, "Sls Inc", 0 , "Value", 0 ),
+				    ( "Sls Inc vs FC %", NAMEOF ( '1_Measures'[SRIV vs FC %] ), 8, "FC", 3, "% Var", 3, "Sls Inc", 0 , "Value", 0 ),
+				    ( "Sls Inc BUD", NAMEOF ( '1_Measures'[SRIV BUD] ), 9, "BUD", 4, "Value", 0, "Sls Inc", 0 , "Value", 0 ),
+				    ( "Sls Inc vs BUD", NAMEOF ( '1_Measures'[SRIV vs BUD] ), 10, "BUD", 4, "Var", 2, "Sls Inc", 0 , "Value", 0 ),
+				    ( "Sls Inc vs BUD %", NAMEOF ( '1_Measures'[SRIV vs BUD %] ), 11, "BUD", 4, "% Var", 3, "Sls Inc", 0 , "Value", 0 ),
+				    ( "Sls Inc LY", NAMEOF ( '1_Measures'[SRIV LY] ), 12, "LY", 5, "Value", 0, "Sls Inc", 0 , "Value", 0 ),
+				    ( "Sls Inc vs LY", NAMEOF ( '1_Measures'[SRIV vs LY] ), 13, "LY", 5, "Var", 2, "Sls Inc", 0 , "Value", 0 ),
+				    ( "Sls Inc vs LY %", NAMEOF ( '1_Measures'[SRIV vs LY %] ), 14, "LY", 5, "% Var", 3, "Sls Inc", 0 , "Value", 0 ),
+				    ( "Sls Ex", NAMEOF ( '1_Measures'[SREV] ), 15, "ACT", 0, "Value", 0, "Sls Ex", 1 , "Value", 0 ),
+				    ( "Sls Ex LW", NAMEOF ( '1_Measures'[SREV LW] ), 16, "LW", 1, "Value", 0, "Sls Ex", 1 , "Value", 0 ),
+				    ( "Sls Ex vs LW", NAMEOF ( '1_Measures'[SREV vs LW] ), 17, "LW", 1, "Var", 2, "Sls Ex", 1 , "Value", 0 ),
+				    ( "Sls Ex vs LW %", NAMEOF ( '1_Measures'[SREV vs LW %] ), 18, "LW", 1, "% Var", 3, "Sls Ex", 1 , "Value", 0 ),
+				    ( "Sls Ex BUD", NAMEOF ( '1_Measures'[SREV BUD] ), 19, "BUD", 4, "Value", 0, "Sls Ex", 1 , "Value", 0 ),
+				    ( "Sls Ex vs BUD", NAMEOF ( '1_Measures'[SREV vs BUD] ), 20, "BUD", 4, "Var", 2, "Sls Ex", 1 , "Value", 0 ),
+				    ( "Sls Ex vs BUD %", NAMEOF ( '1_Measures'[SREV vs BUD %] ), 21, "BUD", 4, "% Var", 3, "Sls Ex", 1 , "Value", 0 ),
+				    ( "Sls Ex FC", NAMEOF ( '1_Measures'[SREV FC] ), 22, "FC", 3, "Value", 0, "Sls Ex", 1 , "Value", 0 ),
+				    ( "Sls Ex vs FC", NAMEOF ( '1_Measures'[SREV vs FC] ), 23, "FC", 3, "Var", 2, "Sls Ex", 1 , "Value", 0 ),
+				    ( "Sls Ex vs FC %", NAMEOF ( '1_Measures'[SREV vs FC %] ), 24, "FC", 3, "% Var", 3, "Sls Ex", 1 , "Value", 0 ),
+				    ( "Sls Ex QRF", NAMEOF ( '1_Measures'[SREV QRF] ), 25, "QRF", 2, "Value", 0, "Sls Ex", 1 , "Value", 0 ),
+				    ( "Sls Ex vs QRF", NAMEOF ( '1_Measures'[SREV vs QRF] ), 26, "QRF", 2, "Var", 2, "Sls Ex", 1 , "Value", 0 ),
+				    ( "Sls Ex vs QRF %", NAMEOF ( '1_Measures'[SREV vs QRF %] ), 27, "QRF", 2, "% Var", 3, "Sls Ex", 1 , "Value", 0 ),
+				    ( "Sls Ex LY", NAMEOF ( '1_Measures'[SREV LY] ), 28, "LY", 5, "Value", 0, "Sls Ex", 1 , "Value", 0 ),
+				    ( "Sls Ex vs LY", NAMEOF ( '1_Measures'[SREV vs LY] ), 29, "LY", 5, "Var", 2, "Sls Ex", 1 , "Value", 0 ),
+				    ( "Sls Ex vs LY %", NAMEOF ( '1_Measures'[SREV vs LY %] ), 30, "LY", 5, "% Var", 3, "Sls Ex", 1 , "Value", 0 ),
+				    ( "BIM", NAMEOF ( '1_Measures'[Buying Margin] ), 31, "ACT", 0, "Value", 0, "BIM", 2 , "Value", 0 ),
+				    ( "BIM %", NAMEOF ( '1_Measures'[Buying Margin %] ), 32, "ACT", 0, "% Sales", 1, "BIM", 2 , "% Sales", 1 ),
+				    ( "BIM LW", NAMEOF ( '1_Measures'[Buying Margin LW] ), 33, "LW", 1, "Value", 0, "BIM", 2 , "Value", 0 ),
+				    ( "BIM vs LW", NAMEOF ( '1_Measures'[Buying Margin vs LW] ), 34, "LW", 1, "Var", 2, "BIM", 2 , "Value", 0 ),
+				    ( "BIM vs LW %", NAMEOF ( '1_Measures'[Buying Margin vs LW %] ), 35, "LW", 1, "% Var", 3, "BIM", 2 , "Value", 0 ),
+				    ( "BIM % LW", NAMEOF ( '1_Measures'[Buying Margin % LW] ), 36, "LW", 1, "% Sales", 1, "BIM", 2 , "% Sales", 1 ),
+				    ( "BIM % vs LW", NAMEOF ( '1_Measures'[Buying Margin % vs LW] ), 37, "LW", 1, "% Sales Var", 4, "BIM", 2 , "% Sales", 1 ),
+				    ( "BIM QRF", NAMEOF ( '1_Measures'[Buying Margin QRF] ), 38, "QRF", 2, "Value", 0, "BIM", 2 , "Value", 0 ),
+				    ( "BIM vs QRF", NAMEOF ( '1_Measures'[Buying Margin vs QRF] ), 39, "QRF", 2, "Var", 2, "BIM", 2 , "Value", 0 ),
+				    ( "BIM vs QRF %", NAMEOF ( '1_Measures'[Buying Margin vs QRF %] ), 40, "QRF", 2, "% Var", 3, "BIM", 2 , "Value", 0 ),
+				    ( "BIM % QRF", NAMEOF ( '1_Measures'[Buying Margin % QRF] ), 41, "QRF", 2, "% Sales", 1, "BIM", 2 , "% Sales", 1 ),
+				    ( "BIM % vs QRF", NAMEOF ( '1_Measures'[Buying Margin % vs QRF] ), 42, "QRF", 2, "% Sales Var", 4, "BIM", 2 , "% Sales", 1 ),
+				    ( "BIM FC", NAMEOF ( '1_Measures'[Buying Margin FC] ), 43, "FC", 3, "Value", 0, "BIM", 2 , "Value", 0 ),
+				    ( "BIM vs FC", NAMEOF ( '1_Measures'[Buying Margin vs FC] ), 44, "FC", 3, "Var", 2, "BIM", 2 , "Value", 0 ),
+				    ( "BIM vs FC %", NAMEOF ( '1_Measures'[Buying Margin vs FC %] ), 45, "FC", 3, "% Var", 3, "BIM", 2 , "Value", 0 ),
+				    ( "BIM % FC", NAMEOF ( '1_Measures'[Buying Margin % FC] ), 46, "FC", 3, "% Sales", 1, "BIM", 2 , "% Sales", 1 ),
+				    ( "BIM % vs FC", NAMEOF ( '1_Measures'[Buying Margin % vs FC] ), 47, "FC", 3, "% Sales Var", 4, "BIM", 2 , "% Sales", 1 ),
+				    ( "BIM BUD", NAMEOF ( '1_Measures'[Buying Margin BUD] ), 48, "BUD", 4, "Value", 0, "BIM", 2 , "Value", 0 ),
+				    ( "BIM vs BUD", NAMEOF ( '1_Measures'[Buying Margin vs BUD] ), 49, "BUD", 4, "Var", 2, "BIM", 2 , "Value", 0 ),
+				    ( "BIM vs BUD %", NAMEOF ( '1_Measures'[Buying Margin vs BUD %] ), 50, "BUD", 4, "% Var", 3, "BIM", 2 , "Value", 0 ),
+				    ( "BIM % BUD", NAMEOF ( '1_Measures'[Buying Margin % BUD] ), 51, "BUD", 4, "% Sales", 1, "BIM", 2 , "% Sales", 1 ),
+				    ( "BIM % vs BUD", NAMEOF ( '1_Measures'[Buying Margin % vs BUD] ), 52, "BUD", 4, "% Sales Var", 4, "BIM", 2 , "% Sales", 1 ),
+				    ( "BIM LY", NAMEOF ( '1_Measures'[Buying Margin LY] ), 53, "LY", 5, "Value", 0, "BIM", 2 , "Value", 0 ),
+				    ( "BIM vs LY", NAMEOF ( '1_Measures'[Buying Margin vs LY] ), 54, "LY", 5, "Var", 2, "BIM", 2 , "Value", 0 ),
+				    ( "BIM vs LY %", NAMEOF ( '1_Measures'[Buying Margin vs LY %] ), 55, "LY", 5, "% Var", 3, "BIM", 2 , "Value", 0 ),
+				    ( "BIM % LY", NAMEOF ( '1_Measures'[Buying Margin % LY] ), 56, "LY", 5, "% Sales", 1, "BIM", 2 , "% Sales", 1 ),
+				    ( "BIM % vs LY", NAMEOF ( '1_Measures'[Buying Margin % vs LY] ), 57, "LY", 5, "% Sales Var", 4, "BIM", 2 , "% Sales", 1 ),
+				    ( "POS", NAMEOF ( '1_Measures'[Promo Markdown] ), 58, "ACT", 0, "Value", 0, "POS", 3 , "Value", 0 ),
+				    ( "POS %", NAMEOF ( '1_Measures'[Promo Markdown %] ), 59, "ACT", 0, "% Sales", 1, "POS", 3 , "% Sales", 1 ),
+				    ( "POS LW", NAMEOF ( '1_Measures'[Promo Markdown LW] ), 60, "LW", 1, "Value", 0, "POS", 3 , "Value", 0 ),
+				    ( "POS vs LW", NAMEOF ( '1_Measures'[Promo Markdown vs LW] ), 61, "LW", 1, "Var", 2, "POS", 3 , "Value", 0 ),
+				    ( "POS vs LW %", NAMEOF ( '1_Measures'[Promo Markdown vs LW %] ), 62, "LW", 1, "% Var", 3, "POS", 3 , "Value", 0 ),
+				    ( "POS % LW", NAMEOF ( '1_Measures'[Promo Markdown % LW] ), 63, "LW", 1, "% Sales", 1, "POS", 3 , "% Sales", 1 ),
+				    ( "POS % vs LW", NAMEOF ( '1_Measures'[Promo Markdown % vs LW] ), 64, "LW", 1, "% Sales Var", 4, "POS", 3 , "% Sales", 1 ),
+				    ( "POS QRF", NAMEOF ( '1_Measures'[Promo Markdown QRF] ), 65, "QRF", 2, "Value", 0, "POS", 3 , "Value", 0 ),
+				    ( "POS vs QRF", NAMEOF ( '1_Measures'[Promo Markdown vs QRF] ), 66, "QRF", 2, "Var", 2, "POS", 3 , "Value", 0 ),
+				    ( "POS vs QRF %", NAMEOF ( '1_Measures'[Promo Markdown vs QRF %] ), 67, "QRF", 2, "% Var", 3, "POS", 3 , "Value", 0 ),
+				    ( "POS % QRF", NAMEOF ( '1_Measures'[Promo Markdown % QRF] ), 68, "QRF", 2, "% Sales", 1, "POS", 3 , "% Sales", 1 ),
+				    ( "POS % vs QRF", NAMEOF ( '1_Measures'[Promo Markdown % vs QRF] ), 69, "QRF", 2, "% Sales Var", 4, "POS", 3 , "% Sales", 1 ),
+				    ( "POS FC", NAMEOF ( '1_Measures'[Promo Markdown FC] ), 70, "FC", 3, "Value", 0, "POS", 3 , "Value", 0 ),
+				    ( "POS vs FC", NAMEOF ( '1_Measures'[Promo Markdown vs FC] ), 71, "FC", 3, "Var", 2, "POS", 3 , "Value", 0 ),
+				    ( "POS vs FC %", NAMEOF ( '1_Measures'[Promo Markdown vs FC %] ), 72, "FC", 3, "% Var", 3, "POS", 3 , "Value", 0 ),
+				    ( "POS % FC", NAMEOF ( '1_Measures'[Promo Markdown % FC] ), 73, "FC", 3, "% Sales", 1, "POS", 3 , "% Sales", 1 ),
+				    ( "POS % vs FC", NAMEOF ( '1_Measures'[Promo Markdown % vs FC] ), 74, "FC", 3, "% Sales Var", 4, "POS", 3 , "% Sales", 1 ),
+				    ( "POS BUD", NAMEOF ( '1_Measures'[Promo Markdown BUD] ), 75, "BUD", 4, "Value", 0, "POS", 3 , "Value", 0 ),
+				    ( "POS vs BUD", NAMEOF ( '1_Measures'[Promo Markdown vs BUD] ), 76, "BUD", 4, "Var", 2, "POS", 3 , "Value", 0 ),
+				    ( "POS vs BUD %", NAMEOF ( '1_Measures'[Promo Markdown vs BUD %] ), 77, "BUD", 4, "% Var", 3, "POS", 3 , "Value", 0 ),
+				    ( "POS % BUD", NAMEOF ( '1_Measures'[Promo Markdown % BUD] ), 78, "BUD", 4, "% Sales", 1, "POS", 3 , "% Sales", 1 ),
+				    ( "POS % vs BUD", NAMEOF ( '1_Measures'[Promo Markdown % vs BUD] ), 79, "BUD", 4, "% Sales Var", 4, "POS", 3 , "% Sales", 1 ),
+				    ( "POS LY", NAMEOF ( '1_Measures'[Promo Markdown LY] ), 80, "LY", 5, "Value", 0, "POS", 3 , "Value", 0 ),
+				    ( "POS vs LY", NAMEOF ( '1_Measures'[Promo Markdown vs LY] ), 81, "LY", 5, "Var", 2, "POS", 3 , "Value", 0 ),
+				    ( "POS vs LY %", NAMEOF ( '1_Measures'[Promo Markdown vs LY %] ), 82, "LY", 5, "% Var", 3, "POS", 3 , "Value", 0 ),
+				    ( "POS % LY", NAMEOF ( '1_Measures'[Promo Markdown % LY] ), 83, "LY", 5, "% Sales", 1, "POS", 3 , "% Sales", 1 ),
+				    ( "POS % vs LY", NAMEOF ( '1_Measures'[Promo Markdown % vs LY] ), 84, "LY", 5, "% Sales Var", 4, "POS", 3 , "% Sales", 1 ),
+				    ( "Sale MD", NAMEOF ( '1_Measures'[Sale Markdown] ), 85, "ACT", 0, "Value", 0, "Sale MD", 4 , "Value", 0 ),
+				    ( "Sale MD %", NAMEOF ( '1_Measures'[Sale Markdown %] ), 86, "ACT", 0, "% Sales", 1, "Sale MD", 4 , "% Sales", 1 ),
+				    ( "Sale MD LW", NAMEOF ( '1_Measures'[Sale Markdown LW] ), 87, "LW", 1, "Value", 0, "Sale MD", 4 , "Value", 0 ),
+				    ( "Sale MD vs LW", NAMEOF ( '1_Measures'[Sale Markdown vs LW] ), 88, "LW", 1, "Var", 2, "Sale MD", 4 , "Value", 0 ),
+				    ( "Sale MD vs LW %", NAMEOF ( '1_Measures'[Sale Markdown vs LW %] ), 89, "LW", 1, "% Var", 3, "Sale MD", 4 , "Value", 0 ),
+				    ( "Sale MD % LW", NAMEOF ( '1_Measures'[Sale Markdown % LW] ), 90, "LW", 1, "% Sales", 1, "Sale MD", 4 , "% Sales", 1 ),
+				    ( "Sale MD % vs LW", NAMEOF ( '1_Measures'[Sale Markdown % vs LW] ), 91, "LW", 1, "% Sales Var", 4, "Sale MD", 4 , "% Sales", 1 ),
+				    ( "Sale MD QRF", NAMEOF ( '1_Measures'[Sale Markdown QRF] ), 92, "QRF", 2, "Value", 0, "Sale MD", 4 , "Value", 0 ),
+				    ( "Sale MD vs QRF", NAMEOF ( '1_Measures'[Sale Markdown vs QRF] ), 93, "QRF", 2, "Var", 2, "Sale MD", 4 , "Value", 0 ),
+				    ( "Sale MD vs QRF %", NAMEOF ( '1_Measures'[Sale Markdown vs QRF %] ), 94, "QRF", 2, "% Var", 3, "Sale MD", 4 , "Value", 0 ),
+				    ( "Sale MD % QRF", NAMEOF ( '1_Measures'[Sale Markdown % QRF] ), 95, "QRF", 2, "% Sales", 1, "Sale MD", 4 , "% Sales", 1 ),
+				    ( "Sale MD % vs QRF", NAMEOF ( '1_Measures'[Sale Markdown % vs QRF] ), 96, "QRF", 2, "% Sales Var", 4, "Sale MD", 4 , "% Sales", 1 ),
+				    ( "Sale MD FC", NAMEOF ( '1_Measures'[Sale Markdown FC] ), 97, "FC", 3, "Value", 0, "Sale MD", 4 , "Value", 0 ),
+				    ( "Sale MD vs FC", NAMEOF ( '1_Measures'[Sale Markdown vs FC] ), 98, "FC", 3, "Var", 2, "Sale MD", 4 , "Value", 0 ),
+				    ( "Sale MD vs FC %", NAMEOF ( '1_Measures'[Sale Markdown vs FC %] ), 99, "FC", 3, "% Var", 3, "Sale MD", 4 , "Value", 0 ),
+				    ( "Sale MD % FC", NAMEOF ( '1_Measures'[Sale Markdown % FC] ), 100, "FC", 3, "% Sales", 1, "Sale MD", 4 , "% Sales", 1 ),
+				    ( "Sale MD % vs FC", NAMEOF ( '1_Measures'[Sale Markdown % vs FC] ), 101, "FC", 3, "% Sales Var", 4, "Sale MD", 4 , "% Sales", 1 ),
+				    ( "Sale MD BUD", NAMEOF ( '1_Measures'[Sale Markdown BUD] ), 102, "BUD", 4, "Value", 0, "Sale MD", 4 , "Value", 0 ),
+				    ( "Sale MD vs BUD", NAMEOF ( '1_Measures'[Sale Markdown vs BUD] ), 103, "BUD", 4, "Var", 2, "Sale MD", 4 , "Value", 0 ),
+				    ( "Sale MD vs BUD %", NAMEOF ( '1_Measures'[Sale Markdown vs BUD %] ), 104, "BUD", 4, "% Var", 3, "Sale MD", 4 , "Value", 0 ),
+				    ( "Sale MD % BUD", NAMEOF ( '1_Measures'[Sale Markdown % BUD] ), 105, "BUD", 4, "% Sales", 1, "Sale MD", 4 , "% Sales", 1 ),
+				    ( "Sale MD % vs BUD", NAMEOF ( '1_Measures'[Sale Markdown % vs BUD] ), 106, "BUD", 4, "% Sales Var", 4, "Sale MD", 4 , "% Sales", 1 ),
+				    ( "Sale MD LY", NAMEOF ( '1_Measures'[Sale Markdown LY] ), 107, "LY", 5, "Value", 0, "Sale MD", 4 , "Value", 0 ),
+				    ( "Sale MD vs LY", NAMEOF ( '1_Measures'[Sale Markdown vs LY] ), 108, "LY", 5, "Var", 2, "Sale MD", 4 , "Value", 0 ),
+				    ( "Sale MD vs LY %", NAMEOF ( '1_Measures'[Sale Markdown vs LY %] ), 109, "LY", 5, "% Var", 3, "Sale MD", 4 , "Value", 0 ),
+				    ( "Sale MD % LY", NAMEOF ( '1_Measures'[Sale Markdown % LY] ), 110, "LY", 5, "% Sales", 1, "Sale MD", 4 , "% Sales", 1 ),
+				    ( "Sale MD % vs LY", NAMEOF ( '1_Measures'[Sale Markdown % vs LY] ), 111, "LY", 5, "% Sales Var", 4, "Sale MD", 4 , "% Sales", 1 ),
+				    ( "MD", NAMEOF ( '1_Measures'[Markdown] ), 112, "ACT", 0, "Value", 0, "Markdown", 5 , "Value", 0 ),
+				    ( "MD %", NAMEOF ( '1_Measures'[Markdown % SRIV] ), 113, "ACT", 0, "% Sales", 1, "Markdown", 5 , "% Sales", 1 ),
+				    ( "MD LW", NAMEOF ( '1_Measures'[Markdown LW] ), 114, "LW", 1, "Value", 0, "Markdown", 5 , "Value", 0 ),
+				    ( "MD vs LW", NAMEOF ( '1_Measures'[Markdown vs LW] ), 115, "LW", 1, "Var", 2, "Markdown", 5 , "Value", 0 ),
+				    ( "MD vs LW %", NAMEOF ( '1_Measures'[Markdown vs LW %] ), 116, "LW", 1, "% Var", 3, "Markdown", 5 , "Value", 0 ),
+				    ( "MD % LW", NAMEOF ( '1_Measures'[Markdown % SRIV LW] ), 117, "LW", 1, "% Sales", 1, "Markdown", 5 , "% Sales", 1 ),
+				    ( "MD % vs LW", NAMEOF ( '1_Measures'[Markdown % SRIV vs LW] ), 118, "LW", 1, "% Sales Var", 4, "Markdown", 5 , "% Sales", 1 ),
+				    ( "MD QRF", NAMEOF ( '1_Measures'[Markdown QRF] ), 119, "QRF", 2, "Value", 0, "Markdown", 5 , "Value", 0 ),
+				    ( "MD vs QRF", NAMEOF ( '1_Measures'[Markdown vs QRF] ), 120, "QRF", 2, "Var", 2, "Markdown", 5 , "Value", 0 ),
+				    ( "MD vs QRF %", NAMEOF ( '1_Measures'[Markdown vs QRF %] ), 121, "QRF", 2, "% Var", 3, "Markdown", 5 , "Value", 0 ),
+				    ( "MD % QRF", NAMEOF ( '1_Measures'[Markdown % SRIV QRF] ), 122, "QRF", 2, "% Sales", 1, "Markdown", 5 , "% Sales", 1 ),
+				    ( "MD % vs QRF", NAMEOF ( '1_Measures'[Markdown % SRIV vs QRF] ), 123, "QRF", 2, "% Sales Var", 4, "Markdown", 5 , "% Sales", 1 ),
+				    ( "MD FC", NAMEOF ( '1_Measures'[Markdown FC] ), 124, "FC", 3, "Value", 0, "Markdown", 5 , "Value", 0 ),
+				    ( "MD vs FC", NAMEOF ( '1_Measures'[Markdown vs FC] ), 125, "FC", 3, "Var", 2, "Markdown", 5 , "Value", 0 ),
+				    ( "MD vs FC %", NAMEOF ( '1_Measures'[Markdown vs FC %] ), 126, "FC", 3, "% Var", 3, "Markdown", 5 , "Value", 0 ),
+				    ( "MD % FC", NAMEOF ( '1_Measures'[Markdown % SRIV FC] ), 127, "FC", 3, "% Sales", 1, "Markdown", 5 , "% Sales", 1 ),
+				    ( "MD % vs FC", NAMEOF ( '1_Measures'[Markdown % SRIV vs FC] ), 128, "FC", 3, "% Sales Var", 4, "Markdown", 5 , "% Sales", 1 ),
+				    ( "MD BUD", NAMEOF ( '1_Measures'[Markdown BUD] ), 129, "BUD", 4, "Value", 0, "Markdown", 5 , "Value", 0 ),
+				    ( "MD vs BUD", NAMEOF ( '1_Measures'[Markdown vs BUD] ), 130, "BUD", 4, "Var", 2, "Markdown", 5 , "Value", 0 ),
+				    ( "MD vs BUD %", NAMEOF ( '1_Measures'[Markdown vs BUD %] ), 131, "BUD", 4, "% Var", 3, "Markdown", 5 , "Value", 0 ),
+				    ( "MD % BUD", NAMEOF ( '1_Measures'[Markdown % SRIV BUD] ), 132, "BUD", 4, "% Sales", 1, "Markdown", 5 , "% Sales", 1 ),
+				    ( "MD % vs BUD", NAMEOF ( '1_Measures'[Markdown % SRIV vs BUD] ), 133, "BUD", 4, "% Sales Var", 4, "Markdown", 5 , "% Sales", 1 ),
+				    ( "MD LY", NAMEOF ( '1_Measures'[Markdown LY] ), 134, "LY", 5, "Value", 0, "Markdown", 5 , "Value", 0 ),
+				    ( "MD vs LY", NAMEOF ( '1_Measures'[Markdown vs LY] ), 135, "LY", 5, "Var", 2, "Markdown", 5 , "Value", 0 ),
+				    ( "MD vs LY %", NAMEOF ( '1_Measures'[Markdown vs LY %] ), 136, "LY", 5, "% Var", 3, "Markdown", 5 , "Value", 0 ),
+				    ( "MD % LY", NAMEOF ( '1_Measures'[Markdown % SRIV LY] ), 137, "LY", 5, "% Sales", 1, "Markdown", 5 , "% Sales", 1 ),
+				    ( "MD % vs LY", NAMEOF ( '1_Measures'[Markdown % SRIV vs LY] ), 138, "LY", 5, "% Sales Var", 4, "Markdown", 5 , "% Sales", 1 ),
+				    ( "SD&L", NAMEOF ( '1_Measures'[Staff Discount & Loyalty] ), 139, "ACT", 0, "Value", 0, "Staff Discount & Loyalty", 7 , "Value", 0 ),
+				    ( "SD&L LW", NAMEOF ( '1_Measures'[Staff Discount & Loyalty LW] ), 140, "LW", 1, "Value", 0, "Staff Discount & Loyalty", 7 , "Value", 0 ),
+				    ( "SD&L vs LW", NAMEOF ( '1_Measures'[Staff Discount & Loyalty vs LW] ), 141, "LW", 1, "Var", 2, "Staff Discount & Loyalty", 7 , "Value", 0 ),
+				    ( "SD&L vs LW %", NAMEOF ( '1_Measures'[Staff Discount & Loyalty vs LW %] ), 142, "LW", 1, "% Var", 3, "Staff Discount & Loyalty", 7 , "Value", 0 ),
+				    ( "SD&L QRF", NAMEOF ( '1_Measures'[Staff Discount & Loyalty QRF] ), 143, "QRF", 2, "Value", 0, "Staff Discount & Loyalty", 7 , "Value", 0 ),
+				    ( "SD&L vs QRF", NAMEOF ( '1_Measures'[Staff Discount & Loyalty vs QRF] ), 144, "QRF", 2, "Var", 2, "Staff Discount & Loyalty", 7 , "Value", 0 ),
+				    ( "SD&L vs QRF %", NAMEOF ( '1_Measures'[Staff Discount & Loyalty vs QRF %] ), 145, "QRF", 2, "% Var", 3, "Staff Discount & Loyalty", 7 , "Value", 0 ),
+				    ( "SD&L FC", NAMEOF ( '1_Measures'[Staff Discount & Loyalty FC] ), 146, "FC", 3, "Value", 0, "Staff Discount & Loyalty", 7 , "Value", 0 ),
+				    ( "SD&L vs FC", NAMEOF ( '1_Measures'[Staff Discount & Loyalty vs FC] ), 147, "FC", 3, "Var", 2, "Staff Discount & Loyalty", 7 , "Value", 0 ),
+				    ( "SD&L vs FC %", NAMEOF ( '1_Measures'[Staff Discount & Loyalty vs FC %] ), 148, "FC", 3, "% Var", 3, "Staff Discount & Loyalty", 7 , "Value", 0 ),
+				    ( "SD&L BUD", NAMEOF ( '1_Measures'[Staff Discount & Loyalty BUD] ), 149, "BUD", 4, "Value", 0, "Staff Discount & Loyalty", 7 , "Value", 0 ),
+				    ( "SD&L vs BUD", NAMEOF ( '1_Measures'[Staff Discount & Loyalty vs BUD] ), 150, "BUD", 4, "Var", 2, "Staff Discount & Loyalty", 7 , "Value", 0 ),
+				    ( "SD&L vs BUD %", NAMEOF ( '1_Measures'[Staff Discount & Loyalty vs BUD %] ), 151, "BUD", 4, "% Var", 3, "Staff Discount & Loyalty", 7 , "Value", 0 ),
+				    ( "SD&L LY", NAMEOF ( '1_Measures'[Staff Discount & Loyalty LY] ), 152, "LY", 5, "Value", 0, "Staff Discount & Loyalty", 7 , "Value", 0 ),
+				    ( "SD&L vs LY", NAMEOF ( '1_Measures'[Staff Discount & Loyalty vs LY] ), 153, "LY", 5, "Var", 2, "Staff Discount & Loyalty", 7 , "Value", 0 ),
+				    ( "SD&L vs LY %", NAMEOF ( '1_Measures'[Staff Discount & Loyalty vs LY %] ), 154, "LY", 5, "% Var", 3, "Staff Discount & Loyalty", 7 , "Value", 0 ),
+				    ( "SST", NAMEOF ( '1_Measures'[SIS Sold Through] ), 155, "ACT", 0, "Value", 0, "SIS Sold Through", 6 , "Value", 0 ),
+				    ( "SST LW", NAMEOF ( '1_Measures'[SIS Sold Through LW] ), 156, "LW", 1, "Value", 0, "SIS Sold Through", 6 , "Value", 0 ),
+				    ( "SST vs LW", NAMEOF ( '1_Measures'[SIS Sold Through vs LW] ), 157, "LW", 1, "Var", 2, "SIS Sold Through", 6 , "Value", 0 ),
+				    ( "SST QRF", NAMEOF ( '1_Measures'[SIS Sold Through QRF] ), 158, "QRF", 2, "Value", 0, "SIS Sold Through", 6 , "Value", 0 ),
+				    ( "SST vs QRF", NAMEOF ( '1_Measures'[SIS Sold Through vs QRF] ), 159, "QRF", 2, "Var", 2, "SIS Sold Through", 6 , "Value", 0 ),
+				    ( "SST FC", NAMEOF ( '1_Measures'[SIS Sold Through FC] ), 160, "FC", 3, "Value", 0, "SIS Sold Through", 6 , "Value", 0 ),
+				    ( "SST vs FC", NAMEOF ( '1_Measures'[SIS Sold Through vs FC] ), 161, "FC", 3, "Var", 2, "SIS Sold Through", 6 , "Value", 0 ),
+				    ( "SST BUD", NAMEOF ( '1_Measures'[SIS Sold Through BUD] ), 162, "BUD", 4, "Value", 0, "SIS Sold Through", 6 , "Value", 0 ),
+				    ( "SST vs BUD", NAMEOF ( '1_Measures'[SIS Sold Through vs BUD] ), 163, "BUD", 4, "Var", 2, "SIS Sold Through", 6 , "Value", 0 ),
+				    ( "SST LY", NAMEOF ( '1_Measures'[SIS Sold Through LY] ), 164, "LY", 5, "Value", 0, "SIS Sold Through", 6 , "Value", 0 ),
+				    ( "SST vs LY", NAMEOF ( '1_Measures'[SIS Sold Through vs LY] ), 165, "LY", 5, "Var", 2, "SIS Sold Through", 6 , "Value", 0 ),
+				    ( "DoC %", NAMEOF ( '1_Measures'[Depth Of Cut %] ), 166, "ACT", 0, "% Sales", 1, "Depth Of Cut", 8 , "% Sales", 1 ),
+				    ( "DoC % LW", NAMEOF ( '1_Measures'[Depth Of Cut % LW] ), 167, "LW", 1, "% Sales", 1, "Depth Of Cut", 8 , "% Sales", 1 ),
+				    ( "DoC % vs LW", NAMEOF ( '1_Measures'[Depth Of Cut % vs LW] ), 168, "LW", 1, "% Sales Var", 4, "Depth Of Cut", 8 , "% Sales", 1 ),
+				    ( "DoC % QRF", NAMEOF ( '1_Measures'[Depth Of Cut % QRF] ), 169, "QRF", 2, "% Sales", 1, "Depth Of Cut", 8 , "% Sales", 1 ),
+				    ( "DoC % vs QRF", NAMEOF ( '1_Measures'[Depth Of Cut % vs QRF] ), 170, "QRF", 2, "% Sales Var", 4, "Depth Of Cut", 8 , "% Sales", 1 ),
+				    ( "DoC % FC", NAMEOF ( '1_Measures'[Depth Of Cut % FC] ), 171, "FC", 3, "% Sales", 1, "Depth Of Cut", 8 , "% Sales", 1 ),
+				    ( "DoC % vs FC", NAMEOF ( '1_Measures'[Depth Of Cut % vs FC] ), 172, "FC", 3, "% Sales Var", 4, "Depth Of Cut", 8 , "% Sales", 1 ),
+				    ( "DoC % BUD", NAMEOF ( '1_Measures'[Depth Of Cut % BUD] ), 173, "BUD", 4, "% Sales", 1, "Depth Of Cut", 8 , "% Sales", 1 ),
+				    ( "DoC % vs BUD", NAMEOF ( '1_Measures'[Depth Of Cut % vs BUD] ), 174, "BUD", 4, "% Sales Var", 4, "Depth Of Cut", 8 , "% Sales", 1 ),
+				    ( "DoC % LY", NAMEOF ( '1_Measures'[Depth Of Cut % LY] ), 175, "LY", 5, "% Sales", 1, "Depth Of Cut", 8 , "% Sales", 1 ),
+				    ( "DoC % vs LY", NAMEOF ( '1_Measures'[Depth Of Cut % vs LY] ), 176, "LY", 5, "% Sales Var", 4, "Depth Of Cut", 8 , "% Sales", 1 ),
+				    ( "GSM Adj", NAMEOF ( '1_Measures'[Other GSM Adj] ), 177, "ACT", 0, "Value", 0, "Other GSM Adj", 9 , "Value", 0 ),
+				    ( "GSM Adj LW", NAMEOF ( '1_Measures'[Other GSM Adj LW] ), 178, "LW", 1, "Value", 0, "Other GSM Adj", 9 , "Value", 0 ),
+				    ( "GSM Adj vs LW", NAMEOF ( '1_Measures'[Other GSM Adj vs LW] ), 179, "LW", 1, "Var", 2, "Other GSM Adj", 9 , "Value", 0 ),
+				    ( "GSM Adj QRF", NAMEOF ( '1_Measures'[Other GSM Adj QRF] ), 180, "QRF", 2, "Value", 0, "Other GSM Adj", 9 , "Value", 0 ),
+				    ( "GSM Adj vs QRF", NAMEOF ( '1_Measures'[Other GSM Adj vs QRF] ), 181, "QRF", 2, "Var", 2, "Other GSM Adj", 9 , "Value", 0 ),
+				    ( "GSM Adj FC", NAMEOF ( '1_Measures'[Other GSM Adj FC] ), 182, "FC", 3, "Value", 0, "Other GSM Adj", 9 , "Value", 0 ),
+				    ( "GSM Adj vs FC", NAMEOF ( '1_Measures'[Other GSM Adj vs FC] ), 183, "FC", 3, "Var", 2, "Other GSM Adj", 9 , "Value", 0 ),
+				    ( "GSM Adj BUD", NAMEOF ( '1_Measures'[Other GSM Adj BUD] ), 184, "BUD", 4, "Value", 0, "Other GSM Adj", 9 , "Value", 0 ),
+				    ( "GSM Adj vs BUD", NAMEOF ( '1_Measures'[Other GSM Adj vs BUD] ), 185, "BUD", 4, "Var", 2, "Other GSM Adj", 9 , "Value", 0 ),
+				    ( "GSM Adj LY", NAMEOF ( '1_Measures'[Other GSM Adj LY] ), 186, "LY", 5, "Value", 0, "Other GSM Adj", 9 , "Value", 0 ),
+				    ( "GSM Adj vs LY", NAMEOF ( '1_Measures'[Other GSM Adj vs LY] ), 187, "LY", 5, "Var", 2, "Other GSM Adj", 9 , "Value", 0 ),
+				    ( "GSM", NAMEOF ( '1_Measures'[GSM] ), 188, "ACT", 0, "Value", 0, "GSM", 10 , "Value", 0 ),
+				    ( "GSM %", NAMEOF ( '1_Measures'[GSM % SREV] ), 189, "ACT", 0, "% Sales", 1, "GSM", 10 , "% Sales", 1 ),
+				    ( "GSM LW", NAMEOF ( '1_Measures'[GSM LW] ), 190, "LW", 1, "Value", 0, "GSM", 10 , "Value", 0 ),
+				    ( "GSM vs LW", NAMEOF ( '1_Measures'[GSM vs LW] ), 191, "LW", 1, "Var", 2, "GSM", 10 , "Value", 0 ),
+				    ( "GSM vs LW %", NAMEOF ( '1_Measures'[GSM vs LW %] ), 192, "LW", 1, "% Var", 3, "GSM", 10 , "Value", 0 ),
+				    ( "GSM % LW", NAMEOF ( '1_Measures'[GSM % SREV LW] ), 193, "LW", 1, "% Sales", 1, "GSM", 10 , "% Sales", 1 ),
+				    ( "GSM % vs LW", NAMEOF ( '1_Measures'[GSM % SREV vs LW] ), 194, "LW", 1, "% Sales Var", 4, "GSM", 10 , "% Sales", 1 ),
+				    ( "GSM QRF", NAMEOF ( '1_Measures'[GSM QRF] ), 195, "QRF", 2, "Value", 0, "GSM", 10 , "Value", 0 ),
+				    ( "GSM vs QRF", NAMEOF ( '1_Measures'[GSM vs QRF] ), 196, "QRF", 2, "Var", 2, "GSM", 10 , "Value", 0 ),
+				    ( "GSM vs QRF %", NAMEOF ( '1_Measures'[GSM vs QRF %] ), 197, "QRF", 2, "% Var", 3, "GSM", 10 , "Value", 0 ),
+				    ( "GSM % QRF", NAMEOF ( '1_Measures'[GSM % SREV QRF] ), 198, "QRF", 2, "% Sales", 1, "GSM", 10 , "% Sales", 1 ),
+				    ( "GSM % vs QRF", NAMEOF ( '1_Measures'[GSM % SREV vs QRF] ), 199, "QRF", 2, "% Sales Var", 4, "GSM", 10 , "% Sales", 1 ),
+				    ( "GSM FC", NAMEOF ( '1_Measures'[GSM FC] ), 200, "FC", 3, "Value", 0, "GSM", 10 , "Value", 0 ),
+				    ( "GSM vs FC", NAMEOF ( '1_Measures'[GSM vs FC] ), 201, "FC", 3, "Var", 2, "GSM", 10 , "Value", 0 ),
+				    ( "GSM vs FC %", NAMEOF ( '1_Measures'[GSM vs FC %] ), 202, "FC", 3, "% Var", 3, "GSM", 10 , "Value", 0 ),
+				    ( "GSM % FC", NAMEOF ( '1_Measures'[GSM % SREV FC] ), 203, "FC", 3, "% Sales", 1, "GSM", 10 , "% Sales", 1 ),
+				    ( "GSM % vs FC", NAMEOF ( '1_Measures'[GSM % SREV vs FC] ), 204, "FC", 3, "% Sales Var", 4, "GSM", 10 , "% Sales", 1 ),
+				    ( "GSM BUD", NAMEOF ( '1_Measures'[GSM BUD] ), 205, "BUD", 4, "Value", 0, "GSM", 10 , "Value", 0 ),
+				    ( "GSM vs BUD", NAMEOF ( '1_Measures'[GSM vs BUD] ), 206, "BUD", 4, "Var", 2, "GSM", 10 , "Value", 0 ),
+				    ( "GSM vs BUD %", NAMEOF ( '1_Measures'[GSM vs BUD %] ), 207, "BUD", 4, "% Var", 3, "GSM", 10 , "Value", 0 ),
+				    ( "GSM % BUD", NAMEOF ( '1_Measures'[GSM % SREV BUD] ), 208, "BUD", 4, "% Sales", 1, "GSM", 10 , "% Sales", 1 ),
+				    ( "GSM % vs BUD", NAMEOF ( '1_Measures'[GSM % SREV vs BUD] ), 209, "BUD", 4, "% Sales Var", 4, "GSM", 10 , "% Sales", 1 ),
+				    ( "GSM LY", NAMEOF ( '1_Measures'[GSM LY] ), 210, "LY", 5, "Value", 0, "GSM", 10 , "Value", 0 ),
+				    ( "GSM vs LY", NAMEOF ( '1_Measures'[GSM vs LY] ), 211, "LY", 5, "Var", 2, "GSM", 10 , "Value", 0 ),
+				    ( "GSM vs LY %", NAMEOF ( '1_Measures'[GSM vs LY %] ), 212, "LY", 5, "% Var", 3, "GSM", 10 , "Value", 0 ),
+				    ( "GSM % LY", NAMEOF ( '1_Measures'[GSM % SREV LY] ), 213, "LY", 5, "% Sales", 1, "GSM", 10 , "% Sales", 1 ),
+				    ( "GSM % vs LY", NAMEOF ( '1_Measures'[GSM % SREV vs LY] ), 214, "LY", 5, "% Sales Var", 4, "GSM", 10 , "% Sales", 1 )
+				}
+
+	annotation PBI_Id = d3e4c368f77e4cbb880cd974ef58b61d
+

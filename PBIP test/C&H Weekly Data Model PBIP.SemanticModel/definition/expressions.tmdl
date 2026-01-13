@@ -1,0 +1,168 @@
+expression factSRIVDispatchOnlineOtherForecast =
+		let
+		    Source = PowerBI.Dataflows(null),
+		    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+		    #"bf447173-6542-484b-a2ea-78c25d75e485" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="bf447173-6542-484b-a2ea-78c25d75e485"]}[Data],
+		    #"Derisk Forecast" = #"bf447173-6542-484b-a2ea-78c25d75e485"{[entity="Dispatch Online Other Forecast"]}[Data]
+		in
+		    #"Derisk Forecast"
+	lineageTag: 26396180-a14f-441e-8f52-1ffc8a1cf021
+	queryGroup: 'Intermediate tables'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression SRIVcompositeOnlineForecastDispatchActualised =
+		let
+		    OrdersForecast = factSRIVOrdersChannelForecast,
+		    OnlineForecasts = Table.SelectRows(OrdersForecast, each ([channel] = "03") and ([plan] = "BUDGET" or [plan] = "QRF")),
+		    mergeDispatchActuals = Table.NestedJoin(OnlineForecasts, {"fiscalWeek", "plan", "channel", "product", "siteID", "fp_rp_ind"}, factSRIVDispatchOnlineActualsPreForecast, {"fiscalWeek", "plan", "channel", "product", "siteID", "fp_rp_ind"}, "factSRIVDispatchOnlineActualsPreForecast", JoinKind.FullOuter),
+		    bringInActuals = Table.ExpandTableColumn(mergeDispatchActuals, "factSRIVDispatchOnlineActualsPreForecast", {"fiscalWeek", "product", "channel", "fp_rp_ind", "siteID", "sriv", "plan", "maxWeek"}, {"act.fiscalWeek", "act.product", "act.channel", "act.fp_rp_ind", "act.siteID", "act.sriv", "act.plan", "act.maxWeek"}),
+		    renameFCCols = Table.RenameColumns(bringInActuals,{{"fiscalWeek", "fc.fiscalWeek"}, {"plan", "fc.plan"}, {"channel", "fc.channel"}, {"product", "fc.product"}, {"siteID", "fc.siteID"}, {"fp_rp_ind", "fc.fp_rp_ind"}, {"sriv", "fc.sriv"}}),
+		    addSiteID = Table.AddColumn(renameFCCols, "siteID", each -1, Int64.Type),
+		    addPlan = Table.AddColumn(addSiteID, "plan", each [fc.plan] ?? [act.plan], type text),
+		    addFiscalWeek = Table.AddColumn(addPlan, "fiscalWeek", each [fc.fiscalWeek] ?? [act.fiscalWeek], Int64.Type),
+		    addChannel = Table.AddColumn(addFiscalWeek, "channel", each [fc.channel] ?? [act.channel], type text),
+		    addProduct = Table.AddColumn(addChannel, "product", each [fc.product] ?? [act.product], type text),
+		    addFPRPInd = Table.AddColumn(addProduct, "fp_rp_ind", each [fc.fp_rp_ind] ?? [act.fp_rp_ind], type text),
+		    addMaxWeekActuals = Table.AddColumn(addFPRPInd, "maxWeekActuals", each List.Max(addFPRPInd[act.maxWeek])),
+		    addToBeActualised = Table.AddColumn(addMaxWeekActuals, "toBeActualised", each if [fiscalWeek] <= [maxWeekActuals] then true else false),
+		    addConditionalSRIV = Table.AddColumn(addToBeActualised, "sriv", each if [toBeActualised] and [plan] <> "BUDGET" then [act.sriv] else [fc.sriv]),
+		    removeDupCols = Table.RemoveColumns(addConditionalSRIV,{"fc.fiscalWeek", "fc.plan", "fc.channel", "fc.product", "fc.siteID", "fc.fp_rp_ind", "fc.sriv", "act.fiscalWeek", "act.product", "act.channel", "act.fp_rp_ind", "act.siteID", "act.sriv", "act.plan", "act.maxWeek", "maxWeekActuals", "toBeActualised"}),
+		    appendOtherUpload = Table.Combine({removeDupCols, factSRIVDispatchOnlineOtherForecast}),
+		    groupRows = Table.Group(appendOtherUpload, {"fiscalWeek", "plan", "channel", "product", "siteID", "fp_rp_ind"}, {{"sriv", each List.Sum([sriv]), type nullable number}}),
+		    removeErrorsSRIV = Table.RemoveRowsWithErrors(groupRows, {"sriv"})
+		in
+		    removeErrorsSRIV
+	lineageTag: f3ccdb16-c6ad-4db0-9c37-13c36b910947
+	queryGroup: 'Intermediate tables'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression edwSiteLetterCodes =
+		let
+		    Source = PowerBI.Dataflows(null),
+		    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+		    #"8cf76022-2d13-44d3-a768-095420b6e3e2" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="8cf76022-2d13-44d3-a768-095420b6e3e2"]}[Data],
+		    #"EDW Site Letter Codes" = #"8cf76022-2d13-44d3-a768-095420b6e3e2"{[entity="EDW Site Letter Codes"]}[Data]
+		in
+		    #"EDW Site Letter Codes"
+	lineageTag: add22ebb-5870-4181-837a-712382630d0f
+	queryGroup: 'Dimension tables'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression factDispatchActualsPreForecast =
+		let
+		    Source = PowerBI.Dataflows([]),
+		    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+		    #"e18b3556-0387-4933-84a9-4a59c8558b23" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="e18b3556-0387-4933-84a9-4a59c8558b23"]}[Data],
+		    factSRIVDispatchChannelForecast = #"e18b3556-0387-4933-84a9-4a59c8558b23"{[entity="factDispatchActualsPreForecast"]}[Data]
+		in
+		    factSRIVDispatchChannelForecast
+	lineageTag: d49f3dd4-4172-44b1-bb8b-4f230a3a1df6
+	queryGroup: 'Intermediate tables'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression factSRIVDispatchOnlineActualsPreForecast =
+		let
+		    Source = PowerBI.Dataflows([]),
+		    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+		    #"e18b3556-0387-4933-84a9-4a59c8558b23" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="e18b3556-0387-4933-84a9-4a59c8558b23"]}[Data],
+		    factSRIVDispatchChannelForecast = #"e18b3556-0387-4933-84a9-4a59c8558b23"{[entity="factSRIVDispatchOnlineActualsPreForecast"]}[Data]
+		in
+		    factSRIVDispatchChannelForecast
+	lineageTag: 09b9724c-cd30-4194-aea4-ce8f741c7aa1
+	queryGroup: 'Intermediate tables'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression factSRIVDispatchForecastActualisation =
+		let
+		    Source = PowerBI.Dataflows([]),
+		    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+		    #"e18b3556-0387-4933-84a9-4a59c8558b23" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="e18b3556-0387-4933-84a9-4a59c8558b23"]}[Data],
+		    factSRIVDispatchChannelForecast = #"e18b3556-0387-4933-84a9-4a59c8558b23"{[entity="factSRIVDispatchChannelForecast"]}[Data],
+		    separateBud = Table.SelectRows(factSRIVDispatchChannelForecast, each ([plan] = "BUDGET")),
+		    separateQRF = Table.SelectRows(factSRIVDispatchChannelForecast, each ([plan] = "QRF")),
+		    mergeActuals = Table.NestedJoin(separateQRF, {"siteID", "fiscalWeek", "channel", "product", "fp_rp_ind", "plan"}, factSRIVDispatchChannelActualsPreForecast, {"siteID", "fiscalWeek", "channel", "product", "fp_rp_ind", "plan"}, "factSRIVDispatchChannelActualsPreForecast", JoinKind.FullOuter),
+		    bringInActuals = Table.ExpandTableColumn(mergeActuals, "factSRIVDispatchChannelActualsPreForecast", {"siteID", "fiscalWeek", "product", "channel", "fp_rp_ind", "sriv", "plan", "maxWeek"}, {"act.siteID", "act.fiscalWeek", "act.product", "act.channel", "act.fp_rp_ind", "act.sriv", "act.plan", "act.maxWeek"}),
+		    renameFCCols = Table.RenameColumns(bringInActuals,{{"siteID", "fc.siteID"}, {"plan", "fc.plan"}, {"fiscalWeek", "fc.fiscalWeek"}, {"channel", "fc.channel"}, {"product", "fc.product"}, {"fp_rp_ind", "fc.fp_rp_ind"}, {"sriv", "fc.sriv"}}),
+		    addSiteID = Table.AddColumn(renameFCCols, "siteID", each -1, Int64.Type),
+		    addPlan = Table.AddColumn(addSiteID, "plan", each "QRF", type text),
+		    addFiscalWeek = Table.AddColumn(addPlan, "fiscalWeek", each [fc.fiscalWeek] ?? [act.fiscalWeek], Int64.Type),
+		    addDistChnlCde = Table.AddColumn(addFiscalWeek, "channel", each [fc.channel] ?? [act.channel], type text),
+		    addDeptCode = Table.AddColumn(addDistChnlCde, "product", each [fc.product] ?? [act.product], type text),
+		    addFPRP = Table.AddColumn(addDeptCode, "fp_rp_ind", each [fc.fp_rp_ind] ?? [act.fp_rp_ind], type text),
+		    addMaxWeekActuals = Table.AddColumn(addFPRP, "maxWeekActuals", each List.Max(addFiscalWeek[act.maxWeek]), Int64.Type),
+		    addToBeActualised = Table.AddColumn(addMaxWeekActuals, "toBeActualised", each if [fiscalWeek] <= [maxWeekActuals] then true else false),
+		    addConditionalVal = Table.AddColumn(addToBeActualised, "sriv", each if [toBeActualised] then [act.sriv] else [fc.sriv], type number),
+		    removeDupCols = Table.RemoveColumns(addConditionalVal,{"fc.siteID", "fc.plan", "fc.fiscalWeek", "fc.channel", "fc.product", "fc.fp_rp_ind", "fc.sriv", "act.fiscalWeek", "act.product", "act.channel", "act.fp_rp_ind", "act.sriv", "act.plan", "act.maxWeek", "maxWeekActuals", "toBeActualised"}),
+		    addBackBud = Table.Combine({removeDupCols, separateBud})
+		in
+		    addBackBud
+	lineageTag: 2826ca83-e843-4bd5-bcc9-04490940d089
+	queryGroup: 'Intermediate tables'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression factSRIVDispatchChannelActualsPreForecast =
+		let
+		    Source = PowerBI.Dataflows([]),
+		    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+		    #"e18b3556-0387-4933-84a9-4a59c8558b23" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="e18b3556-0387-4933-84a9-4a59c8558b23"]}[Data],
+		    factSRIVDispatchChannelActualsPreForecast1 = #"e18b3556-0387-4933-84a9-4a59c8558b23"{[entity="factSRIVDispatchChannelActualsPreForecast"]}[Data]
+		in
+		    factSRIVDispatchChannelActualsPreForecast1
+	lineageTag: b1cf6f70-a341-4f58-b099-5aa52fc6a667
+	queryGroup: 'Intermediate tables'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression HomeSub_BU =
+		let
+		    Source = SharePoint.Files("https://mnscorp.sharepoint.com/sites/FinanceAnalyticsCentreofExcellence/", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each Text.Contains([Folder Path], "C&H Reporting")),
+		    #"Filtered Rows1" = Table.SelectRows(#"Filtered Rows", each Text.Contains([Folder Path], "Manual input data")),
+		    #"Home Sub_BU Lookup xlsx_https://mnscorp sharepoint com/sites/FinanceAnalyticsCentreofExcellence/Shared Documents/C&H Reporting/Manual input data/" = #"Filtered Rows1"{[Name="Home Sub_BU Lookup.xlsx",#"Folder Path"="https://mnscorp.sharepoint.com/sites/FinanceAnalyticsCentreofExcellence/Shared Documents/C&H Reporting/Manual input data/"]}[Content],
+		    #"Imported Excel Workbook" = Excel.Workbook(#"Home Sub_BU Lookup xlsx_https://mnscorp sharepoint com/sites/FinanceAnalyticsCentreofExcellence/Shared Documents/C&H Reporting/Manual input data/"),
+		    Sheet1_Sheet = #"Imported Excel Workbook"{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Dept Code", type text}, {"Sub_BU", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 04a81bbd-ee6f-4c55-b182-daff6cd91eb1
+	queryGroup: 'Dimension tables'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression DailyCalendar =
+		let
+		    Source = PowerBI.Dataflows(null),
+		    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+		    #"9d00c5c6-989f-4813-bae4-dc9f6262029c" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="9d00c5c6-989f-4813-bae4-dc9f6262029c"]}[Data],
+		    #"Weekly Calendar" = #"9d00c5c6-989f-4813-bae4-dc9f6262029c"{[entity="Daily Calendar"]}[Data]
+		in
+		    #"Weekly Calendar"
+	lineageTag: 0be484d5-cd5b-4fa3-b3fe-6e917d89442e
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

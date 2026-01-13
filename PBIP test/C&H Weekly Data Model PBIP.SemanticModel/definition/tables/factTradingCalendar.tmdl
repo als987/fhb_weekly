@@ -1,0 +1,109 @@
+table factTradingCalendar
+	lineageTag: 033626fc-0071-41c8-9cda-f83ca8861946
+
+	measure TYPromoEvent =
+			CALCULATE (
+			    SELECTEDVALUE ( factTradingCalendar[Event] ),
+			    factTradingCalendar[EventYearName] = "TY",
+			    factTradingCalendar[EventType] = "Promo"
+			)
+		lineageTag: ab29e7f0-8a64-411d-8e5a-541a454c783d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure LYPromoEvent =
+			CALCULATE (
+			    SELECTEDVALUE ( factTradingCalendar[Event] ),
+			    factTradingCalendar[EventYearName] = "LY",
+			    factTradingCalendar[EventType] = "Promo"
+			)
+		lineageTag: 9995b458-f98b-4449-af52-8c78cb317e55
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TYOtherEvent =
+			CALCULATE (
+			    SELECTEDVALUE ( factTradingCalendar[Event] ),
+			    factTradingCalendar[EventYearName] = "TY",
+			    factTradingCalendar[EventType] = "Other Events"
+			)
+		lineageTag: 3e6c17f9-0dae-4148-acd8-77861abc01a1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure LYOtherEvent =
+			CALCULATE (
+			    SELECTEDVALUE ( factTradingCalendar[Event] ),
+			    factTradingCalendar[EventYearName] = "LY",
+			    factTradingCalendar[EventType] = "Other Events"
+			)
+		lineageTag: 159bce6b-4d14-4e74-bd3d-146a0968b485
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EventWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: 92458698-decc-4ac1-a139-5cbfc1f8a5c9
+		summarizeBy: none
+		sourceColumn: EventWeek
+
+		annotation SummarizationSetBy = User
+
+	column Event
+		dataType: string
+		lineageTag: a45b3906-7174-4a43-89bd-0642d980ad6a
+		summarizeBy: none
+		sourceColumn: Event
+
+		annotation SummarizationSetBy = Automatic
+
+	column EventType
+		dataType: string
+		lineageTag: d02e46a6-b861-415f-8a8f-18045e98cfcd
+		summarizeBy: none
+		sourceColumn: EventType
+
+		annotation SummarizationSetBy = Automatic
+
+	column EventYear
+		dataType: int64
+		formatString: 0
+		lineageTag: c04c4f35-0308-4c1d-8ab3-eada0ad55986
+		summarizeBy: none
+		sourceColumn: EventYear
+
+		annotation SummarizationSetBy = User
+
+	column EventFiscalWeekNo
+		dataType: int64
+		formatString: 0
+		lineageTag: d9ef92ed-c211-4b6b-a979-de6176768723
+		summarizeBy: none
+		sourceColumn: EventFiscalWeekNo
+
+		annotation SummarizationSetBy = User
+
+	column EventYearName
+		dataType: string
+		lineageTag: 98c9ec68-6d03-4ee2-9686-b1fbd519d00d
+		summarizeBy: none
+		sourceColumn: EventYearName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition factTradingCalendar-e2a033f6-45a8-4448-b79b-d257d8004865 = m
+		mode: import
+		queryGroup: 'Other fact tables'
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Workspaces{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+				    #"b736db3b-f191-4520-a8a3-8936b071a054" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="b736db3b-f191-4520-a8a3-8936b071a054"]}[Data],
+				    #"Trading Calendar_" = #"b736db3b-f191-4520-a8a3-8936b071a054"{[entity="Trading Calendar",version=""]}[Data]
+				in
+				    #"Trading Calendar_"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,74 @@
+table factPromoSalesDispatch
+	lineageTag: 592284ba-9f5d-4448-83ac-56374d5ea02a
+
+	/// This measure is the sum of column 'factPromoSalesDispatch'[Promotional Sales Revenue (Inc VAT)]
+	measure 'sum_Promotional Sales Revenue (Inc VAT)' = SUM ( 'factPromoSalesDispatch'[Promotional Sales Revenue (Inc VAT)] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: dfbe73ff-adeb-4526-9867-27b8de79a485
+
+	column COMP_CODE
+		dataType: string
+		lineageTag: 5069df22-94f1-4f0e-a4c5-af7d43565da7
+		summarizeBy: none
+		sourceColumn: COMP_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column STORE_CODE
+		dataType: string
+		lineageTag: ee8eb3d8-e5e7-41f4-a627-7750fc4a8641
+		summarizeBy: none
+		sourceColumn: STORE_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ART_HIER_LEV5_CODE
+		dataType: string
+		lineageTag: 95d8083b-127f-4bcc-a577-36b97b652bdd
+		summarizeBy: none
+		sourceColumn: ART_HIER_LEV5_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIST_CHNL_CDE
+		dataType: string
+		lineageTag: 144d8308-8bd3-426b-9209-ed96d21d3749
+		summarizeBy: none
+		sourceColumn: DIST_CHNL_CDE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Promotional Sales Revenue (Inc VAT)'
+		dataType: double
+		isHidden
+		lineageTag: 7ef0b4b1-6e80-427b-8fc2-41c891f2def2
+		summarizeBy: sum
+		sourceColumn: Promotional Sales Revenue (Inc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FISCAL_WEEK
+		dataType: int64
+		formatString: 0
+		lineageTag: 7114d417-5544-4112-81bf-cc9cc6f06bca
+		summarizeBy: none
+		sourceColumn: FISCAL_WEEK
+
+		annotation SummarizationSetBy = Automatic
+
+	partition factPromoSalesDispatch-e46bca3e-d2c5-4b8b-ae18-1b556140767e = m
+		mode: import
+		queryGroup: 'Dispatch fact tables'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+				    #"895640b1-7991-42ed-b0a8-0fc29bad73be" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="895640b1-7991-42ed-b0a8-0fc29bad73be"]}[Data],
+				    #"Promo Sales (ex Outlets)" = #"895640b1-7991-42ed-b0a8-0fc29bad73be"{[entity="Promo Sales (ex Outlets)"]}[Data]
+				in
+				    #"Promo Sales (ex Outlets)"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,145 @@
+table Products
+	lineageTag: 58471906-fc73-4177-9f43-30de79f3fc04
+
+	measure Slctd_BUBlank = if(Or(SELECTEDVALUE(Products[BU])="Other",SELECTEDVALUE(Products[BU])="GM Other"),1,blank())
+		lineageTag: cdd052bd-b9db-438f-b088-f08b80765d77
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'BU Code'
+		dataType: string
+		lineageTag: 88cc7462-9135-4d80-b42b-8d07e7c03b3d
+		summarizeBy: none
+		sourceColumn: BU Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column BU
+		dataType: string
+		lineageTag: cd24ebcb-7a0c-43c7-abb8-84938d9ae69b
+		summarizeBy: none
+		sourceColumn: BU
+		sortByColumn: 'BU Code'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Category Code'
+		dataType: string
+		lineageTag: d6e891f8-5e10-4e9e-bb5a-0535ceb82360
+		summarizeBy: none
+		sourceColumn: Category Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: d4a9c2ae-430c-4b01-b58c-baab9a39dee5
+		summarizeBy: none
+		sourceColumn: Category
+		sortByColumn: 'Category Code'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dept Code'
+		dataType: string
+		lineageTag: a5ee47fb-289e-4c64-a6aa-d513f8b62bd0
+		summarizeBy: none
+		sourceColumn: Dept Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dept
+		dataType: string
+		lineageTag: 345fe7b6-0879-4179-b418-2ed545858b12
+		summarizeBy: none
+		sourceColumn: Dept
+		sortByColumn: 'Dept Code'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column BU/OTHER
+		dataType: string
+		lineageTag: 12fc2016-4fb8-406a-8d07-609f61049850
+		summarizeBy: none
+		sourceColumn: BU/OTHER
+		sortByColumn: 'BU/OTHER Order'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BU Group'
+		dataType: string
+		lineageTag: b472a36d-95ab-4f46-b321-439ad7d7e35d
+		summarizeBy: none
+		sourceColumn: BU Group
+		sortByColumn: 'BU Group Order'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BU/OTHER Order'
+		dataType: int64
+		formatString: 0
+		lineageTag: d6be94e5-f7c8-4143-b455-b26701b9a5ea
+		summarizeBy: sum
+		sourceColumn: BU/OTHER Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BU Group Order'
+		dataType: int64
+		formatString: 0
+		lineageTag: 94e0668c-377c-46da-b6b4-097dca446e75
+		summarizeBy: sum
+		sourceColumn: BU Group Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sub_BU
+		dataType: string
+		lineageTag: 7b3f0b8e-4b12-4b80-b95d-6fb038e62abf
+		summarizeBy: none
+		sourceColumn: Sub_BU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'In/Ex Furniture'
+		dataType: string
+		lineageTag: a1027711-9897-414d-9ca8-f30ec35171c5
+		summarizeBy: none
+		sourceColumn: In/Ex Furniture
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Products-6d0aa964-d6a2-4074-84dc-498e8dfa9c72 = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+				    #"8cf76022-2d13-44d3-a768-095420b6e3e2" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="8cf76022-2d13-44d3-a768-095420b6e3e2"]}[Data],
+				    Products1 = #"8cf76022-2d13-44d3-a768-095420b6e3e2"{[entity="Products"]}[Data],
+				    #"Replaced Value1" = Table.ReplaceValue(Products1,"Jaeger","Jaeger Woman",Replacer.ReplaceValue,{"BU"}),
+				    #"Merged Queries" = Table.NestedJoin(#"Replaced Value1", {"Dept Code"}, HomeSub_BU, {"Dept Code"}, "HomeSub_BU", JoinKind.LeftOuter),
+				    #"Expanded HomeSub_BU" = Table.ExpandTableColumn(#"Merged Queries", "HomeSub_BU", {"Sub_BU"}, {"Sub_BU"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Expanded HomeSub_BU", null, each [BU],Replacer.ReplaceValue,{"Sub_BU"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Replaced Value",{{"Sub_BU", type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Category", "Category_Old"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Category", each if [Dept Code] = "G5-T1A" then "Furniture Dropship" else [Category_Old]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Category", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"Category_Old"}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Removed Columns", "In/Ex Furniture", each if [Sub_BU] = "Furniture" then "Furniture" else "Excl. Furniture")
+				in
+				    #"Added Conditional Column"
+
+	annotation PBI_ResultType = Table
+

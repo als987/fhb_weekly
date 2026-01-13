@@ -1,0 +1,97 @@
+table factAvailability
+	lineageTag: 74b59cd5-745c-40fc-849e-4379c3fbb496
+
+	measure 'DWA %' = AVERAGE ( factAvailability[DWAValue] )
+		formatString: 0.0%;(0.0)%;
+		lineageTag: 7e5b9eea-34c5-43b7-aa6d-ba5b280a050f
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'DWA % ACT' = CALCULATE([DWA %], factAvailability[DWAComparative] = "ACT")
+		formatString: 0.0%;(0.0)%;
+		lineageTag: 7b3a8bcb-1486-42c5-8796-f3924ada75db
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'DWA % vs LW' = CALCULATE([DWA %], factAvailability[DWAComparative] = "vs LW")
+		formatString: 0.0%;(0.0)%;
+		lineageTag: 0cc65668-c867-4ae4-ae3e-79376ad2f542
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'DWA % vs LY' = CALCULATE([DWA %], factAvailability[DWAComparative] = "vs LY")
+		formatString: 0.0%;(0.0)%;
+		lineageTag: c74ddb48-4d24-4050-88b9-7a74ecb47687
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure DWAColour = SELECTEDVALUE(factAvailability[Index])
+		lineageTag: a1142c5e-e516-4361-a443-ecf0402fc10b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DWAComparative
+		dataType: string
+		lineageTag: da62ec72-9d23-452e-8ae5-76c99c683747
+		summarizeBy: none
+		sourceColumn: DWAComparative
+
+		annotation SummarizationSetBy = Automatic
+
+	column DWABU
+		dataType: string
+		lineageTag: 0bcde8a0-dfb5-4f78-824f-eebe6c00b448
+		summarizeBy: none
+		sourceColumn: DWABU
+		sortByColumn: Index
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column DWAValue
+		dataType: double
+		formatString: 0.0%;(0.0)%;
+		lineageTag: 16c931ce-dce4-4977-a8c1-6ce05fbb6b0b
+		summarizeBy: sum
+		sourceColumn: DWAValue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column DWAChannel
+		dataType: string
+		lineageTag: db25f440-0112-481a-86a2-2a9b28997156
+		summarizeBy: none
+		sourceColumn: DWAChannel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: double
+		formatString: 0
+		lineageTag: 0c24a720-ec4c-4876-b3d2-a63f94a99704
+		summarizeBy: sum
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	partition factAvailability-e42ec34f-f2e8-4cb1-bf2b-442f0141c190 = m
+		mode: import
+		queryGroup: 'Other fact tables'
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Workspaces{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+				    #"37f7457b-44b0-4d98-a543-679252e36145" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="37f7457b-44b0-4d98-a543-679252e36145"]}[Data],
+				    DWA_ = #"37f7457b-44b0-4d98-a543-679252e36145"{[entity="DWA",version=""]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(DWA_,{{"DWAValue", Percentage.Type}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type","Grand Total","C&H Total",Replacer.ReplaceText,{"DWABU"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value",null,100,Replacer.ReplaceValue,{"Index"})
+				in
+				    #"Replaced Value1"
+
+	annotation PBI_ResultType = Table
+

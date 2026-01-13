@@ -1,0 +1,57 @@
+table SalesRecognitionType
+	lineageTag: 123ec292-d778-4f24-b605-823d8852e481
+
+	/// This measure is the SELECTEDVALUE of column 'SalesRecognitionType'[SalesRecognitionType]
+	measure slctd_SalesRecognitionType = SELECTEDVALUE ( 'SalesRecognitionType'[SalesRecognitionType], "Orders" )
+		lineageTag: 666f082b-b8a5-468a-9adf-1ec137a0f26d
+
+	column Order
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d35af0c-0060-4d33-81a6-bfe9e6c850f0
+		summarizeBy: none
+		sourceColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesRecognitionType
+		dataType: string
+		lineageTag: 3e7180f2-04c6-44ba-8141-4ded3f2d1f67
+		summarizeBy: none
+		sourceColumn: SalesRecognitionType
+		sortByColumn: Order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: string
+		lineageTag: 57930883-3321-4c12-8c4b-6b583254e793
+		summarizeBy: none
+		sourceColumn: ID
+		sortByColumn: Order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column SRType = If(SalesRecognitionType[SalesRecognitionType] = "Order","Orders", SalesRecognitionType[SalesRecognitionType])
+		lineageTag: feded26d-56cf-499e-9f97-6e250636f1df
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SalesRecognitionType-49c9d24d-7af6-41ce-aefe-88f20c11eaeb = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlTSUfIvSkktAtFBLq5BSrE60UpGQJ5LZnFBYklyBojpGRzgGOLsoRQbCwA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Order = _t, RecognitionType = _t, ID = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Order", Int64.Type}, {"RecognitionType", type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"RecognitionType", "SalesRecognitionType"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+
