@@ -18246,8 +18246,8 @@ table 1_Measures
 		lineageTag: 1429667c-9cca-41e6-b5ef-88add5d7bfa7
 
 	measure 'AOV vs LY' =
-			VAR act = [ABV]
-			VAR comp = [ABV LY]
+			VAR act = [AOV]
+			VAR comp = [AOV LY]
 			VAR result = act - comp
 			RETURN
 			    IF ( comp = BLANK (), BLANK (), result )
@@ -18676,4 +18676,3 @@ table 1_Measures
 	annotation PBI_ResultType = Table
 
 	annotation PBI_NavigationStepName = Navigation
-
