@@ -16,16 +16,6 @@ table 1_Measures
 		displayFolder: Sales\Orders\SRIV\LY
 		lineageTag: 995ed551-5b19-4f65-9e26-2d0ca7f994f4
 
-	measure 'SRIV Orders LY-1' =
-			CALCULATE (
-			    [SRIV Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of SRIV Orders LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Orders\SRIV\LY-1
-		lineageTag: c36d04a8-00c1-487a-a4eb-bfff292476e5
-
 	measure 'SRIV Orders LW' =
 			CALCULATE (
 			    [SRIV Orders],
@@ -49,16 +39,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Orders\GSM\LY
 		lineageTag: 5c7599d5-6fbb-4b81-8c26-9b14a309410d
-
-	measure 'GSM Orders LY-1' =
-			CALCULATE (
-			    [GSM Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of GSM Orders LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Orders\GSM\LY-1
-		lineageTag: d4ed61bd-6d3e-4c1f-b53a-5917dcc72b34
 
 	measure 'GSM Orders LW' =
 			CALCULATE (
@@ -91,17 +71,6 @@ table 1_Measures
 		displayFolder: Sales\Orders\SRIV\LY
 		lineageTag: 1f9208d2-82b4-4b2b-9f08-cb0cd48c3f0b
 
-	measure 'SRIV Orders vs LY-1' =
-			VAR act = [SRIV Orders]
-			VAR comp = [SRIV Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of SRIV Orders vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Orders\SRIV\LY-1
-		lineageTag: 9cccf8d2-ed8a-4f00-8b29-1ac6a904a1b3
-
 	measure 'SRIV Orders vs LW' =
 			VAR act = [SRIV Orders]
 			VAR comp = [SRIV Orders LW]
@@ -132,17 +101,6 @@ table 1_Measures
 		displayFolder: Margin\Orders\GSM\LY
 		lineageTag: 2eb6d2c9-cec2-455f-a29e-8757381ff9a3
 
-	measure 'GSM Orders vs LY-1' =
-			VAR act = [GSM Orders]
-			VAR comp = [GSM Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of GSM Orders vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Orders\GSM\LY-1
-		lineageTag: 36ed1171-a733-455a-a423-f4928bb21332
-
 	/// This measure is the sum of column 'factSalesOrders'[srev]
 	measure 'SREV Orders' = SUM ( 'factSalesOrders'[srev] )
 		formatString: #,##0,,.0;(#,##0,,.0)
@@ -157,16 +115,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Orders\SREV\LY
 		lineageTag: e5d5fbe8-3553-46f5-b9a3-2de767133617
-
-	measure 'SREV Orders LY-1' =
-			CALCULATE (
-			    [SREV Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of SREV Orders LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Orders\SREV\LY-1
-		lineageTag: ca5f3625-87ef-4fbb-81be-8e444e31494c
 
 	measure 'SREV Orders LW' =
 			CALCULATE (
@@ -188,18 +136,6 @@ table 1_Measures
 		formatString: 0.0%;(0.0)%
 		displayFolder: Margin\Orders\GSM\LY
 		lineageTag: 8b075d46-7ec9-4ec3-9411-4fecc00e7ffb
-
-	measure 'GSM % SREV Orders LY-1' =
-			VAR metric = [GSM Orders LY-1]
-			VAR sales = [SREV Orders LY-1]
-			VAR result =
-			    DIVIDE ( metric, sales )
-			RETURN
-			    IF ( OR ( metric = BLANK (), sales = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of GSM % SREV Orders LY.
-		formatString: 0.0%;(0.0)%
-		displayFolder: Margin\Orders\GSM\LY-1
-		lineageTag: 43eba079-0d6f-46c6-afbe-ac5b392a2ba9
 
 	/// This measure is column [GSM Orders LW] as a % of SREV
 	measure 'GSM % SREV Orders LW' =
@@ -223,17 +159,6 @@ table 1_Measures
 		displayFolder: Sales\Orders\SREV\LY
 		lineageTag: ea86e07a-eb04-4841-8906-1ed3812092af
 
-	measure 'SREV Orders vs LY-1' =
-			VAR act = [SREV Orders]
-			VAR comp = [SREV Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of SREV Orders vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Orders\SREV\LY-1
-		lineageTag: 0ba3b781-dfbc-45e1-bc2e-366a1205169e
-
 	measure 'SREV Orders vs LW' =
 			VAR act = [SREV Orders]
 			VAR comp = [SREV Orders LW]
@@ -253,17 +178,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Orders\GSM\LY
 		lineageTag: 10c77011-68c7-4576-bff7-a6ef81f0473f
-
-	measure 'GSM % SREV Orders vs LY-1' =
-			VAR act = [GSM % SREV Orders]
-			VAR comp = [GSM % SREV Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of GSM % SREV Orders vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Orders\GSM\LY-1
-		lineageTag: 243798bb-a788-4a41-9bcf-d434d96552cf
 
 	measure 'GSM % SREV Orders vs LW' =
 			VAR act = [GSM % SREV Orders]
@@ -303,16 +217,6 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\SRIV\LY
 		lineageTag: 82425818-0c85-4502-b9dc-b46068c86bbd
 
-	measure 'SRIV Dispatch LY-1' =
-			CALCULATE (
-			    [SRIV Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of SRIV Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\SRIV\LY-1
-		lineageTag: b8961573-f9e2-4d21-a809-986f33e4f6d6
-
 	measure 'SRIV Dispatch LW' =
 			CALCULATE (
 			    [SRIV Dispatch],
@@ -331,17 +235,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Dispatch\SRIV\LY
 		lineageTag: a7c50678-4308-4c55-b915-fa924bce8783
-
-	measure 'SRIV Dispatch vs LY-1' =
-			VAR act = [SRIV Dispatch]
-			VAR comp = [SRIV Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of SRIV Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\SRIV\LY-1
-		lineageTag: f844bde1-c9f4-4f23-8aa9-157fdba73489
 
 	measure 'SRIV Dispatch vs LW' =
 			VAR act = [SRIV Dispatch]
@@ -368,16 +261,6 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\SREV\LY
 		lineageTag: 78db5f0e-2d95-42a7-87cf-2d417b66a0d0
 
-	measure 'SREV Dispatch LY-1' =
-			CALCULATE (
-			    [SREV Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of SREV Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\SREV\LY-1
-		lineageTag: a1106935-1ae4-47ac-b7b6-349605dc8a94
-
 	measure 'SREV Dispatch LW' =
 			CALCULATE (
 			    [SREV Dispatch],
@@ -396,17 +279,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Dispatch\SREV\LY
 		lineageTag: 3e0cae06-1823-4859-999a-938afbfa7661
-
-	measure 'SREV Dispatch vs LY-1' =
-			VAR act = [SREV Dispatch]
-			VAR comp = [SREV Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of SREV Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\SREV\LY-1
-		lineageTag: 761e61b2-4817-441d-b783-f4a98f428d0f
 
 	measure 'SREV Dispatch vs LW' =
 			VAR act = [SREV Dispatch]
@@ -433,16 +305,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\GSM\LY
 		lineageTag: 5dae07e0-db9c-4310-b545-e74d233f2b6c
 
-	measure 'GSM Dispatch LY-1' =
-			CALCULATE (
-			    [GSM Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of GSM Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\GSM\LY-1
-		lineageTag: 583c179e-4e6f-4579-a880-eae4ad686335
-
 	measure 'GSM Dispatch LW' =
 			CALCULATE (
 			    [GSM Dispatch],
@@ -461,17 +323,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Dispatch\GSM\LY
 		lineageTag: 8dd96c57-306c-409d-bb1d-b8255ef2cc28
-
-	measure 'GSM Dispatch vs LY-1' =
-			VAR act = [GSM Dispatch]
-			VAR comp = [GSM Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of GSM Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\GSM\LY-1
-		lineageTag: c43cb7bb-1458-4753-be1f-3aeae28b6524
 
 	measure 'GSM Dispatch vs LW' =
 			VAR act = [GSM Dispatch]
@@ -507,18 +358,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\GSM\LY
 		lineageTag: 8e6417ba-5af6-41cf-b5fe-33a67f03fdf5
 
-	measure 'GSM % SREV Dispatch LY-1' =
-			VAR metric = [GSM Dispatch LY-1]
-			VAR sales = [SREV Dispatch LY-1]
-			VAR result =
-			    DIVIDE ( metric, sales )
-			RETURN
-			    IF ( OR ( metric = BLANK (), sales = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of GSM % SREV Dispatch LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Dispatch\GSM\LY-1
-		lineageTag: 149a7618-494e-4321-b163-fbe612f4a9ed
-
 	/// This measure is column [GSM Dispatch LW] as a % of SREV
 	measure 'GSM % SREV Dispatch LW' =
 			VAR metric = [GSM Dispatch LW]
@@ -540,17 +379,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Dispatch\GSM\LY
 		lineageTag: 8a96ff6a-549d-4c5f-8927-a71609cb9d1d
-
-	measure 'GSM % SREV Dispatch vs LY-1' =
-			VAR act = [GSM % SREV Dispatch]
-			VAR comp = [GSM % SREV Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of GSM % SREV Dispatch vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Dispatch\GSM\LY-1
-		lineageTag: ed0e95ae-89e1-427e-a20c-6a9dbcb58189
 
 	measure 'GSM % SREV Dispatch vs LW' =
 			VAR act = [GSM % SREV Dispatch]
@@ -577,16 +405,6 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\FPP SRIV\LY
 		lineageTag: 7ec41f69-9bdd-4104-a3f4-1f7d0d316be2
 
-	measure 'FPP SRIV Dispatch LY-1' =
-			CALCULATE (
-			    [FPP SRIV Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of FPP SRIV Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\FPP SRIV\LY-1
-		lineageTag: 7adaedd1-c3b8-4f92-a4d5-7a89aed08b4b
-
 	measure 'FPP SRIV Dispatch LW' =
 			CALCULATE (
 			    [FPP SRIV Dispatch],
@@ -605,17 +423,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Dispatch\FPP SRIV\LY
 		lineageTag: 1ddc0d22-d43b-4616-9104-05308159bc23
-
-	measure 'FPP SRIV Dispatch vs LY-1' =
-			VAR act = [FPP SRIV Dispatch]
-			VAR comp = [FPP SRIV Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of FPP SRIV Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\FPP SRIV\LY-1
-		lineageTag: eaa1b8d3-d8ba-4576-be2c-83c70407d46a
 
 	measure 'FPP SRIV Dispatch vs LW' =
 			VAR act = [FPP SRIV Dispatch]
@@ -642,16 +449,6 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\RP SRIV\LY
 		lineageTag: 97835f04-7eea-4891-a65c-58646ee150ba
 
-	measure 'RP SRIV Dispatch LY-1' =
-			CALCULATE (
-			    [RP SRIV Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of RP SRIV Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\RP SRIV\LY-1
-		lineageTag: 3e79d0b7-0d06-4fd8-be60-5ead397f8a77
-
 	measure 'RP SRIV Dispatch LW' =
 			CALCULATE (
 			    [RP SRIV Dispatch],
@@ -670,17 +467,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Dispatch\RP SRIV\LY
 		lineageTag: a1d1ce2b-4ffb-4f8d-9d6f-041f97fd2d05
-
-	measure 'RP SRIV Dispatch vs LY-1' =
-			VAR act = [RP SRIV Dispatch]
-			VAR comp = [RP SRIV Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of RP SRIV Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\RP SRIV\LY-1
-		lineageTag: 2be66493-499a-4dba-82b5-77cbc92be969
 
 	measure 'RP SRIV Dispatch vs LW' =
 			VAR act = [RP SRIV Dispatch]
@@ -960,22 +746,6 @@ table 1_Measures
 		displayFolder: Sales\SRIV\LY
 		lineageTag: 751bdc45-1e0e-49c4-86c9-6cde5f5817ce
 
-	measure 'SRIV LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [SRIV Orders LY-1],
-			        "Dispatch", [SRIV Dispatch LY-1],
-			        [SRIV Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of SRIV LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\SRIV\LY-1
-		lineageTag: aec295a7-adaa-4031-bbee-6603263131f1
-
 	measure 'SRIV vs LY' =
 			VAR act = [SRIV]
 			VAR comp = [SRIV LY]
@@ -985,19 +755,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\SRIV\LY
 		lineageTag: 3f25a36b-123c-4cf6-a342-d38d80a048d8
-
-		annotation PBI_FormatHint = {"isCustom":true}
-
-	measure 'SRIV vs LY-1' =
-			VAR act = [SRIV]
-			VAR comp = [SRIV LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of SRIV vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\SRIV\LY-1
-		lineageTag: da855622-e857-4332-b179-63d39bc893a7
 
 		annotation PBI_FormatHint = {"isCustom":true}
 
@@ -1062,6 +819,7 @@ table 1_Measures
 			    )       )
 			RETURN
 			    SUMX ( salesTable, [Actualised] ) 
+			
 			
 			/*VAR result = [SRIV Channel Orders BUD]
 			RETURN
@@ -1199,22 +957,6 @@ table 1_Measures
 		displayFolder: Sales\SREV\LY
 		lineageTag: 1f2f51b6-32b0-48a2-a90d-ed2d80ba4c3d
 
-	measure 'SREV LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [SREV Orders LY-1],
-			        "Dispatch", [SREV Dispatch LY-1],
-			        [SREV Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of SREV LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\SREV\LY-1
-		lineageTag: 0c2821f3-05dc-4b01-b352-2ec0e319dad1
-
 	measure 'SREV vs LY' =
 			VAR act = [SREV]
 			VAR comp = [SREV LY]
@@ -1224,17 +966,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\SREV\LY
 		lineageTag: ec057013-75af-41ea-9cfc-e811b7d495af
-
-	measure 'SREV vs LY-1' =
-			VAR act = [SREV]
-			VAR comp = [SREV LY-1]
-			VAR result = act - comp
-			RETURN
-			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
-		description: Two years ago equivalent of SREV vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\SREV\LY-1
-		lineageTag: 50f37c18-6fd2-48a5-889a-a4cdb55cf0a3
 
 	measure 'SREV vs LY %' =
 			VAR act = [SREV]
@@ -1292,22 +1023,6 @@ table 1_Measures
 		displayFolder: Margin\GSM\LY
 		lineageTag: 33516aa6-51c0-4fbc-bc1f-1f410dc33457
 
-	measure 'GSM LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [GSM Orders LY-1],
-			        "Dispatch", [GSM Dispatch LY-1],
-			        [GSM Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of GSM LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\GSM\LY-1
-		lineageTag: 77b0c2bf-ee60-402d-8136-8fe6b37a69b8
-
 	measure 'GSM vs LY' =
 			VAR act = [GSM]
 			VAR comp = [GSM LY]
@@ -1317,17 +1032,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\GSM\LY
 		lineageTag: ccd53a09-11f1-4070-bd34-a26586d7310a
-
-	measure 'GSM vs LY-1' =
-			VAR act = [GSM]
-			VAR comp = [GSM LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of GSM vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\GSM\LY-1
-		lineageTag: 9b196d25-993c-45b0-bf21-0b400510d238
 
 	/// This measure is column [GSM Orders LY] as a % of SREV
 	measure 'GSM % SREV LY' =
@@ -1345,22 +1049,6 @@ table 1_Measures
 		displayFolder: Margin\GSM\LY
 		lineageTag: f22cbc1b-6509-48b3-a4fd-6bf4ac0d196f
 
-	measure 'GSM % SREV LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [GSM % SREV Orders LY-1],
-			        "Dispatch", [GSM % SREV Dispatch LY-1],
-			        [GSM % SREV Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of GSM % SREV LY.
-		formatString: 0.0%;(0.0)%
-		displayFolder: Margin\GSM\LY-1
-		lineageTag: bfdf7a57-a8be-4ee2-ac7a-f6e857545a05
-
 	measure 'GSM % SREV vs LY' =
 			VAR act = [GSM % SREV]
 			VAR comp = [GSM % SREV LY]
@@ -1370,17 +1058,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\GSM\LY
 		lineageTag: bde92874-4b04-4fb1-ada3-2c3bebf2b130
-
-	measure 'GSM % SREV vs LY-1' =
-			VAR act = [GSM % SREV]
-			VAR comp = [GSM % SREV LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of GSM % SREV vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\GSM\LY-1
-		lineageTag: f102f2a6-f57f-4b89-8c91-cd857e594789
 
 	measure 'GSM vs LY %' =
 			VAR act = [GSM]
@@ -1570,37 +1247,6 @@ table 1_Measures
 		displayFolder: Sales\Returns\LY
 		lineageTag: 7a1c874f-fb8f-4c40-bbe6-db326820fbed
 
-	measure 'Returns LY-1' =
-			
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [Orders Returns LY-1],
-			        "Dispatch", [Dispatch Returns LY-1],
-			        [Orders Returns LY-1]
-			    )
-			RETURN
-			    result
-			
-			--Previous Measure--
-			/*VAR sale_type = [slctd_SalesType]
-			VAR total_returns = [FP Returns LY-1] + [RP Returns LY-1]
-			VAR result =
-			    SWITCH (
-			        sale_type,
-			        "Total", total_returns,
-			        "FP&P", [FP Returns LY-1],
-			        "Reduced", [RP Returns LY-1],
-			        total_returns
-			    )
-			RETURN
-			    result*/
-		description: Two years ago equivalent of Returns LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Returns\LY-1
-		lineageTag: 0e49f52d-e86c-4964-b5ef-9e4afbc206c8
-
 	measure 'Returns vs LY' =
 			VAR act = [Returns]
 			VAR comp = [Returns LY]
@@ -1610,17 +1256,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Returns\LY
 		lineageTag: d3ebe8e7-b92c-4b00-a862-64fcc89a4ba0
-
-	measure 'Returns vs LY-1' =
-			VAR act = [Returns]
-			VAR comp = [Returns LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Returns vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Returns\LY-1
-		lineageTag: 3d05c0e2-3bdc-4c9d-8b6d-70cc8c25e26a
 
 	measure 'Returns vs LY %' =
 			VAR act = [Returns]
@@ -1700,16 +1335,6 @@ table 1_Measures
 		displayFolder: Sales\Returns\FP Returns\LY
 		lineageTag: 1047cb86-f703-48a4-849f-3a31e6e812d3
 
-	measure 'FP Returns LY-1' =
-			CALCULATE (
-			    [FP Returns],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of FP Returns LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Returns\FP Returns\LY-1
-		lineageTag: 786b93dd-da32-45a5-b909-79e5d9f9d284
-
 	measure 'FP Returns vs LY' =
 			VAR act = [FP Returns]
 			VAR comp = [FP Returns LY]
@@ -1719,17 +1344,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Returns\FP Returns\LY
 		lineageTag: e5486c5a-5fc8-4472-8b63-fe4957e88567
-
-	measure 'FP Returns vs LY-1' =
-			VAR act = [FP Returns]
-			VAR comp = [FP Returns LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of FP Returns vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Returns\FP Returns\LY-1
-		lineageTag: cc1fe53b-2aed-4a84-a895-1215c225b3d4
 
 	measure 'FP Returns vs LY %' =
 			VAR act = [FP Returns]
@@ -1787,16 +1401,6 @@ table 1_Measures
 		displayFolder: Sales\Returns\RP Returns\LY
 		lineageTag: 28502b0f-beb1-4489-a21f-8ae243d3c410
 
-	measure 'RP Returns LY-1' =
-			CALCULATE (
-			    [RP Returns],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of RP Returns LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Returns\RP Returns\LY-1
-		lineageTag: f953e259-e826-4eb5-91c6-bfd29bdf73b2
-
 	measure 'RP Returns vs LY' =
 			VAR act = [RP Returns]
 			VAR comp = [RP Returns LY]
@@ -1806,17 +1410,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Returns\RP Returns\LY
 		lineageTag: 5e2aea26-e150-434f-a00d-7a70307c2a4d
-
-	measure 'RP Returns vs LY-1' =
-			VAR act = [RP Returns]
-			VAR comp = [RP Returns LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of RP Returns vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Returns\RP Returns\LY-1
-		lineageTag: 3c62818f-2961-4b26-95df-8e6c66db9897
 
 	measure 'RP Returns vs LY %' =
 			VAR act = [RP Returns]
@@ -1894,19 +1487,6 @@ table 1_Measures
 		displayFolder: Sales\Returns\LY
 		lineageTag: 275ce84c-8a8e-4e10-91a0-13f0662d248b
 
-	measure 'Return rate % LY-1' =
-			
-			VAR metric = - [Returns LY-1]
-			VAR sales = [SRIV LY-1] - [Returns LY-1]
-			VAR result =
-			    DIVIDE ( metric, sales )
-			RETURN
-			    IF ( OR ( metric = BLANK (), sales = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of Return rate % LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Returns\LY-1
-		lineageTag: 0e67bb5f-7de8-408c-9e16-744446dc4142
-
 	measure 'Return rate % LW' =
 			VAR metric = - [Returns LW]
 			VAR sales = [SRIV LW] - [Returns LW]
@@ -1929,19 +1509,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Returns\FP Returns\LY
 		lineageTag: 20fad25a-ce6f-4d35-899b-78e99c25a7e0
-
-	measure 'FP Return rate % LY-1' =
-			VAR metric = - [FP Returns LY-1]
-			VAR sales =
-			    CALCULATE ( [SRIV LY-1], SalesType[fp_rp_ind] = "F" ) - [FP Returns LY-1]
-			VAR result =
-			    DIVIDE ( metric, sales )
-			RETURN
-			    IF ( OR ( metric = BLANK (), sales = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of FP Return rate % LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Returns\FP Returns\LY-1
-		lineageTag: a3e99c0f-53ae-4484-b021-ff0afe3e9559
 
 	measure 'FP Return rate % LW' =
 			VAR metric = - [FP Returns LW]
@@ -1978,19 +1545,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Returns\RP Returns\LY
 		lineageTag: 2c6cb7f9-db32-4ac8-aa3d-530db71c6ca8
-
-	measure 'RP Return rate % LY-1' =
-			VAR metric = - [RP Returns LY-1]
-			VAR sales =
-			    CALCULATE ( [SRIV LY-1], SalesType[fp_rp_ind] = "R" ) - [RP Returns LY-1]
-			VAR result =
-			    DIVIDE ( metric, sales )
-			RETURN
-			    IF ( OR ( metric = BLANK (), sales = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of RP Return rate % LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Returns\RP Returns\LY-1
-		lineageTag: 8df15f0b-19d7-43aa-a6a1-5bdd7c9c349c
 
 	measure 'RP Return rate % LW' =
 			VAR metric = - [RP Returns LW]
@@ -2164,18 +1718,6 @@ table 1_Measures
 		displayFolder: Sales\Dispatch vs Orders\SRIV\LY
 		lineageTag: 25476b79-12c5-4173-b7aa-8c3a56c89c5c
 
-	measure 'SRIV Dispatch vs Orders LY-1' =
-			VAR dispatch = [SRIV Dispatch LY-1]
-			VAR orders = [SRIV Orders LY-1]
-			VAR postings = [SRIV Postings Dispatch LY-1]
-			VAR result = dispatch - postings - orders
-			RETURN
-			    result
-		description: Two years ago equivalent of SRIV Dispatch vs Orders LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch vs Orders\SRIV\LY-1
-		lineageTag: 644d995a-40bb-4aa4-9b92-65cfb8bb32a5
-
 	measure 'SRIV Dispatch vs Orders vs LY' =
 			VAR act = [SRIV Dispatch vs Orders]
 			VAR comp = [SRIV Dispatch vs Orders LY]
@@ -2185,17 +1727,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Dispatch vs Orders\SRIV\LY
 		lineageTag: 407b7ff6-1d17-4838-a9d7-a7ee2a8f1614
-
-	measure 'SRIV Dispatch vs Orders vs LY-1' =
-			VAR act = [SRIV Dispatch vs Orders]
-			VAR comp = [SRIV Dispatch vs Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of SRIV Dispatch vs Orders vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch vs Orders\SRIV\LY-1
-		lineageTag: eb83a3b7-e727-4fe8-8dce-4cb06791528b
 
 	measure 'SRIV Dispatch vs Orders vs LY %' =
 			VAR act = [SRIV Dispatch vs Orders]
@@ -2351,16 +1882,6 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\Postings\LY
 		lineageTag: 5e2bd8f2-c36f-4d48-83e7-05b6990d2a02
 
-	measure 'SRIV Postings Dispatch LY-1' =
-			CALCULATE (
-			    [SRIV Postings Dispatch],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of SRIV Postings Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\Postings\LY-1
-		lineageTag: 3dc49cc2-2796-498a-ac33-3f8cd4282da9
-
 	measure 'SRIV Postings Dispatch vs LY' =
 			VAR act = [SRIV Postings Dispatch]
 			VAR comp = [SRIV Postings Dispatch LY]
@@ -2370,17 +1891,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Dispatch\Postings\LY
 		lineageTag: d05fe392-da4a-48dd-922e-e9b53aa7f8d0
-
-	measure 'SRIV Postings Dispatch vs LY-1' =
-			VAR act = [SRIV Postings Dispatch]
-			VAR comp = [SRIV Postings Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of SRIV Postings Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\Postings\LY-1
-		lineageTag: c0c01a1f-81c7-4178-98cd-726f53cedc5e
 
 	measure 'SRIV Postings Dispatch vs LY %' =
 			VAR act = [SRIV Postings Dispatch]
@@ -2437,16 +1947,6 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\P SRIV\LY
 		lineageTag: 1750bd16-fcb8-4b77-aa53-6db8be310930
 
-	measure 'P SRIV Dispatch LY-1' =
-			CALCULATE (
-			    [P SRIV Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of P SRIV Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\P SRIV\LY-1
-		lineageTag: 58037454-420e-48a5-a8c2-ae076fe5b9c8
-
 	measure 'P SRIV Dispatch vs LY' =
 			VAR act = [P SRIV Dispatch]
 			VAR comp = [P SRIV Dispatch LY]
@@ -2456,17 +1956,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Dispatch\P SRIV\LY
 		lineageTag: 600545d3-e228-4ea4-8e85-4012f950a968
-
-	measure 'P SRIV Dispatch vs LY-1' =
-			VAR act = [P SRIV Dispatch]
-			VAR comp = [P SRIV Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of P SRIV Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\P SRIV\LY-1
-		lineageTag: efc47a52-cd3a-4ec5-b0b1-7492908a6dc8
 
 	measure 'P SRIV Dispatch vs LY %' =
 			VAR act = [P SRIV Dispatch]
@@ -2539,16 +2028,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Buying Margin\LY
 		lineageTag: 4644f528-1ea2-43fb-b759-720915a85e57
 
-	measure 'Buying Margin Dispatch LY-1' =
-			CALCULATE (
-			    [Buying Margin Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Buying Margin Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\Buying Margin\LY-1
-		lineageTag: a4dbe957-d674-445c-b7f7-bef2d00b36b8
-
 	measure 'Buying Margin Dispatch vs LY' =
 			VAR act = [Buying Margin Dispatch]
 			VAR comp = [Buying Margin Dispatch LY]
@@ -2559,17 +2038,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Buying Margin\LY
 		lineageTag: a628dd76-2d94-420d-bdec-45c568614be7
 
-	measure 'Buying Margin Dispatch vs LY-1' =
-			VAR act = [Buying Margin Dispatch]
-			VAR comp = [Buying Margin Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Buying Margin Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\Buying Margin\LY-1
-		lineageTag: a2896520-391a-43fe-97e5-f01c9c70667d
-
 	measure 'Buying Margin % Dispatch LY' =
 			CALCULATE (
 			    [Buying Margin % Dispatch],
@@ -2578,16 +2046,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Dispatch\Buying Margin\LY
 		lineageTag: 507689c0-bd48-40fc-8ee5-b3a9dcc1acdc
-
-	measure 'Buying Margin % Dispatch LY-1' =
-			CALCULATE (
-			    [Buying Margin % Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Buying Margin % Dispatch LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Dispatch\Buying Margin\LY-1
-		lineageTag: 6a740b2a-1c01-4cb6-af90-1859fdab3d85
 
 	measure 'Buying Margin % Dispatch vs LY' =
 			VAR act = [Buying Margin % Dispatch]
@@ -2598,17 +2056,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Dispatch\Buying Margin\LY
 		lineageTag: 0ee89350-6266-484a-8969-698a3cdb8bbe
-
-	measure 'Buying Margin % Dispatch vs LY-1' =
-			VAR act = [Buying Margin % Dispatch]
-			VAR comp = [Buying Margin % Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Buying Margin % Dispatch vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Dispatch\Buying Margin\LY-1
-		lineageTag: 17947e08-4644-4028-ac14-74c3ec30e6ad
 
 	measure 'Buying Margin Dispatch vs LY %' =
 			VAR act = [Buying Margin Dispatch]
@@ -2696,16 +2143,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Markdown\LY
 		lineageTag: c86cb33d-1773-46f7-9ac1-df0b1fc5c6cf
 
-	measure 'Markdown Dispatch LY-1' =
-			CALCULATE (
-			    [Markdown Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Markdown Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\Markdown\LY-1
-		lineageTag: d3ecf226-fe6c-45d6-9ae7-63b5b2b8ffdb
-
 	measure 'Markdown Dispatch vs LY' =
 			VAR act = [Markdown Dispatch]
 			VAR comp = [Markdown Dispatch LY]
@@ -2716,17 +2153,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Markdown\LY
 		lineageTag: bc35b872-29f3-4f0f-aa48-943c47875da3
 
-	measure 'Markdown Dispatch vs LY-1' =
-			VAR act = [Markdown Dispatch]
-			VAR comp = [Markdown Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Markdown Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\Markdown\LY-1
-		lineageTag: 17f69b5b-8f24-4ec6-a7e8-3dc3fcb36c5f
-
 	measure 'Markdown % SRIV Dispatch LY' =
 			CALCULATE (
 			    [Markdown % SRIV Dispatch],
@@ -2735,16 +2161,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Dispatch\Markdown\LY
 		lineageTag: a9f4e877-0b00-47bc-89a8-f6ea3445492a
-
-	measure 'Markdown % SRIV Dispatch LY-1' =
-			CALCULATE (
-			    [Markdown % SRIV Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Markdown % SRIV Dispatch LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Dispatch\Markdown\LY-1
-		lineageTag: 83ef1018-0333-4186-890a-93a3829147f0
 
 	measure 'Markdown % SRIV Dispatch vs LY' =
 			VAR act = [Markdown % SRIV Dispatch]
@@ -2755,17 +2171,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Dispatch\Markdown\LY
 		lineageTag: 12b56596-b000-4102-8235-e466925878b7
-
-	measure 'Markdown % SRIV Dispatch vs LY-1' =
-			VAR act = [Markdown % SRIV Dispatch]
-			VAR comp = [Markdown % SRIV Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Markdown % SRIV Dispatch vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Dispatch\Markdown\LY-1
-		lineageTag: 5f69d206-b863-4c4e-bbaf-196655e9f5a3
 
 	measure 'Markdown Dispatch vs LY %' =
 			VAR act = [Markdown Dispatch]
@@ -2841,16 +2246,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Promo Markdown\LY
 		lineageTag: 656acb37-1bf2-4de8-a16d-0ab65b661268
 
-	measure 'Promo Markdown Dispatch LY-1' =
-			CALCULATE (
-			    [Promo Markdown Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Promo Markdown Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\Promo Markdown\LY-1
-		lineageTag: 500a2b27-d8ee-4614-9862-6631a54b2338
-
 	measure 'Promo Markdown Dispatch vs LY' =
 			VAR act = [Promo Markdown Dispatch]
 			VAR comp = [Promo Markdown Dispatch LY]
@@ -2860,17 +2255,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Dispatch\Promo Markdown\LY
 		lineageTag: 2607f1a5-6f5b-4a63-9dad-d8e33b9fff23
-
-	measure 'Promo Markdown Dispatch vs LY-1' =
-			VAR act = [Promo Markdown Dispatch]
-			VAR comp = [Promo Markdown Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Promo Markdown Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\Promo Markdown\LY-1
-		lineageTag: 25f6bbaf-1912-4442-8ab2-00c7388d78f3
 
 	measure 'Promo Markdown Dispatch LW' =
 			CALCULATE (
@@ -2905,16 +2289,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Sale Markdown\LY
 		lineageTag: 932b2901-fb2d-4630-8205-fea5e77962a7
 
-	measure 'Sale Markdown Dispatch LY-1' =
-			CALCULATE (
-			    [Sale Markdown Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Sale Markdown Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\Sale Markdown\LY-1
-		lineageTag: 138d4e2f-7e5d-461e-b803-83f400f0a761
-
 	measure 'Sale Markdown Dispatch vs LY' =
 			VAR act = [Sale Markdown Dispatch]
 			VAR comp = [Sale Markdown Dispatch LY]
@@ -2924,17 +2298,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Dispatch\Sale Markdown\LY
 		lineageTag: cc2b87b3-f9ad-4ad3-ab44-12f27832a40b
-
-	measure 'Sale Markdown Dispatch vs LY-1' =
-			VAR act = [Sale Markdown Dispatch]
-			VAR comp = [Sale Markdown Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Sale Markdown Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\Sale Markdown\LY-1
-		lineageTag: 9bc8c868-bf0f-43cf-a589-b6bb70332a85
 
 	measure 'Sale Markdown Dispatch LW' =
 			CALCULATE (
@@ -2969,16 +2332,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\SIS Sold Through\LY
 		lineageTag: c1dc3652-91f4-4931-b52a-b318cb1b3ca7
 
-	measure 'SIS Sold Through Dispatch LY-1' =
-			CALCULATE (
-			    [SIS Sold Through Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of SIS Sold Through Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\SIS Sold Through\LY-1
-		lineageTag: e6c92f70-c109-4105-90a5-a99626c62336
-
 	measure 'SIS Sold Through Dispatch vs LY' =
 			VAR act = [SIS Sold Through Dispatch]
 			VAR comp = [SIS Sold Through Dispatch LY]
@@ -2988,17 +2341,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Dispatch\SIS Sold Through\LY
 		lineageTag: 57c01db3-e74e-4ff9-9cef-5494270a9d77
-
-	measure 'SIS Sold Through Dispatch vs LY-1' =
-			VAR act = [SIS Sold Through Dispatch]
-			VAR comp = [SIS Sold Through Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of SIS Sold Through Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\SIS Sold Through\LY-1
-		lineageTag: 8b9960a6-01ee-4a56-9a00-c454d2425d76
 
 	measure 'SIS Sold Through Dispatch LW' =
 			CALCULATE (
@@ -3074,16 +2416,6 @@ table 1_Measures
 		displayFolder: Margin\Orders\Buying Margin\LY
 		lineageTag: 720db11c-0aa8-485f-b897-f8d4a23938a3
 
-	measure 'Buying Margin Orders LY-1' =
-			CALCULATE (
-			    [Buying Margin Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Buying Margin Orders LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Orders\Buying Margin\LY-1
-		lineageTag: 2850d703-f97c-485d-8f72-d13230242064
-
 	measure 'Buying Margin Orders vs LY' =
 			VAR act = [Buying Margin Orders]
 			VAR comp = [Buying Margin Orders LY]
@@ -3094,17 +2426,6 @@ table 1_Measures
 		displayFolder: Margin\Orders\Buying Margin\LY
 		lineageTag: 09579f53-e99d-4ce8-9fd3-03c5a586efc1
 
-	measure 'Buying Margin Orders vs LY-1' =
-			VAR act = [Buying Margin Orders]
-			VAR comp = [Buying Margin Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Buying Margin Orders vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Orders\Buying Margin\LY-1
-		lineageTag: afebb046-6fdd-4b7c-8136-15c25f820e3a
-
 	measure 'Buying Margin % Orders LY' =
 			CALCULATE (
 			    [Buying Margin % Orders],
@@ -3113,16 +2434,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Orders\Buying Margin\LY
 		lineageTag: 40f742c7-7037-4ccb-8f0e-148ffb0665d1
-
-	measure 'Buying Margin % Orders LY-1' =
-			CALCULATE (
-			    [Buying Margin % Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Buying Margin % Orders LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Orders\Buying Margin\LY-1
-		lineageTag: 03221e86-ae22-4f78-823a-ecbc345cf871
 
 	measure 'Buying Margin % Orders vs LY' =
 			VAR act = [Buying Margin % Orders]
@@ -3133,17 +2444,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Orders\Buying Margin\LY
 		lineageTag: 69808ee0-f061-457c-b3b8-57c8313252a4
-
-	measure 'Buying Margin % Orders vs LY-1' =
-			VAR act = [Buying Margin % Orders]
-			VAR comp = [Buying Margin % Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Buying Margin % Orders vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Orders\Buying Margin\LY-1
-		lineageTag: 216b74d4-fc10-40a6-954a-f447072e0ae1
 
 	measure 'Buying Margin Orders vs LY %' =
 			VAR act = [Buying Margin Orders]
@@ -3231,16 +2531,6 @@ table 1_Measures
 		displayFolder: Margin\Orders\Markdown\LY
 		lineageTag: 543bfcf9-fd99-438b-b884-f6aeb53ed8fa
 
-	measure 'Markdown Orders LY-1' =
-			CALCULATE (
-			    [Markdown Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Markdown Orders LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Orders\Markdown\LY-1
-		lineageTag: c3562100-120f-4eb7-ade3-0b67da73244a
-
 	measure 'Markdown Orders vs LY' =
 			VAR act = [Markdown Orders]
 			VAR comp = [Markdown Orders LY]
@@ -3251,17 +2541,6 @@ table 1_Measures
 		displayFolder: Margin\Orders\Markdown\LY
 		lineageTag: 769ced0d-9f6c-4472-a24d-a442e14570ae
 
-	measure 'Markdown Orders vs LY-1' =
-			VAR act = [Markdown Orders]
-			VAR comp = [Markdown Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Markdown Orders vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Orders\Markdown\LY-1
-		lineageTag: ed5e9c11-d31d-499e-a32f-2e87fc939951
-
 	measure 'Markdown % SRIV Orders LY' =
 			CALCULATE (
 			    [Markdown % SRIV Orders],
@@ -3270,16 +2549,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Orders\Markdown\LY
 		lineageTag: e479a3b1-85be-4f60-aa1c-453b40ecf577
-
-	measure 'Markdown % SRIV Orders LY-1' =
-			CALCULATE (
-			    [Markdown % SRIV Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Markdown % SRIV Orders LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Orders\Markdown\LY-1
-		lineageTag: 0886a307-4146-4a21-a834-b44adce8bc29
 
 	measure 'Markdown % SRIV Orders vs LY' =
 			VAR act = [Markdown % SRIV Orders]
@@ -3290,17 +2559,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Orders\Markdown\LY
 		lineageTag: e2f36eec-cb49-4c08-9384-cc7d9465b27b
-
-	measure 'Markdown % SRIV Orders vs LY-1' =
-			VAR act = [Markdown % SRIV Orders]
-			VAR comp = [Markdown % SRIV Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Markdown % SRIV Orders vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Orders\Markdown\LY-1
-		lineageTag: 6627e4f2-3cf4-4cd9-90d0-a81cbdc24d75
 
 	measure 'Markdown Orders vs LY %' =
 			VAR act = [Markdown Orders]
@@ -3377,22 +2635,6 @@ table 1_Measures
 		displayFolder: Margin\Buying Margin\LY
 		lineageTag: f8dacf5b-20c0-42fa-891c-b5fcb9e61081
 
-	measure 'Buying Margin LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [Buying Margin Orders LY-1],
-			        "Dispatch", [Buying Margin Dispatch LY-1],
-			        [Buying Margin Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of Buying Margin LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Buying Margin\LY-1
-		lineageTag: 1084de24-1caa-45f6-90ad-3e4cf73b9e40
-
 	measure 'Buying Margin vs LY' =
 			VAR act = [Buying Margin]
 			VAR comp = [Buying Margin LY]
@@ -3402,17 +2644,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Buying Margin\LY
 		lineageTag: bb71f5dd-2fa5-4a51-a6c4-319ddf2b2c42
-
-	measure 'Buying Margin vs LY-1' =
-			VAR act = [Buying Margin]
-			VAR comp = [Buying Margin LY-1]
-			VAR result = act - comp
-			RETURN
-			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
-		description: Two years ago equivalent of Buying Margin vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Buying Margin\LY-1
-		lineageTag: 09e1e720-4172-4f99-89f7-bf02a9c4d63c
 
 	measure 'Buying Margin % LY' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -3429,22 +2660,6 @@ table 1_Measures
 		displayFolder: Margin\Buying Margin\LY
 		lineageTag: 1aa6b99d-7be9-45a2-8555-fbbab9efb026
 
-	measure 'Buying Margin % LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [Buying Margin % Orders LY-1],
-			        "Dispatch", [Buying Margin % Dispatch LY-1],
-			        [Buying Margin % Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of Buying Margin % LY.
-		formatString: 0.0%;(0.0)%
-		displayFolder: Margin\Buying Margin\LY-1
-		lineageTag: b981f889-fef3-4e38-b5a9-712a633efeb9
-
 	measure 'Buying Margin % vs LY' =
 			VAR act = [Buying Margin %]
 			VAR comp = [Buying Margin % LY]
@@ -3454,17 +2669,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Buying Margin\LY
 		lineageTag: 3e8908e5-8f56-4252-9848-3600e88f93c7
-
-	measure 'Buying Margin % vs LY-1' =
-			VAR act = [Buying Margin %]
-			VAR comp = [Buying Margin % LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Buying Margin % vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Buying Margin\LY-1
-		lineageTag: 4c795607-aae8-402b-81c9-09d3d7be8c53
 
 	measure 'Buying Margin vs LY %' =
 			VAR act = [Buying Margin]
@@ -3583,22 +2787,6 @@ table 1_Measures
 		displayFolder: Margin\Markdown\LY
 		lineageTag: 3e9efd68-484d-456c-9d8a-f3ba3c7d1ab6
 
-	measure 'Markdown LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [Markdown Orders LY-1],
-			        "Dispatch", [Markdown Dispatch LY-1],
-			        [Markdown Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of Markdown LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Markdown\LY-1
-		lineageTag: efa5aee2-5f13-490c-9ada-89557e3bb75e
-
 	measure 'Markdown vs LY' =
 			VAR act = [Markdown]
 			VAR comp = [Markdown LY]
@@ -3608,17 +2796,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Markdown\LY
 		lineageTag: f69cc750-c93d-4568-94af-5c55a7d95b50
-
-	measure 'Markdown vs LY-1' =
-			VAR act = [Markdown]
-			VAR comp = [Markdown LY-1]
-			VAR result = act - comp
-			RETURN
-			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
-		description: Two years ago equivalent of Markdown vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Markdown\LY-1
-		lineageTag: a331dea8-d402-4b81-bfb5-8b0d6c8111f5
 
 	measure 'Markdown % SRIV LY' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -3635,22 +2812,6 @@ table 1_Measures
 		displayFolder: Margin\Markdown\LY
 		lineageTag: 9d41ba2f-d084-43aa-80c8-cbd22bfd04ce
 
-	measure 'Markdown % SRIV LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [Markdown % SRIV Orders LY-1],
-			        "Dispatch", [Markdown % SRIV Dispatch LY-1],
-			        [Markdown % SRIV Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of Markdown % SRIV LY.
-		formatString: 0.0%;(0.0)%
-		displayFolder: Margin\Markdown\LY-1
-		lineageTag: f836d059-b01b-4ec1-b88b-7e08d7987c76
-
 	measure 'Markdown % SRIV vs LY' =
 			VAR act = [Markdown % SRIV]
 			VAR comp = [Markdown % SRIV LY]
@@ -3660,17 +2821,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Markdown\LY
 		lineageTag: 1afd63ae-6e9d-4b6b-bdac-f65b2661cfdb
-
-	measure 'Markdown % SRIV vs LY-1' =
-			VAR act = [Markdown % SRIV]
-			VAR comp = [Markdown % SRIV LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Markdown % SRIV vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Markdown\LY-1
-		lineageTag: 307a34f3-2c42-4f7a-a639-7a40c679f672
 
 	measure 'Markdown vs LY %' =
 			VAR act = [Markdown]
@@ -3758,16 +2908,6 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\FP SRIV\LY
 		lineageTag: 46efb04e-e500-4b97-9f58-ecb6cd2e91ef
 
-	measure 'FP SRIV Dispatch LY-1' =
-			CALCULATE (
-			    [FP SRIV Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of FP SRIV Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\FP SRIV\LY-1
-		lineageTag: 794b375d-af61-4b69-b4f9-6ea94e39b49e
-
 	measure 'FP SRIV Dispatch vs LY' =
 			VAR act = [FP SRIV Dispatch]
 			VAR comp = [FP SRIV Dispatch LY]
@@ -3777,17 +2917,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Dispatch\FP SRIV\LY
 		lineageTag: 585b48a7-313a-44d9-896c-5f8af08550bc
-
-	measure 'FP SRIV Dispatch vs LY-1' =
-			VAR act = [FP SRIV Dispatch]
-			VAR comp = [FP SRIV Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of FP SRIV Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\FP SRIV\LY-1
-		lineageTag: 416b2ebe-c522-4a6c-85ce-761e7bf1ab5f
 
 	measure 'FP SRIV Dispatch vs LY %' =
 			VAR act = [FP SRIV Dispatch]
@@ -3845,16 +2974,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Other GSM Adj\LY
 		lineageTag: b3700d4d-ee2d-4fa8-9858-30ade31934a7
 
-	measure 'Other GSM Adj Dispatch LY-1' =
-			CALCULATE (
-			    [Other GSM Adj Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Other GSM Adj Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\Other GSM Adj\LY-1
-		lineageTag: 50d302fb-85c3-4c94-ad86-e7c85458ce6b
-
 	measure 'Other GSM Adj Dispatch vs LY' =
 			VAR act = [Other GSM Adj Dispatch]
 			VAR comp = [Other GSM Adj Dispatch LY]
@@ -3864,17 +2983,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Dispatch\Other GSM Adj\LY
 		lineageTag: 1e201b19-3cb6-4cbc-9af4-a9a30eea2dab
-
-	measure 'Other GSM Adj Dispatch vs LY-1' =
-			VAR act = [Other GSM Adj Dispatch]
-			VAR comp = [Other GSM Adj Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Other GSM Adj Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\Other GSM Adj\LY-1
-		lineageTag: bde55ddd-de11-45c7-9107-d523bdde5e12
 
 	measure 'Other GSM Adj Dispatch LW' =
 			CALCULATE (
@@ -3916,16 +3024,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Staff Discount & Loyalty\LY
 		lineageTag: 52474ca4-76db-4d4d-ba91-9e639aa960c8
 
-	measure 'Staff Discount & Loyalty Dispatch LY-1' =
-			CALCULATE (
-			    [Staff Discount & Loyalty Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Staff Discount & Loyalty Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\Staff Discount & Loyalty\LY-1
-		lineageTag: e40f43e1-5180-40ff-a01a-cd9d956afbfe
-
 	measure 'Staff Discount & Loyalty Dispatch vs LY' =
 			VAR act = [Staff Discount & Loyalty Dispatch]
 			VAR comp = [Staff Discount & Loyalty Dispatch LY]
@@ -3935,17 +3033,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Dispatch\Staff Discount & Loyalty\LY
 		lineageTag: 28a6d67b-2596-4cd9-a163-39f3dd9be7ce
-
-	measure 'Staff Discount & Loyalty Dispatch vs LY-1' =
-			VAR act = [Staff Discount & Loyalty Dispatch]
-			VAR comp = [Staff Discount & Loyalty Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Staff Discount & Loyalty Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\Staff Discount & Loyalty\LY-1
-		lineageTag: 742f6dda-228f-42ec-81d3-6316c41d42cd
 
 	measure 'Staff Discount & Loyalty Dispatch LW' =
 			CALCULATE (
@@ -3975,16 +3062,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Depth Of Cut\LY
 		lineageTag: ab04c740-2e32-42be-ad5a-882af248c817
 
-	measure 'Depth Of Cut Dispatch LY-1' =
-			CALCULATE (
-			    [Depth Of Cut Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Depth Of Cut Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\Depth Of Cut\LY-1
-		lineageTag: 9a0d2304-023b-4e65-853d-d0501f60c3a9
-
 	measure 'Depth Of Cut Dispatch vs LY' =
 			VAR act = [Depth Of Cut Dispatch]
 			VAR comp = [Depth Of Cut Dispatch LY]
@@ -3994,17 +3071,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Dispatch\Depth Of Cut\LY
 		lineageTag: 0af48f75-f809-49c7-a9ab-aff0669bcf5a
-
-	measure 'Depth Of Cut Dispatch vs LY-1' =
-			VAR act = [Depth Of Cut Dispatch]
-			VAR comp = [Depth Of Cut Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Depth Of Cut Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\Depth Of Cut\LY-1
-		lineageTag: 0f2197f6-4b3a-4e15-8b76-c3b38a458274
 
 	measure 'Depth Of Cut Dispatch LW' =
 			CALCULATE (
@@ -4045,16 +3111,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Depth Of Cut\LY
 		lineageTag: 4b073dde-cbc9-47dc-877f-676807fae7b3
 
-	measure 'Depth Of Cut % Dispatch LY-1' =
-			CALCULATE (
-			    [Depth Of Cut % Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Depth Of Cut % Dispatch LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Dispatch\Depth Of Cut\LY-1
-		lineageTag: 3da42448-9fc4-4a9e-8bcf-e429b98d8f16
-
 	measure 'Depth Of Cut % Dispatch vs LY' =
 			VAR act = [Depth Of Cut % Dispatch]
 			VAR comp = [Depth Of Cut % Dispatch LY]
@@ -4064,17 +3120,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Dispatch\Depth Of Cut\LY
 		lineageTag: d4f49d3d-f703-4d50-80fc-7416f427ad68
-
-	measure 'Depth Of Cut % Dispatch vs LY-1' =
-			VAR act = [Depth Of Cut % Dispatch]
-			VAR comp = [Depth Of Cut % Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Depth Of Cut % Dispatch vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Dispatch\Depth Of Cut\LY-1
-		lineageTag: d7bc1bf7-b285-447f-b564-67fc1d39984f
 
 	measure 'Depth Of Cut % Dispatch LW' =
 			CALCULATE (
@@ -4118,16 +3163,6 @@ table 1_Measures
 		displayFolder: Sales\Orders\Discount Participation\LY
 		lineageTag: 315b6a0f-a3ef-4c63-8a69-6a9dcc6d0953
 
-	measure 'Discount Participation % Orders LY-1' =
-			CALCULATE (
-			    [Discount Participation % Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Discount Participation % Orders LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Orders\Discount Participation\LY-1
-		lineageTag: f56c6c08-be65-4428-99a9-a7f99dd4b910
-
 	measure 'Discount Participation % Orders LW' =
 			CALCULATE (
 			    [Discount Participation % Orders],
@@ -4146,17 +3181,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Orders\Discount Participation\LY
 		lineageTag: 67c59955-64cc-4420-939b-96a80fbb0180
-
-	measure 'Discount Participation % Orders vs LY-1' =
-			VAR act = [Discount Participation % Orders]
-			VAR comp = [Discount Participation % Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Discount Participation % Orders vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Orders\Discount Participation\LY-1
-		lineageTag: ab26cd5d-aaf6-43b0-9a07-3c4fc70fed36
 
 	measure 'Discount Participation % Orders vs LW' =
 			VAR act = [Discount Participation % Orders]
@@ -4188,16 +3212,6 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\Discount Participation\LY
 		lineageTag: 189e0777-54d2-4c55-8e80-0b29fb31c93a
 
-	measure 'Discount Participation % Dispatch LY-1' =
-			CALCULATE (
-			    [Discount Participation % Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Discount Participation % Dispatch LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Dispatch\Discount Participation\LY-1
-		lineageTag: d3e06ffe-baca-46cf-8f3e-cc98afb4675b
-
 	measure 'Discount Participation % Dispatch vs LY' =
 			VAR act = [Discount Participation % Dispatch]
 			VAR comp = [Discount Participation % Dispatch LY]
@@ -4207,17 +3221,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Dispatch\Discount Participation\LY
 		lineageTag: eaa67874-7c3e-4c21-8a6f-af0818e5b7cc
-
-	measure 'Discount Participation % Dispatch vs LY-1' =
-			VAR act = [Discount Participation % Dispatch]
-			VAR comp = [Discount Participation % Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Discount Participation % Dispatch vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Dispatch\Discount Participation\LY-1
-		lineageTag: 36913944-d866-4c66-9afa-c62bbb163688
 
 	measure 'Discount Participation % Dispatch LW' =
 			CALCULATE (
@@ -4268,22 +3271,6 @@ table 1_Measures
 		displayFolder: Sales\Discount Participation\LY
 		lineageTag: bd18885c-78c0-4936-9479-04e5ee8983dc
 
-	measure 'Discount Participation % LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [Discount Participation % Orders LY-1],
-			        "Dispatch", [Discount Participation % Dispatch LY-1],
-			        [Discount Participation % Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of Discount Participation % LY.
-		formatString: 0.0%;(0.0)%
-		displayFolder: Sales\Discount Participation\LY-1
-		lineageTag: 9ba9e0c7-db15-455e-a754-386bf1e78d59
-
 	measure 'Discount Participation % vs LY' =
 			VAR act = [Discount Participation %]
 			VAR comp = [Discount Participation % LY]
@@ -4293,17 +3280,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Discount Participation\LY
 		lineageTag: 255f1524-d016-47ed-b68e-534949990f77
-
-	measure 'Discount Participation % vs LY-1' =
-			VAR act = [Discount Participation %]
-			VAR comp = [Discount Participation % LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Discount Participation % vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Discount Participation\LY-1
-		lineageTag: f9172a2b-a32c-4461-ad74-52010a10e724
 
 	measure 'Discount Participation % LW' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -5157,6 +4133,7 @@ table 1_Measures
 
 	measure 'SRIV BUD' = ```
 			
+			 
 			VAR firstweek_yr = [SlctdBudVersion]
 			//Generate Temp Table
 			VAR salesTable =
@@ -6004,6 +4981,7 @@ table 1_Measures
 			RETURN
 			    SUMX ( salesTable, [Actualised] ) 
 			
+			 
 			/*VAR result = [Buying Margin Orders BUD]
 			RETURN
 			    result*/
@@ -6277,16 +5255,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Postings\LY
 		lineageTag: 4aea5ced-b945-4730-8199-3677ca9884f7
 
-	measure 'GSM Postings Dispatch LY-1' =
-			CALCULATE (
-			    [GSM Postings Dispatch],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of GSM Postings Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\Postings\LY-1
-		lineageTag: 24f8ade3-82bb-4ced-a647-6516edd8a66f
-
 	measure 'GSM Postings Dispatch vs LY' =
 			VAR act = [GSM Postings Dispatch]
 			VAR comp = [GSM Postings Dispatch LY]
@@ -6296,17 +5264,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Dispatch\Postings\LY
 		lineageTag: 9125bbab-1c7f-4d3a-8333-3d4364af18bb
-
-	measure 'GSM Postings Dispatch vs LY-1' =
-			VAR act = [GSM Postings Dispatch]
-			VAR comp = [GSM Postings Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of GSM Postings Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\Postings\LY-1
-		lineageTag: 6b0f7ea6-2615-4f4c-b17a-9d1b9112144a
 
 	measure 'GSM Postings Dispatch vs LY %' =
 			VAR act = [GSM Postings Dispatch]
@@ -6371,18 +5328,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch vs Orders\GSM\LY
 		lineageTag: 40e38174-742b-48ef-b79e-4492af4093c6
 
-	measure 'GSM Dispatch vs Orders LY-1' =
-			VAR dispatch = [GSM Dispatch LY-1]
-			VAR orders = [GSM Orders LY-1]
-			VAR postings = [GSM Postings Dispatch LY-1]
-			VAR result = dispatch - postings - orders
-			RETURN
-			    result
-		description: Two years ago equivalent of GSM Dispatch vs Orders LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch vs Orders\GSM\LY-1
-		lineageTag: 5d58d737-b00b-41d1-9630-4984eb5323c3
-
 	measure 'GSM Dispatch vs Orders vs LY' =
 			VAR act = [GSM Dispatch vs Orders]
 			VAR comp = [GSM Dispatch vs Orders LY]
@@ -6392,17 +5337,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Dispatch vs Orders\GSM\LY
 		lineageTag: 2cd5604c-02ad-4cd9-8244-e237729baae1
-
-	measure 'GSM Dispatch vs Orders vs LY-1' =
-			VAR act = [GSM Dispatch vs Orders]
-			VAR comp = [GSM Dispatch vs Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of GSM Dispatch vs Orders vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch vs Orders\GSM\LY-1
-		lineageTag: 18d78f4f-8b77-4387-a96a-ad8156691232
 
 	measure 'GSM Dispatch vs Orders vs LY %' =
 			VAR act = [GSM Dispatch vs Orders]
@@ -6742,6 +5676,7 @@ table 1_Measures
 
 	measure 'GSM BUD' =
 			
+			
 			VAR firstweek_yr = [SlctdBudVersion]
 			//Generate Temp Table
 			VAR salesTable =
@@ -6754,6 +5689,8 @@ table 1_Measures
 			    )       )
 			RETURN
 			    SUMX ( salesTable, [Actualised] )
+			
+			
 			
 			/*VAR result = [GSM Orders BUD]
 			RETURN
@@ -7624,16 +6561,6 @@ table 1_Measures
 		displayFolder: Stock\Closing Stk\LY
 		lineageTag: 34127192-df2e-469c-bdad-73790433dc63
 
-	measure 'Stock LY-1' =
-			CALCULATE (
-			    [Stock],
-			    USERELATIONSHIP ( factStock[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Stock LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Stock\Closing Stk\LY-1
-		lineageTag: 02502b75-517b-42c4-9254-8acb86779f3b
-
 	measure 'Stock vs LY' =
 			VAR act = [Stock]
 			VAR comp = [Stock LY]
@@ -7643,17 +6570,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Stock\Closing Stk\LY
 		lineageTag: 22d4244a-c4d0-47ab-a4b2-0543eb073285
-
-	measure 'Stock vs LY-1' =
-			VAR act = [Stock]
-			VAR comp = [Stock LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Stock vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Stock\Closing Stk\LY-1
-		lineageTag: 6e862cab-ec0b-4e1b-b3c1-4cec15aa3fb2
 
 	measure 'Stock LW' =
 			CALCULATE (
@@ -7743,16 +6659,6 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\Sales Mix\Promo\LY
 		lineageTag: 78f83b3d-fc58-4454-a668-3c2f0ad6f708
 
-	measure 'Promo Mix % Dispatch LY-1' =
-			CALCULATE (
-			    [Promo Mix % Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Promo Mix % Dispatch LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Dispatch\Sales Mix\Promo\LY-1
-		lineageTag: 1348a39e-513f-444a-987c-cc81aaab6ee2
-
 	measure 'Promo Mix % Dispatch' =
 			VAR num = [P SRIV Dispatch]
 			VAR denom = [FPP SRIV Dispatch]
@@ -7774,18 +6680,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Dispatch\Sales Mix\Promo\LY
 		lineageTag: 2bfa410c-cb30-46eb-95cb-f5a459a06648
-
-	measure 'Promo Mix % Dispatch vs LY-1' =
-			VAR act = [Promo Mix % Dispatch]
-			VAR comp = [Promo Mix % Dispatch LY-1]
-			VAR result =
-			    DIVIDE ( act - comp, comp )
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of Promo Mix % Dispatch vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Dispatch\Sales Mix\Promo\LY-1
-		lineageTag: 79738560-4bad-4663-af1a-600bdbfd8b89
 
 	measure 'Promo Mix % Dispatch LW' =
 			CALCULATE (
@@ -7847,16 +6741,6 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\Sales Mix\FPP\LY
 		lineageTag: a54833bd-600a-4945-847e-28d0c5a7344e
 
-	measure 'FPP Mix % Dispatch LY-1' =
-			CALCULATE (
-			    [FPP Mix % Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of FPP Mix % Dispatch LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Dispatch\Sales Mix\FPP\LY-1
-		lineageTag: f5a602ba-be40-4fde-ac31-665e629c7cef
-
 	measure 'FPP Mix % Dispatch vs LY' =
 			VAR act = [FPP Mix % Dispatch]
 			VAR comp = [FPP Mix % Dispatch LY]
@@ -7867,18 +6751,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Dispatch\Sales Mix\FPP\LY
 		lineageTag: 44053d0e-60f6-44dd-9d91-e1e3e266c59f
-
-	measure 'FPP Mix % Dispatch vs LY-1' =
-			VAR act = [FPP Mix % Dispatch]
-			VAR comp = [FPP Mix % Dispatch LY-1]
-			VAR result =
-			    DIVIDE ( act - comp, comp )
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of FPP Mix % Dispatch vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Dispatch\Sales Mix\FPP\LY-1
-		lineageTag: f1d4613c-0299-4289-b2cf-c4510843a06f
 
 	measure 'Reduced Mix % Dispatch' =
 			VAR num = [RP SRIV Dispatch]
@@ -7920,16 +6792,6 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\Sales Mix\Reduced\LY
 		lineageTag: c02538ee-3edc-4969-9d69-6cd56a23538f
 
-	measure 'Reduced Mix % Dispatch LY-1' =
-			CALCULATE (
-			    [Reduced Mix % Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Reduced Mix % Dispatch LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Dispatch\Sales Mix\Reduced\LY-1
-		lineageTag: 2a0106be-959f-4df8-8b63-656aaca9129d
-
 	measure 'Reduced Mix % Dispatch vs LY' =
 			VAR act = [Reduced Mix % Dispatch]
 			VAR comp = [Reduced Mix % Dispatch LY]
@@ -7940,18 +6802,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Dispatch\Sales Mix\Reduced\LY
 		lineageTag: 7becbeb1-e8db-490c-90c0-155a4f2c78d3
-
-	measure 'Reduced Mix % Dispatch vs LY-1' =
-			VAR act = [Reduced Mix % Dispatch]
-			VAR comp = [Reduced Mix % Dispatch LY-1]
-			VAR result =
-			    DIVIDE ( act - comp, comp )
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of Reduced Mix % Dispatch vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Dispatch\Sales Mix\Reduced\LY-1
-		lineageTag: 0e9ee5d7-c293-4794-9671-e2fa1e484f8b
 
 	measure 'Promo Mix % Orders' =
 			VAR num =
@@ -7995,16 +6845,6 @@ table 1_Measures
 		displayFolder: Sales\Orders\Sales Mix\Promo\LY
 		lineageTag: e6db3661-3229-4a21-a731-beef6603ad8c
 
-	measure 'Promo Mix % Orders LY-1' =
-			CALCULATE (
-			    [Promo Mix % Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Promo Mix % Orders LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Orders\Sales Mix\Promo\LY-1
-		lineageTag: 33c4d2c2-aac3-478a-a54a-a85dbc85a3dd
-
 	measure 'Promo Mix % Orders vs LY' =
 			VAR act = [Promo Mix % Orders]
 			VAR comp = [Promo Mix % Orders LY]
@@ -8015,18 +6855,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Orders\Sales Mix\Promo\LY
 		lineageTag: 0adfbe23-609d-411b-95ea-d6c1ca38e2cc
-
-	measure 'Promo Mix % Orders vs LY-1' =
-			VAR act = [Promo Mix % Orders]
-			VAR comp = [Promo Mix % Orders LY-1]
-			VAR result =
-			    DIVIDE ( act - comp, comp )
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of Promo Mix % Orders vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Orders\Sales Mix\Promo\LY-1
-		lineageTag: be049884-b613-47ae-b5c7-5549fba12bab
 
 	measure 'FPP Mix % Orders' =
 			VAR num =
@@ -8070,16 +6898,6 @@ table 1_Measures
 		displayFolder: Sales\Orders\Sales Mix\FPP\LY
 		lineageTag: 201c5988-ba87-47dd-9799-b4b6cd5f38c0
 
-	measure 'FPP Mix % Orders LY-1' =
-			CALCULATE (
-			    [FPP Mix % Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of FPP Mix % Orders LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Orders\Sales Mix\FPP\LY-1
-		lineageTag: 0054f770-8599-4736-861a-8487efc69827
-
 	measure 'FPP Mix % Orders vs LY' =
 			VAR act = [FPP Mix % Orders]
 			VAR comp = [FPP Mix % Orders LY]
@@ -8090,18 +6908,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Orders\Sales Mix\FPP\LY
 		lineageTag: 39645894-ee48-4313-b1a0-e87a03c70ac4
-
-	measure 'FPP Mix % Orders vs LY-1' =
-			VAR act = [FPP Mix % Orders]
-			VAR comp = [FPP Mix % Orders LY-1]
-			VAR result =
-			    DIVIDE ( act - comp, comp )
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of FPP Mix % Orders vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Orders\Sales Mix\FPP\LY-1
-		lineageTag: 70ce6781-0b84-44bb-a1cb-2f95681239df
 
 	measure 'Reduced Mix % Orders' =
 			VAR num =
@@ -8145,16 +6951,6 @@ table 1_Measures
 		displayFolder: Sales\Orders\Sales Mix\Reduced\LY
 		lineageTag: 6e70ea0e-f261-44da-80eb-cabe73307029
 
-	measure 'Reduced Mix % Orders LY-1' =
-			CALCULATE (
-			    [Reduced Mix % Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Reduced Mix % Orders LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Orders\Sales Mix\Reduced\LY-1
-		lineageTag: 7dddffeb-6b3b-4ff6-bcbd-544dc16da323
-
 	measure 'Reduced Mix % Orders vs LY' =
 			VAR act = [Reduced Mix % Orders]
 			VAR comp = [Reduced Mix % Orders LY]
@@ -8165,18 +6961,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Orders\Sales Mix\Reduced\LY
 		lineageTag: 41fe7c00-2968-4272-bc45-4b83ff6e91bc
-
-	measure 'Reduced Mix % Orders vs LY-1' =
-			VAR act = [Reduced Mix % Orders]
-			VAR comp = [Reduced Mix % Orders LY-1]
-			VAR result =
-			    DIVIDE ( act - comp, comp )
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of Reduced Mix % Orders vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Orders\Sales Mix\Reduced\LY-1
-		lineageTag: 4fa8db80-4f78-4249-959a-fbc2ac41aa6c
 
 	measure 'Promo Mix % LW' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -8208,22 +6992,6 @@ table 1_Measures
 		displayFolder: Sales\Sales Mix\Promo\LY
 		lineageTag: 80d90e67-ddec-4360-abb8-b128340a353c
 
-	measure 'Promo Mix % LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [Promo Mix % Orders LY-1],
-			        "Dispatch", [Promo Mix % Dispatch LY-1],
-			        [Promo Mix % Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of Promo Mix % LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Sales Mix\Promo\LY-1
-		lineageTag: a194852d-76a6-4aeb-8a5b-27b604b1ac36
-
 	measure 'Promo Mix % vs LW' =
 			VAR act = [Promo Mix %]
 			VAR comp = [Promo Mix % LW]
@@ -8245,18 +7013,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Sales Mix\Promo\LY
 		lineageTag: 43fe3df7-4080-4141-b549-4d6198cf386c
-
-	measure 'Promo Mix % vs LY-1' =
-			VAR act = [Promo Mix %]
-			VAR comp = [Promo Mix % LY-1]
-			VAR result =
-			    DIVIDE ( act - comp, comp )
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of Promo Mix % vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Sales Mix\Promo\LY-1
-		lineageTag: 13e6d338-6b41-4704-94af-0440cdb9ac25
 
 	measure 'FPP Mix %' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -8314,22 +7070,6 @@ table 1_Measures
 		displayFolder: Sales\Sales Mix\FPP\LY
 		lineageTag: a9091e2c-bb43-4f78-822e-283d88417cce
 
-	measure 'FPP Mix % LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [FPP Mix % Orders LY-1],
-			        "Dispatch", [FPP Mix % Dispatch LY-1],
-			        [FPP Mix % Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of FPP Mix % LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Sales Mix\FPP\LY-1
-		lineageTag: b1975a61-bbd7-4e32-acb1-0f1ebba13342
-
 	measure 'FPP Mix % vs LY' =
 			VAR act = [FPP Mix %]
 			VAR comp = [FPP Mix % LY]
@@ -8340,18 +7080,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Sales Mix\FPP\LY
 		lineageTag: e80109f0-b390-4d78-b2d2-277073fe7d18
-
-	measure 'FPP Mix % vs LY-1' =
-			VAR act = [FPP Mix %]
-			VAR comp = [FPP Mix % LY-1]
-			VAR result =
-			    DIVIDE ( act - comp, comp )
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of FPP Mix % vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Sales Mix\FPP\LY-1
-		lineageTag: 57701984-0804-4924-9b23-2514c73cda04
 
 	measure 'Reduced Mix %' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -8409,22 +7137,6 @@ table 1_Measures
 		displayFolder: Sales\Sales Mix\Reduced\LY
 		lineageTag: aa2d70fd-520d-4568-8816-5ed3f3737ca1
 
-	measure 'Reduced Mix % LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [Reduced Mix % Orders LY-1],
-			        "Dispatch", [Reduced Mix % Dispatch LY-1],
-			        [Reduced Mix % Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of Reduced Mix % LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Sales Mix\Reduced\LY-1
-		lineageTag: 4f68729d-c253-4941-af89-47ceb7e8b8bd
-
 	measure 'Reduced Mix % vs LY' =
 			VAR act = [Reduced Mix %]
 			VAR comp = [Reduced Mix % LY]
@@ -8435,18 +7147,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Sales Mix\Reduced\LY
 		lineageTag: cf9107d5-ad5c-44fb-9274-9c038dd5151b
-
-	measure 'Reduced Mix % vs LY-1' =
-			VAR act = [Reduced Mix %]
-			VAR comp = [Reduced Mix % LY-1]
-			VAR result =
-			    DIVIDE ( act - comp, comp )
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of Reduced Mix % vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Sales Mix\Reduced\LY-1
-		lineageTag: c4108003-cea4-4fd7-91ee-d11b8ad4aab7
 
 	measure LatestSalesOrdersFiscalWeek =
 			CALCULATE (
@@ -8617,30 +7317,6 @@ table 1_Measures
 		displayFolder: Transactions\Transactions\LY
 		lineageTag: d75c2084-7ded-4b2f-b92f-2b5c0365b98a
 
-	measure 'Transactions LY-1' =
-			VAR store =
-			    CALCULATE (
-			        [Store Transactions],
-			        USERELATIONSHIP ( factTransactions[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			    )
-			VAR online = [factAdobe Orders LY-1]
-			VAR channel =
-			    SELECTEDVALUE ( ChannelControl[Channel] )
-			VAR result =
-			    SWITCH (
-			        channel,
-			        "Stores", store,
-			        "Online", online,
-			        "Total", store + online,
-			        BLANK ()
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of Transactions LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Transactions\Transactions\LY-1
-		lineageTag: 8e450ebf-e1bc-4330-848d-1f6226b20ab8
-
 	measure 'Transactions LW' =
 			VAR store =
 			    CALCULATE (
@@ -8673,17 +7349,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Transactions\Transactions\LY
 		lineageTag: 118292bd-0146-4536-9846-83d67c9a0d9e
-
-	measure 'Transactions vs LY-1' =
-			VAR act = [Transactions]
-			VAR comp = [Transactions LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Transactions vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Transactions\Transactions\LY-1
-		lineageTag: 76a3684b-1a67-4d71-b766-2dfec36c184a
 
 	measure 'Transactions vs LY %' =
 			VAR act = [Transactions]
@@ -8726,16 +7391,6 @@ table 1_Measures
 		displayFolder: Transactions\Items\LY
 		lineageTag: aa18f369-1b10-48d3-ad17-77486f2ae8bd
 
-	measure 'Items LY-1' =
-			CALCULATE (
-			    [Items],
-			    USERELATIONSHIP ( factTransactions[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Items LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Transactions\Items\LY-1
-		lineageTag: 8d9a60d4-ca60-4751-afb9-67cb1ae29b44
-
 	measure 'Items vs LY' =
 			VAR act = [Items]
 			VAR comp = [Items LY]
@@ -8745,17 +7400,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Transactions\Items\LY
 		lineageTag: 307f8266-143f-49f3-9487-12f038281534
-
-	measure 'Items vs LY-1' =
-			VAR act = [Items]
-			VAR comp = [Items LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Items vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Transactions\Items\LY-1
-		lineageTag: b1d9e5dd-8101-4055-ad40-0d719e44a273
 
 	measure 'Items vs LY %' =
 			VAR act = [Items]
@@ -8809,18 +7453,6 @@ table 1_Measures
 		displayFolder: Transactions\ABV\LY
 		lineageTag: b22263cd-48a0-472e-8592-db82b8392f88
 
-	measure 'ABV LY-1' =
-			VAR num = [Sale Trans Value LY-1]
-			VAR denom = [Transactions LY-1]
-			VAR result =
-			    DIVIDE ( num, denom )
-			RETURN
-			    IF ( OR ( num = BLANK (), denom = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of ABV LY.
-		formatString: #,##0.0;(#,##0.0)
-		displayFolder: Transactions\ABV\LY-1
-		lineageTag: 718066fa-aa1f-4aa7-a892-bd0df87849c7
-
 	measure 'ABV vs LY' =
 			VAR act = [ABV]
 			VAR comp = [ABV LY]
@@ -8830,17 +7462,6 @@ table 1_Measures
 		formatString: #,##0.0;(#,##0.0)
 		displayFolder: Transactions\ABV\LY
 		lineageTag: 785a31e3-4eff-4a4f-b431-9aa6dfdae835
-
-	measure 'ABV vs LY-1' =
-			VAR act = [ABV]
-			VAR comp = [ABV LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of ABV vs LY.
-		formatString: #,##0.0;(#,##0.0)
-		displayFolder: Transactions\ABV\LY-1
-		lineageTag: e2d66a3f-8b97-4254-85ad-0686be2a808b
 
 	measure 'ABV vs LY %' =
 			VAR act = [ABV]
@@ -8907,18 +7528,6 @@ table 1_Measures
 		displayFolder: Transactions\Basket Size\LY
 		lineageTag: eec41c14-e7d3-4c3c-92ce-fcee1dda15c1
 
-	measure 'Basket Size LY-1' =
-			VAR num = [Items LY-1]
-			VAR denom = [Transactions LY-1]
-			VAR result =
-			    DIVIDE ( num, denom )
-			RETURN
-			    IF ( OR ( num = BLANK (), denom = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of Basket Size LY.
-		formatString: #,##0.0;(#,##0.0)
-		displayFolder: Transactions\Basket Size\LY-1
-		lineageTag: 2991a58c-1925-4a22-aebe-4643eb4f7b35
-
 	measure 'Basket Size vs LY' =
 			VAR act = [Basket Size]
 			VAR comp = [Basket Size LY]
@@ -8928,17 +7537,6 @@ table 1_Measures
 		formatString: #,##0.0;(#,##0.0)
 		displayFolder: Transactions\Basket Size\LY
 		lineageTag: a0cb6423-4d3e-439e-875f-d6964e70eb49
-
-	measure 'Basket Size vs LY-1' =
-			VAR act = [Basket Size]
-			VAR comp = [Basket Size LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Basket Size vs LY.
-		formatString: #,##0.0;(#,##0.0)
-		displayFolder: Transactions\Basket Size\LY-1
-		lineageTag: b993d30c-6e69-46c7-a665-06f9a0528d51
 
 	measure 'Basket Size vs LY %' =
 			VAR act = [Basket Size]
@@ -9005,18 +7603,6 @@ table 1_Measures
 		displayFolder: Transactions\ASP\LY
 		lineageTag: c7a53939-d3b6-4db2-84eb-71a827f4fc68
 
-	measure 'ASP LY-1' =
-			VAR num = [Sale Trans Value LY-1]
-			VAR denom = [Items LY-1]
-			VAR result =
-			    DIVIDE ( num, denom )
-			RETURN
-			    IF ( OR ( num = BLANK (), denom = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of ASP LY.
-		formatString: #,##0.0;(#,##0.0)
-		displayFolder: Transactions\ASP\LY-1
-		lineageTag: 0023719f-3906-4489-877f-541c4a5e06c6
-
 	measure 'ASP vs LY' =
 			VAR act = [ASP]
 			VAR comp = [ASP LY]
@@ -9026,17 +7612,6 @@ table 1_Measures
 		formatString: #,##0.0;(#,##0.0)
 		displayFolder: Transactions\ASP\LY
 		lineageTag: 2ea16c63-ed7d-42bb-b742-b4dde8ce5068
-
-	measure 'ASP vs LY-1' =
-			VAR act = [ASP]
-			VAR comp = [ASP LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of ASP vs LY.
-		formatString: #,##0.0;(#,##0.0)
-		displayFolder: Transactions\ASP\LY-1
-		lineageTag: 36921187-ee70-48ab-b4ed-4bf0d39b00f8
 
 	measure 'ASP vs LY %' =
 			VAR act = [ASP]
@@ -9119,26 +7694,6 @@ table 1_Measures
 		displayFolder: Transactions\LY
 		lineageTag: 25783498-afc1-461a-97e8-75d7603ade75
 
-	measure 'Trans LY-1' =
-			VAR metric = [slctd_TransMetric]
-			VAR result =
-			    SWITCH (
-			        metric,
-			        "Visits", [Visits LY-1],
-			        "Conversion", [Conversion % LY-1],
-			        "Transactions", [Transactions LY-1],
-			        "ABV/AOV", [ABV LY-1],
-			        "Items", [Items LY-1],
-			        "ASP", [ASP LY-1],
-			        "Basket Size", [Basket Size LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of Trans LY.
-		formatString: #,##0.0;(#,##0.0)
-		displayFolder: Transactions\LY-1
-		lineageTag: eb7260f5-4917-4436-8e45-cfa8cb7f0910
-
 	measure 'Trans LW' =
 			VAR metric = [slctd_TransMetric]
 			VAR result =
@@ -9166,17 +7721,6 @@ table 1_Measures
 		formatString: #,##0.0;(#,##0.0)
 		displayFolder: Transactions\LY
 		lineageTag: 7e6444fb-c8d4-47c0-8004-9d4c9a7a4bcb
-
-	measure 'Trans vs LY-1' =
-			VAR act = [Trans]
-			VAR comp = [Trans LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Trans vs LY.
-		formatString: #,##0.0;(#,##0.0)
-		displayFolder: Transactions\LY-1
-		lineageTag: ddaf2842-2338-492e-ae0a-bff7c01cc4e3
 
 	measure 'Trans vs LY %' =
 			VAR act = [Trans]
@@ -9245,26 +7789,6 @@ table 1_Measures
 		formatString: #,##0.0;(#,##0.0)
 		displayFolder: Stock\Fwd Cover\LY
 		lineageTag: 18cabd55-f25b-4147-a47a-efc425d018f6
-
-	measure 'Stock Fwd Cover LY-1' =
-			VAR sales_plan = "RF"
-			VAR result =
-			    CALCULATE (
-			        [stock_fwd_cover_base],
-			        ALL ( 'Time Period' ),
-			        ALL ( ForecastScenarios ),
-			        ALL ( BridgeMPPlan ),
-			        FILTER ( ALL ( factForecast[plan] ), factForecast[plan] = sales_plan ),
-			        FILTER ( ALL ( factMPStock[plan] ), factMPStock[plan] = "RF" ),
-			        USERELATIONSHIP ( factMPStock[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] ),
-			        USERELATIONSHIP ( factForecast[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			    )
-			RETURN
-			    IF ( [is_channel_unfiltered], result, BLANK () )
-		description: Two years ago equivalent of Stock Fwd Cover LY.
-		formatString: #,##0.0;(#,##0.0)
-		displayFolder: Stock\Fwd Cover\LY-1
-		lineageTag: 95384ef8-c5a6-4d47-9c90-6dc6eb973a59
 
 	measure 'Stock Fwd Cover LW' =
 			CALCULATE (
@@ -9337,17 +7861,6 @@ table 1_Measures
 		formatString: #,##0.0;(#,##0.0)
 		displayFolder: Stock\Fwd Cover\LY
 		lineageTag: 7a008ff3-757c-4bd1-9c07-dfda8caaa62e
-
-	measure 'Stock Fwd Cover vs LY-1' =
-			VAR act = [Stock Fwd Cover]
-			VAR comp = [Stock Fwd Cover LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Stock Fwd Cover vs LY.
-		formatString: #,##0.0;(#,##0.0)
-		displayFolder: Stock\Fwd Cover\LY-1
-		lineageTag: 3ad1dfa9-1f33-46e8-ab34-b883ace327a0
 
 	measure 'Stock Fwd Cover vs LY %' =
 			VAR act = [Stock Fwd Cover]
@@ -9530,50 +8043,6 @@ table 1_Measures
 		displayFolder: P&L\LY
 		lineageTag: 82e6921b-37da-4c8f-a7dc-0290c8895bd2
 
-	measure 'P&L LY-1' =
-			VAR metric = [slctd_MetricMasterPnL]
-			VAR sale_recog = [slctd_SalesRecognitionType]
-			VAR is_channel_unfiltered = [is_channel_unfiltered]
-			VAR is_channel_available =
-			    SELECTEDVALUE ( MetricMasterPnL[ActOrdersChannelAvailable] )
-			VAR result =
-			    SWITCH (
-			        metric,
-			        "Sales Revenue (Inc VAT)", [SRIV LY-1],
-			        "Sales Revenue (Exc VAT)", [SREV LY-1],
-			        "Discount Participation %", [Discount Participation % LY-1],
-			        "Promo Mix %", [Promo Mix % LY-1],
-			        "FPP Mix %", [FPP Mix % LY-1],
-			        "Reduced Mix %", [Reduced Mix % LY-1],
-			        "Returns", [Returns LY-1],
-			        "Returns %", [Return rate % LY-1],
-			        "Buying Margin %", [Buying Margin % LY-1],
-			        "Markdown", [Markdown LY-1],
-			        "Markdown %", [Markdown % SRIV LY-1],
-			        "POS", [Promo Markdown LY-1],
-			        "POS %", [Promo Markdown % LY-1],
-			        "Sale Markdown", [Sale Markdown LY-1],
-			        "Sale Markdown %", [Sale Markdown % LY-1],
-			        "SIS Sold Through", [SIS Sold Through LY-1],
-			        "Staff Discount & Loyalty", [Staff Discount & Loyalty LY-1],
-			        "Depth Of Cut", [Depth Of Cut LY-1],
-			        "Depth Of Cut %", [Depth Of Cut % LY-1],
-			        "Other GSM Adj", [Other GSM Adj LY-1],
-			        "GSM", [GSM LY-1],
-			        "GSM %", [GSM % SREV LY-1],
-			        BLANK ()
-			    )
-			RETURN
-			    IF (
-			        is_channel_unfiltered,
-			        result,
-			        IF ( is_channel_available, result, BLANK () )
-			    )
-		description: Two years ago equivalent of P&L LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: P&L\LY-1
-		lineageTag: 8f3ffa11-a463-4e8e-ad74-087af329844e
-
 	measure 'P&L vs LY' =
 			VAR metric = [slctd_MetricMasterPnL]
 			VAR act = [P&L]
@@ -9587,24 +8056,11 @@ table 1_Measures
 		displayFolder: P&L\LY
 		lineageTag: b8804541-4663-4e2f-995d-7e0cc66d55cf
 
-	measure 'P&L vs LY-1' =
-			VAR metric = [slctd_MetricMasterPnL]
-			VAR act = [P&L]
-			VAR comp = [P&L LY-1]
-			VAR result = act - comp
-			VAR adj_result =
-			    IF ( CONTAINSSTRING ( metric, "%" ), result * 1, result )
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), adj_result )
-		description: Two years ago equivalent of P&L vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: P&L\LY-1
-		lineageTag: d374441a-8ec0-4ff6-b95b-2e68dba82d5c
-
 	measure 'Promo Markdown Orders' = ```
 			
 			-([GSRIV Orders] - [SRIV Orders])
 			//SUM ( 'factSalesOrders'[stfdisc] ) + SUM ( 'factSalesOrders'[othdisc] )
+			
 			
 			```
 		formatString: #,##0,,.0;(#,##0,,.0)
@@ -9620,16 +8076,6 @@ table 1_Measures
 		displayFolder: Margin\Orders\Promo Markdown\LY
 		lineageTag: 0ea81243-b2d0-4f83-84e4-c4c3c5b0723c
 
-	measure 'Promo Markdown Orders LY-1' =
-			CALCULATE (
-			    [Promo Markdown Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Promo Markdown Orders LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Orders\Promo Markdown\LY-1
-		lineageTag: c967b999-7795-4fbe-88eb-343c46413c85
-
 	measure 'Promo Markdown Orders vs LY' =
 			VAR act = [Promo Markdown Orders]
 			VAR comp = [Promo Markdown Orders LY]
@@ -9639,17 +8085,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Orders\Promo Markdown\LY
 		lineageTag: c54e42e5-716b-43d1-9d6a-ac032064b2e0
-
-	measure 'Promo Markdown Orders vs LY-1' =
-			VAR act = [Promo Markdown Orders]
-			VAR comp = [Promo Markdown Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Promo Markdown Orders vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Orders\Promo Markdown\LY-1
-		lineageTag: 0c9a10b2-2394-4ed9-bcdc-d9462bde1b41
 
 	measure 'Promo Markdown Orders LW' =
 			CALCULATE (
@@ -9737,16 +8172,6 @@ table 1_Measures
 		displayFolder: Margin\Orders\Sale Markdown\LY
 		lineageTag: 4092daef-1b12-43ed-9869-545433c3c8d4
 
-	measure 'Sale Markdown Orders LY-1' =
-			CALCULATE (
-			    [Sale Markdown Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Sale Markdown Orders LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Orders\Sale Markdown\LY-1
-		lineageTag: f7d031a2-ad15-470b-96c8-18de1f9db2b4
-
 	measure 'Sale Markdown Orders vs LY' =
 			VAR act = [Sale Markdown Orders]
 			VAR comp = [Sale Markdown Orders LY]
@@ -9756,17 +8181,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Orders\Sale Markdown\LY
 		lineageTag: 58df32b3-3725-4276-85a1-2a138f716169
-
-	measure 'Sale Markdown Orders vs LY-1' =
-			VAR act = [Sale Markdown Orders]
-			VAR comp = [Sale Markdown Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Sale Markdown Orders vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Orders\Sale Markdown\LY-1
-		lineageTag: 6c03118d-bb4f-4a22-932e-38e09e69814c
 
 	measure 'Staff Discount & Loyalty Orders LW' =
 			CALCULATE (
@@ -9854,16 +8268,6 @@ table 1_Measures
 		displayFolder: Margin\Orders\SIS Sold Through\LY
 		lineageTag: 1e159415-e5e2-47fe-a057-1b4584fc20b6
 
-	measure 'SIS Sold Through Orders LY-1' =
-			CALCULATE (
-			    [SIS Sold Through Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of SIS Sold Through Orders LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Orders\SIS Sold Through\LY-1
-		lineageTag: 897b036e-d42a-4495-a027-34971b7c7467
-
 	measure 'SIS Sold Through Orders vs LY' =
 			VAR act = [SIS Sold Through Orders]
 			VAR comp = [SIS Sold Through Orders LY]
@@ -9873,17 +8277,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Orders\SIS Sold Through\LY
 		lineageTag: f26a1e29-207a-4cb8-b6b8-987b040708c3
-
-	measure 'SIS Sold Through Orders vs LY-1' =
-			VAR act = [SIS Sold Through Orders]
-			VAR comp = [SIS Sold Through Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of SIS Sold Through Orders vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Orders\SIS Sold Through\LY-1
-		lineageTag: c116f939-6a41-496c-a49b-a00742c01e59
 
 	measure 'SIS Sold Through Orders LW' =
 			CALCULATE (
@@ -9971,16 +8364,6 @@ table 1_Measures
 		displayFolder: Margin\Orders\Staff Discount & Loyalty\LY
 		lineageTag: 41c5f35d-321e-4c63-aa6a-b29efc8eb019
 
-	measure 'Staff Discount & Loyalty Orders LY-1' =
-			CALCULATE (
-			    [Staff Discount & Loyalty Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Staff Discount & Loyalty Orders LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Orders\Staff Discount & Loyalty\LY-1
-		lineageTag: e1f7b92e-44cd-4c06-81b0-895be9ba476a
-
 	measure 'Staff Discount & Loyalty Orders vs LY' =
 			VAR act = [Staff Discount & Loyalty Orders]
 			VAR comp = [Staff Discount & Loyalty Orders LY]
@@ -9990,17 +8373,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Orders\Staff Discount & Loyalty\LY
 		lineageTag: 4b238691-2043-47db-bfb3-f4483095b12e
-
-	measure 'Staff Discount & Loyalty Orders vs LY-1' =
-			VAR act = [Staff Discount & Loyalty Orders]
-			VAR comp = [Staff Discount & Loyalty Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Staff Discount & Loyalty Orders vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Orders\Staff Discount & Loyalty\LY-1
-		lineageTag: 37118c7b-50d3-4316-901f-e1da23bf564c
 
 	measure 'Staff Discount & Loyalty Orders BUD' = CALCULATE ( [sum_TotStDV], ForecastScenarios[Forecast Scenario] = "BUD" )
 		formatString: #,##0,,.0;(#,##0,,.0)
@@ -10069,16 +8441,6 @@ table 1_Measures
 		displayFolder: Margin\Orders\Depth Of Cut\LY
 		lineageTag: 91e61173-c7e4-46aa-9fca-44c2ded9daab
 
-	measure 'Depth Of Cut Orders LY-1' =
-			CALCULATE (
-			    [Depth Of Cut Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Depth Of Cut Orders LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Orders\Depth Of Cut\LY-1
-		lineageTag: d09696ae-c792-4e6b-af05-4d4871ef1a4d
-
 	measure 'Depth Of Cut Orders vs LY' =
 			VAR act = [Depth Of Cut Orders]
 			VAR comp = [Depth Of Cut Orders LY]
@@ -10088,17 +8450,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Orders\Depth Of Cut\LY
 		lineageTag: 7b03e622-b37a-4c7a-8208-41cc1b840701
-
-	measure 'Depth Of Cut Orders vs LY-1' =
-			VAR act = [Depth Of Cut Orders]
-			VAR comp = [Depth Of Cut Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Depth Of Cut Orders vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Orders\Depth Of Cut\LY-1
-		lineageTag: f86744e6-59a3-4b33-ae87-938d0c828a2f
 
 	measure 'Sale Markdown Orders LW' =
 			CALCULATE (
@@ -10215,16 +8566,6 @@ table 1_Measures
 		displayFolder: Margin\Orders\Promo Markdown\LY
 		lineageTag: 758992b7-219b-49a7-b7ba-30b82eb923cf
 
-	measure 'Promo Markdown % Orders LY-1' =
-			CALCULATE (
-			    [Promo Markdown % Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Promo Markdown % Orders LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Orders\Promo Markdown\LY-1
-		lineageTag: 6fa9350e-d888-4895-b9cb-6db2fc47ebd7
-
 	measure 'Promo Markdown % Orders vs LY' =
 			VAR act = [Promo Markdown % Orders]
 			VAR comp = [Promo Markdown % Orders LY]
@@ -10234,17 +8575,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Orders\Promo Markdown\LY
 		lineageTag: 5d2d19cc-6cd8-4d78-b897-897c52204891
-
-	measure 'Promo Markdown % Orders vs LY-1' =
-			VAR act = [Promo Markdown % Orders]
-			VAR comp = [Promo Markdown % Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Promo Markdown % Orders vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Orders\Promo Markdown\LY-1
-		lineageTag: 95c6e378-5d6e-44ab-ae09-a942ecf35b02
 
 	measure 'Promo Markdown % Orders LW' =
 			CALCULATE (
@@ -10362,16 +8692,6 @@ table 1_Measures
 		displayFolder: Margin\Orders\Sale Markdown\LY
 		lineageTag: 5b47b5f8-ca45-48fd-8547-a98d6098b793
 
-	measure 'Sale Markdown % Orders LY-1' =
-			CALCULATE (
-			    [Sale Markdown % Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Sale Markdown % Orders LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Orders\Sale Markdown\LY-1
-		lineageTag: be9fb28e-6986-4a96-817b-06c3e9630f8d
-
 	measure 'Sale Markdown % Orders vs LY' =
 			VAR act = [Sale Markdown % Orders]
 			VAR comp = [Sale Markdown % Orders LY]
@@ -10381,17 +8701,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Orders\Sale Markdown\LY
 		lineageTag: 91800d2b-9721-4498-9853-ad378fef7896
-
-	measure 'Sale Markdown % Orders vs LY-1' =
-			VAR act = [Sale Markdown % Orders]
-			VAR comp = [Sale Markdown % Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Sale Markdown % Orders vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Orders\Sale Markdown\LY-1
-		lineageTag: e465f704-23a6-425d-a6ea-2d395864e04c
 
 	measure 'Sale Markdown % Orders LW' =
 			CALCULATE (
@@ -10509,16 +8818,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Promo Markdown\LY
 		lineageTag: 1ab4f62c-be62-4af4-b21a-f04203ca3e3d
 
-	measure 'Promo Markdown % Dispatch LY-1' =
-			CALCULATE (
-			    [Promo Markdown % Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Promo Markdown % Dispatch LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Dispatch\Promo Markdown\LY-1
-		lineageTag: d8304711-891f-4bc5-8a99-81acb780fef5
-
 	measure 'Promo Markdown % Dispatch vs LY' =
 			VAR act = [Promo Markdown % Dispatch]
 			VAR comp = [Promo Markdown % Dispatch LY]
@@ -10528,17 +8827,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Dispatch\Promo Markdown\LY
 		lineageTag: 3d5553a7-5faa-4859-a440-3062440a2e46
-
-	measure 'Promo Markdown % Dispatch vs LY-1' =
-			VAR act = [Promo Markdown % Dispatch]
-			VAR comp = [Promo Markdown % Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Promo Markdown % Dispatch vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Dispatch\Promo Markdown\LY-1
-		lineageTag: 0a5042c1-a075-42d0-9ea6-b74ee6406dc5
 
 	measure 'Promo Markdown % Dispatch LW' =
 			CALCULATE (
@@ -10642,16 +8930,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Sale Markdown\LY
 		lineageTag: ab17d464-61f7-4254-a552-01a01c39c63a
 
-	measure 'Sale Markdown % Dispatch LY-1' =
-			CALCULATE (
-			    [Sale Markdown % Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Sale Markdown % Dispatch LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Dispatch\Sale Markdown\LY-1
-		lineageTag: 07e814ed-a912-4456-9c76-46e654bf70aa
-
 	measure 'Sale Markdown % Dispatch vs LY' =
 			VAR act = [Sale Markdown % Dispatch]
 			VAR comp = [Sale Markdown % Dispatch LY]
@@ -10661,17 +8939,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Dispatch\Sale Markdown\LY
 		lineageTag: eeca9577-6198-48ad-af30-bea8a4fcd685
-
-	measure 'Sale Markdown % Dispatch vs LY-1' =
-			VAR act = [Sale Markdown % Dispatch]
-			VAR comp = [Sale Markdown % Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Sale Markdown % Dispatch vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Dispatch\Sale Markdown\LY-1
-		lineageTag: f6af7605-5bca-4b1d-b95d-82023d063178
 
 	measure 'Sale Markdown % Dispatch LW' =
 			CALCULATE (
@@ -10800,22 +9067,6 @@ table 1_Measures
 		displayFolder: Margin\Promo Markdown\LY
 		lineageTag: 8d7ff159-13b2-46c8-9e49-311c9673c814
 
-	measure 'Promo Markdown LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [Promo Markdown Orders LY-1],
-			        "Dispatch", [Promo Markdown Dispatch LY-1],
-			        [Promo Markdown Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of Promo Markdown LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Promo Markdown\LY-1
-		lineageTag: f928b080-0907-4696-bfd0-83fb8992fb3f
-
 	measure 'Promo Markdown vs LY' =
 			VAR act = [Promo Markdown]
 			VAR comp = [Promo Markdown LY]
@@ -10825,17 +9076,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Promo Markdown\LY
 		lineageTag: fcf59896-f16e-43d2-a87d-45099581eaf8
-
-	measure 'Promo Markdown vs LY-1' =
-			VAR act = [Promo Markdown]
-			VAR comp = [Promo Markdown LY-1]
-			VAR result = act - comp
-			RETURN
-			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
-		description: Two years ago equivalent of Promo Markdown vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Promo Markdown\LY-1
-		lineageTag: 284f0f17-c281-4863-abb2-b16b21eb70da
 
 	measure 'Promo Markdown % LY' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -10852,22 +9092,6 @@ table 1_Measures
 		displayFolder: Margin\Promo Markdown\LY
 		lineageTag: cd0e6df3-9399-434c-bbf9-346bcb085c5d
 
-	measure 'Promo Markdown % LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [Promo Markdown % Orders LY-1],
-			        "Dispatch", [Promo Markdown % Dispatch LY-1],
-			        [Promo Markdown % Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of Promo Markdown % LY.
-		formatString: 0.0%;(0.0)%
-		displayFolder: Margin\Promo Markdown\LY-1
-		lineageTag: b1c55258-da72-4736-bae3-4deda47cee2a
-
 	measure 'Promo Markdown % vs LY' =
 			VAR act = [Promo Markdown %]
 			VAR comp = [Promo Markdown % LY]
@@ -10877,17 +9101,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Promo Markdown\LY
 		lineageTag: 686dc9be-5fb8-40b8-a32f-c421d395427a
-
-	measure 'Promo Markdown % vs LY-1' =
-			VAR act = [Promo Markdown %]
-			VAR comp = [Promo Markdown % LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Promo Markdown % vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Promo Markdown\LY-1
-		lineageTag: cc7c7256-1d7a-4532-82eb-6ab13875d4c1
 
 	measure 'Promo Markdown vs LY %' =
 			VAR act = [Promo Markdown]
@@ -11208,23 +9421,6 @@ table 1_Measures
 		displayFolder: Margin\Sale Markdown\LY
 		lineageTag: c2dd4cd5-23fd-4a26-ad13-6cabfb190382
 
-	measure 'Sale Markdown LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [Sale Markdown Orders LY-1],
-			        "Dispatch", [Sale Markdown Dispatch LY-1],
-			        [Sale Markdown Orders LY-1]
-			    )
-			Var Output = SWITCH(SELECTEDVALUE(SalesType[SalesType]),"FP&P",0,result)
-			RETURN
-			    Output
-		description: Two years ago equivalent of Sale Markdown LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Sale Markdown\LY-1
-		lineageTag: 5d8cb9bd-f472-457d-8827-309f977c5c0e
-
 	measure 'Sale Markdown vs LY' =
 			VAR act = [Sale Markdown]
 			VAR comp = [Sale Markdown LY]
@@ -11234,17 +9430,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Sale Markdown\LY
 		lineageTag: 9f168f81-5643-42f9-9b44-91cb076d4be5
-
-	measure 'Sale Markdown vs LY-1' =
-			VAR act = [Sale Markdown]
-			VAR comp = [Sale Markdown LY-1]
-			VAR result = act - comp
-			RETURN
-			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
-		description: Two years ago equivalent of Sale Markdown vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Sale Markdown\LY-1
-		lineageTag: 91ac1363-8887-4de8-a2f2-7be8291022a4
 
 	measure 'Sale Markdown % LY' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -11262,23 +9447,6 @@ table 1_Measures
 		displayFolder: Margin\Sale Markdown\LY
 		lineageTag: 06215431-d3f0-4e24-aa55-be8d98f50cb6
 
-	measure 'Sale Markdown % LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [Sale Markdown % Orders LY-1],
-			        "Dispatch", [Sale Markdown % Dispatch LY-1],
-			        [Sale Markdown % Orders LY-1]
-			    )
-			Var Output = SWITCH(SELECTEDVALUE(SalesType[SalesType]),"FP&P",0,result)
-			RETURN
-			    Output
-		description: Two years ago equivalent of Sale Markdown % LY.
-		formatString: 0.0%;(0.0)%
-		displayFolder: Margin\Sale Markdown\LY-1
-		lineageTag: 31ae3b22-0d18-4ed7-b35f-715e56096557
-
 	measure 'Sale Markdown % vs LY' =
 			VAR act = [Sale Markdown %]
 			VAR comp = [Sale Markdown % LY]
@@ -11288,17 +9456,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Sale Markdown\LY
 		lineageTag: bd80f862-fb7a-4c68-b19c-c674099ee6ec
-
-	measure 'Sale Markdown % vs LY-1' =
-			VAR act = [Sale Markdown %]
-			VAR comp = [Sale Markdown % LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Sale Markdown % vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Sale Markdown\LY-1
-		lineageTag: 1591be13-1533-4368-9165-1456464b2bab
 
 	measure 'Sale Markdown vs LY %' =
 			VAR act = [Sale Markdown]
@@ -11607,22 +9764,6 @@ table 1_Measures
 		displayFolder: Margin\SIS Sold Through\LY
 		lineageTag: 1cfcd8ac-b271-47ef-8744-9cb31c6fa1a2
 
-	measure 'SIS Sold Through LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [SIS Sold Through Orders LY-1],
-			        "Dispatch", [SIS Sold Through Dispatch LY-1],
-			        [SIS Sold Through Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of SIS Sold Through LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\SIS Sold Through\LY-1
-		lineageTag: 095a5611-902e-462d-be6f-ae233a043a8b
-
 	measure 'SIS Sold Through vs LY' =
 			VAR act = [SIS Sold Through]
 			VAR comp = [SIS Sold Through LY]
@@ -11632,17 +9773,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\SIS Sold Through\LY
 		lineageTag: 8d5ffb84-cb9a-46f5-9f28-4095fae3965c
-
-	measure 'SIS Sold Through vs LY-1' =
-			VAR act = [SIS Sold Through]
-			VAR comp = [SIS Sold Through LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of SIS Sold Through vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\SIS Sold Through\LY-1
-		lineageTag: 4b07c97f-26d3-4e5d-9d84-00ec784aa6a7
 
 	measure 'SIS Sold Through vs LY %' =
 			VAR act = [SIS Sold Through]
@@ -11705,6 +9835,7 @@ table 1_Measures
 			    )       )
 			RETURN
 			    SUMX ( salesTable, [Actualised] )
+			
 			
 			/*VAR result = [SIS Sold Through Orders BUD]
 			RETURN
@@ -11860,22 +9991,6 @@ table 1_Measures
 		displayFolder: Margin\Depth Of Cut\LY
 		lineageTag: 38dfdb9d-31ec-45b4-836c-51f92a4c0b3b
 
-	measure 'Depth Of Cut LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [Depth Of Cut Orders LY-1],
-			        "Dispatch", [Depth Of Cut Dispatch LY-1],
-			        [Depth Of Cut Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of Depth Of Cut LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Depth Of Cut\LY-1
-		lineageTag: 8dd86473-b183-4067-a727-3176a942514f
-
 	measure 'Depth Of Cut vs LY' =
 			VAR act = [Depth Of Cut]
 			VAR comp = [Depth Of Cut LY]
@@ -11885,17 +10000,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Depth Of Cut\LY
 		lineageTag: b10dec9e-9000-4596-9d32-536f9f433349
-
-	measure 'Depth Of Cut vs LY-1' =
-			VAR act = [Depth Of Cut]
-			VAR comp = [Depth Of Cut LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Depth Of Cut vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Depth Of Cut\LY-1
-		lineageTag: 823bf888-3414-4c44-9c5f-461af0839612
 
 	measure 'Depth Of Cut % LY' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -11912,22 +10016,6 @@ table 1_Measures
 		displayFolder: Margin\Depth Of Cut\LY
 		lineageTag: f71dfcb6-75c5-4d4f-869e-c3ad1912be72
 
-	measure 'Depth Of Cut % LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [Depth Of Cut % Orders LY-1],
-			        "Dispatch", [Depth Of Cut % Dispatch LY-1],
-			        [Depth Of Cut % Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of Depth Of Cut % LY.
-		formatString: 0.0%;(0.0)%
-		displayFolder: Margin\Depth Of Cut\LY-1
-		lineageTag: 831702b3-8723-4e5f-942f-19e24aedae0d
-
 	measure 'Depth Of Cut % vs LY' =
 			VAR act = [Depth Of Cut %]
 			VAR comp = [Depth Of Cut % LY]
@@ -11937,17 +10025,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Depth Of Cut\LY
 		lineageTag: 87f16fc5-9fde-4f11-82ea-2f8016d8cdd0
-
-	measure 'Depth Of Cut % vs LY-1' =
-			VAR act = [Depth Of Cut %]
-			VAR comp = [Depth Of Cut % LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Depth Of Cut % vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Depth Of Cut\LY-1
-		lineageTag: 7152bac6-56a5-4eee-8a52-9eb58cc0d102
 
 	measure 'Depth Of Cut vs LY %' =
 			VAR act = [Depth Of Cut]
@@ -12035,6 +10112,7 @@ table 1_Measures
 			    )       )
 			RETURN
 			    SUMX ( salesTable, [Actualised] ) 
+			 
 			 
 			/*VAR result = [Depth Of Cut Orders BUD]
 			RETURN
@@ -12240,16 +10318,6 @@ table 1_Measures
 		displayFolder: Margin\Orders\Depth Of Cut\LY
 		lineageTag: 966dac45-a6e4-4143-9c62-6e5a1e5511f9
 
-	measure 'Depth Of Cut % Orders LY-1' =
-			CALCULATE (
-			    [Depth Of Cut % Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Depth Of Cut % Orders LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Orders\Depth Of Cut\LY-1
-		lineageTag: acaadc8c-1a2a-42a5-9517-a841685cc6de
-
 	measure 'Depth Of Cut % Orders vs LY' =
 			VAR act = [Depth Of Cut % Orders]
 			VAR comp = [Depth Of Cut % Orders LY]
@@ -12259,17 +10327,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Orders\Depth Of Cut\LY
 		lineageTag: 5e289e81-fde0-4980-a7d2-b03de9a674b4
-
-	measure 'Depth Of Cut % Orders vs LY-1' =
-			VAR act = [Depth Of Cut % Orders]
-			VAR comp = [Depth Of Cut % Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Depth Of Cut % Orders vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Orders\Depth Of Cut\LY-1
-		lineageTag: 8e9ad3f9-096b-4ebf-83d5-02e554a63819
 
 	measure 'Depth Of Cut % Orders LW' =
 			CALCULATE (
@@ -12383,22 +10440,6 @@ table 1_Measures
 		displayFolder: Margin\Staff Discount & Loyalty\LY
 		lineageTag: 33995bbe-1fd3-46b2-a541-31b0bf1d31bc
 
-	measure 'Staff Discount & Loyalty LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [Staff Discount & Loyalty Orders LY-1],
-			        "Dispatch", [Staff Discount & Loyalty Dispatch LY-1],
-			        [Staff Discount & Loyalty Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of Staff Discount & Loyalty LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Staff Discount & Loyalty\LY-1
-		lineageTag: 5728019c-9648-4f16-85bd-e6f7e5234993
-
 	measure 'Staff Discount & Loyalty vs LY' =
 			VAR act = [Staff Discount & Loyalty]
 			VAR comp = [Staff Discount & Loyalty LY]
@@ -12408,17 +10449,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Staff Discount & Loyalty\LY
 		lineageTag: 014e69f6-9662-4c6f-a4da-1cf47d38f8a1
-
-	measure 'Staff Discount & Loyalty vs LY-1' =
-			VAR act = [Staff Discount & Loyalty]
-			VAR comp = [Staff Discount & Loyalty LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Staff Discount & Loyalty vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Staff Discount & Loyalty\LY-1
-		lineageTag: afbf65ac-3ee3-4822-b101-17845c408079
 
 	measure 'Staff Discount & Loyalty vs LY %' =
 			VAR act = [Staff Discount & Loyalty]
@@ -12620,22 +10650,6 @@ table 1_Measures
 		displayFolder: Margin\Other GSM Adj\LY
 		lineageTag: 20dd73ea-d80e-4b65-8ac6-dbcb0c58da7c
 
-	measure 'Other GSM Adj LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", BLANK (),
-			        "Dispatch", [Other GSM Adj Dispatch LY-1],
-			        BLANK ()
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of Other GSM Adj LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Other GSM Adj\LY-1
-		lineageTag: 1673f32f-f82c-41fb-9abc-401ffa94b08e
-
 	measure 'Other GSM Adj vs LY' =
 			VAR act = [Other GSM Adj]
 			VAR comp = [Other GSM Adj LY]
@@ -12645,17 +10659,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Other GSM Adj\LY
 		lineageTag: 5c32e78e-2ff0-4bd8-89e1-b434c869f836
-
-	measure 'Other GSM Adj vs LY-1' =
-			VAR act = [Other GSM Adj]
-			VAR comp = [Other GSM Adj LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Other GSM Adj vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Other GSM Adj\LY-1
-		lineageTag: b0e3fe2a-a103-4d0a-b1c0-f72cdd806cbf
 
 	measure 'Other GSM Adj vs LY %' =
 			VAR act = [Other GSM Adj]
@@ -13136,17 +11139,6 @@ table 1_Measures
 		displayFolder: Sales\SRIV Fwd View\LY
 		lineageTag: 54a39f5a-4015-450f-b2ab-afe43d2c6577
 
-	measure 'SRIV Fwd View vs LY-1' =
-			VAR act = [SRIV Fwd View]
-			VAR comp = [SRIV LY-1]
-			VAR result = act - comp
-			RETURN
-			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
-		description: Two years ago equivalent of SRIV Fwd View vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\SRIV Fwd View\LY-1
-		lineageTag: 7ab1b859-9f06-4427-bd71-cd8ff349a8a1
-
 	measure 'SRIV Fwd View vs LY %' =
 			VAR act = [SRIV Fwd View]
 			VAR comp = [SRIV LY]
@@ -13273,16 +11265,6 @@ table 1_Measures
 		displayFolder: Sales\Orders\GSRIV\LY
 		lineageTag: d6081398-532b-4f41-accf-7e992dd15c77
 
-	measure 'GSRIV Orders LY-1' =
-			CALCULATE (
-			    [GSRIV Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of GSRIV Orders LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Orders\GSRIV\LY-1
-		lineageTag: 28a0a0ac-0765-41a3-bc85-bfa326c0c5a8
-
 	measure 'GSRIV Orders vs LY' =
 			VAR act = [GSRIV Orders]
 			VAR comp = [GSRIV Orders LY]
@@ -13292,17 +11274,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Orders\GSRIV\LY
 		lineageTag: 5dc0637d-eb95-4310-8235-bb6a4cf8eddc
-
-	measure 'GSRIV Orders vs LY-1' =
-			VAR act = [GSRIV Orders]
-			VAR comp = [GSRIV Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of GSRIV Orders vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Orders\GSRIV\LY-1
-		lineageTag: 9bdcebe2-69ec-4f7d-8681-13e0cd382d58
 
 	measure 'GSRIV Orders vs LY %' =
 			VAR act = [GSRIV Orders]
@@ -13377,23 +11348,6 @@ table 1_Measures
 		displayFolder: Transactions\Visits\LY
 		lineageTag: abefbb9b-562a-41fb-baf5-06078683162e
 
-	measure 'Visits LY-1' =
-			VAR store =
-			    CALCULATE (
-			        [sum_footfall],
-			        USERELATIONSHIP ( factFootfall[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			    )
-			VAR channel =
-			    SELECTEDVALUE ( Channels[Channel] )
-			VAR result =
-			    SWITCH ( channel, "Stores", store, "Online", [Traffic LY-1], BLANK () )
-			RETURN
-			    result
-		description: Two years ago equivalent of Visits LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Transactions\Visits\LY-1
-		lineageTag: 82ec8aae-09ce-460d-9cee-321d794839b9
-
 	measure 'Visits vs LY' =
 			VAR act = [Visits]
 			VAR comp = [Visits LY]
@@ -13402,16 +11356,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Transactions\Visits\LY
 		lineageTag: bca8d004-d7da-4e44-b99d-afcef2f0bc30
-
-	measure 'Visits vs LY-1' =
-			VAR act = [Visits]
-			VAR comp = [Visits LY-1]
-			VAR result = act - comp
-			RETURN result
-		description: Two years ago equivalent of Visits vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Transactions\Visits\LY-1
-		lineageTag: f300b81d-253c-4824-962f-c47f077c79b2
 
 	measure 'Visits vs LY %' = ```
 			VAR act = [Visits]
@@ -13472,6 +11416,9 @@ table 1_Measures
 			RETURN
 			    IF ( OR ( metric = BLANK (), denom = BLANK () ), BLANK (), result )
 			
+			
+			
+			
 			/*VAR metric = [Transactions]
 			VAR denom = [Visits]
 			VAR result =
@@ -13486,12 +11433,15 @@ table 1_Measures
 
 	measure 'Conversion % LY' =
 			
+			
 			VAR metric = CALCULATE(SUM(factAdobe[ordersL2]),factAdobe[visitType] = 2,USERELATIONSHIP(factAdobe[fiscalWeek],'Calendar'[fiscalWeekLastYear]))
 			VAR denom = CALCULATE(SUM(factAdobe[visitsUnadjusted]),factAdobe[visitType] = 2,USERELATIONSHIP(factAdobe[fiscalWeek],'Calendar'[fiscalWeekLastYear]))
 			VAR result =
 			DIVIDE ( metric, denom )
 			RETURN
 			    IF ( OR ( metric = BLANK (), denom = BLANK () ), BLANK (), result )
+			
+			
 			
 			/*VAR metric = [Transactions LY]
 			VAR denom = [Visits LY]
@@ -13503,26 +11453,6 @@ table 1_Measures
 		displayFolder: Transactions\Conversion\LY
 		lineageTag: c9686d4c-7c1d-44f7-8f78-81534188c4fa
 
-	measure 'Conversion % LY-1' =
-			
-			VAR metric = CALCULATE(SUM(factAdobe[ordersL2]),factAdobe[visitType] = 2,USERELATIONSHIP(factAdobe[fiscalWeek],'Calendar'[fiscalWeekLastToLastyear]))
-			VAR denom = CALCULATE(SUM(factAdobe[visitsUnadjusted]),factAdobe[visitType] = 2,USERELATIONSHIP(factAdobe[fiscalWeek],'Calendar'[fiscalWeekLastToLastyear]))
-			VAR result =
-			DIVIDE ( metric, denom )
-			RETURN
-			    IF ( OR ( metric = BLANK (), denom = BLANK () ), BLANK (), result )
-			
-			/*VAR metric = [Transactions LY-1]
-			VAR denom = [Visits LY-1]
-			VAR result =
-			    DIVIDE ( metric, denom )
-			RETURN
-			    IF ( OR ( metric = BLANK (), denom = BLANK () ), BLANK (), result )*/
-		description: Two years ago equivalent of Conversion % LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Transactions\Conversion\LY-1
-		lineageTag: dd3d8d40-740e-4808-a1fa-bd2deecd8d24
-
 	measure 'Conversion % vs LY' =
 			VAR act = [Conversion %]
 			VAR comp = [Conversion % LY]
@@ -13532,17 +11462,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Transactions\Conversion\LY
 		lineageTag: 97129912-8ae6-4eef-b723-9c9114d5b818
-
-	measure 'Conversion % vs LY-1' =
-			VAR act = [Conversion %]
-			VAR comp = [Conversion % LY-1]
-			VAR result = FORMAT((act - comp)* 100, "#,##0.0ppt;(#,##0.0)ppt")
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Conversion % vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Transactions\Conversion\LY-1
-		lineageTag: 9a7e8ff7-d313-4681-867c-48b3f0efc2a9
 
 	measure 'Conversion % LW' =
 			
@@ -13608,16 +11527,6 @@ table 1_Measures
 		displayFolder: Intake\LY
 		lineageTag: 801ffd80-5a50-4eb3-a3e3-6cd299c1b4f6
 
-	measure 'FPP Intake Volume LY-1' =
-			CALCULATE (
-			    [FPP Intake Volume],
-			    USERELATIONSHIP ( factForecast[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of FPP Intake Volume LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Intake\LY-1
-		lineageTag: a008d795-51a7-4fc5-bc2d-3bff95019122
-
 	measure 'FPP Intake Volume vs LY' =
 			VAR act = [FPP Intake Volume]
 			VAR comp = [FPP Intake Volume LY]
@@ -13627,17 +11536,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Intake\LY
 		lineageTag: 1ac616a0-1b4a-4267-9564-640cd1095f82
-
-	measure 'FPP Intake Volume vs LY-1' =
-			VAR act = [FPP Intake Volume]
-			VAR comp = [FPP Intake Volume LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of FPP Intake Volume vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Intake\LY-1
-		lineageTag: 1a63b691-423a-448b-9fe6-331ef771c142
 
 	measure 'FPP Intake Volume BUD' =
 			CALCULATE (
@@ -14002,17 +11900,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\GSM Fwd View\LY
 		lineageTag: fe3d8420-16c7-4088-94db-5db6e9f83ace
-
-	measure 'GSM Fwd View vs LY-1' =
-			VAR act = [GSM Fwd View]
-			VAR comp = [GSM LY-1]
-			VAR result = act - comp
-			RETURN
-			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
-		description: Two years ago equivalent of GSM Fwd View vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\GSM Fwd View\LY-1
-		lineageTag: d296cf03-ee49-446d-b4b2-ee1365393db2
 
 	measure 'GSM Fwd View vs LY %' =
 			VAR act = [GSM Fwd View]
@@ -14441,17 +12328,6 @@ table 1_Measures
 		displayFolder: Sales\SREV Fwd View\LY
 		lineageTag: 90342581-1e74-4a5f-a2af-48ac1eaefeec
 
-	measure 'SREV Fwd View vs LY-1' =
-			VAR act = [SREV Fwd View]
-			VAR comp = [SREV LY-1]
-			VAR result = act - comp
-			RETURN
-			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
-		description: Two years ago equivalent of SREV Fwd View vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\SREV Fwd View\LY-1
-		lineageTag: 86e4b12c-37f1-437c-9dad-5dc784481127
-
 	measure 'SREV Fwd View vs LY %' =
 			VAR act = [SREV Fwd View]
 			VAR comp = [SREV LY]
@@ -14601,17 +12477,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\GSM Fwd View\LY
 		lineageTag: 08a1c225-7c90-46f3-afb5-8ace1ee08185
-
-	measure 'GSM % SREV Fwd View vs LY-1' =
-			VAR act = [GSM % SREV Fwd View]
-			VAR comp = [GSM % SREV LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of GSM % SREV Fwd View vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\GSM Fwd View\LY-1
-		lineageTag: c848074e-0570-4e15-b299-1e83a663df42
 
 	/// This measure is column [GSM Orders LW] as a % of SREV
 	measure 'GSM % SREV Fwd View LW' =
@@ -14863,12 +12728,6 @@ table 1_Measures
 		displayFolder: Sales\Returns\LY
 		lineageTag: 879d8139-8ca0-4f2d-88a8-e4fc64520eae
 
-	measure 'Gross SRIV LY-1' = [SRIV LY-1] - [Returns LY-1]
-		description: Two years ago equivalent of Gross SRIV LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Returns\LY-1
-		lineageTag: 3e1dfe4a-4979-4d8a-ad6f-132d50decfa1
-
 	/// This measure is the sum of column 'factSalesDispatch[Sales Revenue (Exc VAT)]'
 	measure 'Gross SRIV LW' = [SRIV LW] - [Returns LW]
 		formatString: #,##0,,.0;(#,##0,,.0)
@@ -14884,17 +12743,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Returns\LY
 		lineageTag: 9b01f1a7-8017-4cb2-8cad-45431a9323fb
-
-	measure 'Gross SRIV vs LY-1' =
-			VAR act = [Gross SRIV]
-			VAR comp = [Gross SRIV LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Gross SRIV vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Returns\LY-1
-		lineageTag: 3242de4e-b8c5-4e39-8b2b-f36894cf32c5
 
 	measure 'Gross SRIV vs LW' =
 			VAR act = [Gross SRIV]
@@ -14923,14 +12771,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Returns\LY
 		lineageTag: 41f71899-2b2e-4ecd-878b-455b9391eaa4
-
-		annotation PBI_FormatHint = {"isCustom":true}
-
-	measure 'Return rate % vs LY-1' = [Return rate %] - [Return rate % LY-1]
-		description: Two years ago equivalent of Return rate % vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Returns\LY-1
-		lineageTag: 0f959f6e-82f5-45dd-8ed5-44f66e5cc659
 
 		annotation PBI_FormatHint = {"isCustom":true}
 
@@ -15125,66 +12965,30 @@ table 1_Measures
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: 669559ce-1dde-4454-917a-659ee209470e
 
-	measure 'SRIV FPP LY-1' = CALCULATE ( [SRIV LY-1], 'SalesType'[SalesType] = "FP&P" )
-		description: Two years ago equivalent of SRIV FPP LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\SRIV RG Measures
-		lineageTag: 5728b333-417d-4f94-8e72-e4d0e4b80070
-
 	measure 'SRIV Full Price LY' = CALCULATE ( [SRIV LY], 'SalesType'[SubSalesType] = "Full Price" )
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: 5f1bcf51-b289-447d-b2e2-44d438b7475c
-
-	measure 'SRIV Full Price LY-1' = CALCULATE ( [SRIV LY-1], 'SalesType'[SubSalesType] = "Full Price" )
-		description: Two years ago equivalent of SRIV Full Price LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\SRIV RG Measures
-		lineageTag: 3df56c66-2a90-40cb-bfea-4fdb7d94a15b
 
 	measure 'SRIV Online LY' = CALCULATE ( [SRIV LY], 'Channels'[Channel] = "Online" )
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: 10e94082-d04a-4a0c-a9eb-5eff81720112
 
-	measure 'SRIV Online LY-1' = CALCULATE ( [SRIV LY-1], 'Channels'[Channel] = "Online" )
-		description: Two years ago equivalent of SRIV Online LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\SRIV RG Measures
-		lineageTag: 003ebdee-9383-4534-9b8c-de0dbdb0e00c
-
 	measure 'SRIV Promo LY' = CALCULATE ( [SRIV LY], 'SalesType'[SubSalesType] = "Promo" )
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: 9630c4bb-4e5c-4550-970c-8fbb6cc46bbd
-
-	measure 'SRIV Promo LY-1' = CALCULATE ( [SRIV LY-1], 'SalesType'[SubSalesType] = "Promo" )
-		description: Two years ago equivalent of SRIV Promo LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\SRIV RG Measures
-		lineageTag: d38f1124-8a61-48b2-9773-b78dc326827f
 
 	measure 'SRIV Reduced LY' = CALCULATE ( [SRIV LY], 'SalesType'[SubSalesType] = "Reduced" )
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: 199d6ad3-3ca9-4dfe-a210-24ba75f12b05
 
-	measure 'SRIV Reduced LY-1' = CALCULATE ( [SRIV LY-1], 'SalesType'[SubSalesType] = "Reduced" )
-		description: Two years ago equivalent of SRIV Reduced LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\SRIV RG Measures
-		lineageTag: f4894c0a-90e4-4315-a673-bb54049e0e1e
-
 	measure 'SRIV Stores LY' = CALCULATE ( [SRIV LY], 'Channels'[Channel] = "Stores" )
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: 49243305-0f60-4963-9650-9fe8245a000b
-
-	measure 'SRIV Stores LY-1' = CALCULATE ( [SRIV LY-1], 'Channels'[Channel] = "Stores" )
-		description: Two years ago equivalent of SRIV Stores LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\SRIV RG Measures
-		lineageTag: 3e3dbced-4ff4-4b17-93cc-ec28566eeace
 
 	measure 'SRIV FPP vs LY %' =
 			VAR act = [SRIV FPP]
@@ -15267,12 +13071,6 @@ table 1_Measures
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: fb240fb4-0616-4bcb-a39b-33ae5f02a717
 
-	measure 'Returns Online LY-1' = CALCULATE ( [Returns LY-1], 'Channels'[Channel] = "Online" )
-		description: Two years ago equivalent of Returns Online LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\SRIV RG Measures
-		lineageTag: 2779943a-48bd-432e-afb4-48e3e09e2cca
-
 	measure 'Returns Online LY %' = DIVIDE ( - [Returns Online LY], [SRIV Online LY] - [Returns Online LY], 0 )
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\SRIV RG Measures
@@ -15297,12 +13095,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: 298f1a09-852d-46bf-a69e-63a2d8090e5d
-
-	measure 'Returns Stores LY-1' = CALCULATE ( [Returns LY-1], 'Channels'[Channel] = "Stores" )
-		description: Two years ago equivalent of Returns Stores LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\SRIV RG Measures
-		lineageTag: b7031bca-f5dd-4f5d-82dc-594814b74483
 
 	measure 'Returns Stores LY %' = DIVIDE ( - [Returns Stores LY], [SRIV Stores LY] - [Returns Stores LY], 0 )
 		formatString: #,##0.0%;(#,##0.0)%
@@ -15361,19 +13153,6 @@ table 1_Measures
 		displayFolder: Sales\Sales Mix\BU\LY
 		lineageTag: 07af1125-01bc-4566-a3af-f3896228e253
 
-	measure 'Sales BU Mix % LY-1' =
-			VAR filtered_sales = [SRIV LY-1]
-			VAR bu_total =
-			    CALCULATE ( [SRIV LY-1], ALLEXCEPT ( Products, Products[BU] ) )
-			VAR result =
-			    DIVIDE ( filtered_sales, bu_total )
-			RETURN
-			    result
-		description: Two years ago equivalent of Sales BU Mix % LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Sales Mix\BU\LY-1
-		lineageTag: 5f60bdc8-c3c7-4da8-ba6b-e112189263bb
-
 	measure 'Sales BU Mix % vs LY' =
 			VAR act = [Sales BU Mix %]
 			VAR comp = [Sales BU Mix % LY]
@@ -15384,18 +13163,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Sales Mix\BU\LY
 		lineageTag: df47ca92-4b2a-4c09-ae19-835a044b3158
-
-	measure 'Sales BU Mix % vs LY-1' =
-			VAR act = [Sales BU Mix %]
-			VAR comp = [Sales BU Mix % LY-1]
-			VAR result =
-			    DIVIDE ( act - comp, comp )
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of Sales BU Mix % vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Sales Mix\BU\LY-1
-		lineageTag: bbffc43c-5421-45d9-8aae-aafa9f53a991
 
 	measure 'Stock BU Mix %' =
 			VAR filtered_sales = [Stock]
@@ -15444,19 +13211,6 @@ table 1_Measures
 		displayFolder: Stock\Stock Mix\BU\LY
 		lineageTag: 6c1f070e-4be2-44c5-87b5-ea0795d1c5d6
 
-	measure 'Stock BU Mix % LY-1' =
-			VAR filtered_sales = [Stock LY-1]
-			VAR bu_total =
-			    CALCULATE ( [Stock LY-1], ALLEXCEPT ( Products, Products[BU] ) )
-			VAR result =
-			    DIVIDE ( filtered_sales, bu_total )
-			RETURN
-			    result
-		description: Two years ago equivalent of Stock BU Mix % LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Stock\Stock Mix\BU\LY-1
-		lineageTag: c11dbaa7-c282-4e8b-b172-3e4956f8ef52
-
 	measure 'Stock BU Mix % vs LY' =
 			VAR act = [Stock BU Mix %]
 			VAR comp = [Stock BU Mix % LY]
@@ -15467,18 +13221,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Stock\Stock Mix\BU\LY
 		lineageTag: fbc3464e-6564-430a-ba57-1e8ff1cdb787
-
-	measure 'Stock BU Mix % vs LY-1' =
-			VAR act = [Stock BU Mix %]
-			VAR comp = [Stock BU Mix % LY-1]
-			VAR result =
-			    DIVIDE ( act - comp, comp )
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
-		description: Two years ago equivalent of Stock BU Mix % vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Stock\Stock Mix\BU\LY-1
-		lineageTag: fc44a7ff-136d-4c56-9341-9f9bbbece3d0
 
 	measure 'SRIV FPP FC' = CALCULATE ( [SRIV Channel FC], 'SalesType'[SalesType] = "FP&P" )
 		formatString: #,##0,,.0;(#,##0,,.0)
@@ -15896,6 +13638,7 @@ table 1_Measures
 
 	measure 'Reduced Markdown % BUD' = ```
 			
+			
 			//[Markdown % SRIV BUD]-[Promo Markdown % BUD]
 			
 			VAR num = [Reduced Markdown BUD]
@@ -15936,12 +13679,6 @@ table 1_Measures
 		displayFolder: Margin\Red Markdown\LY
 		lineageTag: b07b18ea-1f7f-4531-9e2d-cbcf02e8107f
 
-	measure 'Reduced Markdown LY-1' = [Markdown LY-1]-[Promo Markdown LY-1]
-		displayFolder: Margin\Red Markdown\LY-1
-		lineageTag: 268945a8-0a59-4994-a846-317ff2bb42f5
-
-		description: Two years ago equivalent of Reduced Markdown LY.
-
 	measure 'Reduced Markdown vs LY' =
 			VAR act = [Reduced Markdown]
 			VAR comp = [Reduced Markdown LY]
@@ -15952,18 +13689,8 @@ table 1_Measures
 		displayFolder: Margin\Red Markdown\LY
 		lineageTag: 4a3c994a-c9ae-4281-99aa-9c9b58886daf
 
-	measure 'Reduced Markdown vs LY-1' =
-			VAR act = [Reduced Markdown]
-			VAR comp = [Reduced Markdown LY-1]
-			VAR result = act - comp
-			RETURN
-			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
-		description: Two years ago equivalent of Reduced Markdown vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Red Markdown\LY-1
-		lineageTag: e432f743-520e-4d8e-986a-5bcbf9451aee
-
 	measure 'Reduced Markdown % LY' = ```
+			
 			
 			//[Markdown % SRIV LY]-[Promo Markdown % LY]
 			VAR num = [Reduced Markdown LY]
@@ -15979,23 +13706,6 @@ table 1_Measures
 		displayFolder: Margin\Red Markdown\LY
 		lineageTag: 431fd526-62a5-4fa4-968d-a302bbe8c3e1
 
-	measure 'Reduced Markdown % LY-1' = ```
-			
-			//[Markdown % SRIV LY-1]-[Promo Markdown % LY-1]
-			VAR num = [Reduced Markdown LY-1]
-			    
-			VAR denom = [Reduced Markdown LY-1] - [SRIV Reduced LY-1]
-			VAR result =
-			    DIVIDE ( num, denom )
-			RETURN
-			    IF ( OR ( num = BLANK (), denom = BLANK () ), BLANK (), result )
-			
-			```
-		description: Two years ago equivalent of Reduced Markdown % LY.
-		formatString: 0.0%;(0.0)%
-		displayFolder: Margin\Red Markdown\LY-1
-		lineageTag: bfc017fa-20d0-47d3-88dd-ee309464bbab
-
 	measure 'Reduced Markdown % vs LY' =
 			VAR act = [Reduced Markdown %]
 			VAR comp = [Reduced Markdown % LY]
@@ -16005,17 +13715,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Red Markdown\LY
 		lineageTag: 4768294f-5622-4983-89ce-c4d57690f096
-
-	measure 'Reduced Markdown % vs LY-1' =
-			VAR act = [Reduced Markdown %]
-			VAR comp = [Reduced Markdown % LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Reduced Markdown % vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Red Markdown\LY-1
-		lineageTag: 340baf5d-92dc-4ad0-9bbd-c7f94cfed4fa
 
 	measure 'Reduced Markdown vs LY %' =
 			VAR act = [Reduced Markdown]
@@ -16502,28 +14201,10 @@ table 1_Measures
 		displayFolder: Sales\Returns\Returns Mix
 		lineageTag: 5e7add22-44fd-415b-ba6d-7aa21fa6b9eb
 
-	measure 'Gross SRIV Mix % LY-1' =
-			VAR line = [Gross SRIV LY-1]
-			VAR parent_total = [Gross SRIV ProductParent LY-1]
-			VAR result =
-			    DIVIDE ( line, parent_total )
-			RETURN
-			    result
-		description: Two years ago equivalent of Gross SRIV Mix % LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Returns\Returns Mix
-		lineageTag: 62a68935-e43a-4dee-9ed4-ff4d73b3c94d
-
 	measure 'Gross SRIV Mix % vs LY' = [Gross SRIV Mix %] - [Gross SRIV Mix % LY]
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Returns\Returns Mix
 		lineageTag: 0877e664-2f4d-4952-9c41-280393fbd5ae
-
-	measure 'Gross SRIV Mix % vs LY-1' = [Gross SRIV Mix %] - [Gross SRIV Mix % LY-1]
-		description: Two years ago equivalent of Gross SRIV Mix % vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Sales\Returns\Returns Mix
-		lineageTag: 95f3a455-c624-431b-89de-8eeb981e9d0d
 
 	measure gsriv_at_ly_mix_pct =
 			VAR result =
@@ -16566,23 +14247,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Returns\Returns Mix
 		lineageTag: 8814397d-a277-4dc1-944c-7dfe25ec8e99
-
-	measure 'Gross SRIV ProductParent LY-1' =
-			VAR total_bu =
-			    CALCULATE (
-			        [Gross SRIV LY-1],
-			        REMOVEFILTERS ( Products[Dept], Products[Dept Code] )
-			    )
-			VAR total_all_products =
-			    CALCULATE ( [Gross SRIV LY-1], ALLSELECTED ( Products ) )
-			VAR parent_total =
-			    SWITCH ( TRUE (), ISINSCOPE ( Products[Dept] ), total_bu, total_all_products )
-			RETURN
-			    parent_total
-		description: Two years ago equivalent of Gross SRIV ProductParent LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Returns\Returns Mix
-		lineageTag: 084db406-8399-4f52-bc36-f2cb798ee8ea
 
 	measure calc_gsriv_mix_at_ty_return_rate =
 			VAR result =
@@ -17178,22 +14842,6 @@ table 1_Measures
 		displayFolder: Sales\Volume\LY
 		lineageTag: 0fd7baf8-ef5c-48ca-8214-cef6f39e3735
 
-	measure 'Volume LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [Volume Orders LY-1],
-			        "Dispatch", [Volume Dispatch LY-1],
-			        [Volume Orders LY-1]
-			    )
-			RETURN
-			    result
-		description: Two years ago equivalent of Volume LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Volume\LY-1
-		lineageTag: 8eb8b446-d1bc-4173-9b1a-971df6198bd2
-
 	measure 'Volume vs LY' =
 			VAR act = [Volume]
 			VAR comp = [Volume LY]
@@ -17203,17 +14851,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Volume\LY
 		lineageTag: 0ed982cd-a68a-43f1-ad70-9fd25b6d62b1
-
-	measure 'Volume vs LY-1' =
-			VAR act = [Volume]
-			VAR comp = [Volume LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Volume vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Volume\LY-1
-		lineageTag: 6fcda15d-b719-4a00-bb01-810f028ec3cf
 
 	measure 'Volume vs LY %' =
 			VAR act = [Volume]
@@ -17271,16 +14908,6 @@ table 1_Measures
 		displayFolder: Sales\Orders\Volume\LY
 		lineageTag: 33442499-a341-429c-ad0f-c035cb440fac
 
-	measure 'Volume Orders LY-1' =
-			CALCULATE (
-			    [Volume Orders],
-			    USERELATIONSHIP ( factOrderVol[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Volume Orders LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Orders\Volume\LY-1
-		lineageTag: 4de5edbd-4a6f-42ce-9784-a3586d4eab6a
-
 	measure 'Volume Orders vs LY' =
 			VAR act = [Volume Orders]
 			VAR comp = [Volume Orders LY]
@@ -17290,17 +14917,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Orders\Volume\LY
 		lineageTag: ce30d217-e6cc-41c5-8f51-4391d36596b6
-
-	measure 'Volume Orders vs LY-1' =
-			VAR act = [Volume Orders]
-			VAR comp = [Volume Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Volume Orders vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Orders\Volume\LY-1
-		lineageTag: 55bf36e5-7db3-4b3c-808c-93e75dfd46f9
 
 	measure 'Volume Orders vs LY %' =
 			VAR act = [Volume Orders]
@@ -17358,16 +14974,6 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\FPP Volume\LY
 		lineageTag: 8061b7f7-a256-4817-b16b-da9b97818f75
 
-	measure 'FPP Volume Dispatch LY-1' =
-			CALCULATE (
-			    [FPP Volume Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of FPP Volume Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\FPP Volume\LY-1
-		lineageTag: b6325a63-7a41-4eef-b37b-17fe29ec252c
-
 	measure 'FPP Volume Dispatch vs LY' =
 			VAR act = [FPP Volume Dispatch]
 			VAR comp = [FPP Volume Dispatch LY]
@@ -17377,17 +14983,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Dispatch\FPP Volume\LY
 		lineageTag: c72a2875-c47d-48f9-9a8f-a41522de14ec
-
-	measure 'FPP Volume Dispatch vs LY-1' =
-			VAR act = [FPP Volume Dispatch]
-			VAR comp = [FPP Volume Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of FPP Volume Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\FPP Volume\LY-1
-		lineageTag: 24f349a3-e9f2-4452-8ff2-0d6c3e723f1a
 
 	measure 'FPP Volume Dispatch vs LY %' =
 			VAR act = [FPP Volume Dispatch]
@@ -17445,16 +15040,6 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\RP Volume\LY
 		lineageTag: 66d503b4-32bd-41ee-afff-3c437b2164b4
 
-	measure 'RP Volume Dispatch LY-1' =
-			CALCULATE (
-			    [RP Volume Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of RP Volume Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\RP Volume\LY-1
-		lineageTag: db096f4a-e630-4665-9639-e84bb921d9f9
-
 	measure 'RP Volume Dispatch vs LY' =
 			VAR act = [RP Volume Dispatch]
 			VAR comp = [RP Volume Dispatch LY]
@@ -17464,17 +15049,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Dispatch\RP Volume\LY
 		lineageTag: 45324fff-879e-4738-b6b9-4ea46b4fbe00
-
-	measure 'RP Volume Dispatch vs LY-1' =
-			VAR act = [RP Volume Dispatch]
-			VAR comp = [RP Volume Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of RP Volume Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\RP Volume\LY-1
-		lineageTag: b90da9ba-8968-4e5f-ad55-8b9ba4dc2668
 
 	measure 'RP Volume Dispatch vs LY %' =
 			VAR act = [RP Volume Dispatch]
@@ -17545,16 +15119,6 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\Volume\LY
 		lineageTag: f64f5684-8c69-4943-a578-b7c0666b9fb8
 
-	measure 'Volume Dispatch LY-1' =
-			CALCULATE (
-			    [Volume Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Volume Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\Volume\LY-1
-		lineageTag: db12c375-5ad2-41d8-af23-a6eb4539f38c
-
 	measure 'Volume Dispatch vs LY' =
 			VAR act = [Volume Dispatch]
 			VAR comp = [Volume Dispatch LY]
@@ -17564,17 +15128,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Dispatch\Volume\LY
 		lineageTag: 38559ac2-5af7-4d08-bd48-739ecbb3b276
-
-	measure 'Volume Dispatch vs LY-1' =
-			VAR act = [Volume Dispatch]
-			VAR comp = [Volume Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Volume Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Sales\Dispatch\Volume\LY-1
-		lineageTag: db846953-8f43-4828-9b34-0f74a375640b
 
 	measure 'Volume Dispatch vs LY %' =
 			VAR act = [Volume Dispatch]
@@ -17631,16 +15184,6 @@ table 1_Measures
 		displayFolder: Intake\LY
 		lineageTag: 8dd6629c-1b0c-4d02-bd4b-b54b5b7b3fa7
 
-	measure 'FPP Intake Value LY-1' =
-			CALCULATE (
-			    [FPP Intake Value],
-			    USERELATIONSHIP ( factForecast[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of FPP Intake Value LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Intake\LY-1
-		lineageTag: 26948d09-18dd-4b18-aaf0-e1ea9a0cacf8
-
 	measure 'FPP Intake Value vs LY' =
 			VAR act = [FPP Intake Value]
 			VAR comp = [FPP Intake Value LY]
@@ -17650,17 +15193,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Intake\LY
 		lineageTag: e93f2a30-d6a9-4aaa-a441-0d7d887f4890
-
-	measure 'FPP Intake Value vs LY-1' =
-			VAR act = [FPP Intake Value]
-			VAR comp = [FPP Intake Value LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of FPP Intake Value vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Intake\LY-1
-		lineageTag: bc71d2d1-a3af-4b67-a32d-442f3eaf39e3
 
 	measure 'FPP Intake Value BUD' =
 			CALCULATE (
@@ -17781,6 +15313,7 @@ table 1_Measures
 
 	measure 'ASP (SRIV) (Based on LY)' = ```
 			
+			
 			VAR PRODUCT_SCOPE = ISINSCOPE(Products[Dept]) || ISINSCOPE(Products[Dept Code])
 			
 			RETURN
@@ -17801,6 +15334,7 @@ table 1_Measures
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Volume (Agg ASP CALC)' =
+			
 			
 			SUMX(Products, [Volume (ASP CALC)])
 		displayFolder: Sales\ASP
@@ -19131,16 +16665,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Sale Markdown\LY
 		lineageTag: cdc54203-c5bd-4221-8eaa-fb3ee5bd405a
 
-	measure 'Sale Markdown XV Dispatch LY-1' =
-			CALCULATE (
-			    [Sale Markdown XV Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Sale Markdown XV Dispatch LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\Sale Markdown\LY-1
-		lineageTag: d776157f-c186-4304-a8ae-5d22fcbe1468
-
 	measure 'Sale Markdown XV Dispatch vs LY' =
 			VAR act = [Sale Markdown XV Dispatch]
 			VAR comp = [Sale Markdown XV Dispatch LY]
@@ -19151,17 +16675,6 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Sale Markdown\LY
 		lineageTag: a11a76dc-2a20-4f24-9134-e4961c81131d
 
-	measure 'Sale Markdown XV Dispatch vs LY-1' =
-			VAR act = [Sale Markdown XV Dispatch]
-			VAR comp = [Sale Markdown XV Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Sale Markdown XV Dispatch vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Dispatch\Sale Markdown\LY-1
-		lineageTag: b6363064-712f-4da6-a64d-80914086d146
-
 	measure 'Sale Markdown XV % Dispatch LY' =
 			CALCULATE (
 			    [Sale Markdown XV % Dispatch],
@@ -19170,16 +16683,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Dispatch\Sale Markdown\LY
 		lineageTag: 4fe7c7e1-4211-4eb1-8b42-a1a30ada7e35
-
-	measure 'Sale Markdown XV % Dispatch LY-1' =
-			CALCULATE (
-			    [Sale Markdown XV % Dispatch],
-			    USERELATIONSHIP ( factSalesDispatch[Fiscal Week], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Sale Markdown XV % Dispatch LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Dispatch\Sale Markdown\LY-1
-		lineageTag: 14d5ce5a-7228-4fe4-ba6a-b847f59a648f
 
 	measure 'Sale Markdown XV % Dispatch vs LY' =
 			VAR act = [Sale Markdown XV % Dispatch]
@@ -19190,17 +16693,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Dispatch\Sale Markdown\LY
 		lineageTag: 8cea2be8-a57a-47fa-aa42-d79d431c3816
-
-	measure 'Sale Markdown XV % Dispatch vs LY-1' =
-			VAR act = [Sale Markdown XV % Dispatch]
-			VAR comp = [Sale Markdown XV % Dispatch LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Sale Markdown XV % Dispatch vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Dispatch\Sale Markdown\LY-1
-		lineageTag: e6e1895f-ad11-4f9b-b301-28330b536c1f
 
 	measure 'Sale Markdown XV Dispatch LW' =
 			CALCULATE (
@@ -19387,16 +16879,6 @@ table 1_Measures
 		displayFolder: Margin\Orders\Sale Markdown\LY
 		lineageTag: 5ae7eca1-1ad1-4f61-bcaa-8a02a7f9531e
 
-	measure 'Sale Markdown XV Orders LY-1' =
-			CALCULATE (
-			    [Sale Markdown XV Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Sale Markdown XV Orders LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Orders\Sale Markdown\LY-1
-		lineageTag: c71fcea3-6f6c-477f-ac83-5a812dad990d
-
 	measure 'Sale Markdown XV Orders vs LY' =
 			VAR act = [Sale Markdown XV Orders]
 			VAR comp = [Sale Markdown XV Orders LY]
@@ -19407,17 +16889,6 @@ table 1_Measures
 		displayFolder: Margin\Orders\Sale Markdown\LY
 		lineageTag: 4ca265c9-4ae3-4b19-83b4-2dd78546cd44
 
-	measure 'Sale Markdown XV Orders vs LY-1' =
-			VAR act = [Sale Markdown XV Orders]
-			VAR comp = [Sale Markdown XV Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Sale Markdown XV Orders vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Orders\Sale Markdown\LY-1
-		lineageTag: e660d5f1-a62f-440a-8b05-cd38328feffa
-
 	measure 'Sale Markdown XV % Orders LY' =
 			CALCULATE (
 			    [Sale Markdown XV % Orders],
@@ -19426,16 +16897,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Orders\Sale Markdown\LY
 		lineageTag: aaef1d57-5c71-44cc-8edb-48dc8f8ee9b7
-
-	measure 'Sale Markdown XV % Orders LY-1' =
-			CALCULATE (
-			    [Sale Markdown XV % Orders],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of Sale Markdown XV % Orders LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Orders\Sale Markdown\LY-1
-		lineageTag: a2b54f69-9bda-4062-965a-3c0591aac8e8
 
 	measure 'Sale Markdown XV % Orders vs LY' =
 			VAR act = [Sale Markdown XV % Orders]
@@ -19446,17 +16907,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Orders\Sale Markdown\LY
 		lineageTag: cd1d8a13-21b0-4e00-9062-0d925aa5ad05
-
-	measure 'Sale Markdown XV % Orders vs LY-1' =
-			VAR act = [Sale Markdown XV % Orders]
-			VAR comp = [Sale Markdown XV % Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Sale Markdown XV % Orders vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Orders\Sale Markdown\LY-1
-		lineageTag: d219ea92-3515-463c-9b44-0e9e2569c4c4
 
 	measure 'Sale Markdown XV Orders BUD' = CALCULATE ( [sum_RealMDV], ForecastScenarios[Forecast Scenario] = "BUD" )
 		formatString: #,##0,,.0;(#,##0,,.0)
@@ -19674,23 +17124,6 @@ table 1_Measures
 		displayFolder: Margin\Sale Markdown\LY
 		lineageTag: a07e051b-8790-402f-9645-655ba3c6299a
 
-	measure 'Sale Markdown XV LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [Sale Markdown XV Orders LY-1],
-			        "Dispatch", [Sale Markdown XV Dispatch LY-1],
-			        [Sale Markdown XV Orders LY-1]
-			    )
-			Var Output = SWITCH(SELECTEDVALUE(SalesType[SalesType]),"FP&P",0,result)
-			RETURN
-			    Output
-		description: Two years ago equivalent of Sale Markdown XV LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Sale Markdown\LY-1
-		lineageTag: 4ff9323b-69c8-4bcb-a722-98b7793f86f7
-
 	measure 'Sale Markdown XV vs LY' =
 			VAR act = [Sale Markdown XV]
 			VAR comp = [Sale Markdown XV LY]
@@ -19700,17 +17133,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Sale Markdown\LY
 		lineageTag: 6c925033-1eed-4274-9724-1414bd549981
-
-	measure 'Sale Markdown XV vs LY-1' =
-			VAR act = [Sale Markdown XV]
-			VAR comp = [Sale Markdown XV LY-1]
-			VAR result = act - comp
-			RETURN
-			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
-		description: Two years ago equivalent of Sale Markdown XV vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Margin\Sale Markdown\LY-1
-		lineageTag: 7f387fdd-b1e5-4742-8d27-b3136a687931
 
 	measure 'Sale Markdown XV % LY' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -19728,23 +17150,6 @@ table 1_Measures
 		displayFolder: Margin\Sale Markdown\LY
 		lineageTag: 5b350630-bf2e-44b0-820d-fa718135b359
 
-	measure 'Sale Markdown XV % LY-1' =
-			VAR recog_type = [slctd_SalesRecognitionType]
-			VAR result =
-			    SWITCH (
-			        recog_type,
-			        "Order", [Sale Markdown XV % Orders LY-1],
-			        "Dispatch", [Sale Markdown XV % Dispatch LY-1],
-			        [Sale Markdown XV % Orders LY-1]
-			    )
-			Var Output = SWITCH(SELECTEDVALUE(SalesType[SalesType]),"FP&P",0,result)
-			RETURN
-			    Output
-		description: Two years ago equivalent of Sale Markdown XV % LY.
-		formatString: 0.0%;(0.0)%
-		displayFolder: Margin\Sale Markdown\LY-1
-		lineageTag: eccbc695-aeec-49ce-8863-ebdba8f27bc7
-
 	measure 'Sale Markdown XV % vs LY' =
 			VAR act = [Sale Markdown XV %]
 			VAR comp = [Sale Markdown XV % LY]
@@ -19754,17 +17159,6 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Sale Markdown\LY
 		lineageTag: a6dd3a92-8021-4468-a5cc-8558a130a0f1
-
-	measure 'Sale Markdown XV % vs LY-1' =
-			VAR act = [Sale Markdown XV %]
-			VAR comp = [Sale Markdown XV % LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
-		description: Two years ago equivalent of Sale Markdown XV % vs LY.
-		formatString: #,##0.0%;(#,##0.0)%
-		displayFolder: Margin\Sale Markdown\LY-1
-		lineageTag: 840dc244-feb7-4ece-9440-95894d9ae57f
 
 	measure 'Sale Markdown XV vs LY %' =
 			VAR act = [Sale Markdown XV]
@@ -19842,6 +17236,7 @@ table 1_Measures
 
 	measure 'Sale Markdown XV BUD' = ```
 			
+			 
 			 VAR firstweek_yr = [SlctdBudVersion]
 			//Generate Temp Table
 			VAR salesTable =
@@ -20049,12 +17444,6 @@ table 1_Measures
 	measure 'Sale Markdown VAT Orders LY' = Divide([Sale Markdown Orders LY],[Sale Markdown XV Orders LY])
 		displayFolder: Margin\Orders\Sale Markdown\LY
 		lineageTag: 5f692cbf-92b9-41f1-b656-98acf2d5b1fa
-
-	measure 'Sale Markdown VAT Orders LY-1' = Divide([Sale Markdown Orders LY-1],[Sale Markdown XV Orders LY-1])
-		displayFolder: Margin\Orders\Sale Markdown\LY-1
-		lineageTag: 6edc2dea-56b9-46c2-8ca9-4652096cac90
-
-		description: Two years ago equivalent of Sale Markdown VAT Orders LY.
 
 	measure 'Sale Markdown VAT Orders BUD' = Divide([Sale Markdown Orders BUD],[Sale Markdown XV Orders BUD])
 		displayFolder: Margin\Orders\Sale Markdown\BUD
@@ -20302,6 +17691,7 @@ table 1_Measures
 			    SUMX(tbl, [Calc])
 			RETURN
 			Result
+			
 			
 			```
 		formatString: #,##0,,.0;(#,##0,,.0)
@@ -20631,6 +18021,7 @@ table 1_Measures
 
 	measure 'Traffic LW' =
 			
+			
 			CALCULATE(SUM(factAdobe[visitsL2]), factAdobe[visitType] = 1, USERELATIONSHIP(factAdobe[fiscalWeek],'Calendar'[fiscalWeekLastWeek]))
 			
 			/*VAR unadj = CALCULATE (
@@ -20775,6 +18166,7 @@ table 1_Measures
 
 	measure 'Traffic LY' =
 			
+			
 			CALCULATE(SUM(factAdobe[visitsL2]), factAdobe[visitType] = 1, USERELATIONSHIP(factAdobe[fiscalWeek],'Calendar'[fiscalWeekLastYear]))
 			
 			/*CALCULATE (
@@ -20785,19 +18177,6 @@ table 1_Measures
 		displayFolder: Transactions\Traffic\LY
 		lineageTag: 87294e99-378d-4112-ab4d-adf43af4dbbc
 
-	measure 'Traffic LY-1' =
-			
-			CALCULATE(SUM(factAdobe[visitsL2]), factAdobe[visitType] = 1, USERELATIONSHIP(factAdobe[fiscalWeek],'Calendar'[fiscalWeekLastToLastyear]))
-			
-			/*CALCULATE (
-			    [Unadj Traffic],
-			    USERELATIONSHIP ( factAdobe[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)*/
-		description: Two years ago equivalent of Traffic LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Transactions\Traffic\LY-1
-		lineageTag: 736edca3-d86d-4ec9-a054-f1582088bddc
-
 	measure 'Traffic vs LY' =
 			VAR act = [Traffic]
 			VAR comp = [Traffic LY]
@@ -20807,17 +18186,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Transactions\Traffic\LY
 		lineageTag: 7d0aa6bb-9441-46a7-a62d-7bd94c5dd8a6
-
-	measure 'Traffic vs LY-1' =
-			VAR act = [Traffic]
-			VAR comp = [Traffic LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of Traffic vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Transactions\Traffic\LY-1
-		lineageTag: 2dc81447-b213-4399-836f-fb38a6f5926b
 
 	measure 'Traffic vs LY %' =
 			VAR act = [Traffic]
@@ -20877,16 +18245,6 @@ table 1_Measures
 		displayFolder: Transactions\AOV\LY
 		lineageTag: 1429667c-9cca-41e6-b5ef-88add5d7bfa7
 
-	measure 'AOV LY-1' =
-			CALCULATE (
-			    [AOV],
-			    USERELATIONSHIP ( factAOV[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			)
-		description: Two years ago equivalent of AOV LY.
-		formatString: #,##0.0;(#,##0.0)
-		displayFolder: Transactions\AOV\LY-1
-		lineageTag: c00db6d2-7442-493f-a1ac-461a33df6b47
-
 	measure 'AOV vs LY' =
 			VAR act = [ABV]
 			VAR comp = [ABV LY]
@@ -20896,17 +18254,6 @@ table 1_Measures
 		formatString: #,##0.0;(#,##0.0)
 		displayFolder: Transactions\AOV\LY
 		lineageTag: a958867d-65fe-4162-b024-d95d482543f6
-
-	measure 'AOV vs LY-1' =
-			VAR act = [ABV]
-			VAR comp = [ABV LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of AOV vs LY.
-		formatString: #,##0.0;(#,##0.0)
-		displayFolder: Transactions\AOV\LY-1
-		lineageTag: 879b77e0-358d-4504-98aa-2bdb43249b21
 
 	measure 'AOV vs LY %' =
 			VAR act = [AOV]
@@ -20985,16 +18332,6 @@ table 1_Measures
 		displayFolder: Transactions\factAOV Orders\LY
 		lineageTag: 1af16cc2-e370-40df-b673-3a7f41a132b9
 
-	measure 'factAOV Orders LY-1' =
-			CALCULATE (
-			        [sum_orders_factAOV],
-			        USERELATIONSHIP ( factAOV[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			    )
-		description: Two years ago equivalent of factAOV Orders LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Transactions\factAOV Orders\LY-1
-		lineageTag: 2de177cb-ec52-444d-9451-0b2760c085c2
-
 	measure 'factAOV Orders vs LY' =
 			VAR act = [factAOV Orders]
 			VAR comp = [factAOV Orders LY]
@@ -21004,17 +18341,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Transactions\factAOV Orders\LY
 		lineageTag: 403d89ba-d0d9-45dd-8059-ef6b2c5e5c98
-
-	measure 'factAOV Orders vs LY-1' =
-			VAR act = [factAOV Orders]
-			VAR comp = [factAOV Orders LY-1]
-			VAR result = act - comp
-			RETURN
-			    IF ( comp = BLANK (), BLANK (), result )
-		description: Two years ago equivalent of factAOV Orders vs LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Transactions\factAOV Orders\LY-1
-		lineageTag: 3c57fd2c-8980-4353-bf14-f6ba63f3f795
 
 	measure 'factAOV Orders vs LY %' =
 			VAR act = [factAOV Orders]
@@ -21035,16 +18361,6 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Transactions\Online Orders\LY
 		lineageTag: d032613c-a17f-42ca-8c15-a4ec579be9d1
-
-	measure 'factAdobe Orders LY-1' =
-			CALCULATE (
-			        [Unadj factAdobe Orders],
-			        USERELATIONSHIP ( factAdobe[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
-			    )
-		description: Two years ago equivalent of factAdobe Orders LY.
-		formatString: #,##0,,.0;(#,##0,,.0)
-		displayFolder: Transactions\Online Orders\LY-1
-		lineageTag: ef4e7698-a7b2-4b26-a26d-5d34f0df1334
 
 	measure 'Unadj factAdobe Orders' = [sum_ordersL2_factAdobe]
 		formatString: #,##0,,.0;(#,##0,,.0)
@@ -21171,6 +18487,7 @@ table 1_Measures
 
 	measure 'TT Warning' =
 			
+			
 			VAR MinWeek = MIN('Calendar'[Week])
 			VAR td = SELECTEDVALUE('Time Period'[Time Period])
 			VAR MaxWeek = MAX('Calendar'[Week])
@@ -21187,6 +18504,7 @@ table 1_Measures
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'OT Warning' = ```
+			
 			
 			VAR MinWeek = MIN('Calendar'[Week])
 			VAR MaxWeek = MAX('Calendar'[Week])
@@ -21325,26 +18643,6 @@ table 1_Measures
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Dispatch Returns LY-1' =
-			
-			VAR sale_type = [slctd_SalesType]
-			VAR total_returns = [FP Returns LY-1] + [RP Returns LY-1]
-			VAR result =
-			    SWITCH (
-			        sale_type,
-			        "Total", total_returns,
-			        "FP&P", [FP Returns LY-1],
-			        "Reduced", [RP Returns LY-1],
-			        total_returns
-			    )
-			RETURN
-			    result
-		displayFolder: Sales\Returns\FP Returns\LY-1
-		lineageTag: 7c116574-1c65-4994-b346-91d234e9a442
-
-		description: Two years ago equivalent of Dispatch Returns LY.
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	measure 'Orders Returns LY' =
 			CALCULATE (
 			    [Orders Returns],
@@ -21352,16 +18650,6 @@ table 1_Measures
 		displayFolder: Sales\Returns\FP Returns\LY
 		lineageTag: dfa08676-68ad-498f-ac5a-cfba23115742
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	measure 'Orders Returns LY-1' =
-			CALCULATE (
-			    [Orders Returns],
-			    USERELATIONSHIP ( factSalesOrders[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] ))
-		displayFolder: Sales\Returns\FP Returns\LY-1
-		lineageTag: 400b998e-f4a9-478b-b454-e87418fb1f21
-
-		description: Two years ago equivalent of Orders Returns LY.
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column Column1
