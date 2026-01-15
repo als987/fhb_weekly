@@ -7,6 +7,11 @@ relationship 64a838e0-93d8-48fb-9d4a-f16f4262ec6b
 	fromColumn: factSalesOrders.fiscalWeek
 	toColumn: Calendar.fiscalWeekLastYear
 
+relationship 335a375e-c6ca-42f9-88b4-4456ee0a08d5
+	isActive: false
+	fromColumn: factSalesOrders.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastToLastyear
+
 relationship a92b77b1-3117-4024-b556-0a0c39e6f3fb
 	fromColumn: factSalesOrders.siteID
 	toColumn: Stores.siteID
@@ -28,6 +33,11 @@ relationship d179fc2a-5d11-4b46-ae36-98fdda682dba
 	isActive: false
 	fromColumn: factSalesDispatch.'Fiscal Week'
 	toColumn: Calendar.fiscalWeekLastYear
+
+relationship ac3bb8c6-8f21-44d6-880b-fbf92bbb0f46
+	isActive: false
+	fromColumn: factSalesDispatch.'Fiscal Week'
+	toColumn: Calendar.fiscalWeekLastToLastyear
 
 relationship d3acc805-1bfb-496b-9e8f-f72d7ae86cca
 	isActive: false
@@ -183,6 +193,11 @@ relationship 7b37c82d-545d-4cec-9b17-57c789a81ee6
 	fromColumn: factStock.fiscalWeek
 	toColumn: Calendar.fiscalWeekLastYear
 
+relationship 855bea09-8479-461a-97c1-809e519b7d73
+	isActive: false
+	fromColumn: factStock.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastToLastyear
+
 relationship a039a8a1-5e6d-4eac-af92-d153fbbd9981
 	crossFilteringBehavior: bothDirections
 	fromColumn: ChannelControl.dist_chnl_cde
@@ -220,6 +235,11 @@ relationship fa581dbb-12d7-46d3-b92c-9bbd268e822f
 	fromColumn: factTransactions.fiscalWeek
 	toColumn: Calendar.fiscalWeekLastYear
 
+relationship 19ae6054-b5bb-464f-b16a-0d673332daf4
+	isActive: false
+	fromColumn: factTransactions.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastToLastyear
+
 relationship fa94c6dd-f467-44f9-8488-f876770a93ee
 	fromColumn: factTransactions.channel
 	toColumn: Channels.dist_chnl_cde
@@ -237,6 +257,11 @@ relationship dcdcf0fc-ef84-4f3a-b7b1-a0a5d5dca3e2
 	isActive: false
 	fromColumn: factFootfall.fiscalWeek
 	toColumn: Calendar.fiscalWeekLastYear
+
+relationship 2e645c7f-deee-4f45-a4fa-81dfc28403bb
+	isActive: false
+	fromColumn: factFootfall.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastToLastyear
 
 relationship 16a5abe2-9954-4d6d-b213-e7d01c082f28
 	crossFilteringBehavior: bothDirections
@@ -432,6 +457,11 @@ relationship e6dd73f7-1095-4d16-9ebe-1171d1ff9fe5
 	fromColumn: factForecast.fiscalWeek
 	toColumn: Calendar.fiscalWeekLastYear
 
+relationship a55c99b4-3fba-4811-9c2d-1ac5f1b71b8d
+	isActive: false
+	fromColumn: factForecast.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastToLastyear
+
 relationship 17f4b4f6-dc51-47f8-945f-84a843e15a2b
 	fromColumn: factForecast.plan
 	toColumn: ForecastScenarios.'Finance Plan'
@@ -583,6 +613,11 @@ relationship e533a860-761c-27dd-4e42-89b755d202c9
 	fromColumn: factMPStock.fiscalWeek
 	toColumn: Calendar.fiscalWeekLastYear
 
+relationship 57527e39-d7f7-4dc9-a283-6539d3b7ab3f
+	isActive: false
+	fromColumn: factMPStock.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastToLastyear
+
 relationship f0bf63e2-5217-3a26-f8b7-75984fc1b7e1
 	fromColumn: factOrderVol.fiscalWeek
 	toColumn: Calendar.fiscalWeek
@@ -591,6 +626,11 @@ relationship 976f7069-ef0c-0afd-97d1-dc3d2fb4349c
 	isActive: false
 	fromColumn: factOrderVol.fiscalWeek
 	toColumn: Calendar.fiscalWeekLastYear
+
+relationship 56d078ca-cdcb-4b8d-afa1-b17bc542f804
+	isActive: false
+	fromColumn: factOrderVol.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastToLastyear
 
 relationship 46628bb8-9d40-8814-49a8-a2ff4fd7edde
 	isActive: false
@@ -616,6 +656,11 @@ relationship 35ab0c37-af39-b631-e01e-96b06633b2d1
 	fromColumn: factAdobe.fiscalWeek
 	toColumn: Calendar.fiscalWeekLastYear
 
+relationship f798f248-5e08-41da-8bcd-a49d5e735897
+	isActive: false
+	fromColumn: factAdobe.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastToLastyear
+
 relationship bd124a72-6ba4-5ace-e004-ef65ce281777
 	fromColumn: factAOV.fiscalWeek
 	toColumn: Calendar.fiscalWeek
@@ -630,6 +675,11 @@ relationship 10d6dc20-e7d3-e467-e260-a706b1df3a4e
 	fromColumn: factAOV.fiscalWeek
 	toColumn: Calendar.fiscalWeekLastYear
 
+relationship 2d4a2c46-fe34-4200-9518-3925ac69f3e1
+	isActive: false
+	fromColumn: factAOV.fiscalWeek
+	toColumn: Calendar.fiscalWeekLastToLastyear
+
 relationship 364a1dc4-ddc3-afb5-79da-3313581ee5cd
 	crossFilteringBehavior: bothDirections
 	toCardinality: many
@@ -640,4 +690,3 @@ relationship 066aaed5-eccc-2d40-ebc8-b3aea45834b5
 	toCardinality: many
 	fromColumn: factAOV.dimOrderCountryCode
 	toColumn: 'Company Code'.Country
-
