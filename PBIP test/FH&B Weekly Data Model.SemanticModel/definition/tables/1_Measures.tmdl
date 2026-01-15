@@ -14209,7 +14209,7 @@ table 1_Measures
 
 		annotation PBI_FormatHint = {"isCustom":true}
 
-	measure 'Return rate % vs LY-1' = [Return rate %] - [Return rate % LY]
+	measure 'Return rate % vs LY-1' = [Return rate %] - [Return rate % LY-1]
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Returns\LY-1
 		lineageTag: 211584fc-510f-4267-aded-512e4a3039fe
@@ -14589,7 +14589,7 @@ table 1_Measures
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: 8ab7a7ec-10ba-47be-a732-ae3041f5f21a
 
-	measure 'Returns Online vs LY-1 %' = [Returns Online %] - [Returns Online LY %]
+	measure 'Returns Online vs LY-1 %' = [Returns Online %] - [Returns Online LY-1 %]
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: fcbab5be-a149-478e-8d86-652fc4fa0010
@@ -14619,7 +14619,7 @@ table 1_Measures
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: 38c4ef8c-2ead-4da1-8f4e-367fed5b2477
 
-	measure 'Returns Stores vs LY-1 %' = [Returns Stores %] - [Returns Stores LY %]
+	measure 'Returns Stores vs LY-1 %' = [Returns Stores %] - [Returns Stores LY-1 %]
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: e9f906fc-6d02-4c9a-b4b8-32c6e10a6f7d
@@ -15054,7 +15054,7 @@ table 1_Measures
 
 	measure 'P&L vs LY-1 % Colour' =
 			VAR metric = [slctd_MetricMasterPnL]
-			VAR val = [P&L vs LY %]
+			VAR val = [P&L vs LY-1 %]
 			RETURN
 			    SWITCH ( metric, "Markdown %", - val, val )
 		formatString: #,##0.0%;(#,##0.0)%
@@ -15795,7 +15795,7 @@ table 1_Measures
 		displayFolder: Sales\Returns\Returns Mix
 		lineageTag: 0877e664-2f4d-4952-9c41-280393fbd5ae
 
-	measure 'Gross SRIV Mix % vs LY-1' = [Gross SRIV Mix %] - [Gross SRIV Mix % LY]
+	measure 'Gross SRIV Mix % vs LY-1' = [Gross SRIV Mix %] - [Gross SRIV Mix % LY-1]
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Returns\Returns Mix
 		lineageTag: 7f9232c3-2995-4248-89ce-57579e6684bf
@@ -20091,10 +20091,10 @@ table 1_Measures
 			VAR result =
 			    SWITCH (
 			        metric,
-			        "Traffic", [Visits vs LY %],
+			        "Traffic", [Visits vs LY-1 %],
 			        "Conv", [Conversion % vs LY-1],
-			        "Orders", [factAOV Orders vs LY %],
-			        "AOV", [AOV vs LY %]
+			        "Orders", [factAOV Orders vs LY-1 %],
+			        "AOV", [AOV vs LY-1 %]
 			    )
 			RETURN
 			    result
