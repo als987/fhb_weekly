@@ -89,6 +89,16 @@ table 1_Measures
 		displayFolder: Sales\Orders\SRIV\LY
 		lineageTag: 1f9208d2-82b4-4b2b-9f08-cb0cd48c3f0b
 
+	measure 'SRIV Orders vs LY-1' =
+			VAR act = [SRIV Orders]
+			VAR comp = [SRIV Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Orders\SRIV\LY-1
+		lineageTag: 7a1326fa-7079-4ff9-a949-7e1e4040cc3a
+
 	measure 'SRIV Orders vs LW' =
 			VAR act = [SRIV Orders]
 			VAR comp = [SRIV Orders LW]
@@ -118,6 +128,16 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Orders\GSM\LY
 		lineageTag: 2eb6d2c9-cec2-455f-a29e-8757381ff9a3
+
+	measure 'GSM Orders vs LY-1' =
+			VAR act = [GSM Orders]
+			VAR comp = [GSM Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Orders\GSM\LY-1
+		lineageTag: 17c869eb-3263-41eb-8166-e8a561d9cd1c
 
 	/// This measure is the sum of column 'factSalesOrders'[srev]
 	measure 'SREV Orders' = SUM ( 'factSalesOrders'[srev] )
@@ -198,6 +218,16 @@ table 1_Measures
 		displayFolder: Sales\Orders\SREV\LY
 		lineageTag: ea86e07a-eb04-4841-8906-1ed3812092af
 
+	measure 'SREV Orders vs LY-1' =
+			VAR act = [SREV Orders]
+			VAR comp = [SREV Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Orders\SREV\LY-1
+		lineageTag: 82788305-99ad-4b8b-9ba6-dcaaa89de369
+
 	measure 'SREV Orders vs LW' =
 			VAR act = [SREV Orders]
 			VAR comp = [SREV Orders LW]
@@ -217,6 +247,16 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Orders\GSM\LY
 		lineageTag: 10c77011-68c7-4576-bff7-a6ef81f0473f
+
+	measure 'GSM % SREV Orders vs LY-1' =
+			VAR act = [GSM % SREV Orders]
+			VAR comp = [GSM % SREV Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Orders\GSM\LY-1
+		lineageTag: 33ef8550-5c13-40d6-b230-a5351c437a6f
 
 	measure 'GSM % SREV Orders vs LW' =
 			VAR act = [GSM % SREV Orders]
@@ -284,6 +324,16 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\SRIV\LY
 		lineageTag: a7c50678-4308-4c55-b915-fa924bce8783
 
+	measure 'SRIV Dispatch vs LY-1' =
+			VAR act = [SRIV Dispatch]
+			VAR comp = [SRIV Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Dispatch\SRIV\LY-1
+		lineageTag: 05273ad6-3ef5-49e9-b6e8-7690c2853eee
+
 	measure 'SRIV Dispatch vs LW' =
 			VAR act = [SRIV Dispatch]
 			VAR comp = [SRIV Dispatch LW]
@@ -337,6 +387,16 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\SREV\LY
 		lineageTag: 3e0cae06-1823-4859-999a-938afbfa7661
 
+	measure 'SREV Dispatch vs LY-1' =
+			VAR act = [SREV Dispatch]
+			VAR comp = [SREV Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Dispatch\SREV\LY-1
+		lineageTag: 6224d7d1-208a-4b78-98c4-59b1366be0f3
+
 	measure 'SREV Dispatch vs LW' =
 			VAR act = [SREV Dispatch]
 			VAR comp = [SREV Dispatch LW]
@@ -389,6 +449,16 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Dispatch\GSM\LY
 		lineageTag: 8dd96c57-306c-409d-bb1d-b8255ef2cc28
+
+	measure 'GSM Dispatch vs LY-1' =
+			VAR act = [GSM Dispatch]
+			VAR comp = [GSM Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Dispatch\GSM\LY-1
+		lineageTag: 05b77481-b73b-4b82-a6d8-4572de4e05e8
 
 	measure 'GSM Dispatch vs LW' =
 			VAR act = [GSM Dispatch]
@@ -458,6 +528,16 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\GSM\LY
 		lineageTag: 8a96ff6a-549d-4c5f-8927-a71609cb9d1d
 
+	measure 'GSM % SREV Dispatch vs LY-1' =
+			VAR act = [GSM % SREV Dispatch]
+			VAR comp = [GSM % SREV Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Dispatch\GSM\LY-1
+		lineageTag: 5e3458c8-ebfc-436c-904a-5d332c9342a4
+
 	measure 'GSM % SREV Dispatch vs LW' =
 			VAR act = [GSM % SREV Dispatch]
 			VAR comp = [GSM % SREV Dispatch LW]
@@ -510,6 +590,16 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\Dispatch\FPP SRIV\LY
 		lineageTag: 1ddc0d22-d43b-4616-9104-05308159bc23
+
+	measure 'FPP SRIV Dispatch vs LY-1' =
+			VAR act = [FPP SRIV Dispatch]
+			VAR comp = [FPP SRIV Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Dispatch\FPP SRIV\LY-1
+		lineageTag: fde64020-4f98-4a8b-99dd-def1eaa5ce83
 
 	measure 'FPP SRIV Dispatch vs LW' =
 			VAR act = [FPP SRIV Dispatch]
@@ -564,6 +654,16 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\RP SRIV\LY
 		lineageTag: a1d1ce2b-4ffb-4f8d-9d6f-041f97fd2d05
 
+	measure 'RP SRIV Dispatch vs LY-1' =
+			VAR act = [RP SRIV Dispatch]
+			VAR comp = [RP SRIV Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Dispatch\RP SRIV\LY-1
+		lineageTag: a983ace4-5964-47db-9663-e44a53684db5
+
 	measure 'RP SRIV Dispatch vs LW' =
 			VAR act = [RP SRIV Dispatch]
 			VAR comp = [RP SRIV Dispatch LW]
@@ -584,6 +684,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Orders\SRIV\LY
 		lineageTag: a7bc596d-8f7e-4d83-a798-d25a166267e8
+
+	measure 'SRIV Orders vs LY-1 %' =
+			VAR act = [SRIV Orders]
+			VAR comp = [SRIV Orders LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Orders\SRIV\LY-1
+		lineageTag: 945cb3f8-6432-47f8-822b-88eed9cdf44b
 
 	measure 'SRIV Orders vs LW %' =
 			VAR act = [SRIV Orders]
@@ -607,6 +718,17 @@ table 1_Measures
 		displayFolder: Margin\Orders\GSM\LY
 		lineageTag: 95da5530-29e4-4ec5-bacf-941512d5d045
 
+	measure 'GSM Orders vs LY-1 %' =
+			VAR act = [GSM Orders]
+			VAR comp = [GSM Orders LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Orders\GSM\LY-1
+		lineageTag: 53715d47-fbaa-441c-95b5-ee2033ea090c
+
 	measure 'GSM Orders vs LW %' =
 			VAR act = [GSM Orders]
 			VAR comp = [GSM Orders LW]
@@ -628,6 +750,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Orders\SREV\LY
 		lineageTag: cea6e347-67da-4079-8b39-0f4a4bd18f7d
+
+	measure 'SREV Orders vs LY-1 %' =
+			VAR act = [SREV Orders]
+			VAR comp = [SREV Orders LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Orders\SREV\LY-1
+		lineageTag: d21ff1d6-33a7-44fe-badf-33378595221c
 
 	measure 'SREV Orders vs LW %' =
 			VAR act = [SREV Orders]
@@ -709,6 +842,17 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\SRIV\LY
 		lineageTag: 449fcbd6-f607-437b-a864-3b3e44ec66b4
 
+	measure 'SRIV Dispatch vs LY-1 %' =
+			VAR act = [SRIV Dispatch]
+			VAR comp = [SRIV Dispatch LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Dispatch\SRIV\LY-1
+		lineageTag: c6291f11-8d48-4780-ae53-f157e886ee2b
+
 	measure 'SRIV Dispatch vs LW %' =
 			VAR act = [SRIV Dispatch]
 			VAR comp = [SRIV Dispatch LW]
@@ -730,6 +874,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Dispatch\SREV\LY
 		lineageTag: 2b17593e-eee3-4710-bb98-6337c7176cab
+
+	measure 'SREV Dispatch vs LY-1 %' =
+			VAR act = [SREV Dispatch]
+			VAR comp = [SREV Dispatch LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Dispatch\SREV\LY-1
+		lineageTag: f1b34cca-facc-4e97-abe8-d11a64b80e8a
 
 	measure 'SREV Dispatch vs LW %' =
 			VAR act = [SREV Dispatch]
@@ -753,6 +908,17 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\GSM\LY
 		lineageTag: db0100a3-3fde-4f26-917e-c81375a8d4ba
 
+	measure 'GSM Dispatch vs LY-1 %' =
+			VAR act = [GSM Dispatch]
+			VAR comp = [GSM Dispatch LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Dispatch\GSM\LY-1
+		lineageTag: d19371b1-3299-47bb-8096-639d1e539108
+
 	measure 'GSM Dispatch vs LW %' =
 			VAR act = [GSM Dispatch]
 			VAR comp = [GSM Dispatch LW]
@@ -775,6 +941,17 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\FPP SRIV\LY
 		lineageTag: 2e0ca5be-4f51-4d70-bddf-aefda37d7652
 
+	measure 'FPP SRIV Dispatch vs LY-1 %' =
+			VAR act = [FPP SRIV Dispatch]
+			VAR comp = [FPP SRIV Dispatch LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Dispatch\FPP SRIV\LY-1
+		lineageTag: 8a6ce7f3-c129-4d02-9002-18250c2aca82
+
 	measure 'FPP SRIV Dispatch vs LW %' =
 			VAR act = [FPP SRIV Dispatch]
 			VAR comp = [FPP SRIV Dispatch LW]
@@ -796,6 +973,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Dispatch\RP SRIV\LY
 		lineageTag: 2f64c4ad-d09d-4431-bef1-c3b8e9dea068
+
+	measure 'RP SRIV Dispatch vs LY-1 %' =
+			VAR act = [RP SRIV Dispatch]
+			VAR comp = [RP SRIV Dispatch LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Dispatch\RP SRIV\LY-1
+		lineageTag: 4294f418-5622-4746-a942-218237300c64
 
 	measure 'RP SRIV Dispatch vs LW %' =
 			VAR act = [RP SRIV Dispatch]
@@ -869,6 +1057,18 @@ table 1_Measures
 
 		annotation PBI_FormatHint = {"isCustom":true}
 
+	measure 'SRIV vs LY-1' =
+			VAR act = [SRIV]
+			VAR comp = [SRIV LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\SRIV\LY-1
+		lineageTag: 06ceaf14-c3ec-4ce8-91e8-392fceaf8a98
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
 	measure 'SRIV vs LY %' =
 			VAR act = [SRIV]
 			VAR comp = [SRIV LY]
@@ -879,6 +1079,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\SRIV\LY
 		lineageTag: 7f0c367f-bbca-40c9-b0e8-52df8d37382c
+
+	measure 'SRIV vs LY-1 %' =
+			VAR act = [SRIV]
+			VAR comp = [SRIV LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\SRIV\LY-1
+		lineageTag: a501ae85-0efb-47f3-b2ef-675badc50b16
 
 	measure 'SRIV LW' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -1093,6 +1304,16 @@ table 1_Measures
 		displayFolder: Sales\SREV\LY
 		lineageTag: ec057013-75af-41ea-9cfc-e811b7d495af
 
+	measure 'SREV vs LY-1' =
+			VAR act = [SREV]
+			VAR comp = [SREV LY-1]
+			VAR result = act - comp
+			RETURN
+			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\SREV\LY-1
+		lineageTag: 6476f91b-2d87-4517-b8d7-63945160d4f6
+
 	measure 'SREV vs LY %' =
 			VAR act = [SREV]
 			VAR comp = [SREV LY]
@@ -1103,6 +1324,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\SREV\LY
 		lineageTag: bf601c35-b5de-4e12-9096-3fc97ee647e1
+
+	measure 'SREV vs LY-1 %' =
+			VAR act = [SREV]
+			VAR comp = [SREV LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\SREV\LY-1
+		lineageTag: 4423fc86-f5b2-4a63-b468-f1e0986980c6
 
 	measure GSM =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -1174,6 +1406,16 @@ table 1_Measures
 		displayFolder: Margin\GSM\LY
 		lineageTag: ccd53a09-11f1-4070-bd34-a26586d7310a
 
+	measure 'GSM vs LY-1' =
+			VAR act = [GSM]
+			VAR comp = [GSM LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\GSM\LY-1
+		lineageTag: 26f0ff42-8321-4186-9958-7536d00dace0
+
 	/// This measure is column [GSM Orders LY] as a % of SREV
 	measure 'GSM % SREV LY' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -1215,6 +1457,16 @@ table 1_Measures
 		displayFolder: Margin\GSM\LY
 		lineageTag: bde92874-4b04-4fb1-ada3-2c3bebf2b130
 
+	measure 'GSM % SREV vs LY-1' =
+			VAR act = [GSM % SREV]
+			VAR comp = [GSM % SREV LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\GSM\LY-1
+		lineageTag: a9ec05de-dff5-4043-9531-50fda11d3064
+
 	measure 'GSM vs LY %' =
 			VAR act = [GSM]
 			VAR comp = [GSM LY]
@@ -1225,6 +1477,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\GSM\LY
 		lineageTag: af40e4f3-1d93-4832-8715-02f611e84e9f
+
+	measure 'GSM vs LY-1 %' =
+			VAR act = [GSM]
+			VAR comp = [GSM LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\GSM\LY-1
+		lineageTag: a0614da0-7089-4501-811d-f05521c5e4bc
 
 	measure 'GSM LW' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -1443,6 +1706,16 @@ table 1_Measures
 		displayFolder: Sales\Returns\LY
 		lineageTag: d3ebe8e7-b92c-4b00-a862-64fcc89a4ba0
 
+	measure 'Returns vs LY-1' =
+			VAR act = [Returns]
+			VAR comp = [Returns LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Returns\LY-1
+		lineageTag: effe0db6-493a-479c-85ed-61e647ecb73c
+
 	measure 'Returns vs LY %' =
 			VAR act = [Returns]
 			VAR comp = [Returns LY]
@@ -1453,6 +1726,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Returns\LY
 		lineageTag: 4c91e946-f6db-4929-8dfa-0164aa05c0c3
+
+	measure 'Returns vs LY-1 %' =
+			VAR act = [Returns]
+			VAR comp = [Returns LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Returns\LY-1
+		lineageTag: 19e4b339-ab44-4e10-918d-945d6409cc51
 
 	measure 'Returns LW' =
 			
@@ -1540,6 +1824,16 @@ table 1_Measures
 		displayFolder: Sales\Returns\FP Returns\LY
 		lineageTag: e5486c5a-5fc8-4472-8b63-fe4957e88567
 
+	measure 'FP Returns vs LY-1' =
+			VAR act = [FP Returns]
+			VAR comp = [FP Returns LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Returns\FP Returns\LY-1
+		lineageTag: 53f2a429-f99d-437c-a1d8-aac577948e21
+
 	measure 'FP Returns vs LY %' =
 			VAR act = [FP Returns]
 			VAR comp = [FP Returns LY]
@@ -1550,6 +1844,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Returns\FP Returns\LY
 		lineageTag: 3ab79d0a-4442-4be6-b725-8b638aeca4e7
+
+	measure 'FP Returns vs LY-1 %' =
+			VAR act = [FP Returns]
+			VAR comp = [FP Returns LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Returns\FP Returns\LY-1
+		lineageTag: 0cc78d52-37aa-466d-a664-f442157e12d4
 
 	measure 'FP Returns LW' =
 			CALCULATE (
@@ -1615,6 +1920,16 @@ table 1_Measures
 		displayFolder: Sales\Returns\RP Returns\LY
 		lineageTag: 5e2aea26-e150-434f-a00d-7a70307c2a4d
 
+	measure 'RP Returns vs LY-1' =
+			VAR act = [RP Returns]
+			VAR comp = [RP Returns LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Returns\RP Returns\LY-1
+		lineageTag: 4a91f707-fc84-4468-a9dc-a4600efab7b3
+
 	measure 'RP Returns vs LY %' =
 			VAR act = [RP Returns]
 			VAR comp = [RP Returns LY]
@@ -1625,6 +1940,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Returns\RP Returns\LY
 		lineageTag: ae8b0368-c18e-4864-ab36-79705b27fd1b
+
+	measure 'RP Returns vs LY-1 %' =
+			VAR act = [RP Returns]
+			VAR comp = [RP Returns LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Returns\RP Returns\LY-1
+		lineageTag: 0f7ddb4d-30bb-455a-97da-2a2f5df1e4e1
 
 	measure 'RP Returns LW' =
 			CALCULATE (
@@ -1979,6 +2305,16 @@ table 1_Measures
 		displayFolder: Sales\Dispatch vs Orders\SRIV\LY
 		lineageTag: 407b7ff6-1d17-4838-a9d7-a7ee2a8f1614
 
+	measure 'SRIV Dispatch vs Orders vs LY-1' =
+			VAR act = [SRIV Dispatch vs Orders]
+			VAR comp = [SRIV Dispatch vs Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Dispatch vs Orders\SRIV\LY-1
+		lineageTag: 3431030a-edcf-44ba-b7d4-cd782fd9ecd2
+
 	measure 'SRIV Dispatch vs Orders vs LY %' =
 			VAR act = [SRIV Dispatch vs Orders]
 			VAR comp = [SRIV Dispatch vs Orders LY]
@@ -1989,6 +2325,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Dispatch vs Orders\SRIV\LY
 		lineageTag: 8b6e04c5-18b9-4478-b931-68d3d8c83f10
+
+	measure 'SRIV Dispatch vs Orders vs LY-1 %' =
+			VAR act = [SRIV Dispatch vs Orders]
+			VAR comp = [SRIV Dispatch vs Orders LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Dispatch vs Orders\SRIV\LY-1
+		lineageTag: a4d5a50d-98e4-49db-a811-63b5c21e55c7
 
 	measure 'SRIV Dispatch vs Orders LW' =
 			VAR dispatch = [SRIV Dispatch LW]
@@ -2152,6 +2499,16 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\Postings\LY
 		lineageTag: d05fe392-da4a-48dd-922e-e9b53aa7f8d0
 
+	measure 'SRIV Postings Dispatch vs LY-1' =
+			VAR act = [SRIV Postings Dispatch]
+			VAR comp = [SRIV Postings Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Dispatch\Postings\LY-1
+		lineageTag: 101f88db-de0e-44ec-bc72-91a6f9309cef
+
 	measure 'SRIV Postings Dispatch vs LY %' =
 			VAR act = [SRIV Postings Dispatch]
 			VAR comp = [SRIV Postings Dispatch LY]
@@ -2162,6 +2519,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Dispatch\Postings\LY
 		lineageTag: 6877916e-b6a3-4c2f-925d-2e9cefc2cbe6
+
+	measure 'SRIV Postings Dispatch vs LY-1 %' =
+			VAR act = [SRIV Postings Dispatch]
+			VAR comp = [SRIV Postings Dispatch LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Dispatch\Postings\LY-1
+		lineageTag: fd9d3d7b-b4ac-4a6e-a1d4-2bdc10c213df
 
 	measure 'SRIV Postings Dispatch LW' =
 			CALCULATE (
@@ -2226,6 +2594,16 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\P SRIV\LY
 		lineageTag: 600545d3-e228-4ea4-8e85-4012f950a968
 
+	measure 'P SRIV Dispatch vs LY-1' =
+			VAR act = [P SRIV Dispatch]
+			VAR comp = [P SRIV Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Dispatch\P SRIV\LY-1
+		lineageTag: c03e66d8-baa9-43a1-aab9-3be600eb9a35
+
 	measure 'P SRIV Dispatch vs LY %' =
 			VAR act = [P SRIV Dispatch]
 			VAR comp = [P SRIV Dispatch LY]
@@ -2236,6 +2614,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Dispatch\P SRIV\LY
 		lineageTag: 0a9dc273-0c2b-4db5-8402-bc6d78f7e84e
+
+	measure 'P SRIV Dispatch vs LY-1 %' =
+			VAR act = [P SRIV Dispatch]
+			VAR comp = [P SRIV Dispatch LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Dispatch\P SRIV\LY-1
+		lineageTag: 4bb15472-4b73-437d-a236-242331378de1
 
 	measure 'P SRIV Dispatch LW' =
 			CALCULATE (
@@ -2316,6 +2705,16 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Buying Margin\LY
 		lineageTag: a628dd76-2d94-420d-bdec-45c568614be7
 
+	measure 'Buying Margin Dispatch vs LY-1' =
+			VAR act = [Buying Margin Dispatch]
+			VAR comp = [Buying Margin Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Dispatch\Buying Margin\LY-1
+		lineageTag: 18bca886-99bc-4907-9ebb-fb027af2a989
+
 	measure 'Buying Margin % Dispatch LY' =
 			CALCULATE (
 			    [Buying Margin % Dispatch],
@@ -2344,6 +2743,16 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Buying Margin\LY
 		lineageTag: 0ee89350-6266-484a-8969-698a3cdb8bbe
 
+	measure 'Buying Margin % Dispatch vs LY-1' =
+			VAR act = [Buying Margin % Dispatch]
+			VAR comp = [Buying Margin % Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Dispatch\Buying Margin\LY-1
+		lineageTag: 538512d6-a451-473a-8524-12e7f4b1927b
+
 	measure 'Buying Margin Dispatch vs LY %' =
 			VAR act = [Buying Margin Dispatch]
 			VAR comp = [Buying Margin Dispatch LY]
@@ -2354,6 +2763,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Dispatch\Buying Margin\LY
 		lineageTag: 8cb07433-6a2f-42c9-9ce3-30be194d2088
+
+	measure 'Buying Margin Dispatch vs LY-1 %' =
+			VAR act = [Buying Margin Dispatch]
+			VAR comp = [Buying Margin Dispatch LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Dispatch\Buying Margin\LY-1
+		lineageTag: aeedf25d-1606-44b1-b82b-6b722aa6edda
 
 	measure 'Buying Margin Dispatch LW' =
 			CALCULATE (
@@ -2449,6 +2869,16 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Markdown\LY
 		lineageTag: bc35b872-29f3-4f0f-aa48-943c47875da3
 
+	measure 'Markdown Dispatch vs LY-1' =
+			VAR act = [Markdown Dispatch]
+			VAR comp = [Markdown Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Dispatch\Markdown\LY-1
+		lineageTag: c047c752-8e7b-4ba9-aa7c-193a201bf50b
+
 	measure 'Markdown % SRIV Dispatch LY' =
 			CALCULATE (
 			    [Markdown % SRIV Dispatch],
@@ -2477,6 +2907,16 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Markdown\LY
 		lineageTag: 12b56596-b000-4102-8235-e466925878b7
 
+	measure 'Markdown % SRIV Dispatch vs LY-1' =
+			VAR act = [Markdown % SRIV Dispatch]
+			VAR comp = [Markdown % SRIV Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Dispatch\Markdown\LY-1
+		lineageTag: b73e2452-6eca-4530-a5e8-8cadc868f1f7
+
 	measure 'Markdown Dispatch vs LY %' =
 			VAR act = [Markdown Dispatch]
 			VAR comp = [Markdown Dispatch LY]
@@ -2487,6 +2927,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Dispatch\Markdown\LY
 		lineageTag: 03c87e82-f485-4824-92f5-c190222cecc5
+
+	measure 'Markdown Dispatch vs LY-1 %' =
+			VAR act = [Markdown Dispatch]
+			VAR comp = [Markdown Dispatch LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Dispatch\Markdown\LY-1
+		lineageTag: f0ec00e0-7228-4b12-a5b2-fd3d5d495683
 
 	measure 'Markdown Dispatch LW' =
 			CALCULATE (
@@ -2570,6 +3021,16 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Promo Markdown\LY
 		lineageTag: 2607f1a5-6f5b-4a63-9dad-d8e33b9fff23
 
+	measure 'Promo Markdown Dispatch vs LY-1' =
+			VAR act = [Promo Markdown Dispatch]
+			VAR comp = [Promo Markdown Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Dispatch\Promo Markdown\LY-1
+		lineageTag: ea5a1ffa-4641-4e8b-adc9-3ee100fdb593
+
 	measure 'Promo Markdown Dispatch LW' =
 			CALCULATE (
 			    [Promo Markdown Dispatch],
@@ -2622,6 +3083,16 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Sale Markdown\LY
 		lineageTag: cc2b87b3-f9ad-4ad3-ab44-12f27832a40b
 
+	measure 'Sale Markdown Dispatch vs LY-1' =
+			VAR act = [Sale Markdown Dispatch]
+			VAR comp = [Sale Markdown Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Dispatch\Sale Markdown\LY-1
+		lineageTag: bbc4d007-2b35-4158-ab08-0598fe564890
+
 	measure 'Sale Markdown Dispatch LW' =
 			CALCULATE (
 			    [Sale Markdown Dispatch],
@@ -2673,6 +3144,16 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Dispatch\SIS Sold Through\LY
 		lineageTag: 57c01db3-e74e-4ff9-9cef-5494270a9d77
+
+	measure 'SIS Sold Through Dispatch vs LY-1' =
+			VAR act = [SIS Sold Through Dispatch]
+			VAR comp = [SIS Sold Through Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Dispatch\SIS Sold Through\LY-1
+		lineageTag: 39fb015d-6be7-4c38-bdca-1be8042e4448
 
 	measure 'SIS Sold Through Dispatch LW' =
 			CALCULATE (
@@ -2767,6 +3248,16 @@ table 1_Measures
 		displayFolder: Margin\Orders\Buying Margin\LY
 		lineageTag: 09579f53-e99d-4ce8-9fd3-03c5a586efc1
 
+	measure 'Buying Margin Orders vs LY-1' =
+			VAR act = [Buying Margin Orders]
+			VAR comp = [Buying Margin Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Orders\Buying Margin\LY-1
+		lineageTag: 8c640ef5-f5b1-4ac1-bf5e-58a471f89f3b
+
 	measure 'Buying Margin % Orders LY' =
 			CALCULATE (
 			    [Buying Margin % Orders],
@@ -2795,6 +3286,16 @@ table 1_Measures
 		displayFolder: Margin\Orders\Buying Margin\LY
 		lineageTag: 69808ee0-f061-457c-b3b8-57c8313252a4
 
+	measure 'Buying Margin % Orders vs LY-1' =
+			VAR act = [Buying Margin % Orders]
+			VAR comp = [Buying Margin % Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Orders\Buying Margin\LY-1
+		lineageTag: c3d16c6b-8814-4b36-92a4-27068157acc2
+
 	measure 'Buying Margin Orders vs LY %' =
 			VAR act = [Buying Margin Orders]
 			VAR comp = [Buying Margin Orders LY]
@@ -2805,6 +3306,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Orders\Buying Margin\LY
 		lineageTag: a20264b5-8bf7-43d4-a090-e79e998b4087
+
+	measure 'Buying Margin Orders vs LY-1 %' =
+			VAR act = [Buying Margin Orders]
+			VAR comp = [Buying Margin Orders LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Orders\Buying Margin\LY-1
+		lineageTag: cde9d860-8a4d-4263-a019-a2fd20d799de
 
 	measure 'Buying Margin Orders LW' =
 			CALCULATE (
@@ -2900,6 +3412,16 @@ table 1_Measures
 		displayFolder: Margin\Orders\Markdown\LY
 		lineageTag: 769ced0d-9f6c-4472-a24d-a442e14570ae
 
+	measure 'Markdown Orders vs LY-1' =
+			VAR act = [Markdown Orders]
+			VAR comp = [Markdown Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Orders\Markdown\LY-1
+		lineageTag: 182fabb6-0b21-478f-bf59-2310fe3b293e
+
 	measure 'Markdown % SRIV Orders LY' =
 			CALCULATE (
 			    [Markdown % SRIV Orders],
@@ -2928,6 +3450,16 @@ table 1_Measures
 		displayFolder: Margin\Orders\Markdown\LY
 		lineageTag: e2f36eec-cb49-4c08-9384-cc7d9465b27b
 
+	measure 'Markdown % SRIV Orders vs LY-1' =
+			VAR act = [Markdown % SRIV Orders]
+			VAR comp = [Markdown % SRIV Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Orders\Markdown\LY-1
+		lineageTag: bf315ee8-9135-4554-9e33-ab379c7b6c7a
+
 	measure 'Markdown Orders vs LY %' =
 			VAR act = [Markdown Orders]
 			VAR comp = [Markdown Orders LY]
@@ -2938,6 +3470,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Orders\Markdown\LY
 		lineageTag: 97e81ccb-5f03-4ba0-a231-60c6c86f537a
+
+	measure 'Markdown Orders vs LY-1 %' =
+			VAR act = [Markdown Orders]
+			VAR comp = [Markdown Orders LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Orders\Markdown\LY-1
+		lineageTag: 8cc1d45a-37e3-49dd-97f4-caaf79d7c0f0
 
 	measure 'Markdown Orders LW' =
 			CALCULATE (
@@ -3028,6 +3571,16 @@ table 1_Measures
 		displayFolder: Margin\Buying Margin\LY
 		lineageTag: bb71f5dd-2fa5-4a51-a6c4-319ddf2b2c42
 
+	measure 'Buying Margin vs LY-1' =
+			VAR act = [Buying Margin]
+			VAR comp = [Buying Margin LY-1]
+			VAR result = act - comp
+			RETURN
+			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Buying Margin\LY-1
+		lineageTag: 3ac96c59-32cf-402b-86f4-639c7eb9a22a
+
 	measure 'Buying Margin % LY' =
 			VAR recog_type = [slctd_SalesRecognitionType]
 			VAR result =
@@ -3068,6 +3621,16 @@ table 1_Measures
 		displayFolder: Margin\Buying Margin\LY
 		lineageTag: 3e8908e5-8f56-4252-9848-3600e88f93c7
 
+	measure 'Buying Margin % vs LY-1' =
+			VAR act = [Buying Margin %]
+			VAR comp = [Buying Margin % LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Buying Margin\LY-1
+		lineageTag: becc0a13-58e6-46ec-9148-298ed05f82c2
+
 	measure 'Buying Margin vs LY %' =
 			VAR act = [Buying Margin]
 			VAR comp = [Buying Margin LY]
@@ -3078,6 +3641,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Buying Margin\LY
 		lineageTag: 36164f55-4495-4bd4-98ac-36e1524f10a5
+
+	measure 'Buying Margin vs LY-1 %' =
+			VAR act = [Buying Margin]
+			VAR comp = [Buying Margin LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Buying Margin\LY-1
+		lineageTag: 190068b3-4067-45ae-9cde-e01c86c6ebc5
 
 	measure 'Buying Margin LW' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -3210,6 +3784,16 @@ table 1_Measures
 		displayFolder: Margin\Markdown\LY
 		lineageTag: f69cc750-c93d-4568-94af-5c55a7d95b50
 
+	measure 'Markdown vs LY-1' =
+			VAR act = [Markdown]
+			VAR comp = [Markdown LY-1]
+			VAR result = act - comp
+			RETURN
+			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Markdown\LY-1
+		lineageTag: 2cf2c78f-4ad9-4a36-9809-a9f46f9d176d
+
 	measure 'Markdown % SRIV LY' =
 			VAR recog_type = [slctd_SalesRecognitionType]
 			VAR result =
@@ -3250,6 +3834,16 @@ table 1_Measures
 		displayFolder: Margin\Markdown\LY
 		lineageTag: 1afd63ae-6e9d-4b6b-bdac-f65b2661cfdb
 
+	measure 'Markdown % SRIV vs LY-1' =
+			VAR act = [Markdown % SRIV]
+			VAR comp = [Markdown % SRIV LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Markdown\LY-1
+		lineageTag: ec3dc7e9-5bee-4099-954d-3e48f8fce7e8
+
 	measure 'Markdown vs LY %' =
 			VAR act = [Markdown]
 			VAR comp = [Markdown LY]
@@ -3260,6 +3854,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Markdown\LY
 		lineageTag: 2519fdf7-a068-4508-9170-ef8358f69b7d
+
+	measure 'Markdown vs LY-1 %' =
+			VAR act = [Markdown]
+			VAR comp = [Markdown LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Markdown\LY-1
+		lineageTag: 72afc67e-7043-4371-84e8-b033f711be0e
 
 	measure 'Markdown LW' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -3355,6 +3960,16 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\FP SRIV\LY
 		lineageTag: 585b48a7-313a-44d9-896c-5f8af08550bc
 
+	measure 'FP SRIV Dispatch vs LY-1' =
+			VAR act = [FP SRIV Dispatch]
+			VAR comp = [FP SRIV Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Dispatch\FP SRIV\LY-1
+		lineageTag: 0781b5ad-49b2-455a-840d-889b5081f909
+
 	measure 'FP SRIV Dispatch vs LY %' =
 			VAR act = [FP SRIV Dispatch]
 			VAR comp = [FP SRIV Dispatch LY]
@@ -3365,6 +3980,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Dispatch\FP SRIV\LY
 		lineageTag: 19989fda-ac19-4362-a078-e05cc2919b83
+
+	measure 'FP SRIV Dispatch vs LY-1 %' =
+			VAR act = [FP SRIV Dispatch]
+			VAR comp = [FP SRIV Dispatch LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Dispatch\FP SRIV\LY-1
+		lineageTag: 25afdc03-7043-4768-81d6-df9803f733fb
 
 	measure 'FP SRIV Dispatch LW' =
 			CALCULATE (
@@ -3430,6 +4056,16 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Other GSM Adj\LY
 		lineageTag: 1e201b19-3cb6-4cbc-9af4-a9a30eea2dab
 
+	measure 'Other GSM Adj Dispatch vs LY-1' =
+			VAR act = [Other GSM Adj Dispatch]
+			VAR comp = [Other GSM Adj Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Dispatch\Other GSM Adj\LY-1
+		lineageTag: 1e99cfba-bb11-4749-ac45-33dfa6642f68
+
 	measure 'Other GSM Adj Dispatch LW' =
 			CALCULATE (
 			    [Other GSM Adj Dispatch],
@@ -3489,6 +4125,16 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Staff Discount & Loyalty\LY
 		lineageTag: 28a6d67b-2596-4cd9-a163-39f3dd9be7ce
 
+	measure 'Staff Discount & Loyalty Dispatch vs LY-1' =
+			VAR act = [Staff Discount & Loyalty Dispatch]
+			VAR comp = [Staff Discount & Loyalty Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Dispatch\Staff Discount & Loyalty\LY-1
+		lineageTag: 6e507f5a-25ef-42d3-bd02-dbf5301c1f55
+
 	measure 'Staff Discount & Loyalty Dispatch LW' =
 			CALCULATE (
 			    [Staff Discount & Loyalty Dispatch],
@@ -3535,6 +4181,16 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Dispatch\Depth Of Cut\LY
 		lineageTag: 0af48f75-f809-49c7-a9ab-aff0669bcf5a
+
+	measure 'Depth Of Cut Dispatch vs LY-1' =
+			VAR act = [Depth Of Cut Dispatch]
+			VAR comp = [Depth Of Cut Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Dispatch\Depth Of Cut\LY-1
+		lineageTag: cf110044-976e-4038-a5c1-3ac94d46fc45
 
 	measure 'Depth Of Cut Dispatch LW' =
 			CALCULATE (
@@ -3593,6 +4249,16 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Dispatch\Depth Of Cut\LY
 		lineageTag: d4f49d3d-f703-4d50-80fc-7416f427ad68
+
+	measure 'Depth Of Cut % Dispatch vs LY-1' =
+			VAR act = [Depth Of Cut % Dispatch]
+			VAR comp = [Depth Of Cut % Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Dispatch\Depth Of Cut\LY-1
+		lineageTag: 53205d37-4fe4-4778-b139-d7743eb06a06
 
 	measure 'Depth Of Cut % Dispatch LW' =
 			CALCULATE (
@@ -3664,6 +4330,16 @@ table 1_Measures
 		displayFolder: Sales\Orders\Discount Participation\LY
 		lineageTag: 67c59955-64cc-4420-939b-96a80fbb0180
 
+	measure 'Discount Participation % Orders vs LY-1' =
+			VAR act = [Discount Participation % Orders]
+			VAR comp = [Discount Participation % Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Orders\Discount Participation\LY-1
+		lineageTag: b6485624-0194-494c-bd2a-a20a9ac6f10f
+
 	measure 'Discount Participation % Orders vs LW' =
 			VAR act = [Discount Participation % Orders]
 			VAR comp = [Discount Participation % Orders LW]
@@ -3712,6 +4388,16 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Dispatch\Discount Participation\LY
 		lineageTag: eaa67874-7c3e-4c21-8a6f-af0818e5b7cc
+
+	measure 'Discount Participation % Dispatch vs LY-1' =
+			VAR act = [Discount Participation % Dispatch]
+			VAR comp = [Discount Participation % Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Dispatch\Discount Participation\LY-1
+		lineageTag: 9b624b02-891f-498d-adc5-31b92be7e0c0
 
 	measure 'Discount Participation % Dispatch LW' =
 			CALCULATE (
@@ -3786,6 +4472,16 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Discount Participation\LY
 		lineageTag: 255f1524-d016-47ed-b68e-534949990f77
+
+	measure 'Discount Participation % vs LY-1' =
+			VAR act = [Discount Participation %]
+			VAR comp = [Discount Participation % LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Discount Participation\LY-1
+		lineageTag: 27da4c36-b89f-4e06-8f60-e56762ac6852
 
 	measure 'Discount Participation % LW' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -5780,6 +6476,16 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Postings\LY
 		lineageTag: 9125bbab-1c7f-4d3a-8333-3d4364af18bb
 
+	measure 'GSM Postings Dispatch vs LY-1' =
+			VAR act = [GSM Postings Dispatch]
+			VAR comp = [GSM Postings Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Dispatch\Postings\LY-1
+		lineageTag: e71c10a9-40a8-4afe-92c4-a5cd095a88a4
+
 	measure 'GSM Postings Dispatch vs LY %' =
 			VAR act = [GSM Postings Dispatch]
 			VAR comp = [GSM Postings Dispatch LY]
@@ -5790,6 +6496,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Dispatch\Postings\LY
 		lineageTag: 0354e5a7-1ff2-4af4-9e49-9b06bd436c70
+
+	measure 'GSM Postings Dispatch vs LY-1 %' =
+			VAR act = [GSM Postings Dispatch]
+			VAR comp = [GSM Postings Dispatch LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Dispatch\Postings\LY-1
+		lineageTag: 90a05657-dd28-45b3-873d-25dfaec9fd39
 
 	measure 'GSM Postings Dispatch LW' =
 			CALCULATE (
@@ -5864,6 +6581,16 @@ table 1_Measures
 		displayFolder: Margin\Dispatch vs Orders\GSM\LY
 		lineageTag: 2cd5604c-02ad-4cd9-8244-e237729baae1
 
+	measure 'GSM Dispatch vs Orders vs LY-1' =
+			VAR act = [GSM Dispatch vs Orders]
+			VAR comp = [GSM Dispatch vs Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Dispatch vs Orders\GSM\LY-1
+		lineageTag: 63bee699-b3de-4de6-adf0-c0a5ef9090de
+
 	measure 'GSM Dispatch vs Orders vs LY %' =
 			VAR act = [GSM Dispatch vs Orders]
 			VAR comp = [GSM Dispatch vs Orders LY]
@@ -5874,6 +6601,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Dispatch vs Orders\GSM\LY
 		lineageTag: 5b0bcb3f-d7c6-40ae-b3c1-676365a895a6
+
+	measure 'GSM Dispatch vs Orders vs LY-1 %' =
+			VAR act = [GSM Dispatch vs Orders]
+			VAR comp = [GSM Dispatch vs Orders LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Dispatch vs Orders\GSM\LY-1
+		lineageTag: 029f417c-6968-4039-9be5-43cfdbb27686
 
 	measure 'GSM Dispatch vs Orders LW' =
 			VAR dispatch = [GSM Dispatch LW]
@@ -7106,6 +7844,16 @@ table 1_Measures
 		displayFolder: Stock\Closing Stk\LY
 		lineageTag: 22d4244a-c4d0-47ab-a4b2-0543eb073285
 
+	measure 'Stock vs LY-1' =
+			VAR act = [Stock]
+			VAR comp = [Stock LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Stock\Closing Stk\LY-1
+		lineageTag: 91148e02-ff6d-405d-bd1b-490265f9d3e8
+
 	measure 'Stock LW' =
 			CALCULATE (
 			    [Stock],
@@ -7225,6 +7973,17 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\Sales Mix\Promo\LY
 		lineageTag: 2bfa410c-cb30-46eb-95cb-f5a459a06648
 
+	measure 'Promo Mix % Dispatch vs LY-1' =
+			VAR act = [Promo Mix % Dispatch]
+			VAR comp = [Promo Mix % Dispatch LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Dispatch\Sales Mix\Promo\LY-1
+		lineageTag: 043f3d26-4303-44e3-b72d-9bd4c25347d1
+
 	measure 'Promo Mix % Dispatch LW' =
 			CALCULATE (
 			    [Promo Mix % Dispatch],
@@ -7305,6 +8064,17 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\Sales Mix\FPP\LY
 		lineageTag: 44053d0e-60f6-44dd-9d91-e1e3e266c59f
 
+	measure 'FPP Mix % Dispatch vs LY-1' =
+			VAR act = [FPP Mix % Dispatch]
+			VAR comp = [FPP Mix % Dispatch LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Dispatch\Sales Mix\FPP\LY-1
+		lineageTag: 43510f13-0f71-4269-9b1d-aa2c6f009e54
+
 	measure 'Reduced Mix % Dispatch' =
 			VAR num = [RP SRIV Dispatch]
 			VAR denom = [sum_Sales Revenue (Inc VAT)]
@@ -7364,6 +8134,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Dispatch\Sales Mix\Reduced\LY
 		lineageTag: 7becbeb1-e8db-490c-90c0-155a4f2c78d3
+
+	measure 'Reduced Mix % Dispatch vs LY-1' =
+			VAR act = [Reduced Mix % Dispatch]
+			VAR comp = [Reduced Mix % Dispatch LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Dispatch\Sales Mix\Reduced\LY-1
+		lineageTag: 9d2822db-e0ad-4e28-82a3-369b1528f8a3
 
 	measure 'Promo Mix % Orders' =
 			VAR num =
@@ -7427,6 +8208,17 @@ table 1_Measures
 		displayFolder: Sales\Orders\Sales Mix\Promo\LY
 		lineageTag: 0adfbe23-609d-411b-95ea-d6c1ca38e2cc
 
+	measure 'Promo Mix % Orders vs LY-1' =
+			VAR act = [Promo Mix % Orders]
+			VAR comp = [Promo Mix % Orders LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Orders\Sales Mix\Promo\LY-1
+		lineageTag: 5279431a-13c2-457c-98a1-6293a883f155
+
 	measure 'FPP Mix % Orders' =
 			VAR num =
 			    CALCULATE ( [SRIV Orders], SalesType[fp_rp_ind] IN { "P", "F" } )
@@ -7489,6 +8281,17 @@ table 1_Measures
 		displayFolder: Sales\Orders\Sales Mix\FPP\LY
 		lineageTag: 39645894-ee48-4313-b1a0-e87a03c70ac4
 
+	measure 'FPP Mix % Orders vs LY-1' =
+			VAR act = [FPP Mix % Orders]
+			VAR comp = [FPP Mix % Orders LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Orders\Sales Mix\FPP\LY-1
+		lineageTag: a3287c19-48f5-49a7-be83-c799b19115e5
+
 	measure 'Reduced Mix % Orders' =
 			VAR num =
 			    CALCULATE ( [SRIV Orders], SalesType[fp_rp_ind] IN { "R" } )
@@ -7550,6 +8353,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Orders\Sales Mix\Reduced\LY
 		lineageTag: 41fe7c00-2968-4272-bc45-4b83ff6e91bc
+
+	measure 'Reduced Mix % Orders vs LY-1' =
+			VAR act = [Reduced Mix % Orders]
+			VAR comp = [Reduced Mix % Orders LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Orders\Sales Mix\Reduced\LY-1
+		lineageTag: 7dd1aeb3-b31a-486d-9a73-f1f8c26805cd
 
 	measure 'Promo Mix % LW' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -7617,6 +8431,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Sales Mix\Promo\LY
 		lineageTag: 43fe3df7-4080-4141-b549-4d6198cf386c
+
+	measure 'Promo Mix % vs LY-1' =
+			VAR act = [Promo Mix %]
+			VAR comp = [Promo Mix % LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Sales Mix\Promo\LY-1
+		lineageTag: 69072e83-ca87-4664-a394-a61f0c254496
 
 	measure 'FPP Mix %' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -7700,6 +8525,17 @@ table 1_Measures
 		displayFolder: Sales\Sales Mix\FPP\LY
 		lineageTag: e80109f0-b390-4d78-b2d2-277073fe7d18
 
+	measure 'FPP Mix % vs LY-1' =
+			VAR act = [FPP Mix %]
+			VAR comp = [FPP Mix % LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Sales Mix\FPP\LY-1
+		lineageTag: cea5d414-44ea-482e-a8fe-0f464bb08ecd
+
 	measure 'Reduced Mix %' =
 			VAR recog_type = [slctd_SalesRecognitionType]
 			VAR result =
@@ -7782,6 +8618,17 @@ table 1_Measures
 		displayFolder: Sales\Sales Mix\Reduced\LY
 		lineageTag: cf9107d5-ad5c-44fb-9274-9c038dd5151b
 
+	measure 'Reduced Mix % vs LY-1' =
+			VAR act = [Reduced Mix %]
+			VAR comp = [Reduced Mix % LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Sales Mix\Reduced\LY-1
+		lineageTag: 066a0e82-fd5b-4b62-a373-eb3f9d135b87
+
 	measure LatestSalesOrdersFiscalWeek =
 			CALCULATE (
 			    MAX ( statsLatestData[latestFiscalWeek] ),
@@ -7848,6 +8695,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Stock\Closing Stk\LY
 		lineageTag: 75744109-99c3-49d6-a306-f1e2a99e699a
+
+	measure 'Stock vs LY-1 %' =
+			VAR act = [Stock]
+			VAR comp = [Stock LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Stock\Closing Stk\LY-1
+		lineageTag: f8c7bcc2-1d7f-4c70-869f-d760ca5233ba
 
 	measure 'Stock vs LW %' =
 			VAR act = [Stock]
@@ -8007,6 +8865,16 @@ table 1_Measures
 		displayFolder: Transactions\Transactions\LY
 		lineageTag: 118292bd-0146-4536-9846-83d67c9a0d9e
 
+	measure 'Transactions vs LY-1' =
+			VAR act = [Transactions]
+			VAR comp = [Transactions LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Transactions\Transactions\LY-1
+		lineageTag: c14b530e-518f-49e6-9179-10146560a87b
+
 	measure 'Transactions vs LY %' =
 			VAR act = [Transactions]
 			VAR comp = [Transactions LY]
@@ -8017,6 +8885,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Transactions\Transactions\LY
 		lineageTag: 4c0ed11b-6430-4e1c-b3c0-a09ce26e8534
+
+	measure 'Transactions vs LY-1 %' =
+			VAR act = [Transactions]
+			VAR comp = [Transactions LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Transactions\Transactions\LY-1
+		lineageTag: ef0d906b-1461-401b-a00f-fb6069f49a3b
 
 	measure 'Transactions vs LW' =
 			VAR act = [Transactions]
@@ -8067,6 +8946,16 @@ table 1_Measures
 		displayFolder: Transactions\Items\LY
 		lineageTag: 307f8266-143f-49f3-9487-12f038281534
 
+	measure 'Items vs LY-1' =
+			VAR act = [Items]
+			VAR comp = [Items LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Transactions\Items\LY-1
+		lineageTag: dc3b41a3-1cdb-4b0a-be42-ab1242d54941
+
 	measure 'Items vs LY %' =
 			VAR act = [Items]
 			VAR comp = [Items LY]
@@ -8077,6 +8966,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Transactions\Items\LY
 		lineageTag: 4a0d82d3-7607-44ef-803d-842901fd8abf
+
+	measure 'Items vs LY-1 %' =
+			VAR act = [Items]
+			VAR comp = [Items LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Transactions\Items\LY-1
+		lineageTag: 7b1453dc-4f35-4652-bdc1-0e46717e02dd
 
 	measure 'Items LW' =
 			CALCULATE (
@@ -8140,6 +9040,16 @@ table 1_Measures
 		displayFolder: Transactions\ABV\LY
 		lineageTag: 785a31e3-4eff-4a4f-b431-9aa6dfdae835
 
+	measure 'ABV vs LY-1' =
+			VAR act = [ABV]
+			VAR comp = [ABV LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0.0;(#,##0.0)
+		displayFolder: Transactions\ABV\LY-1
+		lineageTag: cc46bdab-479a-4fbe-8e0d-30208e487624
+
 	measure 'ABV vs LY %' =
 			VAR act = [ABV]
 			VAR comp = [ABV LY]
@@ -8150,6 +9060,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Transactions\ABV\LY
 		lineageTag: 93d0beab-3d34-4827-9b29-84ba4f641bd1
+
+	measure 'ABV vs LY-1 %' =
+			VAR act = [ABV]
+			VAR comp = [ABV LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Transactions\ABV\LY-1
+		lineageTag: af19d4e6-74f8-46d8-bd19-63029a5532eb
 
 	measure 'ABV LW' =
 			VAR num = [Sale Trans Value LW]
@@ -8226,6 +9147,16 @@ table 1_Measures
 		displayFolder: Transactions\Basket Size\LY
 		lineageTag: a0cb6423-4d3e-439e-875f-d6964e70eb49
 
+	measure 'Basket Size vs LY-1' =
+			VAR act = [Basket Size]
+			VAR comp = [Basket Size LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0.0;(#,##0.0)
+		displayFolder: Transactions\Basket Size\LY-1
+		lineageTag: 1eab3e45-ff54-4a13-ba8c-63c2c2498577
+
 	measure 'Basket Size vs LY %' =
 			VAR act = [Basket Size]
 			VAR comp = [Basket Size LY]
@@ -8236,6 +9167,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Transactions\Basket Size\LY
 		lineageTag: ed6d133d-1461-4b05-9bdd-e853d84b1838
+
+	measure 'Basket Size vs LY-1 %' =
+			VAR act = [Basket Size]
+			VAR comp = [Basket Size LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Transactions\Basket Size\LY-1
+		lineageTag: dfc30876-b557-428c-9ffd-90c68750f2d6
 
 	measure 'Basket Size LW' =
 			VAR num = [Items LW]
@@ -8312,6 +9254,16 @@ table 1_Measures
 		displayFolder: Transactions\ASP\LY
 		lineageTag: 2ea16c63-ed7d-42bb-b742-b4dde8ce5068
 
+	measure 'ASP vs LY-1' =
+			VAR act = [ASP]
+			VAR comp = [ASP LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0.0;(#,##0.0)
+		displayFolder: Transactions\ASP\LY-1
+		lineageTag: 6522dd0d-6b52-4c6e-b3a4-01bc7a0d0e87
+
 	measure 'ASP vs LY %' =
 			VAR act = [ASP]
 			VAR comp = [ASP LY]
@@ -8322,6 +9274,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Transactions\ASP\LY
 		lineageTag: 5f90fcd6-b63b-4315-bdbd-5b8e9b7c31e3
+
+	measure 'ASP vs LY-1 %' =
+			VAR act = [ASP]
+			VAR comp = [ASP LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Transactions\ASP\LY-1
+		lineageTag: 27dcd06d-4523-4091-a9b6-f7dc01a670f9
 
 	measure 'ASP LW' =
 			VAR num = [Sale Trans Value LW]
@@ -8440,6 +9403,16 @@ table 1_Measures
 		displayFolder: Transactions\LY
 		lineageTag: 7e6444fb-c8d4-47c0-8004-9d4c9a7a4bcb
 
+	measure 'Trans vs LY-1' =
+			VAR act = [Trans]
+			VAR comp = [Trans LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0.0;(#,##0.0)
+		displayFolder: Transactions\LY-1
+		lineageTag: d3be7d14-b7e3-4c89-bed5-e752af77ae75
+
 	measure 'Trans vs LY %' =
 			VAR act = [Trans]
 			VAR comp = [Trans LY]
@@ -8450,6 +9423,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Transactions\LY
 		lineageTag: 798819d0-a154-4831-9157-a5aa4c87c6df
+
+	measure 'Trans vs LY-1 %' =
+			VAR act = [Trans]
+			VAR comp = [Trans LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Transactions\LY-1
+		lineageTag: 1562f941-2c36-46f6-bfc4-13552daa18f3
 
 	measure 'Trans vs LW' =
 			VAR act = [Trans]
@@ -8599,6 +9583,16 @@ table 1_Measures
 		displayFolder: Stock\Fwd Cover\LY
 		lineageTag: 7a008ff3-757c-4bd1-9c07-dfda8caaa62e
 
+	measure 'Stock Fwd Cover vs LY-1' =
+			VAR act = [Stock Fwd Cover]
+			VAR comp = [Stock Fwd Cover LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0.0;(#,##0.0)
+		displayFolder: Stock\Fwd Cover\LY-1
+		lineageTag: 1c3957b7-a6fa-47f6-9f89-f7a5f544bfe4
+
 	measure 'Stock Fwd Cover vs LY %' =
 			VAR act = [Stock Fwd Cover]
 			VAR comp = [Stock Fwd Cover LY]
@@ -8609,6 +9603,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Stock\Fwd Cover\LY
 		lineageTag: 6a545e69-163f-49ee-bd35-b59ae19c6f77
+
+	measure 'Stock Fwd Cover vs LY-1 %' =
+			VAR act = [Stock Fwd Cover]
+			VAR comp = [Stock Fwd Cover LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Stock\Fwd Cover\LY-1
+		lineageTag: ad8edfdc-6dc2-4d31-a075-8b40d9750558
 
 	measure 'Stock Fwd Cover vs LW' =
 			VAR act = [Stock Fwd Cover]
@@ -8836,6 +9841,19 @@ table 1_Measures
 		displayFolder: P&L\LY
 		lineageTag: b8804541-4663-4e2f-995d-7e0cc66d55cf
 
+	measure 'P&L vs LY-1' =
+			VAR metric = [slctd_MetricMasterPnL]
+			VAR act = [P&L]
+			VAR comp = [P&L LY-1]
+			VAR result = act - comp
+			VAR adj_result =
+			    IF ( CONTAINSSTRING ( metric, "%" ), result * 1, result )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), adj_result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: P&L\LY-1
+		lineageTag: 869a3c27-70b2-46c9-a5b4-75bb02bae64c
+
 	measure 'Promo Markdown Orders' = ```
 			
 			-([GSRIV Orders] - [SRIV Orders])
@@ -8874,6 +9892,16 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Orders\Promo Markdown\LY
 		lineageTag: c54e42e5-716b-43d1-9d6a-ac032064b2e0
+
+	measure 'Promo Markdown Orders vs LY-1' =
+			VAR act = [Promo Markdown Orders]
+			VAR comp = [Promo Markdown Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Orders\Promo Markdown\LY-1
+		lineageTag: 2350a7c3-48b9-4841-b5c8-8da5fc5978e6
 
 	measure 'Promo Markdown Orders LW' =
 			CALCULATE (
@@ -8980,6 +10008,16 @@ table 1_Measures
 		displayFolder: Margin\Orders\Sale Markdown\LY
 		lineageTag: 58df32b3-3725-4276-85a1-2a138f716169
 
+	measure 'Sale Markdown Orders vs LY-1' =
+			VAR act = [Sale Markdown Orders]
+			VAR comp = [Sale Markdown Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Orders\Sale Markdown\LY-1
+		lineageTag: 8b963582-4c05-44a3-ac67-fca6883c049a
+
 	measure 'Staff Discount & Loyalty Orders LW' =
 			CALCULATE (
 			    [Staff Discount & Loyalty Orders],
@@ -9084,6 +10122,16 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Orders\SIS Sold Through\LY
 		lineageTag: f26a1e29-207a-4cb8-b6b8-987b040708c3
+
+	measure 'SIS Sold Through Orders vs LY-1' =
+			VAR act = [SIS Sold Through Orders]
+			VAR comp = [SIS Sold Through Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Orders\SIS Sold Through\LY-1
+		lineageTag: 6f4f6b40-2af5-4ca8-b2a4-da29a3a32299
 
 	measure 'SIS Sold Through Orders LW' =
 			CALCULATE (
@@ -9190,6 +10238,16 @@ table 1_Measures
 		displayFolder: Margin\Orders\Staff Discount & Loyalty\LY
 		lineageTag: 4b238691-2043-47db-bfb3-f4483095b12e
 
+	measure 'Staff Discount & Loyalty Orders vs LY-1' =
+			VAR act = [Staff Discount & Loyalty Orders]
+			VAR comp = [Staff Discount & Loyalty Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Orders\Staff Discount & Loyalty\LY-1
+		lineageTag: 5642345d-0843-454f-a6fe-8b490aff6ea5
+
 	measure 'Staff Discount & Loyalty Orders BUD' = CALCULATE ( [sum_TotStDV], ForecastScenarios[Forecast Scenario] = "BUD" )
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Orders\Staff Discount & Loyalty\BUD
@@ -9275,6 +10333,16 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Margin\Orders\Depth Of Cut\LY
 		lineageTag: 7b03e622-b37a-4c7a-8208-41cc1b840701
+
+	measure 'Depth Of Cut Orders vs LY-1' =
+			VAR act = [Depth Of Cut Orders]
+			VAR comp = [Depth Of Cut Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Orders\Depth Of Cut\LY-1
+		lineageTag: fb953a01-9225-4f4c-8d87-fe0220206034
 
 	measure 'Sale Markdown Orders LW' =
 			CALCULATE (
@@ -9409,6 +10477,16 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Orders\Promo Markdown\LY
 		lineageTag: 5d2d19cc-6cd8-4d78-b897-897c52204891
+
+	measure 'Promo Markdown % Orders vs LY-1' =
+			VAR act = [Promo Markdown % Orders]
+			VAR comp = [Promo Markdown % Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Orders\Promo Markdown\LY-1
+		lineageTag: e84eb543-35ae-4b5a-8737-1206e96d8652
 
 	measure 'Promo Markdown % Orders LW' =
 			CALCULATE (
@@ -9545,6 +10623,16 @@ table 1_Measures
 		displayFolder: Margin\Orders\Sale Markdown\LY
 		lineageTag: 91800d2b-9721-4498-9853-ad378fef7896
 
+	measure 'Sale Markdown % Orders vs LY-1' =
+			VAR act = [Sale Markdown % Orders]
+			VAR comp = [Sale Markdown % Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Orders\Sale Markdown\LY-1
+		lineageTag: f9e75b0f-3886-44d4-8c43-ae45c2881217
+
 	measure 'Sale Markdown % Orders LW' =
 			CALCULATE (
 			    [Sale Markdown % Orders],
@@ -9680,6 +10768,16 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Promo Markdown\LY
 		lineageTag: 3d5553a7-5faa-4859-a440-3062440a2e46
 
+	measure 'Promo Markdown % Dispatch vs LY-1' =
+			VAR act = [Promo Markdown % Dispatch]
+			VAR comp = [Promo Markdown % Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Dispatch\Promo Markdown\LY-1
+		lineageTag: 0b213513-f1eb-492d-8064-58b4951b4ff8
+
 	measure 'Promo Markdown % Dispatch LW' =
 			CALCULATE (
 			    [Promo Markdown % Dispatch],
@@ -9800,6 +10898,16 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Dispatch\Sale Markdown\LY
 		lineageTag: eeca9577-6198-48ad-af30-bea8a4fcd685
+
+	measure 'Sale Markdown % Dispatch vs LY-1' =
+			VAR act = [Sale Markdown % Dispatch]
+			VAR comp = [Sale Markdown % Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Dispatch\Sale Markdown\LY-1
+		lineageTag: 065ef5ee-87cb-423b-9a1f-af8262c1f336
 
 	measure 'Sale Markdown % Dispatch LW' =
 			CALCULATE (
@@ -9953,6 +11061,16 @@ table 1_Measures
 		displayFolder: Margin\Promo Markdown\LY
 		lineageTag: fcf59896-f16e-43d2-a87d-45099581eaf8
 
+	measure 'Promo Markdown vs LY-1' =
+			VAR act = [Promo Markdown]
+			VAR comp = [Promo Markdown LY-1]
+			VAR result = act - comp
+			RETURN
+			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Promo Markdown\LY-1
+		lineageTag: e9f2deee-6b26-4063-bb24-ebba00e334a8
+
 	measure 'Promo Markdown % LY' =
 			VAR recog_type = [slctd_SalesRecognitionType]
 			VAR result =
@@ -9993,6 +11111,16 @@ table 1_Measures
 		displayFolder: Margin\Promo Markdown\LY
 		lineageTag: 686dc9be-5fb8-40b8-a32f-c421d395427a
 
+	measure 'Promo Markdown % vs LY-1' =
+			VAR act = [Promo Markdown %]
+			VAR comp = [Promo Markdown % LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Promo Markdown\LY-1
+		lineageTag: 98419231-94fd-448c-91c2-931ced43633a
+
 	measure 'Promo Markdown vs LY %' =
 			VAR act = [Promo Markdown]
 			VAR comp = [Promo Markdown LY]
@@ -10003,6 +11131,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Promo Markdown\LY
 		lineageTag: 93352579-4d5e-462b-a8e4-9e13c3e05475
+
+	measure 'Promo Markdown vs LY-1 %' =
+			VAR act = [Promo Markdown]
+			VAR comp = [Promo Markdown LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Promo Markdown\LY-1
+		lineageTag: 0ec9d137-e902-4033-8e51-e2f6bf1ba2c2
 
 	measure 'Promo Markdown LW' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -10338,6 +11477,16 @@ table 1_Measures
 		displayFolder: Margin\Sale Markdown\LY
 		lineageTag: 9f168f81-5643-42f9-9b44-91cb076d4be5
 
+	measure 'Sale Markdown vs LY-1' =
+			VAR act = [Sale Markdown]
+			VAR comp = [Sale Markdown LY-1]
+			VAR result = act - comp
+			RETURN
+			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Sale Markdown\LY-1
+		lineageTag: 9b717df6-54eb-4850-b65b-17cd4e0ebe72
+
 	measure 'Sale Markdown % LY' =
 			VAR recog_type = [slctd_SalesRecognitionType]
 			VAR result =
@@ -10380,6 +11529,16 @@ table 1_Measures
 		displayFolder: Margin\Sale Markdown\LY
 		lineageTag: bd80f862-fb7a-4c68-b19c-c674099ee6ec
 
+	measure 'Sale Markdown % vs LY-1' =
+			VAR act = [Sale Markdown %]
+			VAR comp = [Sale Markdown % LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Sale Markdown\LY-1
+		lineageTag: b6516988-c418-4de8-9e7a-d5637e0990dc
+
 	measure 'Sale Markdown vs LY %' =
 			VAR act = [Sale Markdown]
 			VAR comp = [Sale Markdown LY]
@@ -10390,6 +11549,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Sale Markdown\LY
 		lineageTag: 0b39fd01-74ef-424e-b838-b87d894f277b
+
+	measure 'Sale Markdown vs LY-1 %' =
+			VAR act = [Sale Markdown]
+			VAR comp = [Sale Markdown LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Sale Markdown\LY-1
+		lineageTag: e4a6d958-eebc-44af-9403-953bc6a30355
 
 	measure 'Sale Markdown LW' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -10712,6 +11882,16 @@ table 1_Measures
 		displayFolder: Margin\SIS Sold Through\LY
 		lineageTag: 8d5ffb84-cb9a-46f5-9f28-4095fae3965c
 
+	measure 'SIS Sold Through vs LY-1' =
+			VAR act = [SIS Sold Through]
+			VAR comp = [SIS Sold Through LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\SIS Sold Through\LY-1
+		lineageTag: 677577df-7abf-4a89-af78-3e5920832ddc
+
 	measure 'SIS Sold Through vs LY %' =
 			VAR act = [SIS Sold Through]
 			VAR comp = [SIS Sold Through LY]
@@ -10722,6 +11902,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\SIS Sold Through\LY
 		lineageTag: 1f3c28d9-4012-4bb7-890f-0ac546c9c678
+
+	measure 'SIS Sold Through vs LY-1 %' =
+			VAR act = [SIS Sold Through]
+			VAR comp = [SIS Sold Through LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\SIS Sold Through\LY-1
+		lineageTag: 6d80589c-bb55-41fa-af1c-4bbfcc46df46
 
 	measure 'SIS Sold Through LW' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -10954,6 +12145,16 @@ table 1_Measures
 		displayFolder: Margin\Depth Of Cut\LY
 		lineageTag: b10dec9e-9000-4596-9d32-536f9f433349
 
+	measure 'Depth Of Cut vs LY-1' =
+			VAR act = [Depth Of Cut]
+			VAR comp = [Depth Of Cut LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Depth Of Cut\LY-1
+		lineageTag: 7f0623d3-a113-43c8-bab6-11bf1852cac0
+
 	measure 'Depth Of Cut % LY' =
 			VAR recog_type = [slctd_SalesRecognitionType]
 			VAR result =
@@ -10994,6 +12195,16 @@ table 1_Measures
 		displayFolder: Margin\Depth Of Cut\LY
 		lineageTag: 87f16fc5-9fde-4f11-82ea-2f8016d8cdd0
 
+	measure 'Depth Of Cut % vs LY-1' =
+			VAR act = [Depth Of Cut %]
+			VAR comp = [Depth Of Cut % LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Depth Of Cut\LY-1
+		lineageTag: 00efb759-46ed-4064-8789-9df6d3c3fbfe
+
 	measure 'Depth Of Cut vs LY %' =
 			VAR act = [Depth Of Cut]
 			VAR comp = [Depth Of Cut LY]
@@ -11004,6 +12215,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Depth Of Cut\LY
 		lineageTag: 9b3527c6-037e-4eab-bd8a-98967776cbbd
+
+	measure 'Depth Of Cut vs LY-1 %' =
+			VAR act = [Depth Of Cut]
+			VAR comp = [Depth Of Cut LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Depth Of Cut\LY-1
+		lineageTag: aad5fb4f-fba3-48c4-9698-ace895ab83de
 
 	measure 'Depth Of Cut LW' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -11305,6 +12527,16 @@ table 1_Measures
 		displayFolder: Margin\Orders\Depth Of Cut\LY
 		lineageTag: 5e289e81-fde0-4980-a7d2-b03de9a674b4
 
+	measure 'Depth Of Cut % Orders vs LY-1' =
+			VAR act = [Depth Of Cut % Orders]
+			VAR comp = [Depth Of Cut % Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Orders\Depth Of Cut\LY-1
+		lineageTag: 9c9a2b58-2ac9-4848-a572-24a344fed624
+
 	measure 'Depth Of Cut % Orders LW' =
 			CALCULATE (
 			    [Depth Of Cut % Orders],
@@ -11442,6 +12674,16 @@ table 1_Measures
 		displayFolder: Margin\Staff Discount & Loyalty\LY
 		lineageTag: 014e69f6-9662-4c6f-a4da-1cf47d38f8a1
 
+	measure 'Staff Discount & Loyalty vs LY-1' =
+			VAR act = [Staff Discount & Loyalty]
+			VAR comp = [Staff Discount & Loyalty LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Staff Discount & Loyalty\LY-1
+		lineageTag: 33c5a60b-63fc-47ac-899b-b70ede3dfc98
+
 	measure 'Staff Discount & Loyalty vs LY %' =
 			VAR act = [Staff Discount & Loyalty]
 			VAR comp = [Staff Discount & Loyalty LY]
@@ -11452,6 +12694,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Staff Discount & Loyalty\LY
 		lineageTag: 05a5d04e-148c-4712-80f4-74187c0e0682
+
+	measure 'Staff Discount & Loyalty vs LY-1 %' =
+			VAR act = [Staff Discount & Loyalty]
+			VAR comp = [Staff Discount & Loyalty LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Staff Discount & Loyalty\LY-1
+		lineageTag: 2c79a2de-411e-4d21-8189-e0aa2f5741b8
 
 	measure 'Staff Discount & Loyalty LW' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -11667,6 +12920,16 @@ table 1_Measures
 		displayFolder: Margin\Other GSM Adj\LY
 		lineageTag: 5c32e78e-2ff0-4bd8-89e1-b434c869f836
 
+	measure 'Other GSM Adj vs LY-1' =
+			VAR act = [Other GSM Adj]
+			VAR comp = [Other GSM Adj LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Other GSM Adj\LY-1
+		lineageTag: 99dcfbbf-bdb2-46e0-b0de-801fa1093cee
+
 	measure 'Other GSM Adj vs LY %' =
 			VAR act = [Other GSM Adj]
 			VAR comp = [Other GSM Adj LY]
@@ -11677,6 +12940,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Other GSM Adj\LY
 		lineageTag: 5db8ba25-578f-44dc-a596-cd2bb1ae7d98
+
+	measure 'Other GSM Adj vs LY-1 %' =
+			VAR act = [Other GSM Adj]
+			VAR comp = [Other GSM Adj LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Other GSM Adj\LY-1
+		lineageTag: ac2005f9-12b1-4e56-814c-5a7de33e7532
 
 	measure 'Other GSM Adj LW' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -11851,6 +13125,21 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: P&L\LY
 		lineageTag: dcb923ef-7f65-48f2-9f30-3ee29be9fd90
+
+	measure 'P&L vs LY-1 %' =
+			VAR act = [P&L]
+			VAR comp = [P&L LY-1]
+			VAR metric = [slctd_MetricMasterPnL]
+			VAR divide_result =
+			    DIVIDE ( act - comp, comp )
+			VAR subtract_result = act - comp
+			VAR adj_result =
+			    IF ( CONTAINSSTRING ( metric, "%" ), subtract_result * 1, divide_result )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), adj_result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: P&L\LY-1
+		lineageTag: 6ad3d88c-4123-4d10-a578-ae70a43d7a05
 
 	measure 'P&L LW' =
 			VAR metric = [slctd_MetricMasterPnL]
@@ -12146,6 +13435,16 @@ table 1_Measures
 		displayFolder: Sales\SRIV Fwd View\LY
 		lineageTag: 54a39f5a-4015-450f-b2ab-afe43d2c6577
 
+	measure 'SRIV Fwd View vs LY-1' =
+			VAR act = [SRIV Fwd View]
+			VAR comp = [SRIV LY-1]
+			VAR result = act - comp
+			RETURN
+			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\SRIV Fwd View\LY-1
+		lineageTag: 5063114b-1548-4d23-af4c-938de9488877
+
 	measure 'SRIV Fwd View vs LY %' =
 			VAR act = [SRIV Fwd View]
 			VAR comp = [SRIV LY]
@@ -12156,6 +13455,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\SRIV Fwd View\LY
 		lineageTag: 10a73ba3-afbd-4697-ad24-74a1fa78660e
+
+	measure 'SRIV Fwd View vs LY-1 %' =
+			VAR act = [SRIV Fwd View]
+			VAR comp = [SRIV LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\SRIV Fwd View\LY-1
+		lineageTag: 4d45faba-1180-444e-af74-a3614b15ccee
 
 	measure 'SRIV Fwd View vs FC' =
 			VAR act = [SRIV Fwd View]
@@ -12291,6 +13601,16 @@ table 1_Measures
 		displayFolder: Sales\Orders\GSRIV\LY
 		lineageTag: 5dc0637d-eb95-4310-8235-bb6a4cf8eddc
 
+	measure 'GSRIV Orders vs LY-1' =
+			VAR act = [GSRIV Orders]
+			VAR comp = [GSRIV Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Orders\GSRIV\LY-1
+		lineageTag: b4e27959-3141-466f-95d8-7a6ba49e0c49
+
 	measure 'GSRIV Orders vs LY %' =
 			VAR act = [GSRIV Orders]
 			VAR comp = [GSRIV Orders LY]
@@ -12301,6 +13621,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Orders\GSRIV\LY
 		lineageTag: 3f9cf743-fd6a-4f3b-b809-4430005e92f5
+
+	measure 'GSRIV Orders vs LY-1 %' =
+			VAR act = [GSRIV Orders]
+			VAR comp = [GSRIV Orders LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Orders\GSRIV\LY-1
+		lineageTag: 16f1e2d5-336d-49d4-83cb-e69c5f6a4055
 
 	measure 'GSRIV Orders LW' =
 			CALCULATE (
@@ -12389,6 +13720,15 @@ table 1_Measures
 		displayFolder: Transactions\Visits\LY
 		lineageTag: bca8d004-d7da-4e44-b99d-afcef2f0bc30
 
+	measure 'Visits vs LY-1' =
+			VAR act = [Visits]
+			VAR comp = [Visits LY-1]
+			VAR result = act - comp
+			RETURN result
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Transactions\Visits\LY-1
+		lineageTag: 8129e8b3-83ae-447d-b4b7-52799d2f87b8
+
 	measure 'Visits vs LY %' = ```
 			VAR act = [Visits]
 			VAR comp = [Visits LY]
@@ -12401,6 +13741,19 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Transactions\Visits\LY
 		lineageTag: 147d997d-57a3-4a1d-a3c1-bc3c49e1c365
+
+	measure 'Visits vs LY-1 %' = ```
+			VAR act = [Visits]
+			VAR comp = [Visits LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+			    
+			```
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Transactions\Visits\LY-1
+		lineageTag: 439091aa-0eb4-478a-af48-26ecce9775ad
 
 	measure 'Visits LW' =
 			VAR store =
@@ -12517,6 +13870,16 @@ table 1_Measures
 		displayFolder: Transactions\Conversion\LY
 		lineageTag: 97129912-8ae6-4eef-b723-9c9114d5b818
 
+	measure 'Conversion % vs LY-1' =
+			VAR act = [Conversion %]
+			VAR comp = [Conversion % LY-1]
+			VAR result = FORMAT((act - comp)* 100, "#,##0.0ppt;(#,##0.0)ppt")
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Transactions\Conversion\LY-1
+		lineageTag: 39cf7d94-94b9-45aa-9410-ccd0a4de6d47
+
 	measure 'Conversion % LW' =
 			
 			VAR metric = CALCULATE(SUM(factAdobe[ordersL2]),factAdobe[visitType] = 2,USERELATIONSHIP(factAdobe[fiscalWeek],'Calendar'[fiscalWeekLastWeek]))
@@ -12599,6 +13962,16 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Intake\LY
 		lineageTag: 1ac616a0-1b4a-4267-9564-640cd1095f82
+
+	measure 'FPP Intake Volume vs LY-1' =
+			VAR act = [FPP Intake Volume]
+			VAR comp = [FPP Intake Volume LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Intake\LY-1
+		lineageTag: ed740c9c-cd9c-4877-9393-3fe65006845c
 
 	measure 'FPP Intake Volume BUD' =
 			CALCULATE (
@@ -12964,6 +14337,16 @@ table 1_Measures
 		displayFolder: Margin\GSM Fwd View\LY
 		lineageTag: fe3d8420-16c7-4088-94db-5db6e9f83ace
 
+	measure 'GSM Fwd View vs LY-1' =
+			VAR act = [GSM Fwd View]
+			VAR comp = [GSM LY-1]
+			VAR result = act - comp
+			RETURN
+			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\GSM Fwd View\LY-1
+		lineageTag: e3157dad-bc62-420d-95c0-d76971e7f787
+
 	measure 'GSM Fwd View vs LY %' =
 			VAR act = [GSM Fwd View]
 			VAR comp = [GSM LY]
@@ -12974,6 +14357,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\GSM Fwd View\LY
 		lineageTag: 39fd8de9-f271-4eb4-a428-ec342dbc7d1c
+
+	measure 'GSM Fwd View vs LY-1 %' =
+			VAR act = [GSM Fwd View]
+			VAR comp = [GSM LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\GSM Fwd View\LY-1
+		lineageTag: 8ffc1bf8-34a0-4d9c-a50f-60f7922825c2
 
 	measure 'GSM Fwd View vs FC' =
 			VAR act = [GSM Fwd View]
@@ -13391,6 +14785,16 @@ table 1_Measures
 		displayFolder: Sales\SREV Fwd View\LY
 		lineageTag: 90342581-1e74-4a5f-a2af-48ac1eaefeec
 
+	measure 'SREV Fwd View vs LY-1' =
+			VAR act = [SREV Fwd View]
+			VAR comp = [SREV LY-1]
+			VAR result = act - comp
+			RETURN
+			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\SREV Fwd View\LY-1
+		lineageTag: 8ef0f372-ab40-4cf2-b5eb-62e28d36f00d
+
 	measure 'SREV Fwd View vs LY %' =
 			VAR act = [SREV Fwd View]
 			VAR comp = [SREV LY]
@@ -13401,6 +14805,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\SREV Fwd View\LY
 		lineageTag: 2c9647d1-c112-4f99-abfb-c615dcc446f7
+
+	measure 'SREV Fwd View vs LY-1 %' =
+			VAR act = [SREV Fwd View]
+			VAR comp = [SREV LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\SREV Fwd View\LY-1
+		lineageTag: 83e5ace2-9c6f-481e-a383-a27d22a7e323
 
 	measure 'SREV Fwd View vs FC' =
 			VAR act = [SREV Fwd View]
@@ -13540,6 +14955,16 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\GSM Fwd View\LY
 		lineageTag: 08a1c225-7c90-46f3-afb5-8ace1ee08185
+
+	measure 'GSM % SREV Fwd View vs LY-1' =
+			VAR act = [GSM % SREV Fwd View]
+			VAR comp = [GSM % SREV LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\GSM Fwd View\LY-1
+		lineageTag: 0dc30a0f-40c3-41eb-a37d-90ab9a3da4a4
 
 	/// This measure is column [GSM Orders LW] as a % of SREV
 	measure 'GSM % SREV Fwd View LW' =
@@ -13813,6 +15238,16 @@ table 1_Measures
 		displayFolder: Sales\Returns\LY
 		lineageTag: 9b01f1a7-8017-4cb2-8cad-45431a9323fb
 
+	measure 'Gross SRIV vs LY-1' =
+			VAR act = [Gross SRIV]
+			VAR comp = [Gross SRIV LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Returns\LY-1
+		lineageTag: d5995c2d-959d-4b68-bb47-8bbe1bb7ca78
+
 	measure 'Gross SRIV vs LW' =
 			VAR act = [Gross SRIV]
 			VAR comp = [Gross SRIV LW]
@@ -13840,6 +15275,13 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Returns\LY
 		lineageTag: 41f71899-2b2e-4ecd-878b-455b9391eaa4
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Return rate % vs LY-1' = [Return rate %] - [Return rate % LY-1]
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Returns\LY-1
+		lineageTag: 80432683-6cdd-4bc3-b282-b0b1123211ff
 
 		annotation PBI_FormatHint = {"isCustom":true}
 
@@ -14100,6 +15542,17 @@ table 1_Measures
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: 0603d34a-0750-4942-8ca0-18d66fde7370
 
+	measure 'SRIV FPP vs LY-1 %' =
+			VAR act = [SRIV FPP]
+			VAR comp = [SRIV FPP LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\SRIV RG Measures
+		lineageTag: c10c4373-f5d8-4b7c-bb8c-f23b443080fe
+
 	measure 'SRIV Full Price vs LY %' =
 			VAR act = [SRIV Full Price]
 			VAR comp = [SRIV Full Price LY]
@@ -14110,6 +15563,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: 86d292f3-dda0-4885-a185-3ead68a34714
+
+	measure 'SRIV Full Price vs LY-1 %' =
+			VAR act = [SRIV Full Price]
+			VAR comp = [SRIV Full Price LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\SRIV RG Measures
+		lineageTag: f06b69a3-7bcd-4ef5-95c5-f46ece88cef6
 
 	measure 'SRIV Online vs LY %' =
 			VAR act = [SRIV Online]
@@ -14122,6 +15586,17 @@ table 1_Measures
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: 03e1dd37-e34b-4619-8d24-e0aa7532de44
 
+	measure 'SRIV Online vs LY-1 %' =
+			VAR act = [SRIV Online]
+			VAR comp = [SRIV Online LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\SRIV RG Measures
+		lineageTag: 8318310f-ad0e-4a01-b8bd-86df9df7ec77
+
 	measure 'SRIV Promo vs LY %' =
 			VAR act = [SRIV Promo]
 			VAR comp = [SRIV Promo LY]
@@ -14132,6 +15607,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: cfbbf9ac-a24b-427f-9607-26a674110f0f
+
+	measure 'SRIV Promo vs LY-1 %' =
+			VAR act = [SRIV Promo]
+			VAR comp = [SRIV Promo LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\SRIV RG Measures
+		lineageTag: 11493c9e-e959-4f63-871d-26fde063ffcd
 
 	measure 'SRIV Reduced vs LY %' =
 			VAR act = [SRIV Reduced]
@@ -14144,6 +15630,17 @@ table 1_Measures
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: c8ba09ae-efad-48ff-bff7-420491d3036c
 
+	measure 'SRIV Reduced vs LY-1 %' =
+			VAR act = [SRIV Reduced]
+			VAR comp = [SRIV Reduced LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\SRIV RG Measures
+		lineageTag: 78087e1f-865b-49d6-980b-63fad62644e8
+
 	measure 'SRIV Stores vs LY %' =
 			VAR act = [SRIV Stores]
 			VAR comp = [SRIV Stores LY]
@@ -14154,6 +15651,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: 0d0742dd-ba10-4329-abc2-6aa71d9d8e89
+
+	measure 'SRIV Stores vs LY-1 %' =
+			VAR act = [SRIV Stores]
+			VAR comp = [SRIV Stores LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\SRIV RG Measures
+		lineageTag: 16336d97-85b4-44e6-987c-1a7e446133c9
 
 	measure 'Returns Online' = CALCULATE ( [Returns], 'Channels'[Channel] = "Online" )
 		formatString: #,##0,,.0;(#,##0,,.0)
@@ -14185,6 +15693,11 @@ table 1_Measures
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: 8ab7a7ec-10ba-47be-a732-ae3041f5f21a
 
+	measure 'Returns Online vs LY-1 %' = [Returns Online %] - [Returns Online LY-1 %]
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\SRIV RG Measures
+		lineageTag: a2cff5d3-f755-433b-b03d-92370be7c780
+
 	measure 'Returns Stores' = CALCULATE ( [Returns], 'Channels'[Channel] = "Stores" )
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Sales\SRIV RG Measures
@@ -14214,6 +15727,11 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\SRIV RG Measures
 		lineageTag: 38c4ef8c-2ead-4da1-8f4e-367fed5b2477
+
+	measure 'Returns Stores vs LY-1 %' = [Returns Stores %] - [Returns Stores LY-1 %]
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\SRIV RG Measures
+		lineageTag: 08b3523c-4ec0-4472-8596-b5d2fbdc1fb1
 
 	measure 'Sales BU Mix %' =
 			VAR filtered_sales = [SRIV]
@@ -14285,6 +15803,17 @@ table 1_Measures
 		displayFolder: Sales\Sales Mix\BU\LY
 		lineageTag: df47ca92-4b2a-4c09-ae19-835a044b3158
 
+	measure 'Sales BU Mix % vs LY-1' =
+			VAR act = [Sales BU Mix %]
+			VAR comp = [Sales BU Mix % LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Sales Mix\BU\LY-1
+		lineageTag: 42a1f111-8b90-4924-8c4c-733af3b875b5
+
 	measure 'Stock BU Mix %' =
 			VAR filtered_sales = [Stock]
 			VAR bu_total =
@@ -14354,6 +15883,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Stock\Stock Mix\BU\LY
 		lineageTag: fbc3464e-6564-430a-ba57-1e8ff1cdb787
+
+	measure 'Stock BU Mix % vs LY-1' =
+			VAR act = [Stock BU Mix %]
+			VAR comp = [Stock BU Mix % LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Stock\Stock Mix\BU\LY-1
+		lineageTag: e63d0a08-b011-4708-a356-60e60d8e46c5
 
 	measure 'SRIV FPP FC' = CALCULATE ( [SRIV Channel FC], 'SalesType'[SalesType] = "FP&P" )
 		formatString: #,##0,,.0;(#,##0,,.0)
@@ -14627,6 +16167,15 @@ table 1_Measures
 		displayFolder: P&L\LY
 		lineageTag: 58889920-55f7-4428-9521-e2783379fc88
 
+	measure 'P&L vs LY-1 Colour' =
+			VAR metric = [slctd_MetricMasterPnL]
+			VAR val = [P&L vs LY-1]
+			RETURN
+			    SWITCH ( metric, "Markdown %", - val, val )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: P&L\LY-1
+		lineageTag: a4dbb568-d450-49e5-9594-7a43107fae7e
+
 	measure 'P&L vs LY % Colour' =
 			VAR metric = [slctd_MetricMasterPnL]
 			VAR val = [P&L vs LY %]
@@ -14635,6 +16184,15 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: P&L\LY
 		lineageTag: 187491f4-7316-49d6-a1ed-7ac984b139ba
+
+	measure 'P&L vs LY-1 % Colour' =
+			VAR metric = [slctd_MetricMasterPnL]
+			VAR val = [P&L vs LY-1 %]
+			RETURN
+			    SWITCH ( metric, "Markdown %", - val, val )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: P&L\LY-1
+		lineageTag: 5fca4983-e859-4dfa-889d-ef6451bd4632
 
 	measure 'P&L vs QRF Colour' =
 			VAR metric = [slctd_MetricMasterPnL]
@@ -14826,6 +16384,16 @@ table 1_Measures
 		displayFolder: Margin\Red Markdown\LY
 		lineageTag: 4a3c994a-c9ae-4281-99aa-9c9b58886daf
 
+	measure 'Reduced Markdown vs LY-1' =
+			VAR act = [Reduced Markdown]
+			VAR comp = [Reduced Markdown LY-1]
+			VAR result = act - comp
+			RETURN
+			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Red Markdown\LY-1
+		lineageTag: 97810396-499b-47c3-8038-10f579fc7736
+
 	measure 'Reduced Markdown % LY' = ```
 			
 			
@@ -14870,6 +16438,16 @@ table 1_Measures
 		displayFolder: Margin\Red Markdown\LY
 		lineageTag: 4768294f-5622-4983-89ce-c4d57690f096
 
+	measure 'Reduced Markdown % vs LY-1' =
+			VAR act = [Reduced Markdown %]
+			VAR comp = [Reduced Markdown % LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Red Markdown\LY-1
+		lineageTag: 6121955c-f9b3-411a-928b-f93d7880eee1
+
 	measure 'Reduced Markdown vs LY %' =
 			VAR act = [Reduced Markdown]
 			VAR comp = [Reduced Markdown LY]
@@ -14880,6 +16458,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Red Markdown\LY
 		lineageTag: ea348b1e-a858-4bca-a912-9d4594233fa0
+
+	measure 'Reduced Markdown vs LY-1 %' =
+			VAR act = [Reduced Markdown]
+			VAR comp = [Reduced Markdown LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Red Markdown\LY-1
+		lineageTag: 49d63b6e-797f-4869-89d6-6dfed7ba00f3
 
 	measure 'Reduced Markdown LW' = [Markdown LW]-[Promo Markdown LW]
 		displayFolder: Margin\Red Markdown\LW
@@ -15370,6 +16959,11 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Returns\Returns Mix
 		lineageTag: 0877e664-2f4d-4952-9c41-280393fbd5ae
+
+	measure 'Gross SRIV Mix % vs LY-1' = [Gross SRIV Mix %] - [Gross SRIV Mix % LY-1]
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Returns\Returns Mix
+		lineageTag: 63c315c7-1f33-4f32-bbc4-f31eb0b7f312
 
 	measure gsriv_at_ly_mix_pct =
 			VAR result =
@@ -16048,6 +17642,16 @@ table 1_Measures
 		displayFolder: Sales\Volume\LY
 		lineageTag: 0ed982cd-a68a-43f1-ad70-9fd25b6d62b1
 
+	measure 'Volume vs LY-1' =
+			VAR act = [Volume]
+			VAR comp = [Volume LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Volume\LY-1
+		lineageTag: 219f5f02-bb8f-4ebd-b01e-de6557ab7a9c
+
 	measure 'Volume vs LY %' =
 			VAR act = [Volume]
 			VAR comp = [Volume LY]
@@ -16058,6 +17662,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Volume\LY
 		lineageTag: d8054c66-80cb-4a91-8b2c-1a5809ed709e
+
+	measure 'Volume vs LY-1 %' =
+			VAR act = [Volume]
+			VAR comp = [Volume LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Volume\LY-1
+		lineageTag: a4ece52c-a231-4178-8311-8d473232c0b6
 
 	measure 'Volume LW' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -16123,6 +17738,16 @@ table 1_Measures
 		displayFolder: Sales\Orders\Volume\LY
 		lineageTag: ce30d217-e6cc-41c5-8f51-4391d36596b6
 
+	measure 'Volume Orders vs LY-1' =
+			VAR act = [Volume Orders]
+			VAR comp = [Volume Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Orders\Volume\LY-1
+		lineageTag: bf481f46-d18a-41d6-9c15-2e2c4ecec2a4
+
 	measure 'Volume Orders vs LY %' =
 			VAR act = [Volume Orders]
 			VAR comp = [Volume Orders LY]
@@ -16133,6 +17758,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Orders\Volume\LY
 		lineageTag: c48786cf-5522-4008-bbb9-1d69c9d39c93
+
+	measure 'Volume Orders vs LY-1 %' =
+			VAR act = [Volume Orders]
+			VAR comp = [Volume Orders LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Orders\Volume\LY-1
+		lineageTag: 960d7b4b-8fe2-4524-acac-4368782028ea
 
 	measure 'Volume Orders LW' =
 			CALCULATE (
@@ -16198,6 +17834,16 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\FPP Volume\LY
 		lineageTag: c72a2875-c47d-48f9-9a8f-a41522de14ec
 
+	measure 'FPP Volume Dispatch vs LY-1' =
+			VAR act = [FPP Volume Dispatch]
+			VAR comp = [FPP Volume Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Dispatch\FPP Volume\LY-1
+		lineageTag: bf86dad0-d42b-4896-9b83-2de038452779
+
 	measure 'FPP Volume Dispatch vs LY %' =
 			VAR act = [FPP Volume Dispatch]
 			VAR comp = [FPP Volume Dispatch LY]
@@ -16208,6 +17854,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Dispatch\FPP Volume\LY
 		lineageTag: eb9b90b1-0da1-42a7-a947-81469d7af703
+
+	measure 'FPP Volume Dispatch vs LY-1 %' =
+			VAR act = [FPP Volume Dispatch]
+			VAR comp = [FPP Volume Dispatch LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Dispatch\FPP Volume\LY-1
+		lineageTag: d24f453a-ad1c-451e-a6bc-aee0e264b882
 
 	measure 'FPP Volume Dispatch LW' =
 			CALCULATE (
@@ -16273,6 +17930,16 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\RP Volume\LY
 		lineageTag: 45324fff-879e-4738-b6b9-4ea46b4fbe00
 
+	measure 'RP Volume Dispatch vs LY-1' =
+			VAR act = [RP Volume Dispatch]
+			VAR comp = [RP Volume Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Dispatch\RP Volume\LY-1
+		lineageTag: cfd4a9c7-aeb6-4caa-ad8a-673f4684322b
+
 	measure 'RP Volume Dispatch vs LY %' =
 			VAR act = [RP Volume Dispatch]
 			VAR comp = [RP Volume Dispatch LY]
@@ -16283,6 +17950,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Dispatch\RP Volume\LY
 		lineageTag: a1247f74-2abc-4e91-ba5c-0c490b1f290b
+
+	measure 'RP Volume Dispatch vs LY-1 %' =
+			VAR act = [RP Volume Dispatch]
+			VAR comp = [RP Volume Dispatch LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Dispatch\RP Volume\LY-1
+		lineageTag: b5fa6bd3-7bc4-49cb-9e3b-66092bfb4fac
 
 	measure 'RP Volume Dispatch LW' =
 			CALCULATE (
@@ -16361,6 +18039,16 @@ table 1_Measures
 		displayFolder: Sales\Dispatch\Volume\LY
 		lineageTag: 38559ac2-5af7-4d08-bd48-739ecbb3b276
 
+	measure 'Volume Dispatch vs LY-1' =
+			VAR act = [Volume Dispatch]
+			VAR comp = [Volume Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Sales\Dispatch\Volume\LY-1
+		lineageTag: 27651be6-4ae0-457e-bfd5-98df0d6b89ad
+
 	measure 'Volume Dispatch vs LY %' =
 			VAR act = [Volume Dispatch]
 			VAR comp = [Volume Dispatch LY]
@@ -16371,6 +18059,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\Dispatch\Volume\LY
 		lineageTag: 207ccede-4646-4eef-b485-ec6f06f12278
+
+	measure 'Volume Dispatch vs LY-1 %' =
+			VAR act = [Volume Dispatch]
+			VAR comp = [Volume Dispatch LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\Dispatch\Volume\LY-1
+		lineageTag: 0f621615-eeea-4b33-90dd-c937c85afb7a
 
 	measure 'Volume Dispatch LW' =
 			CALCULATE (
@@ -16434,6 +18133,16 @@ table 1_Measures
 		formatString: #,##0,,.0;(#,##0,,.0)
 		displayFolder: Intake\LY
 		lineageTag: e93f2a30-d6a9-4aaa-a441-0d7d887f4890
+
+	measure 'FPP Intake Value vs LY-1' =
+			VAR act = [FPP Intake Value]
+			VAR comp = [FPP Intake Value LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Intake\LY-1
+		lineageTag: 2c74302a-964c-4689-8217-0be5ec720a8d
 
 	measure 'FPP Intake Value BUD' =
 			CALCULATE (
@@ -16504,6 +18213,18 @@ table 1_Measures
 
 		annotation PBI_FormatHint = {"isCustom":true}
 
+	measure 'FPP Intake Value vs LY-1 %' =
+			VAR act = [FPP Intake Value]
+			VAR comp = [FPP Intake Value LY-1]
+			VAR result = DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Intake\LY-1
+		lineageTag: 0f8b62cd-669b-4f62-8e4d-bae89b176088
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
 	measure 'FPP Intake Volume vs LY %' =
 			VAR act = [FPP Intake Volume]
 			VAR comp = [FPP Intake Volume LY]
@@ -16513,6 +18234,18 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Intake\LY
 		lineageTag: 24160826-86e1-42b0-b89b-1ff9b14ff7bf
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'FPP Intake Volume vs LY-1 %' =
+			VAR act = [FPP Intake Volume]
+			VAR comp = [FPP Intake Volume LY-1]
+			VAR result = DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Intake\LY-1
+		lineageTag: 44779d75-7ee8-46a6-a639-9078cc8b36a6
 
 		annotation PBI_FormatHint = {"isCustom":true}
 
@@ -16592,6 +18325,18 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\ASP
 		lineageTag: 069debbd-88a7-4355-8e62-714bbf957a85
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'ASP vs LY-1 % (SRIV)' =
+			
+			VAR BLANKTEST = ISBLANK( [ASP (SRIV)] ) || ISBLANK( [ASP LY (SRIV)] )
+			VAR RESULT = DIVIDE([ASP (SRIV)], [ASP LY (SRIV)], 0)-1
+			RETURN
+			    IF( BLANKTEST = FALSE(), RESULT, BLANK())
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\ASP
+		lineageTag: 6722435a-7e53-463e-b693-4f01b3b00277
 
 		annotation PBI_FormatHint = {"isCustom":true}
 
@@ -16776,6 +18521,19 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Sales\SRIV\LY
 		lineageTag: 632bcc96-0317-465b-b37b-ce0ff19afda2
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'FPP SRIV vs LY-1 %' =
+			VAR act = CALCULATE([SRIV], SalesType[SalesType] = "FP&P")
+			VAR comp = CALCULATE([SRIV LY-1], SalesType[SalesType] = "FP&P")
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Sales\SRIV\LY-1
+		lineageTag: 246fb023-c11e-41dd-a8b9-8a59043334e1
 
 		annotation PBI_FormatHint = {"isCustom":true}
 
@@ -17925,6 +19683,16 @@ table 1_Measures
 		displayFolder: Margin\Dispatch\Sale Markdown\LY
 		lineageTag: a11a76dc-2a20-4f24-9134-e4961c81131d
 
+	measure 'Sale Markdown XV Dispatch vs LY-1' =
+			VAR act = [Sale Markdown XV Dispatch]
+			VAR comp = [Sale Markdown XV Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Dispatch\Sale Markdown\LY-1
+		lineageTag: 68307b2c-2278-4a98-9781-5710b770f192
+
 	measure 'Sale Markdown XV % Dispatch LY' =
 			CALCULATE (
 			    [Sale Markdown XV % Dispatch],
@@ -17952,6 +19720,16 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Dispatch\Sale Markdown\LY
 		lineageTag: 8cea2be8-a57a-47fa-aa42-d79d431c3816
+
+	measure 'Sale Markdown XV % Dispatch vs LY-1' =
+			VAR act = [Sale Markdown XV % Dispatch]
+			VAR comp = [Sale Markdown XV % Dispatch LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Dispatch\Sale Markdown\LY-1
+		lineageTag: 9d9437f5-413c-44fd-9793-9e5a630c27f7
 
 	measure 'Sale Markdown XV Dispatch LW' =
 			CALCULATE (
@@ -18157,6 +19935,16 @@ table 1_Measures
 		displayFolder: Margin\Orders\Sale Markdown\LY
 		lineageTag: 4ca265c9-4ae3-4b19-83b4-2dd78546cd44
 
+	measure 'Sale Markdown XV Orders vs LY-1' =
+			VAR act = [Sale Markdown XV Orders]
+			VAR comp = [Sale Markdown XV Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Orders\Sale Markdown\LY-1
+		lineageTag: 58557c37-373e-463f-a010-b00bd4c60053
+
 	measure 'Sale Markdown XV % Orders LY' =
 			CALCULATE (
 			    [Sale Markdown XV % Orders],
@@ -18184,6 +19972,16 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Orders\Sale Markdown\LY
 		lineageTag: cd1d8a13-21b0-4e00-9062-0d925aa5ad05
+
+	measure 'Sale Markdown XV % Orders vs LY-1' =
+			VAR act = [Sale Markdown XV % Orders]
+			VAR comp = [Sale Markdown XV % Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Orders\Sale Markdown\LY-1
+		lineageTag: 7a99d6f1-2af5-4c92-90ec-e77188f94a19
 
 	measure 'Sale Markdown XV Orders BUD' = CALCULATE ( [sum_RealMDV], ForecastScenarios[Forecast Scenario] = "BUD" )
 		formatString: #,##0,,.0;(#,##0,,.0)
@@ -18427,6 +20225,16 @@ table 1_Measures
 		displayFolder: Margin\Sale Markdown\LY
 		lineageTag: 6c925033-1eed-4274-9724-1414bd549981
 
+	measure 'Sale Markdown XV vs LY-1' =
+			VAR act = [Sale Markdown XV]
+			VAR comp = [Sale Markdown XV LY-1]
+			VAR result = act - comp
+			RETURN
+			    If(AND(Act = Blank(), Comp = Blank()), blank(), result)
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Margin\Sale Markdown\LY-1
+		lineageTag: c46c86b9-3bf2-4e3a-809e-771d518cd2d6
+
 	measure 'Sale Markdown XV % LY' =
 			VAR recog_type = [slctd_SalesRecognitionType]
 			VAR result =
@@ -18469,6 +20277,16 @@ table 1_Measures
 		displayFolder: Margin\Sale Markdown\LY
 		lineageTag: a6dd3a92-8021-4468-a5cc-8558a130a0f1
 
+	measure 'Sale Markdown XV % vs LY-1' =
+			VAR act = [Sale Markdown XV %]
+			VAR comp = [Sale Markdown XV % LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result * 1 )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Sale Markdown\LY-1
+		lineageTag: 1c54aa72-e186-4a8a-907c-39521589f583
+
 	measure 'Sale Markdown XV vs LY %' =
 			VAR act = [Sale Markdown XV]
 			VAR comp = [Sale Markdown XV LY]
@@ -18479,6 +20297,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Margin\Sale Markdown\LY
 		lineageTag: 4367d99e-7c89-4fdc-a67c-1b0d9ca95730
+
+	measure 'Sale Markdown XV vs LY-1 %' =
+			VAR act = [Sale Markdown XV]
+			VAR comp = [Sale Markdown XV LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Margin\Sale Markdown\LY-1
+		lineageTag: 4d5190dc-2d4c-460b-80d5-61ed5e622806
 
 	measure 'Sale Markdown XV LW' =
 			VAR recog_type = [slctd_SalesRecognitionType]
@@ -19513,6 +21342,16 @@ table 1_Measures
 		displayFolder: Transactions\Traffic\LY
 		lineageTag: 7d0aa6bb-9441-46a7-a62d-7bd94c5dd8a6
 
+	measure 'Traffic vs LY-1' =
+			VAR act = [Traffic]
+			VAR comp = [Traffic LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Transactions\Traffic\LY-1
+		lineageTag: 47d33fb8-436b-47fb-b48f-0ffd4a3a1151
+
 	measure 'Traffic vs LY %' =
 			VAR act = [Traffic]
 			VAR comp = [Traffic LY]
@@ -19523,6 +21362,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Transactions\Traffic\LY
 		lineageTag: b46114de-1b9d-4cc5-9672-babd9ea797fa
+
+	measure 'Traffic vs LY-1 %' =
+			VAR act = [Traffic]
+			VAR comp = [Traffic LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Transactions\Traffic\LY-1
+		lineageTag: 8e5db2e7-9d46-4be7-ad14-fb7186be450c
 
 	measure 'TY Actuals Uplift' = IF ( SELECTEDVALUE ( 'Calendar'[fiscalYear] ) = 2025, 1.22, 1 )
 		formatString: #,##0,,.0;(#,##0,,.0)
@@ -19562,6 +21412,22 @@ table 1_Measures
 		displayFolder: SwitchOnlineMetric\LY
 		lineageTag: 768e57ca-bb85-44d1-b3a7-8795539962d4
 
+	measure 'SwitchOnlineMetric vs LY-1 Hybrid' =
+			VAR metric = [slctd_OnlineMetric]
+			VAR result =
+			    SWITCH (
+			        metric,
+			        "Traffic", [Visits vs LY-1 %],
+			        "Conv", [Conversion % vs LY-1],
+			        "Orders", [factAOV Orders vs LY-1 %],
+			        "AOV", [AOV vs LY-1 %]
+			    )
+			RETURN
+			    result
+		formatString: #,##0%;(#,##0)%
+		displayFolder: SwitchOnlineMetric\LY-1
+		lineageTag: cd2d5454-b384-4bb8-be91-5df281417455
+
 	measure 'AOV LY' =
 			CALCULATE (
 			    [AOV],
@@ -19590,6 +21456,16 @@ table 1_Measures
 		displayFolder: Transactions\AOV\LY
 		lineageTag: a958867d-65fe-4162-b024-d95d482543f6
 
+	measure 'AOV vs LY-1' =
+			VAR act = [ABV]
+			VAR comp = [ABV LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0.0;(#,##0.0)
+		displayFolder: Transactions\AOV\LY-1
+		lineageTag: 0f3216db-d233-44fd-9188-ddc824e47289
+
 	measure 'AOV vs LY %' =
 			VAR act = [AOV]
 			VAR comp = [AOV LY]
@@ -19600,6 +21476,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Transactions\AOV\LY
 		lineageTag: abee0d4f-8680-457b-b2d7-5a285d8a4649
+
+	measure 'AOV vs LY-1 %' =
+			VAR act = [AOV]
+			VAR comp = [AOV LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Transactions\AOV\LY-1
+		lineageTag: 63c53c52-e740-4db9-9776-73bc1e7513fa
 
 	measure Traffic =
 			
@@ -19686,6 +21573,16 @@ table 1_Measures
 		displayFolder: Transactions\factAOV Orders\LY
 		lineageTag: 403d89ba-d0d9-45dd-8059-ef6b2c5e5c98
 
+	measure 'factAOV Orders vs LY-1' =
+			VAR act = [factAOV Orders]
+			VAR comp = [factAOV Orders LY-1]
+			VAR result = act - comp
+			RETURN
+			    IF ( comp = BLANK (), BLANK (), result )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		displayFolder: Transactions\factAOV Orders\LY-1
+		lineageTag: 63db92ab-5088-46d5-b231-a3c52ddb196c
+
 	measure 'factAOV Orders vs LY %' =
 			VAR act = [factAOV Orders]
 			VAR comp = [factAOV Orders LY]
@@ -19696,6 +21593,17 @@ table 1_Measures
 		formatString: #,##0.0%;(#,##0.0)%
 		displayFolder: Transactions\factAOV Orders\LY
 		lineageTag: 2c1459f5-62c1-4384-9469-8e612b8606ea
+
+	measure 'factAOV Orders vs LY-1 %' =
+			VAR act = [factAOV Orders]
+			VAR comp = [factAOV Orders LY-1]
+			VAR result =
+			    DIVIDE ( act - comp, comp )
+			RETURN
+			    IF ( OR ( act = BLANK (), comp = BLANK () ), BLANK (), result )
+		formatString: #,##0.0%;(#,##0.0)%
+		displayFolder: Transactions\factAOV Orders\LY-1
+		lineageTag: 9cff0149-d545-42eb-9f52-e5b7cf26664e
 
 	measure 'factAdobe Orders LY' =
 			CALCULATE (
