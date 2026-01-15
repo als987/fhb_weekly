@@ -16,6 +16,15 @@ table factTransactions
 		lineageTag: 19cbc7dd-18e1-4721-8794-b48b1183afef
 
 	/// This measure is the sum of column 'factTransactions'[salesg]
+	measure 'Sale Trans Value LY-1' =
+			CALCULATE (
+			    [Sale Trans Value],
+			    USERELATIONSHIP ( factTransactions[fiscalWeek], 'Calendar'[fiscalWeekLastToLastyear] )
+			)
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: 980d74a3-49e9-455c-8bfc-c9dd4b631c7d
+
+	/// This measure is the sum of column 'factTransactions'[salesg]
 	measure 'Sale Trans Value LW' =
 			CALCULATE (
 			    [Sale Trans Value],
