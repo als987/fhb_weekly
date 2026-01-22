@@ -201,7 +201,6 @@ graph TD
     Rbr08_LYRRExBrands[Rbr08_LYRRExBrands] --> Rbr11_RRMixImpact[Rbr11_RRMixImpact]
     Rbr10_RRRateImpact[Rbr10_RRRateImpact] --> _RR_Other_Impact___['RR Other Impact %']
     Rbr10_RRRateImpact[Rbr10_RRRateImpact] --> _ReturnsBridge_Value_['ReturnsBridge Value']
-    Rbr10_RRRateImpact[Rbr10_RRRateImpact] --> Rbr93_Rate[Rbr93_Rate]
     Rbr10_RRRateImpact[Rbr10_RRRateImpact] --> Rbr99_ReturnsBridge[Rbr99_ReturnsBridge]
     Rbr11_RRMixImpact[Rbr11_RRMixImpact] --> _RR_Other_Impact___['RR Other Impact %']
     Rbr11_RRMixImpact[Rbr11_RRMixImpact] --> _ReturnsBridge_Value_['ReturnsBridge Value']
@@ -227,6 +226,7 @@ graph TD
     Returns[Returns] --> _Returns_vs_LY_1___['Returns vs LY-1 %']
     Returns[Returns] --> _Returns_vs_LY_1_['Returns vs LY-1']
     Returns[Returns] --> RBR_ChMx_Web_PN_TY[RBR_ChMx_Web_PN_TY]
+    Returns[Returns] --> Rbr03_VolumeRR[Rbr03_VolumeRR]
 ```
 
 #### Group: Stock
@@ -2430,9 +2430,25 @@ graph TD
 - DWAValueNewvsLY
 
 ### Table: factDeriskBudget
-- No base measures found.
+- sum_GSM_derisk_BUD
+  - 'GSM Dispatch BUD'
+- sum_SREV_derisk_BUD
+  - 'SREV Dispatch BUD'
+- sum_SRIV_derisk_BUD
+  - 'FPP SRIV Dispatch BUD'
+  - 'RP SRIV Dispatch BUD'
+
 ### Table: factDeriskForecast
-- No base measures found.
+- sum_GSM_derisk_FC
+  - 'GSM Dispatch FC'
+- sum_SREV_derisk_FC
+  - 'SREV Dispatch FC'
+- sum_SRIV_derisk_FC
+  - 'FPP SRIV Dispatch FC'
+  - 'RP SRIV Dispatch FC'
+  - 'SRIV Channel Dispatch BUD'
+  - 'SRIV Channel Dispatch FC'
+
 ### Table: factDispatchForecast
 - 'sum_Buying Margin Denominator DispFor'
 - 'sum_Cost Of Goods Sold (Inc VAT) DispFor'
@@ -2600,6 +2616,7 @@ graph TD
 
 ### Table: factOnlineCustomerMetrics
 - sum_online_orders
+- sum_online_visits
 
 ### Table: factOrderVol
 - sumqty
@@ -5009,14 +5026,14 @@ graph TD
 - Table: 1_Measures
 - Explanation: Derived calculation based on sum_SRIV_derisk_BUD.
 - Direct dependencies: sum_SRIV_derisk_BUD
-- Indirect dependencies: SRIV, slctd_SalesRecognitionType, sum_SRIV_derisk_BUD
+- Indirect dependencies: sum_SRIV_derisk_BUD
 - Classification: Derived
 
 #### Measure: 'FPP SRIV Dispatch FC'
 - Table: 1_Measures
 - Explanation: Derived calculation based on sum_SRIV_derisk_FC.
 - Direct dependencies: sum_SRIV_derisk_FC
-- Indirect dependencies: SRIV, slctd_SalesRecognitionType, sum_SRIV_derisk_FC
+- Indirect dependencies: sum_SRIV_derisk_FC
 - Classification: Derived
 
 #### Measure: 'FPP SRIV Dispatch LE'
@@ -5632,14 +5649,14 @@ graph TD
 - Table: 1_Measures
 - Explanation: Derived calculation based on sum_GSM_derisk_BUD.
 - Direct dependencies: sum_GSM_derisk_BUD
-- Indirect dependencies: GSM, slctd_SalesRecognitionType, sum_GSM_derisk_BUD
+- Indirect dependencies: sum_GSM_derisk_BUD
 - Classification: Derived
 
 #### Measure: 'GSM Dispatch FC'
 - Table: 1_Measures
 - Explanation: Derived calculation based on sum_GSM_derisk_FC.
 - Direct dependencies: sum_GSM_derisk_FC
-- Indirect dependencies: GSM, slctd_SalesRecognitionType, sum_GSM_derisk_FC
+- Indirect dependencies: sum_GSM_derisk_FC
 - Classification: Derived
 
 #### Measure: 'GSM Dispatch LE'
@@ -8726,14 +8743,14 @@ graph TD
 - Table: 1_Measures
 - Explanation: Derived calculation based on sum_SRIV_derisk_BUD.
 - Direct dependencies: sum_SRIV_derisk_BUD
-- Indirect dependencies: SRIV, slctd_SalesRecognitionType, sum_SRIV_derisk_BUD
+- Indirect dependencies: sum_SRIV_derisk_BUD
 - Classification: Derived
 
 #### Measure: 'RP SRIV Dispatch FC'
 - Table: 1_Measures
 - Explanation: Derived calculation based on sum_SRIV_derisk_FC.
 - Direct dependencies: sum_SRIV_derisk_FC
-- Indirect dependencies: SRIV, slctd_SalesRecognitionType, sum_SRIV_derisk_FC
+- Indirect dependencies: sum_SRIV_derisk_FC
 - Classification: Derived
 
 #### Measure: 'RP SRIV Dispatch LE'
@@ -9979,14 +9996,14 @@ graph TD
 - Table: 1_Measures
 - Explanation: Derived calculation based on sum_SREV_derisk_BUD.
 - Direct dependencies: sum_SREV_derisk_BUD
-- Indirect dependencies: SREV, slctd_SalesRecognitionType, sum_SREV_derisk_BUD
+- Indirect dependencies: sum_SREV_derisk_BUD
 - Classification: Derived
 
 #### Measure: 'SREV Dispatch FC'
 - Table: 1_Measures
 - Explanation: Derived calculation based on sum_SREV_derisk_FC.
 - Direct dependencies: sum_SREV_derisk_FC
-- Indirect dependencies: SREV, slctd_SalesRecognitionType, sum_SREV_derisk_FC
+- Indirect dependencies: sum_SREV_derisk_FC
 - Classification: Derived
 
 #### Measure: 'SREV Dispatch LE'
@@ -10553,14 +10570,14 @@ graph TD
 - Table: 1_Measures
 - Explanation: Derived calculation based on sum_SRIV_derisk_FC, sum_sriv_factSRIVDispatchChannelForecast.
 - Direct dependencies: sum_SRIV_derisk_FC, sum_sriv_factSRIVDispatchChannelForecast
-- Indirect dependencies: SRIV, slctd_SalesRecognitionType, sum_SRIV_derisk_FC, sum_sriv_factSRIVDispatchChannelForecast
+- Indirect dependencies: sum_SRIV_derisk_FC, sum_sriv_factSRIVDispatchChannelForecast
 - Classification: Derived
 
 #### Measure: 'SRIV Channel Dispatch FC'
 - Table: 1_Measures
 - Explanation: Derived calculation based on sum_SRIV_derisk_FC, sum_sriv_factSRIVDispatchChannelForecast.
 - Direct dependencies: sum_SRIV_derisk_FC, sum_sriv_factSRIVDispatchChannelForecast
-- Indirect dependencies: SRIV, slctd_SalesRecognitionType, sum_SRIV_derisk_FC, sum_sriv_factSRIVDispatchChannelForecast
+- Indirect dependencies: sum_SRIV_derisk_FC, sum_sriv_factSRIVDispatchChannelForecast
 - Classification: Derived
 
 #### Measure: 'SRIV Channel Dispatch LE'
@@ -15787,9 +15804,9 @@ graph TD
 
 #### Measure: Rbr93_Rate
 - Table: 1_Measures
-- Explanation: Derived calculation based on RBR_ChMx_Var, Rbr10_RRRateImpact, Rbr11_RRMixImpact, Slctd_Channel.
-- Direct dependencies: RBR_ChMx_Var, Rbr10_RRRateImpact, Rbr11_RRMixImpact, Slctd_Channel
-- Indirect dependencies: RBR_ChMx_Var, Rbr01_Precalc, Rbr01_TYMixLYSales, Rbr02_Precalc, Rbr02_TYMixLYSales_x_TYRate, Rbr03_VolumeRR, Rbr04_Precalc, Rbr04_TYMixLYSales_x_LYRR, Rbr05_RateRR, Rbr06_LYSalesExBrands, Rbr07_LYReturnsExBrands, Rbr07_Precalc, Rbr08_LYRRExBrands, Rbr10_RRRateImpact, Rbr11_RRMixImpact, Returns, Slctd_Channel
+- Explanation: Derived calculation based on RBR_ChMx_Var, Rbr11_RRMixImpact, Slctd_Channel.
+- Direct dependencies: RBR_ChMx_Var, Rbr11_RRMixImpact, Slctd_Channel
+- Indirect dependencies: RBR_ChMx_Var, Rbr01_Precalc, Rbr01_TYMixLYSales, Rbr04_Precalc, Rbr04_TYMixLYSales_x_LYRR, Rbr05_RateRR, Rbr06_LYSalesExBrands, Rbr07_LYReturnsExBrands, Rbr07_Precalc, Rbr08_LYRRExBrands, Rbr11_RRMixImpact, Returns, Slctd_Channel
 - Classification: Derived
 
 #### Measure: Rbr94_Other
@@ -16682,45 +16699,45 @@ graph TD
 #### Measure: sum_GSM_derisk_BUD
 - Table: factDeriskBudget
 - Explanation: Sum of factDeriskBudget[GSM].
-- Direct dependencies: GSM
-- Indirect dependencies: GSM, slctd_SalesRecognitionType
-- Classification: Derived
+- Direct dependencies: None
+- Indirect dependencies: None
+- Classification: Aggregation
 
 #### Measure: sum_SREV_derisk_BUD
 - Table: factDeriskBudget
 - Explanation: Sum of 'factDeriskBudget'[SREV].
-- Direct dependencies: SREV
-- Indirect dependencies: SREV, slctd_SalesRecognitionType
-- Classification: Derived
+- Direct dependencies: None
+- Indirect dependencies: None
+- Classification: Aggregation
 
 #### Measure: sum_SRIV_derisk_BUD
 - Table: factDeriskBudget
 - Explanation: Sum of 'factDeriskBudget'[SRIV].
-- Direct dependencies: SRIV
-- Indirect dependencies: SRIV, slctd_SalesRecognitionType
-- Classification: Derived
+- Direct dependencies: None
+- Indirect dependencies: None
+- Classification: Aggregation
 
 ### Table: factDeriskForecast
 #### Measure: sum_GSM_derisk_FC
 - Table: factDeriskForecast
 - Explanation: Sum of 'factDeriskForecast'[GSM].
-- Direct dependencies: GSM
-- Indirect dependencies: GSM, slctd_SalesRecognitionType
-- Classification: Derived
+- Direct dependencies: None
+- Indirect dependencies: None
+- Classification: Aggregation
 
 #### Measure: sum_SREV_derisk_FC
 - Table: factDeriskForecast
 - Explanation: Sum of 'factDeriskForecast'[SREV].
-- Direct dependencies: SREV
-- Indirect dependencies: SREV, slctd_SalesRecognitionType
-- Classification: Derived
+- Direct dependencies: None
+- Indirect dependencies: None
+- Classification: Aggregation
 
 #### Measure: sum_SRIV_derisk_FC
 - Table: factDeriskForecast
 - Explanation: Sum of 'factDeriskForecast'[SRIV].
-- Direct dependencies: SRIV
-- Indirect dependencies: SRIV, slctd_SalesRecognitionType
-- Classification: Derived
+- Direct dependencies: None
+- Indirect dependencies: None
+- Classification: Aggregation
 
 ### Table: factDispatchForecast
 #### Measure: 'sum_Buying Margin Denominator DispFor'
@@ -17200,9 +17217,9 @@ graph TD
 #### Measure: sum_online_visits
 - Table: factOnlineCustomerMetrics
 - Explanation: Sum of 'factOnlineCustomerMetrics'[Visits].
-- Direct dependencies: Visits
-- Indirect dependencies: Traffic, Visits, sum_footfall
-- Classification: Derived
+- Direct dependencies: None
+- Indirect dependencies: None
+- Classification: Aggregation
 
 ### Table: factOrderVol
 #### Measure: sumqty
@@ -17385,11 +17402,11 @@ graph TD
 ## Dependency hotspots
 - Measures reused by the most other measures (top 20 by direct reference count):
   - slctd_SalesRecognitionType: referenced by 137 measures
-  - SRIV: referenced by 51 measures
+  - SRIV: referenced by 49 measures
   - slctd_MetricMasterPnL: referenced by 31 measures
-  - GSM: referenced by 27 measures
   - slctdFirstWeekYr: referenced by 26 measures
-  - SREV: referenced by 24 measures
+  - GSM: referenced by 25 measures
+  - SREV: referenced by 22 measures
   - Returns: referenced by 21 measures
   - Markdown: referenced by 17 measures
   - is_channel_unfiltered: referenced by 17 measures
@@ -17410,5 +17427,6 @@ graph TD
 - No circular dependencies detected based on direct measure references.
 
 ### Notes on ambiguity
-- Dependencies are derived from bracketed references (e.g., `[Measure]`). If a column shares a name with a measure, it could be misclassified; review any such naming collisions manually.
+- Dependencies are derived from unqualified bracketed references (e.g., `[Measure]`). Table-qualified references (e.g., `'Table'[Column]`) are ignored to avoid false measure dependencies.
+- If a column shares a name with a measure, it could still be misclassified; review any such naming collisions manually.
 - Diagrams focus on intra-table or intra-group dependencies to stay readable; cross-table dependencies are fully listed in the measure catalogue.
