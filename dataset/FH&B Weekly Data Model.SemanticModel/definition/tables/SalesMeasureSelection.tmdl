@@ -152,8 +152,10 @@ table SalesMeasureSelection
 				    ( "vs BUD %", NAMEOF ( '1_Measures'[SRIV Channel vs BUD %] ), 12, "BUD", 4, "% Var", 3 ),
 				    ( "LY", NAMEOF ( '1_Measures'[SRIV LY] ), 13, "LY", 5, "Value", 1 ),
 				    ( "vs LY", NAMEOF ( '1_Measures'[SRIV vs LY] ), 14, "LY", 5, "Var", 2 ),
-				    ( "vs LY %", NAMEOF ( '1_Measures'[SRIV vs LY %] ), 15, "LY", 5, "% Var", 3 )
+				    ( "vs LY %", NAMEOF ( '1_Measures'[SRIV vs LY %] ), 15, "LY", 5, "% Var", 3 ),
+				    ( "LY-1", NAMEOF ( '1_Measures'[SRIV LY-1] ), 16, "LY-1", 6, "Value", 1 ),
+				    ( "vs LY-1", NAMEOF ( '1_Measures'[SRIV vs LY-1] ), 17, "LY-1", 6, "Var", 2 ),
+				    ( "vs LY-1 %", NAMEOF ( '1_Measures'[SRIV vs LY-1 %] ), 18, "LY-1", 6, "% Var", 3 )
 				}
 
 	annotation PBI_Id = b3bc6db01f76470ea80b72b93740b17b
-
