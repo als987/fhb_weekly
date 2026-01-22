@@ -1,0 +1,85 @@
+table factOrderVol
+	lineageTag: a42b22cd-0904-467b-86e2-d115509f4931
+
+	measure sumqty = SUM(factOrderVol[qty])
+		lineageTag: 6a73488c-2df4-44c8-ad98-2c66fa406098
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fiscalWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: 31480c67-8ee3-4490-a7e8-4f8690d2c669
+		summarizeBy: none
+		sourceColumn: fiscalWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column comp_code
+		dataType: string
+		lineageTag: 951a859a-593b-490a-b209-66f5b5609a0f
+		summarizeBy: none
+		sourceColumn: comp_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column siteID
+		dataType: int64
+		formatString: 0
+		lineageTag: ac2da875-7d98-4682-9942-a2ae9c1c1efd
+		summarizeBy: none
+		sourceColumn: siteID
+
+		annotation SummarizationSetBy = Automatic
+
+	column dept
+		dataType: string
+		lineageTag: 58fcb75b-5460-429f-8eea-58ad8305302d
+		summarizeBy: none
+		sourceColumn: dept
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel
+		dataType: string
+		lineageTag: 55a78b65-4446-4fcd-88ac-d17a77eff7de
+		summarizeBy: none
+		sourceColumn: channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column fp_rp_ind
+		dataType: string
+		lineageTag: c75c2bec-485d-4552-b76a-373f99f64994
+		summarizeBy: none
+		sourceColumn: fp_rp_ind
+
+		annotation SummarizationSetBy = Automatic
+
+	column qty
+		dataType: double
+		lineageTag: 3e8f0f4f-57de-4e03-adb8-4059759926db
+		summarizeBy: sum
+		sourceColumn: qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition factOrderVol = m
+		mode: import
+		queryGroup: 'Orders fact tables'
+		source =
+				let
+				    GMOR = factOrderVolGMOR,
+				    SelectColsG = Table.SelectColumns(GMOR,{"fiscalWeek", "comp_code", "siteID", "dept", "channel", "fp_rp_ind", "qty"}),
+				    BB = BBOrders,
+				    SelectColsB = Table.SelectColumns(BB,{"fiscalWeek", "comp_code", "siteID", "dept", "channel", "fp_rp_ind", "qty"}),
+				    AllOrders = Table.Combine({SelectColsG, SelectColsB})
+				in
+				    AllOrders
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,83 @@
+table 'Intake Comparator'
+	lineageTag: e7d2b413-cd09-4c0d-9a68-055a9b0d134b
+
+	column 'Intake Comparator'
+		lineageTag: da99865e-6b08-48d4-bc12-b02034be22e5
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Intake Comparator Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Intake Comparator Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Intake Comparator Fields'
+		lineageTag: bb1bb570-2c9a-4cf0-aa9e-953b51084f96
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Intake Comparator Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Intake Comparator Order'
+		isHidden
+		formatString: 0
+		lineageTag: 2e764145-cecf-4f72-8c9f-07b7a80c7e7d
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Intake Comparator (Groups)'
+		lineageTag: fceb7e5d-d229-4572-bbd5-a1e0257c8e47
+		summarizeBy: none
+		sourceColumn: [Value4]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Intake Comparator (Selections)'
+		lineageTag: ab55be27-2e9c-4a43-9e63-32c4f77e3ea0
+		summarizeBy: none
+		sourceColumn: [Value5]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Intake Comparator' = calculated
+		mode: import
+		source =
+				{
+				    ("Value", NAMEOF('1_Measures'[FPP Intake Value]), 0, "Value", "ACT"),
+				    ("Value SC Bud", NAMEOF('1_Measures'[FPP Intake Value BUD]), 1, "Value", "SC Bud"),
+				    ("Value vs SC Bud", NAMEOF('1_Measures'[FPP Intake Value vs BUD]), 2, "Value", "vs SC Bud"),
+				    ("Value FC", NAMEOF('1_Measures'[FPP Intake Value FC]), 3, "Value", "FC"),
+				    ("Value vs FC", NAMEOF('1_Measures'[FPP Intake Value vs FC]), 4, "Value", "vs FC"),
+				    ("Value LY", NAMEOF('1_Measures'[FPP Intake Value LY]), 5, "Value", "LY"),
+				    ("Value vs LY", NAMEOF('1_Measures'[FPP Intake Value vs LY]), 6, "Value", "vs LY"),
+				    ("Value vs LY %", NAMEOF('1_Measures'[FPP Intake Value vs LY %]), 7, "Value", "vs LY %"),
+				    ("Value QRF", NAMEOF('1_Measures'[FPP Intake Value QRF]), 8, "Value", "QRF"),
+				    ("Value vs QRF", NAMEOF('1_Measures'[FPP Intake Value vs QRF]), 9, "Value", "vs QRF"),
+				    ("Value vs QRF %", NAMEOF('1_Measures'[FPP Intake Value vs QRF %]), 10, "Value", "vs QRF %"),
+				    ("Value vs Comp", NAMEOF([FPP Intake Value Comparator]), 11, "Value", "vs Comp"),
+				    ("Units", NAMEOF('1_Measures'[FPP Intake Volume]), 12, "Units", "ACT"),
+				    ("Units SC Bud", NAMEOF('1_Measures'[FPP Intake Volume BUD]), 13, "Units", "SC Bud"),
+				    ("Units vs SC Bud", NAMEOF('1_Measures'[FPP Intake Volume vs BUD]), 14, "Units", "vs SC Bud"),
+				    ("Units FC", NAMEOF('1_Measures'[FPP Intake Volume FC]), 15, "Units", "FC"),
+				    ("Units vs FC", NAMEOF('1_Measures'[FPP Intake Volume vs FC]), 16, "Units", "vs FC"),
+				    ("Units LY", NAMEOF('1_Measures'[FPP Intake Volume LY]), 17, "Units", "LY"),
+				    ("Units vs LY", NAMEOF('1_Measures'[FPP Intake Volume vs LY]), 18, "Units", "vs LY"),
+				    ("Units vs LY %", NAMEOF('1_Measures'[FPP Intake Volume vs LY %]), 19, "Units", "vs LY %"),
+				    ("Units QRF", NAMEOF('1_Measures'[FPP Intake Volume QRF]), 20, "Units", "QRF"),
+				    ("Units vs QRF", NAMEOF('1_Measures'[FPP Intake Volume vs QRF]), 21, "Units", "vs QRF"),
+				    ("Units vs QRF %", NAMEOF('1_Measures'[FPP Intake Volume vs QRF %]), 22, "Units", "vs QRF %"),
+				    ("Units vs Comp", NAMEOF([FPP Intake Volume Comparator]), 11, "Units", "vs Comp")
+				}
+
+	annotation PBI_Id = f4dc38403b184063b425700cdd208871
+

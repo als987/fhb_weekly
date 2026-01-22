@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "b05799684e1eb6a0350b",
+  "position": {
+    "x": 264.39817768867454,
+    "y": 0.28193832599119162,
+    "z": 0,
+    "height": 64,
+    "width": 202.10742929199918
+  },
+  "visualGroup": {
+    "displayName": "vs LY Cards",
+    "groupMode": "ScaleMode"
+  },
+  "parentGroupName": "56c0b01c4c4abce0a207"
+}

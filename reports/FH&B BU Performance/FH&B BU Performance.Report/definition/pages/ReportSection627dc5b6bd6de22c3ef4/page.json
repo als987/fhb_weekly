@@ -1,0 +1,422 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "ReportSection627dc5b6bd6de22c3ef4",
+  "displayName": "Returns",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filter95e7b38a22865b2b0f54",
+        "displayName": "Price Status",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "SalesType"
+              }
+            },
+            "Property": "SalesType"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "Filter1a687f3de8da5d31193d",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ChannelControl"
+              }
+            },
+            "Property": "Channel"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "Filter887134ad76300326640c",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ChannelControl"
+              }
+            },
+            "Property": "Channel"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "ChannelControl",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "c"
+                          }
+                        },
+                        "Property": "Channel"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Stores'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Online'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Total'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isHiddenInViewMode": true
+      },
+      {
+        "name": "Filterdaee3957584de75e7e07",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Stores"
+              }
+            },
+            "Property": "worldwideHierName"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "s",
+              "Entity": "Stores",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "s"
+                              }
+                            },
+                            "Property": "worldwideHierName"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'International Website'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isHiddenInViewMode": true,
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Filterbb6a1e69c1a5a8f18a06",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Stores"
+              }
+            },
+            "Property": "partyName"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "isHiddenInViewMode": true,
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Filter5158d30080b232575f1b",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MetricMasterPnLNumFormat"
+              }
+            },
+            "Property": "Format"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "m",
+              "Entity": "MetricMasterPnLNumFormat",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "m"
+                          }
+                        },
+                        "Property": "Format"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Formatted'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isHiddenInViewMode": true,
+        "isLockedInViewMode": true
+      }
+    ],
+    "filterSortOrder": "Custom"
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'pbi_ra_background_narrower_ribbon.png'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "pbi_ra_background_narrower_rib6303068110506098.png"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Normal'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "196L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "db2805a99ae61dde54c6",
+      "target": "5cf82cbacccf98f2b9d4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "67001df07f785a6073fb",
+      "target": "1fb924fb0e05cc80e462",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3f9cbc3573ae4ecde85b",
+      "target": "000d38cbabcf388a907d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3f9cbc3573ae4ecde85b",
+      "target": "5cf82cbacccf98f2b9d4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3f9cbc3573ae4ecde85b",
+      "target": "67001df07f785a6073fb",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3f9cbc3573ae4ecde85b",
+      "target": "1fb924fb0e05cc80e462",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3f9cbc3573ae4ecde85b",
+      "target": "0a24632000cc1505e929",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3f9cbc3573ae4ecde85b",
+      "target": "37f97994bb2a08b970eb",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3f9cbc3573ae4ecde85b",
+      "target": "f3b465c002e395c69226",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3f9cbc3573ae4ecde85b",
+      "target": "b1cb3ef507d05d01d7dd",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3f9cbc3573ae4ecde85b",
+      "target": "a142de0d003cd708208b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3f9cbc3573ae4ecde85b",
+      "target": "291668b8c6e65c07d023",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3f9cbc3573ae4ecde85b",
+      "target": "d14ff5f1e0246bd7ed22",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3f9cbc3573ae4ecde85b",
+      "target": "aaec07f26467194225b6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3f9cbc3573ae4ecde85b",
+      "target": "55f989e817ae06d2ac56",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3f9cbc3573ae4ecde85b",
+      "target": "a392ef0b5c5b8266255a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3f9cbc3573ae4ecde85b",
+      "target": "91a63758a35941d22a97",
+      "type": "NoFilter"
+    }
+  ]
+}

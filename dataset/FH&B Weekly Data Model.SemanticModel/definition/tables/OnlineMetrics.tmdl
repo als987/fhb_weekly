@@ -1,0 +1,60 @@
+table OnlineMetrics
+	lineageTag: 5e7093b3-f22d-4a32-8bcc-85255b4874f8
+
+	/// This measure is the SELECTEDVALUE of column 'OnlineMetrics'[Metric]
+	measure slctd_OnlineMetric = SELECTEDVALUE ( 'OnlineMetrics'[Metric] )
+		lineageTag: 7a0f3a91-89d2-400a-a8fe-16e7a0c3f0c8
+
+	column Metric
+		dataType: string
+		lineageTag: 3a9ee878-8191-4226-87d9-3592b4544b8d
+		summarizeBy: none
+		sourceColumn: Metric
+		sortByColumn: MetricOrder
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Metric (unit)'
+		dataType: string
+		lineageTag: 8a931499-0d29-4538-bbec-46255689606a
+		summarizeBy: none
+		sourceColumn: Metric (unit)
+		sortByColumn: MetricOrder
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column MetricOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c4f5ad4-daab-4e65-a45b-79e5797dc83e
+		summarizeBy: sum
+		sourceColumn: MetricOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumFormatString
+		dataType: string
+		lineageTag: 1117069e-a471-4638-9f94-c797d0b68623
+		summarizeBy: none
+		sourceColumn: NumFormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	partition OnlineMetrics = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WCilKTEvLTFbSgbEUNHI1gTwDIFbWUVY20NHRM7DWgDM1lWJ1opWc8/PKgApAlIKGKki9IUiPnoGqtQaQ1FQFq/IvSkktKgZKQBhQk42QTUY2Gmq2o38YUAWQVNA4tBikwRimAaEcojgWAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Metric = _t, #"Metric (unit)" = _t, MetricOrder = _t, NumFormatString = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Metric", type text}, {"MetricOrder", Int64.Type}, {"NumFormatString", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

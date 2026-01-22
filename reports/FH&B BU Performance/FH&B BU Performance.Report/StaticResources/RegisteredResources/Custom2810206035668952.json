@@ -1,0 +1,63 @@
+{
+  "name": "Custom",
+  "minimum": "#FD625E",
+  "center": "#FFFFFF",
+  "maximum": "#01B8AA",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "outspacePane": [
+          {
+            "backgroundColor": {
+              "solid": {
+                "color": "#E6E6E6"
+              }
+            },
+            "titleSize": 9
+          }
+        ],
+        "filterCard": [
+          {
+            "$id": "Available",
+            "backgroundColor": {
+              "solid": {
+                "color": "#B3B3B3"
+              }
+            },
+            "transparency": 0,
+            "foregroundColor": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "textSize": 8
+          },
+          {
+            "$id": "Applied",
+            "backgroundColor": {
+              "solid": {
+                "color": "#333333"
+              }
+            },
+            "transparency": 0,
+            "foregroundColor": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "textSize": 8
+          }
+        ]
+      }
+    }
+  },
+  "textClasses": {
+    "label": {
+      "fontSize": 8
+    },
+    "title": {
+      "fontFace": "'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+      "fontSize": 9
+    }
+  }
+}

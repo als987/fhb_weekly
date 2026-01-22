@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "c95c861cc1169934a83e",
+  "position": {
+    "x": 445,
+    "y": 101,
+    "z": 19000,
+    "height": 100.69014084507042,
+    "width": 405.14084507042253,
+    "tabOrder": 8000
+  },
+  "visualGroup": {
+    "displayName": "GSM Headlines",
+    "groupMode": "ScaleMode"
+  }
+}

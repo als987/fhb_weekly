@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "f49266fdcffffc15bbe6",
+  "position": {
+    "x": 1090.1278772378516,
+    "y": 0,
+    "z": 8000,
+    "height": 51.287297527706734,
+    "width": 189.87212276214834,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ChannelControl"
+                    }
+                  },
+                  "Property": "Slctd_Channel"
+                }
+              },
+              "queryRef": "ChannelControl.Slctd_Channel",
+              "nativeQueryRef": "Slctd_Channel"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

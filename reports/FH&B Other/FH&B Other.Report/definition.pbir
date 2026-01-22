@@ -1,0 +1,9 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definitionProperties/2.0.0/schema.json",
+  "version": "4.0",
+  "datasetReference": {
+    "byConnection": {
+      "connectionString": "Data Source=\"powerbi://api.powerbi.com/v1.0/myorg/C&H Finance - Weekly Reporting\";initial catalog=\"FH&B Weekly Data Model\";access mode=readonly;integrated security=ClaimsToken;semanticmodelid=494bf5ae-04b8-4ddc-8fa9-050bd2b31f07"
+    }
+  }
+}

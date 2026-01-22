@@ -1,0 +1,87 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "c1744620ab0dee847c02",
+  "position": {
+    "x": 399.12824811399832,
+    "y": 228.53310980720872,
+    "z": 0,
+    "height": 280.03352891869235,
+    "width": 280.03352891869235
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "GSM Orders"
+                }
+              },
+              "queryRef": "1_Measures.GSM Orders",
+              "nativeQueryRef": "GSM Orders"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "GSM Orders QRF"
+                }
+              },
+              "queryRef": "1_Measures.GSM Orders QRF",
+              "nativeQueryRef": "GSM Orders QRF"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "1_Measures"
+                  }
+                },
+                "Property": "GSM Orders"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "columnFormatting": [
+        {
+          "properties": {
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "1_Measures.GSM Orders QRF"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

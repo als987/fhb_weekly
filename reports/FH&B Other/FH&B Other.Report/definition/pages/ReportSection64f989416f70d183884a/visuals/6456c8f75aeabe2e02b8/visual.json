@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "6456c8f75aeabe2e02b8",
+  "position": {
+    "x": 491.48949150369776,
+    "y": 0,
+    "z": 3000,
+    "height": 64.549356223175963,
+    "width": 201.88841201716738,
+    "tabOrder": 4000
+  },
+  "visualGroup": {
+    "displayName": "vs LW Cards",
+    "groupMode": "ScaleMode"
+  },
+  "parentGroupName": "2da85d93f0aecef10e0e"
+}

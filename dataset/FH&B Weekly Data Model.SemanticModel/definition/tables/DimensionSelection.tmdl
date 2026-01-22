@@ -1,0 +1,74 @@
+table DimensionSelection
+	lineageTag: 2989b804-0cff-4ae0-b2cd-5c3a855ab329
+
+	column DimensionSelection
+		lineageTag: 38a4fcf5-9f5e-4518-994a-dd627a7cb1c4
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'DimensionSelection Order'
+
+		relatedColumnDetails
+			groupByColumn: 'DimensionSelection Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DimensionSelection Fields'
+		isHidden
+		lineageTag: 55641f9d-fb51-450d-864c-18b5a331026f
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'DimensionSelection Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DimensionSelection Order'
+		isHidden
+		formatString: 0
+		lineageTag: 6c0c4f81-4d82-4a3c-90a9-81641655800d
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dimension
+		lineageTag: 4e9215d9-0eed-4780-a79c-82df1c106ede
+		summarizeBy: none
+		sourceColumn: [Value4]
+		sortByColumn: DImensionOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column DImensionOrder
+		formatString: 0
+		lineageTag: e30a59fb-578c-4b36-9c30-304e4330f921
+		summarizeBy: sum
+		sourceColumn: [Value5]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimensionSelection-98178c84-a81e-4c3b-8f89-ddfc71ea3b55 = calculated
+		mode: import
+		source =
+				{
+				    ("M&S/Other", NAMEOF('Stores'[M&S/Other]), 0, "Stores", 2),
+				    ("BU/OTHER", NAMEOF('Products'[BU/OTHER]), 1, "Products", 0),
+				    ("BU Group", NAMEOF('Products'[BU Group]), 2, "Products", 0),
+				    ("BU", NAMEOF('Products'[BU]), 3, "Products", 0),
+				    ("Category", NAMEOF('Products'[Category]), 4, "Products", 0),
+				    ("Dept", NAMEOF('Products'[Dept]), 5, "Products", 0),
+				    ("Channel", NAMEOF('Channels'[Channel]), 6, "Channel", 1),
+				    ("Fiscal Week", NAMEOF('Calendar'[fiscalWeek]), 7, "Time", 3),
+				    ("Fiscal Month", NAMEOF('Calendar'[fiscalMonth]), 8, "Time", 3),
+				    ("Fiscal Quarter", NAMEOF('Calendar'[fiscalQuarter]), 9, "Time", 3),
+				    ("Shape Of Chain", NAMEOF('Stores'[shapeOfChainName]), 10, "Stores", 2),
+				    ("Area", NAMEOF('Stores'[areaName]), 11, "Stores", 2)
+				}
+
+	annotation PBI_Id = 7f2b258a69b24780bc06f8006b090f5d
+

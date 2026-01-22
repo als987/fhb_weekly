@@ -1,0 +1,81 @@
+table factAOV
+	lineageTag: d32a7a1c-0f6e-4815-b5bf-c0b74e352b1b
+
+	measure sum_orders_factAOV = SUM(factAOV[orders])
+		lineageTag: 1a27bc5e-2735-403e-bae9-0a3031f129e4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure sum_net_revenue_factAOV = SUM(factAOV[net_revenue])
+		lineageTag: 9f6154e7-224a-43bf-bf97-88aad5ff8a77
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dayID
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9b99cc5d-705b-4759-a3a5-2f65e99675e3
+		summarizeBy: none
+		sourceColumn: dayID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column orders
+		dataType: double
+		formatString: 0
+		lineageTag: 7b63d708-8550-4781-9a35-969504c35a53
+		summarizeBy: sum
+		sourceColumn: orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscalWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: ce85d94b-1349-461d-827d-d5e92747b6e3
+		summarizeBy: none
+		sourceColumn: fiscalWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column dimOrderCountryCode
+		dataType: string
+		lineageTag: cdb7eea1-80db-4845-bac3-e8cdcc5b503a
+		summarizeBy: none
+		sourceColumn: dimOrderCountryCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column net_revenue
+		dataType: double
+		lineageTag: af6a9af3-47e6-4a78-8f67-5cf9e8aa41e3
+		summarizeBy: sum
+		sourceColumn: net_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition factAOV = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"dbdde023-0de1-4da5-bc99-1bda1526f5b1" = Workspaces{[workspaceId="dbdde023-0de1-4da5-bc99-1bda1526f5b1"]}[Data],
+				    #"a93471ed-bc76-4ee3-b2f0-0c2ff664c1e0" = #"dbdde023-0de1-4da5-bc99-1bda1526f5b1"{[dataflowId="a93471ed-bc76-4ee3-b2f0-0c2ff664c1e0"]}[Data],
+				    FactOrder_ = #"a93471ed-bc76-4ee3-b2f0-0c2ff664c1e0"{[entity="FactOrder",version=""]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(FactOrder_,{{"revenue", "net_revenue"}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"dayID", "dimOrderCountryCode", "orders", "net_revenue"}),
+				    #"Merged Queries" = Table.NestedJoin(#"Removed Other Columns", {"dayID"}, DailyCalendar, {"naturalDate"}, "DailyCalendar", JoinKind.LeftOuter),
+				    #"Expanded DailyCalendar" = Table.ExpandTableColumn(#"Merged Queries", "DailyCalendar", {"fiscalWeek"}, {"fiscalWeek"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Expanded DailyCalendar","IE","ROI",Replacer.ReplaceText,{"dimOrderCountryCode"})
+				in
+				    #"Replaced Value"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

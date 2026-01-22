@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/reportExtension/1.0.0/schema.json",
+  "name": "extension",
+  "entities": [
+    {
+      "name": "1_Measures",
+      "measures": [
+        {
+          "name": "Front Cover",
+          "dataType": "Double",
+          "expression": "\"C&H Weekly Trading Dashboard - \"&[tiWeekNo]",
+          "formatString": "General Number",
+          "references": {
+            "measures": [
+              {
+                "entity": "1_Measures",
+                "name": "tiWeekNo"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

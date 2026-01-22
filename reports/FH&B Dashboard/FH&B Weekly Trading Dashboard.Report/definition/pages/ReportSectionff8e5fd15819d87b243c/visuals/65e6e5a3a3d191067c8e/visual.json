@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "65e6e5a3a3d191067c8e",
+  "position": {
+    "x": 4.3802775415083541,
+    "y": 187.04225352112678,
+    "z": 12000,
+    "height": 394.36619718309862,
+    "width": 66.478873239436624,
+    "tabOrder": 11000
+  },
+  "visualGroup": {
+    "displayName": "Time Headers",
+    "groupMode": "ScaleMode"
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "a29eba048dafc28f9923",
+  "position": {
+    "x": 22.621502209131073,
+    "y": 90.486008836524292,
+    "z": 0,
+    "height": 240.35346097201764,
+    "width": 1066.9808541973489,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Products"
+                    }
+                  },
+                  "Property": "BU"
+                }
+              },
+              "queryRef": "Products.BU",
+              "nativeQueryRef": "BU",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Gross SRIV"
+                }
+              },
+              "queryRef": "1_Measures.Gross SRIV",
+              "nativeQueryRef": "Gross SRIV"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Returns"
+                }
+              },
+              "queryRef": "1_Measures.Returns",
+              "nativeQueryRef": "Returns"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Return rate %"
+                }
+              },
+              "queryRef": "1_Measures.Return rate %",
+              "nativeQueryRef": "Return rate %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Gross SRIV LY"
+                }
+              },
+              "queryRef": "1_Measures.Gross SRIV LY",
+              "nativeQueryRef": "Gross SRIV LY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Returns LY"
+                }
+              },
+              "queryRef": "1_Measures.Returns LY",
+              "nativeQueryRef": "Returns LY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Return rate % LY"
+                }
+              },
+              "queryRef": "1_Measures.Return rate % LY",
+              "nativeQueryRef": "Return rate % LY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "ReturnsVolWorkings"
+                }
+              },
+              "queryRef": "1_Measures.ReturnsMixWorkings",
+              "nativeQueryRef": "ReturnsMixWorkings"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "ReturnsMixImpact"
+                }
+              },
+              "queryRef": "1_Measures.ReturnsMixRR2",
+              "nativeQueryRef": "ReturnsMixImpact2",
+              "displayName": "ReturnsMixImpact2"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "ReturnsRateImpact"
+                }
+              },
+              "queryRef": "1_Measures.ReturnsRateImpact",
+              "nativeQueryRef": "ReturnsRateImpacts",
+              "displayName": "ReturnsRateImpacts"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "ReturnsOtherImpact"
+                }
+              },
+              "queryRef": "1_Measures.ReturnsOtherImpact",
+              "nativeQueryRef": "ReturnsOtherImpact"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

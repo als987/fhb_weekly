@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "FH&B Weekly Trading Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2d833393-282a-4f92-ae4d-e0db88269d84"
+  }
+}

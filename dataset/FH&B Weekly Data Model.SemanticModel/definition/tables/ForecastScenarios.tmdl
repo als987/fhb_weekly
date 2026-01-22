@@ -1,0 +1,102 @@
+table ForecastScenarios
+	lineageTag: a387c3dc-b407-4012-8978-97c5acbe7623
+
+	/// This measure is the SELECTEDVALUE of column 'ForecastScenarios'[Forecast Scenario]
+	measure 'slctd_Forecast Scenario' = SELECTEDVALUE ( 'ForecastScenarios'[Forecast Scenario] )
+		lineageTag: 7d03c39e-09e4-4763-b559-5a5e5b9f69a5
+
+	/// This measure is the SELECTEDVALUE of column 'ForecastScenarios'[MP Plan]
+	measure 'slctd_MP Plan' = SELECTEDVALUE ( 'ForecastScenarios'[MP Plan] )
+		lineageTag: 4c411694-4147-4f73-9146-07eb431add40
+
+	column 'Forecast Scenario'
+		dataType: string
+		lineageTag: 4030d77a-fe0c-41de-8466-c0cbdd951802
+		summarizeBy: none
+		sourceColumn: Forecast Scenario
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MP Plan' =
+			
+			VAR _LatestActuals =
+			    CALCULATE (
+			        MAX ( statsLatestData[latestFiscalWeekEndingDate] ),
+			        statsLatestData[dataSource] = "Sales Orders"
+			    )
+			VAR _ThisFiscalQuarterNo =
+			    VALUE (
+			        RIGHT (
+			            CALCULATE (
+			                MAX ( RefCalendar[fiscalQuarter] ),
+			                RefCalendar[fiscalWeekEndingDate] = _LatestActuals
+			            ),
+			            1
+			        )
+			    )
+			VAR _CurrentMPPlan =
+			    SWITCH ( TRUE (), _ThisFiscalQuarterNo > 1, "QRF", "BUDGET" )
+			VAR result =
+			    SWITCH (
+			        ForecastScenarios[Forecast Scenario],
+			        "BUD", "BUDGET",
+			        "LE", "MRF",
+			        _CurrentMPPlan
+			    )
+			RETURN
+			    result
+		lineageTag: f694680d-0871-4271-bf89-e31c8f8374d4
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Finance Plan' =
+			
+			/* Stopped working at year end rollover
+			
+			VAR _LatestActuals =
+			    CALCULATE (
+			        MAX ( statsLatestData[latestFiscalWeekEndingDate] ),
+			        statsLatestData[dataSource] = "Sales Orders"
+			    )
+			VAR _ThisFiscalQuarterNo =
+			    VALUE (
+			        RIGHT (
+			            CALCULATE (
+			                MAX ( RefCalendar[fiscalQuarter] ),
+			                RefCalendar[fiscalWeekEndingDate] = _LatestActuals
+			            ),
+			            1
+			        )
+			    )
+			VAR _CurrentMPPlan =
+			    SWITCH ( TRUE (), _ThisFiscalQuarterNo > 1, "FC", "BUDGET" )
+			*/
+			VAR result =
+			    SWITCH (
+			        ForecastScenarios[Forecast Scenario],
+			        "BUD", "BUDGET",
+			        "LE", "MRF",
+			        "QRF", "QRF",
+			//        _CurrentMPPlan
+			"FC"
+			    )
+			RETURN
+			    result
+		lineageTag: 521b6fda-76e1-4272-b514-cf4fd9c26f1a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ForecastScenarios-fdebaf8a-f3c5-4571-9953-f1586e8c901b = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45Wcgp1UYrViVZycwZTgUFuYNrHVSk2FgA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Forecast Scenario" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Forecast Scenario", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

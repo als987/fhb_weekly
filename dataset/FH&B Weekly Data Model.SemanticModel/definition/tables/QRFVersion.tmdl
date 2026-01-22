@@ -1,0 +1,52 @@
+table QRFVersion
+	lineageTag: b3832aea-7845-4eab-9616-75cb8954fee9
+
+	measure SlctdQRFVersion = SELECTEDVALUE(QRFVersion[ForecastVersion], "QRF")
+		lineageTag: 6627a913-ba93-440f-947b-904340b184ab
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure SlctdFirstWeekQtrQRF = SELECTEDVALUE(QRFVersion[ForecastActualisation],[SlctdFirstWeekQtrBackup])+1
+		lineageTag: e05f4017-43ea-4a8d-ac8d-d77504616f3a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ForecastVersion
+		dataType: string
+		lineageTag: efcc015e-e88a-40ee-8063-494c1ac50bb0
+		summarizeBy: none
+		sourceColumn: ForecastVersion
+
+		annotation SummarizationSetBy = Automatic
+
+	column ForecastActualisation
+		dataType: double
+		lineageTag: dbd8600e-a374-4188-a663-56eccb99eb22
+		summarizeBy: sum
+		sourceColumn: ForecastActualisation
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition QRFVersion = m
+		mode: import
+		source =
+				let
+				    Source = PowerPlatform.Dataflows(null),
+				    Workspaces = Source{[Id="Workspaces"]}[Data],
+				    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Workspaces{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+				    #"f0b60027-5a54-485c-8c6a-fd302daec7bb" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="f0b60027-5a54-485c-8c6a-fd302daec7bb"]}[Data],
+				    FCVersionNames_ = #"f0b60027-5a54-485c-8c6a-fd302daec7bb"{[entity="FCVersionNames",version=""]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(FCVersionNames_,{{"Plan Type", "ForecastVersion"}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each not Text.Contains([ForecastVersion], "FC")),
+				    #"Filtered Rows1" = Table.SelectRows(#"Filtered Rows", each ([ForecastVersion] <> "BUDGET" and [ForecastVersion] <> "Original Budget")),
+				    #"Added Custom" = Table.AddColumn(#"Filtered Rows1", "ForecastActualisation", each try Number.FromText(Text.Middle([ForecastVersion],1,1)) * 13 otherwise 26),
+				    #"Added to Column" = Table.TransformColumns(#"Added Custom", {{"ForecastActualisation", each _ + (FiscalYear * 100), type number}})
+				in
+				    #"Added to Column"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

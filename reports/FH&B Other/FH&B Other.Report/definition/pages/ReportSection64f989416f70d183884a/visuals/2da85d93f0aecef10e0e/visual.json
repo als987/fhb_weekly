@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "2da85d93f0aecef10e0e",
+  "position": {
+    "x": 21.452723525741703,
+    "y": 103.00429184549355,
+    "z": 12000,
+    "height": 64.549356223175963,
+    "width": 1237.0945529485164,
+    "tabOrder": 1000
+  },
+  "visualGroup": {
+    "displayName": "Headline Bar",
+    "groupMode": "ScaleMode"
+  }
+}

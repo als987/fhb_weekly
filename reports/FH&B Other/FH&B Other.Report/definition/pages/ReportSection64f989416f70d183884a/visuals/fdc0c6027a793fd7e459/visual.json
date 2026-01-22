@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "fdc0c6027a793fd7e459",
+  "position": {
+    "x": 763.34781621752336,
+    "y": 0,
+    "z": 2000,
+    "height": 64.549356223175963,
+    "width": 201.88841201716738,
+    "tabOrder": 1000
+  },
+  "visualGroup": {
+    "displayName": "vs BUD Cards",
+    "groupMode": "ScaleMode"
+  },
+  "parentGroupName": "2da85d93f0aecef10e0e"
+}

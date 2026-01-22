@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "FH&B Forward View"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2f9f17de-f44e-433e-9a31-7229539d4d38"
+  }
+}

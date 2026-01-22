@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "FH&B BU Performance"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "de6d0c69-ec4b-49c8-bccd-c538dc8befa0"
+  }
+}

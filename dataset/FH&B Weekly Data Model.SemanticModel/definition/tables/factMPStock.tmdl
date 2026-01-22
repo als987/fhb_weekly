@@ -1,0 +1,104 @@
+table factMPStock
+	lineageTag: 042b8dd4-af98-493c-8629-1c56fa0b7241
+
+	measure sum_amt_mp_stock =
+			VAR max_selected_we_date =
+			    MAX ( 'Time Period'[Date] )
+			VAR max_selected_fiscal_week =
+			    CALCULATE (
+			        MAX ( RefCalendar[fiscalWeek] ),
+			        RefCalendar[fiscalWeekEndingDate] = max_selected_we_date
+			    )
+			VAR result =
+			    CALCULATE (
+			        SUM ( 'factMPStock'[amt] ),
+			        'Calendar'[fiscalWeek] = max_selected_fiscal_week
+			    )
+			RETURN
+			    result
+		lineageTag: 8f777ee5-0042-4cfa-ba97-00a34eec844f
+
+	column fiscalWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: 079aa9ba-1525-4f0b-ade3-c8553884441e
+		summarizeBy: none
+		sourceColumn: fiscalWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column plan
+		dataType: string
+		lineageTag: 1e8b099b-4a89-4257-8422-2fbb25e1bd9b
+		summarizeBy: none
+		sourceColumn: plan
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel
+		dataType: string
+		lineageTag: eb260f70-7b3c-4187-b065-97f97e7a9c67
+		summarizeBy: none
+		sourceColumn: channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column product
+		dataType: string
+		lineageTag: 57f9f9e4-2ff1-49a9-a7de-52bb1a8e151a
+		summarizeBy: none
+		sourceColumn: product
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		dataType: string
+		lineageTag: bc94a9e7-2b1e-43f9-84f7-2e32f06f86a0
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column stock_metric
+		dataType: string
+		lineageTag: 07a389eb-9144-4677-801a-cc4b48ad3070
+		summarizeBy: none
+		sourceColumn: stock_metric
+
+		annotation SummarizationSetBy = Automatic
+
+	column fp_rp_ind
+		dataType: string
+		lineageTag: 32461d89-e039-4c6b-994c-1ad4db64ea23
+		summarizeBy: none
+		sourceColumn: fp_rp_ind
+
+		annotation SummarizationSetBy = Automatic
+
+	column amt
+		dataType: double
+		lineageTag: b09ccc2b-4646-4d8b-b6ef-c04d8fa11e60
+		summarizeBy: sum
+		sourceColumn: amt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition factMPStock = m
+		mode: import
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+				    #"6bca23bd-f7e7-4615-91a2-82a7b8552177" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="6bca23bd-f7e7-4615-91a2-82a7b8552177"]}[Data],
+				    #"MP Plans Stock" = #"6bca23bd-f7e7-4615-91a2-82a7b8552177"{[entity="MP Plans Stock"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(#"MP Plans Stock",{{"location", "Location"}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each ([plan] <> "RF"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

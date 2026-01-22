@@ -1,0 +1,358 @@
+table factDispatchForecast
+	lineageTag: 8fb2b523-b339-4927-9285-3b1d5deca6c0
+
+	/// This measure is the sum of column 'factDispatchForecast'[Full Price Sales Revenue (Inc VAT)]
+	measure 'sum_Full Price Sales Revenue (Inc VAT) DispFor' = SUM ( 'factDispatchForecast'[Full Price Sales Revenue (Inc VAT)] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: 0824756d-9bca-4af0-b731-967a470acdfe
+
+	/// This measure is the sum of column 'factDispatchForecast'[Gross Selling Margin]
+	measure 'sum_Gross Selling Margin DispFor' = SUM ( 'factDispatchForecast'[Gross Selling Margin] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: c74c4fb6-44b6-4167-9ca6-8d12e22884e5
+
+	/// This measure is the sum of column 'factDispatchForecast'[Other Gross Selling Margin Adjustments]
+	measure 'sum_Other Gross Selling Margin Adjustments DispFor' = SUM ( 'factDispatchForecast'[Other Gross Selling Margin Adjustments] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: a73bece7-a6d0-413c-a020-5cf0e209e127
+
+	/// This measure is the sum of column 'factDispatchForecast'[Reduced Price Sales Revenue (Inc VAT)]
+	measure 'sum_Reduced Price Sales Revenue (Inc VAT) DispFor' = SUM ( 'factDispatchForecast'[Reduced Price Sales Revenue (Inc VAT)] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: 2b48f6cf-1677-4310-89df-b2bd9d95fcff
+
+	/// This measure is the sum of column 'factDispatchForecast'[Sales Revenue (Exc VAT)]
+	measure 'sum_Sales Revenue (Exc VAT) DispFor' = SUM ( 'factDispatchForecast'[Sales Revenue (Exc VAT)] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: ac5a8df8-4242-42f5-aca8-8e0d8a0c2fad
+
+	/// This measure is the sum of column 'factDispatchForecast'[Sales Revenue (Inc VAT)]
+	measure 'sum_Sales Revenue (Inc VAT) DispFor' = SUM ( 'factDispatchForecast'[Sales Revenue (Inc VAT)] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: dafdb5e4-1f9e-4b40-8222-9916785689f9
+
+	/// This measure is the sum of column 'factDispatchForecast'[SIS Sold Through (Inc VAT)]
+	measure 'sum_SIS Sold Through (Inc VAT) DispFor' = SUM ( 'factDispatchForecast'[SIS Sold Through (Inc VAT)] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: c23bf0a5-273f-4d11-b79e-4fd6c41f3c4f
+
+	/// This measure is the sum of column 'factDispatchForecast'[Sale Markdown @SV]
+	measure 'sum_Sale Markdown DispFor' = SUM ( 'factDispatchForecast'[Sale Markdown @SV] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: 556d422c-94da-4129-b271-e4a9a0064694
+
+	/// This measure is the sum of column 'factDispatchForecast'[Promo Markdown @SV]
+	measure 'sum_Promo Markdown DispFor' = SUM ( 'factDispatchForecast'[Promo Markdown @SV] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: 7ad67e4d-1b37-4694-95e8-ed57924e42a9
+
+	/// This measure is the sum of column 'factDispatchForecast'[Markdown @SV]
+	measure 'sum_Markdown DispFor' = SUM ( 'factDispatchForecast'[Markdown @SV] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: f22657d5-7273-415b-b991-89bb9f16b201
+
+	/// This measure is the sum of column 'factDispatchForecast'[Cost Of Goods Sold (Inc VAT)]
+	measure 'sum_Cost Of Goods Sold (Inc VAT) DispFor' = SUM ( 'factDispatchForecast'[Cost Of Goods Sold (Inc VAT)] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: be3dcd98-3916-4e24-bccf-2a55efe0ffcc
+
+	/// This measure is the sum of column 'factDispatchForecast'[Buying Margin Denominator]
+	measure 'sum_Buying Margin Denominator DispFor' = SUM ( 'factDispatchForecast'[Buying Margin Denominator] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: b42f6b94-2c97-428f-a12b-2885e6ea94f3
+
+	/// This measure is the sum of column 'factDispatchForecast'[Depth Of Cut]
+	measure 'sum_Depth Of Cut DispFor' = SUM ( 'factDispatchForecast'[Depth Of Cut] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: 60358611-49c8-4376-a11e-cac935f92bb5
+
+	/// This measure is the sum of column 'factDispatchForecast'[Sale Markdown @SV]
+	measure 'sum_Sale Markdown XV DispFor' = Divide([sum_Sale Markdown DispFor],[Sale Markdown VAT Orders FC])
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: 7d54f149-e71b-4fc0-941a-da47fdcd0c5e
+
+	column PLAN
+		dataType: string
+		lineageTag: 1a2ec590-9c6e-49d3-a5d2-9e75f018e71b
+		summarizeBy: none
+		sourceColumn: PLAN
+
+		annotation SummarizationSetBy = Automatic
+
+	column FISCAL_WEEK
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d203eb3-7349-453b-9249-be64ca012179
+		summarizeBy: none
+		sourceColumn: FISCAL_WEEK
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIST_CHNL_CDE
+		dataType: string
+		lineageTag: 874f3ef3-4c50-4881-808b-eca7cbd9b452
+		summarizeBy: none
+		sourceColumn: DIST_CHNL_CDE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEPT_CODE
+		dataType: string
+		lineageTag: 0a12b00a-c081-446c-b884-fbfe83a59519
+		summarizeBy: none
+		sourceColumn: DEPT_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Price Volume'
+		dataType: double
+		lineageTag: 5788e495-7590-4fac-8564-422f88db5b23
+		summarizeBy: sum
+		sourceColumn: Full Price Volume
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Reduced Sales Volume'
+		dataType: double
+		lineageTag: d4d5b5cd-a466-4037-bce0-e9dc98f5ea16
+		summarizeBy: sum
+		sourceColumn: Reduced Sales Volume
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Sales Volume'
+		dataType: double
+		lineageTag: f5e66a56-763e-43fc-8d39-2146d701daa6
+		summarizeBy: sum
+		sourceColumn: Total Sales Volume
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Full Price Sales Revenue (Inc VAT)'
+		dataType: double
+		isHidden
+		lineageTag: e367174d-a020-4b7a-9484-06c539072ea0
+		summarizeBy: sum
+		sourceColumn: Full Price Sales Revenue (Inc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Gross Selling Margin'
+		dataType: double
+		isHidden
+		lineageTag: d4063949-77e3-430a-8074-058fbafb564e
+		summarizeBy: sum
+		sourceColumn: Gross Selling Margin
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Other Gross Selling Margin Adjustments'
+		dataType: double
+		isHidden
+		lineageTag: e2791abb-ab17-4de2-83fd-70fb6f92f146
+		summarizeBy: sum
+		sourceColumn: Other Gross Selling Margin Adjustments
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Reduced Price Sales Revenue (Inc VAT)'
+		dataType: double
+		isHidden
+		lineageTag: 884af664-ff3c-4e30-9428-167c3748246e
+		summarizeBy: sum
+		sourceColumn: Reduced Price Sales Revenue (Inc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales Revenue (Exc VAT)'
+		dataType: double
+		isHidden
+		lineageTag: 89a75c84-6fad-42a5-8d18-7dc9db2f3c31
+		summarizeBy: sum
+		sourceColumn: Sales Revenue (Exc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales Revenue (Inc VAT)'
+		dataType: double
+		isHidden
+		lineageTag: 261c5787-0449-4b42-8cee-0713d8460a3b
+		summarizeBy: sum
+		sourceColumn: Sales Revenue (Inc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'SIS Sold Through (Inc VAT)'
+		dataType: double
+		isHidden
+		lineageTag: 43b6369a-acdf-4c99-bf8d-f0a49d716ea5
+		summarizeBy: sum
+		sourceColumn: SIS Sold Through (Inc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sale Markdown @SV'
+		dataType: double
+		isHidden
+		lineageTag: 71ec2a67-9f3c-4263-9bf4-ffb4c533817e
+		summarizeBy: sum
+		sourceColumn: Sale Markdown @SV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Promo Markdown @SV'
+		dataType: double
+		isHidden
+		lineageTag: 0f753d46-dbcb-40a4-8292-c1f25f5fa57f
+		summarizeBy: sum
+		sourceColumn: Promo Markdown @SV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Markdown @SV'
+		dataType: double
+		isHidden
+		lineageTag: 079bfe97-26a1-417d-a709-961b99edec06
+		summarizeBy: sum
+		sourceColumn: Markdown @SV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost Of Goods Sold (Inc VAT)'
+		dataType: double
+		isHidden
+		lineageTag: 0220029a-3eef-475d-8e6f-b4eddfc961bc
+		summarizeBy: sum
+		sourceColumn: Cost Of Goods Sold (Inc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Buying Margin Denominator'
+		dataType: double
+		isHidden
+		lineageTag: a1d7f614-7fed-4253-bee1-d55e56b1ebfd
+		summarizeBy: sum
+		sourceColumn: Buying Margin Denominator
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Depth Of Cut'
+		dataType: double
+		isHidden
+		lineageTag: 3744036f-6a20-4afe-9aa8-d93bf9d5c2e3
+		summarizeBy: sum
+		sourceColumn: Depth Of Cut
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column siteNumber
+		dataType: string
+		lineageTag: 6d5e24af-3f06-49e2-9210-0dffa0af0f53
+		summarizeBy: none
+		sourceColumn: siteNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Price Returns (Inc VAT)'
+		dataType: double
+		lineageTag: 8ce9fd54-043c-43bf-b565-fb69ee02f04d
+		summarizeBy: sum
+		sourceColumn: Full Price Returns (Inc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Reduced Price Returns (Inc VAT)'
+		dataType: double
+		lineageTag: 7022d8ec-db97-4c3d-86fa-ee8f49740af6
+		summarizeBy: sum
+		sourceColumn: Reduced Price Returns (Inc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Reduced Price Sales (Inc VAT)'
+		dataType: double
+		lineageTag: 42c593de-ace9-4dc9-a18c-489db844341f
+		summarizeBy: sum
+		sourceColumn: Reduced Price Sales (Inc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'VAT Rate'
+		dataType: double
+		lineageTag: fb347a9c-0b91-4c9e-9b6b-2a49683e0aac
+		summarizeBy: sum
+		sourceColumn: VAT Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition factDispatchForecast-e0397727-d2b5-4266-b571-74090f09bc46 = m
+		mode: import
+		queryGroup: 'Dispatch fact tables'
+		source =
+				let
+				    Source = PowerBI.Dataflows([]),
+				    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+				    #"e18b3556-0387-4933-84a9-4a59c8558b23" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="e18b3556-0387-4933-84a9-4a59c8558b23"]}[Data],
+				    factDispatchForecast1 = #"e18b3556-0387-4933-84a9-4a59c8558b23"{[entity="factDispatchForecast"]}[Data],
+				    separateBud = Table.SelectRows(factDispatchForecast1, each ([PLAN] = "BUDGET")),
+				    separateQRF = Table.SelectRows(factDispatchForecast1, each ([PLAN] = "QRF")),
+				    mergeActuals = Table.NestedJoin(separateQRF, {"PLAN", "FISCAL_WEEK", "DIST_CHNL_CDE", "DEPT_CODE", "gl_desc"}, factDispatchActualsPreForecast, {"plan", "Fiscal Week", "Distribution Channel Code", "Department / Category Code", "gl_desc"}, "factDispatchActualsPreForecast", JoinKind.FullOuter),
+				    bringInActuals = Table.ExpandTableColumn(mergeActuals, "factDispatchActualsPreForecast", {"Fiscal Week", "Department / Category Code", "Distribution Channel Code", "gl_desc", "val", "plan", "maxWeek"}, {"act.Fiscal Week", "act.Department / Category Code", "act.Distribution Channel Code", "act.gl_desc", "act.val", "act.plan", "act.maxWeek"}),
+				    renameFCCols = Table.RenameColumns(bringInActuals,{{"siteNumber", "fc.siteNumber"}, {"PLAN", "fc.PLAN"}, {"FISCAL_WEEK", "fc.FISCAL_WEEK"}, {"DIST_CHNL_CDE", "fc.DIST_CHNL_CDE"}, {"DEPT_CODE", "fc.DEPT_CODE"}, {"gl_desc", "fc.gl_desc"}, {"val", "fc.val"}, {"act.Department / Category Code", "act.DEPT_CODE"}}),
+				    addSiteNumber = Table.AddColumn(renameFCCols, "siteNumber", each "0000", type text),
+				    addPlan = Table.AddColumn(addSiteNumber, "PLAN", each [fc.PLAN] ?? [act.plan], type text),
+				    addFiscalWeek = Table.AddColumn(addPlan, "FISCAL_WEEK", each [fc.FISCAL_WEEK] ?? [act.Fiscal Week], Int64.Type),
+				    addDistChnlCde = Table.AddColumn(addFiscalWeek, "DIST_CHNL_CDE", each [fc.DIST_CHNL_CDE] ?? [act.Distribution Channel Code], type text),
+				    addDeptCode = Table.AddColumn(addDistChnlCde, "DEPT_CODE", each [fc.DEPT_CODE] ?? [act.DEPT_CODE], type text),
+				    addGLDesc = Table.AddColumn(addDeptCode, "gl_desc", each [fc.gl_desc] ?? [act.gl_desc], type text),
+				    addMaxWeekActuals = Table.AddColumn(addGLDesc, "maxWeekActuals", each List.Max(addFiscalWeek[act.maxWeek]), Int64.Type),
+				    addToBeActualised = Table.AddColumn(addMaxWeekActuals, "toBeActualised", each if [FISCAL_WEEK] <= [maxWeekActuals] then true else false),
+				    addConditionalVal = Table.AddColumn(addToBeActualised, "val", each if [toBeActualised] then [act.val] else [fc.val], type number),
+				    removeDupCols = Table.RemoveColumns(addConditionalVal,{"fc.siteNumber", "fc.PLAN", "fc.FISCAL_WEEK", "fc.DIST_CHNL_CDE", "fc.DEPT_CODE", "fc.gl_desc", "fc.val", "act.Fiscal Week", "act.DEPT_CODE", "act.Distribution Channel Code", "act.gl_desc", "act.val", "act.plan", "act.maxWeek", "maxWeekActuals", "toBeActualised"}),
+				    addBackBud = Table.Combine({removeDupCols, separateBud}),
+				    unpivotGLs = Table.Pivot(addBackBud, List.Distinct(addBackBud[gl_desc]), "gl_desc", "val", List.Sum)
+				in
+				    unpivotGLs
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "6e57384803d27562e269",
+  "position": {
+    "x": 958.829268292683,
+    "y": 509.14634475281616,
+    "z": 28000,
+    "height": 198.4390243902439,
+    "width": 313.46341463414637,
+    "tabOrder": 33000
+  },
+  "visualGroup": {
+    "displayName": "Second BU Matrix",
+    "groupMode": "ScaleMode"
+  }
+}

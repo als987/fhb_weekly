@@ -1,0 +1,10 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "ReportSection4424996b6045431606d0",
+  "displayName": "TT Comp by BU",
+  "displayOption": "ActualSize",
+  "height": 300,
+  "width": 380,
+  "visibility": "HiddenInViewMode",
+  "type": "Tooltip"
+}

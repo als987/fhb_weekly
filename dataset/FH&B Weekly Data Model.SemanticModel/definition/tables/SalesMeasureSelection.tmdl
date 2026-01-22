@@ -1,0 +1,159 @@
+table SalesMeasureSelection
+	lineageTag: 414a8d34-1ffb-4b0c-89b4-1c0e5d8c6b81
+
+	measure SelectedMeasureResult =
+			VAR slctd_measure =
+			    SELECTEDVALUE ( SalesMeasureSelection[MeasureSelection Fields] )
+			VAR result =
+			    SWITCH (
+			        slctd_measure,
+			        NAMEOF ( '1_Measures'[SRIV] ), [SRIV],
+			        NAMEOF ( '1_Measures'[SRIV LY] ), [SRIV LY],
+			        NAMEOF ( '1_Measures'[SRIV vs LY] ), [SRIV vs LY],
+			        NAMEOF ( '1_Measures'[SRIV vs LY %] ), [SRIV vs LY %],
+			        NAMEOF ( '1_Measures'[SRIV LW] ), [SRIV LW],
+			        NAMEOF ( '1_Measures'[SRIV vs LW] ), [SRIV vs LW],
+			        NAMEOF ( '1_Measures'[SRIV vs LW %] ), [SRIV vs LW %],
+			        NAMEOF ( [SRIV Channel BUD] ), [SRIV Channel BUD],
+			        NAMEOF ( [SRIV Channel vs BUD] ), [SRIV Channel vs BUD],
+			        NAMEOF ( [SRIV Channel vs BUD %] ), [SRIV Channel vs BUD %],
+			        NAMEOF ( [SRIV Channel FC] ), [SRIV Channel FC],
+			        NAMEOF ( [SRIV Channel vs FC] ), [SRIV Channel vs FC],
+			        NAMEOF ( [SRIV Channel vs FC %] ), [SRIV Channel vs FC %],
+			        NAMEOF ( [SRIV Channel QRF] ), [SRIV Channel QRF],
+			        NAMEOF ( [SRIV Channel vs QRF] ), [SRIV Channel vs QRF],
+			        NAMEOF ( [SRIV Channel vs QRF %] ), [SRIV Channel vs QRF %],
+			        BLANK ()
+			    )
+			RETURN
+			    result
+		lineageTag: 33a3695d-13bd-44b7-abeb-d9107dfe8414
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// This measure is the SELECTEDVALUE of column 'SalesMeasureSelection'[Comparator]
+	measure SMS_slctd_Comparator = SELECTEDVALUE ( 'SalesMeasureSelection'[Comparator] )
+		lineageTag: 87c3bee4-549c-431b-945b-9ed8fa63f6c7
+
+	/// This measure is the SELECTEDVALUE of column 'SalesMeasureSelection'[MeasureType]
+	measure SMS_slctd_MeasureType = SELECTEDVALUE ( 'SalesMeasureSelection'[MeasureType] )
+		lineageTag: 40e89cfd-d4e8-4ea4-8c9a-a70d33094f31
+
+	/// This measure is the SELECTEDVALUE of column 'SalesMeasureSelection'[MeasureSelection]
+	measure SMS_slctd_MeasureName =
+			VAR field_name =
+			    SELECTEDVALUE ( 'SalesMeasureSelection'[MeasureSelection Fields] )
+			VAR name_length =
+			    IF ( FIND ( "Channel", field_name,, 0 ), 14, 6 )
+			VAR start_point =
+			    FIND ( "[", field_name,, 0 ) + name_length
+			VAR _name =
+			    MID ( field_name, start_point, LEN ( field_name ) - start_point )
+			RETURN
+			    _name
+		lineageTag: 4af32829-d8a4-4854-87d2-ccb29e903c9f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MeasureSelection
+		lineageTag: f9826920-5910-4a0c-aa16-83f1f4a4538f
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'MeasureSelection Order'
+
+		relatedColumnDetails
+			groupByColumn: 'MeasureSelection Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MeasureSelection Fields'
+		isHidden
+		lineageTag: 58101576-3056-431e-b6b3-2bb883ad0e61
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'MeasureSelection Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MeasureSelection Order'
+		isHidden
+		formatString: 0
+		lineageTag: 1c5bceb3-4691-468f-aea8-699ae10e2bb4
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comparator
+		lineageTag: 92c45621-9709-4095-8b87-6db6c6905bd6
+		summarizeBy: none
+		sourceColumn: [Value4]
+		sortByColumn: ComparatorOrder
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column ComparatorOrder
+		isHidden
+		formatString: 0
+		lineageTag: 9229e15f-539b-4a2f-aaf9-f91b99e72b02
+		summarizeBy: sum
+		sourceColumn: [Value5]
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MeasureType
+		lineageTag: c8111389-f1ec-424b-b992-247ed02520b4
+		summarizeBy: none
+		sourceColumn: [Value6]
+		sortByColumn: MeasureTypeOrder
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column MeasureTypeOrder
+		isHidden
+		formatString: 0
+		lineageTag: 6e5236d6-e43a-4ba7-85cd-4e7642adc3f6
+		summarizeBy: sum
+		sourceColumn: [Value7]
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SalesMeasureSelection-207c2f72-2714-4372-a774-c00b39b2eebb = calculated
+		mode: import
+		source =
+				
+				{
+				    ( "ACT", NAMEOF ( '1_Measures'[SRIV] ), 0, "ACT", 0, "Value", 1 ),
+				    ( "LW", NAMEOF ( '1_Measures'[SRIV LW] ), 1, "LW", 1, "Value", 1 ),
+				    ( "vs LW", NAMEOF ( '1_Measures'[SRIV vs LW] ), 2, "LW", 1, "Var", 2 ),
+				    ( "vs LW %", NAMEOF ( '1_Measures'[SRIV vs LW %] ), 3, "LW", 1, "% Var", 3 ),
+				    ( "QRF", NAMEOF ( '1_Measures'[SRIV Channel QRF] ), 4, "QRF", 2, "Value", 1 ),
+				    ( "vs QRF", NAMEOF ( '1_Measures'[SRIV Channel vs QRF] ), 5, "QRF", 2, "Var", 2 ),
+				    ( "vs QRF %", NAMEOF ( '1_Measures'[SRIV Channel vs QRF %] ), 6, "QRF", 2, "% Var", 3 ),
+				    ( "FC", NAMEOF ( '1_Measures'[SRIV Channel FC] ), 7, "FC", 3, "Value", 1 ),
+				    ( "vs FC", NAMEOF ( '1_Measures'[SRIV Channel vs FC] ), 8, "FC", 3, "Var", 2 ),
+				    ( "vs FC %", NAMEOF ( '1_Measures'[SRIV Channel vs FC %] ), 9, "FC", 3, "% Var", 3 ),
+				    ( "BUD", NAMEOF ( '1_Measures'[SRIV Channel BUD] ), 10, "BUD", 4, "Value", 1 ),
+				    ( "vs BUD", NAMEOF ( '1_Measures'[SRIV Channel vs BUD] ), 11, "BUD", 4, "Var", 2 ),
+				    ( "vs BUD %", NAMEOF ( '1_Measures'[SRIV Channel vs BUD %] ), 12, "BUD", 4, "% Var", 3 ),
+				    ( "LY", NAMEOF ( '1_Measures'[SRIV LY] ), 13, "LY", 5, "Value", 1 ),
+				    ( "vs LY", NAMEOF ( '1_Measures'[SRIV vs LY] ), 14, "LY", 5, "Var", 2 ),
+				    ( "vs LY %", NAMEOF ( '1_Measures'[SRIV vs LY %] ), 15, "LY", 5, "% Var", 3 )
+				}
+
+	annotation PBI_Id = b3bc6db01f76470ea80b72b93740b17b
+

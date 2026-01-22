@@ -1,0 +1,23 @@
+table BridgeSalesType
+	lineageTag: f9d15b08-fc74-4c02-a5b7-9e370771ecd3
+
+	column fp_rp_ind
+		dataType: string
+		lineageTag: 13432fe1-9dcd-4279-9cac-772f37220abe
+		summarizeBy: none
+		sourceColumn: fp_rp_ind
+
+		annotation SummarizationSetBy = Automatic
+
+	partition BridgeSalesType-16ada3e7-8d35-47bb-9a00-4e3ac555910e = m
+		mode: import
+		source =
+				let
+				    Source = SalesType,
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"SalesType", "SubSalesType"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_ResultType = Table
+

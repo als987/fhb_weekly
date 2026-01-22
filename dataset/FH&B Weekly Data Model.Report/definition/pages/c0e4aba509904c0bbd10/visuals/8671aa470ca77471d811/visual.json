@@ -1,0 +1,97 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "8671aa470ca77471d811",
+  "position": {
+    "x": 664.07932400558752,
+    "y": 343.29524376560033,
+    "z": 6000,
+    "height": 105.05209645286131,
+    "width": 414.58059493004197,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "factAdobe"
+                    }
+                  },
+                  "Property": "visitType"
+                }
+              },
+              "queryRef": "factAdobe.visitType",
+              "nativeQueryRef": "visitType"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "factAdobe"
+                    }
+                  },
+                  "Property": "visitsUnadjusted"
+                }
+              },
+              "queryRef": "factAdobe.visitsUnadjusted",
+              "nativeQueryRef": "visitsUnadjusted"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "factAdobe"
+                    }
+                  },
+                  "Property": "ordersL2"
+                }
+              },
+              "queryRef": "factAdobe.ordersL2",
+              "nativeQueryRef": "ordersL2"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "factAdobe"
+                    }
+                  },
+                  "Property": "sum_visitsL2_factAdobe"
+                }
+              },
+              "queryRef": "factAdobe.sum_visitsL2_factAdobe",
+              "nativeQueryRef": "sum_visitsL2_factAdobe"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "factAdobe"
+                  }
+                },
+                "Property": "visitType"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

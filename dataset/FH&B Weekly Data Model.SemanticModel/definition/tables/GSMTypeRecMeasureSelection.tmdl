@@ -1,0 +1,129 @@
+table GSMTypeRecMeasureSelection
+	lineageTag: ea6af375-4946-4332-98db-3596f79deeb5
+
+	column GSMTypeRecMeasureSelection
+		lineageTag: f423b825-8974-4ee0-9154-2228c9b96fff
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'GSMTypeRecMeasureSelection Order'
+
+		relatedColumnDetails
+			groupByColumn: 'GSMTypeRecMeasureSelection Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GSMTypeRecMeasureSelection Fields'
+		isHidden
+		lineageTag: 5e677918-01df-4d2f-ac97-49d08af206fd
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'GSMTypeRecMeasureSelection Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GSMTypeRecMeasureSelection Order'
+		isHidden
+		formatString: 0
+		lineageTag: 5d7f4038-4c95-4f7a-9211-2be50834c070
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comparator
+		lineageTag: af3352d6-39b7-4d90-8ff3-8251fc5aaf57
+		summarizeBy: none
+		sourceColumn: [Value4]
+		sortByColumn: 'Comparator Order'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comparator Order'
+		formatString: 0
+		lineageTag: 72153e6b-20d7-4cd4-99a6-b360c2b0b52d
+		summarizeBy: sum
+		sourceColumn: [Value5]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MeasureType
+		lineageTag: b6a68f89-7618-4571-bcb2-c2e930e2fd44
+		summarizeBy: none
+		sourceColumn: [Value6]
+		sortByColumn: 'MeasureType Order'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MeasureType Order'
+		formatString: 0
+		lineageTag: 8faea0aa-2836-4169-ac64-19cb5a299283
+		summarizeBy: sum
+		sourceColumn: [Value7]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Metric
+		lineageTag: e8ecb7c2-37aa-43cc-aaed-57d4c89be9e5
+		summarizeBy: none
+		sourceColumn: [Value8]
+		sortByColumn: 'Metric Order'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Metric Order'
+		formatString: 0
+		lineageTag: 5351d626-ae06-440e-86ad-82338a60b79e
+		summarizeBy: sum
+		sourceColumn: [Value9]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition GSMTypeRecMeasureSelection-f9cf2142-41de-4fee-9480-2fac4b4695fe = calculated
+		mode: import
+		source =
+				
+				{
+				    ( "Orders", NAMEOF ( '1_Measures'[GSM Orders] ), 0, "ACT", 1, "Value", 1, "Orders", 0 ),
+				    ( "Orders LW", NAMEOF ( '1_Measures'[GSM Orders LW] ), 1, "LW", 2, "Value", 1, "Orders", 0 ),
+				    ( "Orders vs LW", NAMEOF ( '1_Measures'[GSM Orders vs LW] ), 2, "LW", 2, "Var", 2, "Orders", 0 ),
+				    ( "Orders vs LW %", NAMEOF ( '1_Measures'[GSM Orders vs LW %] ), 3, "LW", 2, "% Var", 3, "Orders", 0 ),
+				    ( "Orders LY", NAMEOF ( '1_Measures'[GSM Orders LY] ), 4, "LY", 3, "Value", 1, "Orders", 0 ),
+				    ( "Orders vs LY", NAMEOF ( '1_Measures'[GSM Orders vs LY] ), 5, "LY", 3, "Var", 2, "Orders", 0 ),
+				    ( "Orders vs LY %", NAMEOF ( '1_Measures'[GSM Orders vs LY %] ), 6, "LY", 3, "% Var", 3, "Orders", 0 ),
+				    ( "Postings", NAMEOF ( '1_Measures'[GSM Postings Dispatch] ), 7, "ACT", 1, "Value", 1, "Postings", 1 ),
+				    ( "Postings LW", NAMEOF ( '1_Measures'[GSM Postings Dispatch LW] ), 8, "LW", 2, "Value", 1, "Postings", 1 ),
+				    ( "Postings vs LW", NAMEOF ( '1_Measures'[GSM Postings Dispatch vs LW] ), 9, "LW", 2, "Var", 2, "Postings", 1 ),
+				    ( "Postings vs LW %", NAMEOF ( '1_Measures'[GSM Postings Dispatch vs LW %] ), 10, "LW", 2, "% Var", 3, "Postings", 1 ),
+				    ( "Postings LY", NAMEOF ( '1_Measures'[GSM Postings Dispatch LY] ), 11, "LY", 3, "Value", 1, "Postings", 1 ),
+				    ( "Postings vs LY", NAMEOF ( '1_Measures'[GSM Postings Dispatch vs LY] ), 12, "LY", 3, "Var", 2, "Postings", 1 ),
+				    ( "Postings vs LY %", NAMEOF ( '1_Measures'[GSM Postings Dispatch vs LY %] ), 13, "LY", 3, "% Var", 3, "Postings", 1 ),
+				    ( "Postings vs Orders", NAMEOF ( '1_Measures'[GSM Dispatch vs Orders] ), 14, "ACT", 1, "Value", 1, "Postings", 1 ),
+				    ( "Dispatch vs Orders LW", NAMEOF ( '1_Measures'[GSM Dispatch vs Orders LW] ), 15, "LW", 2, "Value", 1, "Dispatch vs Orders", 2 ),
+				    ( "Dispatch vs Orders vs LW", NAMEOF ( '1_Measures'[GSM Dispatch vs Orders vs LW] ), 16, "LW", 2, "Var", 2, "Dispatch vs Orders", 2 ),
+				    ( "Dispatch vs Orders vs LW %", NAMEOF ( '1_Measures'[GSM Dispatch vs Orders vs LW %] ), 17, "LW", 2, "% Var", 3, "Dispatch vs Orders", 2 ),
+				    ( "Dispatch vs Orders LY", NAMEOF ( '1_Measures'[GSM Dispatch vs Orders LY] ), 18, "LY", 3, "Value", 1, "Dispatch vs Orders", 2 ),
+				    ( "Dispatch vs Orders vs LY", NAMEOF ( '1_Measures'[GSM Dispatch vs Orders vs LY] ), 19, "LY", 3, "Var", 2, "Dispatch vs Orders", 2 ),
+				    ( "Dispatch vs Orders vs LY %", NAMEOF ( '1_Measures'[GSM Dispatch vs Orders vs LY %] ), 20, "LY", 3, "% Var", 3, "Dispatch vs Orders", 2 ),
+				    ( "Dispatch", NAMEOF ( '1_Measures'[GSM Dispatch] ), 21, "ACT", 1, "Value", 1, "Dispatch", 3 ),
+				    ( "Dispatch LW", NAMEOF ( '1_Measures'[GSM Dispatch LW] ), 22, "LW", 2, "Value", 1, "Dispatch", 3 ),
+				    ( "Dispatch vs LW", NAMEOF ( '1_Measures'[GSM Dispatch vs LW] ), 23, "LW", 2, "Var", 2, "Dispatch", 3 ),
+				    ( "Dispatch vs LW %", NAMEOF ( '1_Measures'[GSM Dispatch vs LW %] ), 24, "LW", 2, "% Var", 3, "Dispatch", 3 ),
+				    ( "Dispatch LY", NAMEOF ( '1_Measures'[GSM Dispatch LY] ), 25, "LY", 3, "Value", 1, "Dispatch", 3 ),
+				    ( "Dispatch vs LY", NAMEOF ( '1_Measures'[GSM Dispatch vs LY] ), 26, "LY", 3, "Var", 2, "Dispatch", 3 ),
+				    ( "Dispatch vs LY %", NAMEOF ( '1_Measures'[GSM Dispatch vs LY %] ), 27, "LY", 3, "% Var", 3, "Dispatch", 3 )
+				}
+
+	annotation PBI_Id = d5373bee82db49bdba5ace60ee5a5d83
+

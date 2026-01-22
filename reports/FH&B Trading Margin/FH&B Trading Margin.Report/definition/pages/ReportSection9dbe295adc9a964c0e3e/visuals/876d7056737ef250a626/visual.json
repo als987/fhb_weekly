@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "876d7056737ef250a626",
+  "position": {
+    "x": 956,
+    "y": 250,
+    "z": 29000,
+    "height": 199,
+    "width": 313.85915492957747,
+    "tabOrder": 24000
+  },
+  "visualGroup": {
+    "displayName": "Main BU Matrix",
+    "groupMode": "ScaleMode"
+  }
+}

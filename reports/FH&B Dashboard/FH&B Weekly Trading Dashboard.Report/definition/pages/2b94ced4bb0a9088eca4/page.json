@@ -1,0 +1,629 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "2b94ced4bb0a9088eca4",
+  "displayName": "FHB Split Draft",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filter57f2c05c00668c773d8b",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ChannelControl"
+              }
+            },
+            "Property": "Channel"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "isHiddenInViewMode": true,
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Filter1af0c3171b19502a4c7d",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ChannelControl"
+              }
+            },
+            "Property": "Channel"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "isHiddenInViewMode": true,
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Filtera292fe8edd945ebeeab0",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Stores"
+              }
+            },
+            "Property": "partyName"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "isHiddenInViewMode": true,
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Filterbb06f37f1e2e2668540b",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Stores"
+              }
+            },
+            "Property": "worldwideHierName"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "s",
+              "Entity": "Stores",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "s"
+                              }
+                            },
+                            "Property": "worldwideHierName"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'International Website'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isHiddenInViewMode": true,
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Filter8929fbf3fd0f9cbd8d71",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ComparatorMaster"
+              }
+            },
+            "Property": "Comparator"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "ComparatorMaster",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "c"
+                              }
+                            },
+                            "Property": "Comparator"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'QRF'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "filterSortOrder": "Custom"
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'pbi_ra_background_narrower_ribbon.png'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "pbi_ra_background_narrower_rib9585068097632983.png"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Normal'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "titleSize": {
+            "expr": {
+              "Literal": {
+                "Value": "8L"
+              }
+            }
+          },
+          "inputBoxColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#E6E6E6'"
+                  }
+                }
+              }
+            }
+          },
+          "searchTextSize": {
+            "expr": {
+              "Literal": {
+                "Value": "8L"
+              }
+            }
+          },
+          "backgroundColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#E6E6E6'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "filterCard": [
+      {
+        "properties": {
+          "foregroundColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "textSize": {
+            "expr": {
+              "Literal": {
+                "Value": "8L"
+              }
+            }
+          },
+          "inputBoxColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#808080'"
+                  }
+                }
+              }
+            }
+          },
+          "backgroundColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#B3B3B3'"
+                  }
+                }
+              }
+            }
+          },
+          "borderColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#C8C8C8'"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "selector": {
+          "id": "Available"
+        }
+      },
+      {
+        "properties": {
+          "foregroundColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "textSize": {
+            "expr": {
+              "Literal": {
+                "Value": "8L"
+              }
+            }
+          },
+          "inputBoxColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#808080'"
+                  }
+                }
+              }
+            }
+          },
+          "backgroundColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#333333'"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "selector": {
+          "id": "Applied"
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "5455d6bfcc43dec41c6e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "0bf1b727e1db082b139e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "1968046684608c324254",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "939ef8486213bb5dac78",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "f4576ffbd210c398047a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "5455d6bfcc43dec41c6e",
+      "target": "f4576ffbd210c398047a",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f53271275bba0096a3b6",
+      "target": "7b81d84e989e64557bb7",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f53271275bba0096a3b6",
+      "target": "8e4e40d06791531aa17e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "f53271275bba0096a3b6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "8e4e40d06791531aa17e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "3c0dd4f9e3d4aaad3806",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "98fc5a8849c22406470c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "613bebe4043d7ec595b6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "67bc095516002a18c7c2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "c214b2b09dcc2d005dcb",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "a748108e110d0bba0c68",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "52b86abbb3222a4500dc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "42e99f582cd028cb7672",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "5a44223762bbc4e2bb74",
+      "type": "NoFilter"
+    },
+    {
+      "source": "a1d07504c015b0303bbd",
+      "target": "939ef8486213bb5dac78",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a1d07504c015b0303bbd",
+      "target": "b8c6579a1380b722e207",
+      "type": "NoFilter"
+    },
+    {
+      "source": "a1d07504c015b0303bbd",
+      "target": "67bc095516002a18c7c2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a1d07504c015b0303bbd",
+      "target": "a748108e110d0bba0c68",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a1d07504c015b0303bbd",
+      "target": "5a44223762bbc4e2bb74",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a1d07504c015b0303bbd",
+      "target": "52b86abbb3222a4500dc",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a1d07504c015b0303bbd",
+      "target": "42e99f582cd028cb7672",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a1d07504c015b0303bbd",
+      "target": "c214b2b09dcc2d005dcb",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a1d07504c015b0303bbd",
+      "target": "613bebe4043d7ec595b6",
+      "type": "DataFilter"
+    },
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "13147b8c2d33ce98bb0c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "a1d07504c015b0303bbd",
+      "target": "13147b8c2d33ce98bb0c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "5f18912a5200d66ebaea",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7b81d84e989e64557bb7",
+      "target": "8240d1809a27b23678c1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "f362ba5483507c65bb7e",
+      "target": "b8c6579a1380b722e207",
+      "type": "NoFilter"
+    },
+    {
+      "source": "f362ba5483507c65bb7e",
+      "target": "08a6759345691b38c517",
+      "type": "NoFilter"
+    },
+    {
+      "source": "0986d9c90958a0dcc8e9",
+      "target": "a94640fccb40914bab0e",
+      "type": "NoFilter"
+    }
+  ]
+}

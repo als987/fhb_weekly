@@ -1,0 +1,367 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "689cf2bc784ed72b6095",
+  "position": {
+    "x": 0,
+    "y": 455.61338289962828,
+    "z": 4000,
+    "height": 255.76208178438662,
+    "width": 1280,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Products"
+                    }
+                  },
+                  "Property": "BU"
+                }
+              },
+              "queryRef": "Products.BU",
+              "nativeQueryRef": "BU",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Products"
+                    }
+                  },
+                  "Property": "Dept"
+                }
+              },
+              "queryRef": "Products.Dept",
+              "nativeQueryRef": "Dept",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Gross SRIV"
+                }
+              },
+              "queryRef": "1_Measures.Gross SRIV",
+              "nativeQueryRef": "Gross SRIV"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Returns"
+                }
+              },
+              "queryRef": "1_Measures.Returns",
+              "nativeQueryRef": "Returns"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Return rate %"
+                }
+              },
+              "queryRef": "1_Measures.Return rate %",
+              "nativeQueryRef": "Return rate %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Gross SRIV LY"
+                }
+              },
+              "queryRef": "1_Measures.Gross SRIV LY",
+              "nativeQueryRef": "Gross SRIV LY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Returns LY"
+                }
+              },
+              "queryRef": "1_Measures.Returns LY",
+              "nativeQueryRef": "Returns LY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Return rate % LY"
+                }
+              },
+              "queryRef": "1_Measures.Return rate % LY",
+              "nativeQueryRef": "Return rate % LY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Rbr01_TYMixLYSales"
+                }
+              },
+              "queryRef": "1_Measures.Rbr01_TYMixLYSales",
+              "nativeQueryRef": "Rbr01_TYMixLYSales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Rbr02_TYMixLYSales_x_TYRate"
+                }
+              },
+              "queryRef": "1_Measures.Rbr02_TYMixLYSales_x_TYRate",
+              "nativeQueryRef": "Rbr02_TYMixLYSales_x_TYRate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Rbr03_VolumeRR"
+                }
+              },
+              "queryRef": "1_Measures.Rbr03_VolumeRR",
+              "nativeQueryRef": "Rbr03_VolumeRR"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Rbr04_TYMixLYSales_x_LYRR"
+                }
+              },
+              "queryRef": "1_Measures.Rbr04_TYMixLYSales_x_LYRR",
+              "nativeQueryRef": "Rbr04_TYMixLYSales_x_LYRR"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Rbr05_RateRR"
+                }
+              },
+              "queryRef": "1_Measures.Rbr05_RateRR",
+              "nativeQueryRef": "Rbr05_RateRR"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Rbr06_LYSalesExBrands"
+                }
+              },
+              "queryRef": "1_Measures.Rbr06_LYSalesExBrands",
+              "nativeQueryRef": "Rbr06_LYSalesExBrands"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Rbr07_LYReturnsExBrands"
+                }
+              },
+              "queryRef": "1_Measures.Rbr07_LYReturnsExBrands",
+              "nativeQueryRef": "Rbr07_LYReturnsExBrands"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Rbr08_LYRRExBrands"
+                }
+              },
+              "queryRef": "1_Measures.Rbr08_LYRRExBrands",
+              "nativeQueryRef": "Rbr08_LYRRExBrands"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Rbr09_RRVolImpact"
+                }
+              },
+              "queryRef": "1_Measures.Rbr09_RRVolImpact",
+              "nativeQueryRef": "Rbr09_RRVolImpact"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Rbr10_RRRateImpact"
+                }
+              },
+              "queryRef": "1_Measures.Rbr10_RRRateImpact",
+              "nativeQueryRef": "Rbr10_RRRateImpact"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "Rbr11_RRMixImpact"
+                }
+              },
+              "queryRef": "1_Measures.Rbr11_RRMixImpact",
+              "nativeQueryRef": "Rbr11_RRMixImpact"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "ReturnsMixImpact"
+                }
+              },
+              "queryRef": "1_Measures.ReturnsMixImpact",
+              "nativeQueryRef": "ReturnsMixImpact"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "Products.BU"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Products"
+                    }
+                  },
+                  "Property": "BU"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Products.Dept"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "objects": {
+      "columnFormatting": [
+        {
+          "properties": {
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "1_Measures.Gross SRIV"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

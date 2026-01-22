@@ -1,0 +1,352 @@
+table factSalesDispatch
+	lineageTag: 8e1c4b86-ea42-4c97-997c-70ca8af83391
+
+	/// This measure is the sum of column 'factSalesDispatch'[Sales Revenue (Inc VAT)]
+	measure 'sum_Sales Revenue (Inc VAT)' = SUM ( 'factSalesDispatch'[Sales Revenue (Inc VAT)] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: 1ba84667-2356-4605-a59a-2ca5774d5911
+
+	/// This measure is the sum of column 'factSalesDispatch'[Cost Of Goods Sold (Inc VAT)]
+	measure 'sum_Cost Of Goods Sold (Inc VAT)' = SUM ( 'factSalesDispatch'[Cost Of Goods Sold (Inc VAT)] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: 831e226a-6b25-48f3-ad00-82a73181a608
+
+	/// This measure is the sum of column 'factSalesDispatch'[Buying Margin Denominator]
+	measure 'sum_Buying Margin Denominator' = SUM ( 'factSalesDispatch'[Buying Margin Denominator] )
+		formatString: #,##0,,.0;(#,##0,,.0)
+		lineageTag: 0e65ecd9-b368-409b-a77c-4d5dce3c18cc
+
+	/// This measure is the sum of column 'factSalesDispatch'[Total Net Volume]
+	measure 'sum_Total Net Volume' = CALCULATE(SUM('factSalesDispatch'[Total Net Volume]), Filter(Products, Products[BU] <> "Other" && Products[BU] <> "GM Other"))
+		formatString: #,##0;(#,##0)
+		lineageTag: f29fc967-440b-4745-a80a-65ed3992ee92
+
+	column 'Department / Category Code'
+		dataType: string
+		lineageTag: f242c241-1f18-48a9-85e0-666462f7147d
+		summarizeBy: none
+		sourceColumn: Department / Category Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Distribution Channel Code'
+		dataType: string
+		lineageTag: 76fc3f4b-d074-4490-a289-d411f8c1934a
+		summarizeBy: none
+		sourceColumn: Distribution Channel Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LFL Indicator'
+		dataType: string
+		lineageTag: 86f8b024-c002-4bbf-ae1c-8b4132c2af18
+		summarizeBy: none
+		sourceColumn: LFL Indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Exchange Rate Value Group'
+		dataType: double
+		lineageTag: 2f8500b7-68cf-4918-988c-22f5a1405030
+		summarizeBy: sum
+		sourceColumn: Exchange Rate Value Group
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales Revenue (Inc VAT)'
+		dataType: double
+		isHidden
+		lineageTag: a06fbda3-6aa1-452e-bdaa-54e1840f34e9
+		summarizeBy: sum
+		sourceColumn: Sales Revenue (Inc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales Revenue (Exc VAT)'
+		dataType: double
+		lineageTag: 7d8ac623-7c8d-4c5c-9a66-e6de32ebee50
+		summarizeBy: sum
+		sourceColumn: Sales Revenue (Exc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Gross Selling Margin'
+		dataType: double
+		lineageTag: 903b72f4-b30a-4938-930e-b3b76ad9a768
+		summarizeBy: sum
+		sourceColumn: Gross Selling Margin
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fiscal Week'
+		dataType: int64
+		formatString: 0
+		lineageTag: 265bb57a-d566-46ac-adae-10da7a207861
+		summarizeBy: none
+		sourceColumn: Fiscal Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Site No'
+		dataType: string
+		lineageTag: fc1972fe-149c-4fda-9e2c-3029630bc3ee
+		summarizeBy: none
+		sourceColumn: Site No
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Full Price Returns (Inc VAT)'
+		dataType: double
+		lineageTag: 5850be9b-5d2b-4780-a2e9-c07d2efde6fa
+		summarizeBy: sum
+		sourceColumn: Full Price Returns (Inc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Reduced Price Returns (Inc VAT)'
+		dataType: double
+		lineageTag: 86a054d3-6622-4ffd-9ac3-b0ee75e1a971
+		summarizeBy: sum
+		sourceColumn: Reduced Price Returns (Inc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Dept/Manual Postings'
+		dataType: double
+		lineageTag: 8b0906dc-f7a4-4d2e-9bcc-9a3613d14352
+		summarizeBy: sum
+		sourceColumn: Dept/Manual Postings
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Promo Markdown @SV'
+		dataType: double
+		lineageTag: db25ea40-35d0-4295-893f-c3f7379bcaa1
+		summarizeBy: sum
+		sourceColumn: Promo Markdown @SV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'SIS Sold Through (Inc VAT)'
+		dataType: double
+		lineageTag: e86fd31e-8e41-47c7-861a-47020e16c1ea
+		summarizeBy: sum
+		sourceColumn: SIS Sold Through (Inc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sale Markdown @SV'
+		dataType: double
+		lineageTag: ba75e344-a661-43cc-94d2-862cf024dd5d
+		summarizeBy: sum
+		sourceColumn: Sale Markdown @SV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Markdown @SV'
+		dataType: double
+		lineageTag: c86c57a0-2c0d-492e-bdcb-b78b788a70ba
+		summarizeBy: sum
+		sourceColumn: Markdown @SV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost Of Goods Sold (Inc VAT)'
+		dataType: double
+		isHidden
+		lineageTag: 72a0771b-5113-4852-bc0c-50185ad6ed24
+		summarizeBy: sum
+		sourceColumn: Cost Of Goods Sold (Inc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Buying Margin Denominator'
+		dataType: double
+		isHidden
+		lineageTag: 3b6ba909-9d22-4b8d-82a7-70a3eb7b719b
+		summarizeBy: sum
+		sourceColumn: Buying Margin Denominator
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Full Price Sales Revenue (Inc VAT)'
+		dataType: double
+		lineageTag: 644772f0-83bb-4441-a175-92aee02b1dbe
+		summarizeBy: sum
+		sourceColumn: Full Price Sales Revenue (Inc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Reduced Price Sales Revenue (Inc VAT)'
+		dataType: double
+		lineageTag: 456f4292-167f-4c69-b1a6-0a852573a2c6
+		summarizeBy: sum
+		sourceColumn: Reduced Price Sales Revenue (Inc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Staff Discount & Loyalty'
+		dataType: double
+		isHidden
+		lineageTag: 7854bfae-29a1-4844-a360-e0ba12e099cf
+		summarizeBy: sum
+		sourceColumn: Staff Discount & Loyalty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Depth Of Cut'
+		dataType: double
+		isHidden
+		lineageTag: 889f0911-7efe-425c-952e-00e397f05684
+		summarizeBy: sum
+		sourceColumn: Depth Of Cut
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Other Gross Selling Margin Adjustments'
+		dataType: double
+		isHidden
+		lineageTag: 6643fd75-7e9c-4861-ade6-4255e98d2851
+		summarizeBy: sum
+		sourceColumn: Other Gross Selling Margin Adjustments
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Dept/Manual Postings GSM'
+		dataType: double
+		isHidden
+		lineageTag: 73afded1-c771-44db-85f3-1879a630abef
+		summarizeBy: sum
+		sourceColumn: Dept/Manual Postings GSM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net Full Price Volume'
+		dataType: double
+		lineageTag: 0805ac74-520d-49ae-9a4d-ff981275c133
+		summarizeBy: sum
+		sourceColumn: Net Full Price Volume
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net Reduced Price Volume'
+		dataType: double
+		lineageTag: 5b7ae301-b04e-432e-96a1-7d12c088c0d7
+		summarizeBy: sum
+		sourceColumn: Net Reduced Price Volume
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Net Volume'
+		dataType: double
+		isHidden
+		lineageTag: e00856ff-00e8-4455-876c-d69fa4a21885
+		summarizeBy: sum
+		sourceColumn: Total Net Volume
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Reduced Price Sales (Inc VAT)'
+		dataType: double
+		lineageTag: 5b543a85-6442-4950-807c-8acb18eb6885
+		summarizeBy: sum
+		sourceColumn: Reduced Price Sales (Inc VAT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Company Code'
+		dataType: string
+		lineageTag: f758a725-a705-47c6-b123-4ff768d3b16a
+		summarizeBy: none
+		sourceColumn: Company Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Site Class Code'
+		dataType: string
+		lineageTag: 70e1b123-5b31-4163-9adb-a6023733f86c
+		summarizeBy: none
+		sourceColumn: Site Class Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Of Goods Sold'
+		dataType: double
+		lineageTag: 67781fa3-aca6-4243-99a1-6b0a0e03d631
+		summarizeBy: sum
+		sourceColumn: Cost Of Goods Sold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'VAT Rate'
+		dataType: double
+		lineageTag: 80694638-5ebe-4bf6-a564-3ad214352795
+		summarizeBy: sum
+		sourceColumn: VAT Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition factSalesDispatch-6ffc4284-0c22-44f2-a670-04c4ef951931 = m
+		mode: import
+		queryGroup: 'Dispatch fact tables'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0" = Source{[workspaceId="1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"]}[Data],
+				    #"f8e54432-cae6-4bdb-9af2-2c40cbce076d" = #"1e21bb0e-7319-4d52-a1b9-84f8819e9fa0"{[dataflowId="f8e54432-cae6-4bdb-9af2-2c40cbce076d"]}[Data],
+				    #"Department Sales to GP" = #"f8e54432-cae6-4bdb-9af2-2c40cbce076d"{[entity="Department Sales to GP"]}[Data]
+				in
+				    #"Department Sales to GP"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,112 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "fffe3d3b60316a68dd07",
+  "position": {
+    "x": 101.15501519756839,
+    "y": 107.96352583586626,
+    "z": 0,
+    "height": 579.69604863221889,
+    "width": 699.33130699088144
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MetricMasterPnL"
+                    }
+                  },
+                  "Property": "Metric"
+                }
+              },
+              "queryRef": "MetricMasterPnL.Metric",
+              "nativeQueryRef": "Metric",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "P&L"
+                }
+              },
+              "queryRef": "1_Measures.P&L",
+              "nativeQueryRef": "P&L"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "P&L LY"
+                }
+              },
+              "queryRef": "1_Measures.P&L LY",
+              "nativeQueryRef": "P&L LY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "P&L FC"
+                }
+              },
+              "queryRef": "1_Measures.P&L FC",
+              "nativeQueryRef": "P&L FC"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "P&L QRF"
+                }
+              },
+              "queryRef": "1_Measures.P&L QRF",
+              "nativeQueryRef": "P&L QRF"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "1_Measures"
+                    }
+                  },
+                  "Property": "P&L BUD"
+                }
+              },
+              "queryRef": "1_Measures.P&L BUD",
+              "nativeQueryRef": "P&L BUD"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

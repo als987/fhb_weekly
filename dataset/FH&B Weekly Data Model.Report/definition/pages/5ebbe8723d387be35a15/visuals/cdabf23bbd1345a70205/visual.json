@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "cdabf23bbd1345a70205",
+  "position": {
+    "x": 0,
+    "y": 142.5,
+    "z": 3000,
+    "height": 150,
+    "width": 330,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "factSalesDispatch"
+                    }
+                  },
+                  "Property": "Fiscal Week"
+                }
+              },
+              "queryRef": "factSalesDispatch.Fiscal Week",
+              "nativeQueryRef": "Fiscal Week"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

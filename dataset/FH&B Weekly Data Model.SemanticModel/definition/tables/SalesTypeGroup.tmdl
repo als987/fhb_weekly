@@ -1,0 +1,31 @@
+table SalesTypeGroup
+	lineageTag: e18c7aba-642f-4b9c-a018-b6318bc87d19
+
+	column SalesTypeGroup
+		dataType: string
+		lineageTag: aca0ec59-51ba-4c6c-accd-98e0f2c71c81
+		summarizeBy: none
+		sourceColumn: SalesTypeGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubSalesType
+		dataType: string
+		lineageTag: d1bd4b97-90a9-48ad-8e68-cdc604235ee6
+		summarizeBy: none
+		sourceColumn: SubSalesType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SalesTypeGroup = m
+		mode: import
+		queryGroup: 'Dimension tables'
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WcguIKTUwMDILUNJRcivNyVEIKMpMTlWK1UGVCijKz82HiCIUYegISk0pTU5NAUrAWCDRkPySxBygGISOjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [SalesTypeGroup = _t, SubSalesType = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"SalesTypeGroup", type text}, {"SubSalesType", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

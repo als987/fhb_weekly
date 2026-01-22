@@ -1,0 +1,66 @@
+table 'Date Parameter'
+	lineageTag: 17de992b-d544-4cda-b744-edbde8b9843a
+
+	measure Slctd_DateParameter = SELECTEDVALUE('Date Parameter'[Date Parameter Fields])
+		lineageTag: bd289772-6dbf-4020-9ecd-947fd817ab05
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Slctd_WkMthYr = ```
+			
+			    SWITCH(
+			        [Slctd_DateParameter]
+			        ,"'Calendar'[Week]",SELECTEDVALUE('Calendar'[Week])
+			        ,"'Calendar'[fiscalMonth]", SELECTEDVALUE('Calendar'[fiscalMonth])
+			        ,"'Calendar'[fiscalQuarter]", SELECTEDVALUE('Calendar'[fiscalQuarter])
+			        )
+			```
+		formatString: 0
+		lineageTag: 9cb5cdae-f46c-42f2-b126-978a6d3e4a5f
+
+	column 'Date Parameter'
+		lineageTag: 679a60c2-93cc-42c8-abe5-99594011d09b
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Date Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Date Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Parameter Fields'
+		isHidden
+		lineageTag: 68f5ec2a-968c-46cb-ac0f-685c9e86f797
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Date Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: 11916caa-c5fc-48af-b768-41905f250cbc
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Date Parameter' = calculated
+		mode: import
+		source =
+				{
+				    ("Week", NAMEOF('Calendar'[Week]), 0),
+				    ("Month", NAMEOF('Calendar'[fiscalMonth]), 1),
+				    ("Quarter", NAMEOF('Calendar'[fiscalQuarter]), 2)
+				}
+
+	annotation PBI_Id = ff04f8395f3b4915b6942582060b4679
+

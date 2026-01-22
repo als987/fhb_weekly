@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "b471a3cf60244086dd87",
+  "position": {
+    "x": 327.74647887323943,
+    "y": 510,
+    "z": 30000,
+    "height": 198.84507042253523,
+    "width": 596.05633802816908,
+    "tabOrder": 3000
+  },
+  "visualGroup": {
+    "displayName": "Second Waterfall group",
+    "groupMode": "ScaleMode"
+  }
+}

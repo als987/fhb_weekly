@@ -1,0 +1,137 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "a4546cc96e80c4d2a906",
+  "position": {
+    "x": 610,
+    "y": 163,
+    "z": 4000,
+    "height": 557,
+    "width": 600,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "factSalesDispatch"
+                    }
+                  },
+                  "Property": "Fiscal Week"
+                }
+              },
+              "queryRef": "factSalesDispatch.Fiscal Week",
+              "nativeQueryRef": "Fiscal Week"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "factSalesDispatch"
+                    }
+                  },
+                  "Property": "Company Code"
+                }
+              },
+              "queryRef": "factSalesDispatch.Company Code",
+              "nativeQueryRef": "Company Code"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "factSalesDispatch"
+                    }
+                  },
+                  "Property": "sum_Sales Revenue (Inc VAT)"
+                }
+              },
+              "queryRef": "factSalesDispatch.sum_Sales Revenue (Inc VAT)",
+              "nativeQueryRef": "sum_Sales Revenue (Inc VAT)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "factSalesDispatch"
+                    }
+                  },
+                  "Property": "Distribution Channel Code"
+                }
+              },
+              "queryRef": "factSalesDispatch.Distribution Channel Code",
+              "nativeQueryRef": "Distribution Channel Code"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "5e2a59df5666ca64476d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "factSalesDispatch"
+              }
+            },
+            "Property": "Company Code"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "factSalesDispatch",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "Company Code"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'1000'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

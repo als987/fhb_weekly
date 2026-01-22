@@ -1,0 +1,43 @@
+{
+  "name": "Custom",
+  "minimum": "#FD625E",
+  "center": "#FFFFFF",
+  "maximum": "#01B8AA",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "outspacePane": [
+          {
+            "backgroundColor": {
+              "solid": {
+                "color": "#E6E6E6"
+              }
+            }
+          }
+        ],
+        "filterCard": [
+          {
+            "$id": "Available",
+            "backgroundColor": {
+              "solid": {
+                "color": "#E6E6E6"
+              }
+            },
+            "transparency": 0
+          },
+          {
+            "$id": "Applied",
+            "backgroundColor": {
+              "solid": {
+                "color": "#E6E6E6"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    }
+  },
+  "bad": "#FD625E",
+  "good": "#01B8AA"
+}

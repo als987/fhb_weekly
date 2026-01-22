@@ -1,0 +1,94 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "257783e489d60806d805",
+  "position": {
+    "x": 887.81471230881277,
+    "y": 544.14450109249822,
+    "z": 7000,
+    "height": 116.94333576110706,
+    "width": 326.96402039329934,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "factAdobe"
+                    }
+                  },
+                  "Property": "visitType"
+                }
+              },
+              "queryRef": "factAdobe.visitType",
+              "nativeQueryRef": "visitType",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "factAdobe"
+                    }
+                  },
+                  "Property": "fiscalWeek"
+                }
+              },
+              "queryRef": "factAdobe.fiscalWeek",
+              "nativeQueryRef": "fiscalWeek",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "factAdobe"
+                    }
+                  },
+                  "Property": "sum_visitsL2_factAdobe"
+                }
+              },
+              "queryRef": "factAdobe.sum_visitsL2_factAdobe",
+              "nativeQueryRef": "sum_visitsL2_factAdobe"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "factAdobe"
+                  }
+                },
+                "Property": "sum_visitsL2_factAdobe"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

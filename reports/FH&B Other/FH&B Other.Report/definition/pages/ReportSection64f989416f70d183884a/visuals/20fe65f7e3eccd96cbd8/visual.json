@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "20fe65f7e3eccd96cbd8",
+  "position": {
+    "x": 1035.206140931349,
+    "y": 0,
+    "z": 1000,
+    "height": 64.549356223175963,
+    "width": 201.88841201716738,
+    "tabOrder": 3000
+  },
+  "visualGroup": {
+    "displayName": "vs FC Cards",
+    "groupMode": "ScaleMode"
+  },
+  "parentGroupName": "2da85d93f0aecef10e0e"
+}
