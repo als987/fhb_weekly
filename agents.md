@@ -118,29 +118,40 @@ The goal of AI-assisted work in this repository is to:
 
 ---
 
-# D) High-Level Structure (Indicative)
+# D) High-Level Structure
+
+Paths in this repository may contain spaces. Always treat paths as exact, quoted strings.
 
 - dataset
-  - FinanceModel.pbip
-  - FinanceModel.SemanticModel
-  - FinanceModel_DevScratch.Report
+  - FH&B Weekly Data Model.pbip
+  - FH&B Weekly Data Model.SemanticModel
+  - FH&B Weekly Data Model.Report
 
 - reports
-  - Exec
-    - Exec.pbip
-    - Exec.Report
-  - Ops
-    - Ops.pbip
-    - Ops.Report
-  - Sales
-    - Sales.pbip
-    - Sales.Report
+  - FH&B BU Performance
+    - FH&B BU Performance.pbip
+    - FH&B BU Performance.Report
+  - FH&B Forward View
+    - FH&B Forward View.pbip
+    - FH&B Forward View.Report
+  - FH&B Other
+    - FH&B Other.pbip
+    - FH&B Other.Report
+  - FH&B Trading Margin
+    - FH&B Trading Margin.pbip
+    - FH&B Trading Margin.Report
+  - FH&B Dashboard
+    - FH&B Weekly Trading Dashboard.pbip
+    - FH&B Weekly Trading Dashboard.Report
 
-- sql
+- SQL code
   - one or more SQL files
 
 - docs
   - markdown documentation files
+
+- agents.md
+
 
 ---
 
@@ -149,7 +160,7 @@ The goal of AI-assisted work in this repository is to:
 ## Semantic Model
 
 - The **only authoritative semantic model** is:
-  - dataset → FinanceModel.SemanticModel
+  - dataset → FH&B Weekly Data Model.SemanticModel
 - All measures, relationships, metadata, and modelling changes must be made here.
 - Do **not** create, modify, or infer additional semantic models elsewhere.
 
@@ -160,7 +171,7 @@ The goal of AI-assisted work in this repository is to:
 - Reports may be analysed to determine:
   - Which measures are used
   - Which fields appear in visuals, filters, or slicers
-- Reports may be edited **only when explicitly instructed**.
+- Changes to the semantic model must be reflected in the reports where necessary, e.g. if measure names in the semantic model are changed.
 
 ---
 
@@ -168,7 +179,7 @@ The goal of AI-assisted work in this repository is to:
 
 The following content exists for development purposes only and is **not published**:
 
-- dataset → FinanceModel_DevScratch.Report
+- dataset → FH&B Weekly Data Model.Report
 
 Rules:
 - Do not refactor, enhance, or optimise this report.
